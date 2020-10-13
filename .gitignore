@@ -13,7 +13,7 @@ site/
 */.DS_store
 **/.DS_store
 
-dist/
+/dist
 trash/
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
