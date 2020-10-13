@@ -1,5 +1,6 @@
 ---
-title: Latid&#128031;readme
+title: Latid README
+date: 13-10-2020
 ---
 # <div style="font-size:200%;">&#128031;</div>latid
 
