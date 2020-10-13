@@ -1,0 +1,21 @@
+<svg viewBox="0 0 24 24" >
+
+<!--<path  
+   d="M0,0h24v24H0V0z"
+    />-->
+
+<rect height="4"
+   width="16"
+   y="4"
+   x="4" />
+<rect
+   height="2"
+   width="16"
+   y="12"
+   x="4" />
+<rect
+   height="2"
+   width="12"
+   y="16"
+   x="4" />
+</svg>

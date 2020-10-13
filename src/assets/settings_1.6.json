@@ -1,0 +1,13 @@
+{
+    "site_title": "No title",
+    "site_url" : "https://example.com",
+    "site_motto" : "Lorem ipsum",  
+    "output_dir" : "static",
+    "time_diff" : 0,
+    "debug": true,
+    "content_selector": "#content",
+    "tag_dir" : "/tags/",
+    "rss_uri" : "/rss.xml",
+    "rss_count" : 20,
+    "list_max" : 10
+}

@@ -1,0 +1,269 @@
+#block-editor-container,
+textarea.dumbeditor {
+  outline: dashed 4px #363636;
+  box-shadow: 0 0 0 4px #ffd901;
+}
+#block-editor-container {
+  padding: 4px;
+}
+#viewer_controls {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  top: auto;
+  min-height: 2rem;
+  background-color: gray;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  font-size: 12px;
+  font-family: sans-serif;
+  transition: top 1s;
+  border-top: 2px solid blueviolet;
+}
+#viewer_controls.warn {
+  border-top: 2px solid red;
+}
+#viewer_controls.warn .switch {
+  background-color: red;
+  color: black;
+}
+#viewer_controls.hidden {
+  top: 100vh;
+}
+#viewer_controls.hidden .switch::before {
+  content: "🡡";
+}
+#viewer_controls .switch {
+  display: block;
+  height: 18px;
+  min-width: 16px;
+  position: absolute;
+  color: white;
+  text-align: center;
+  line-height: 140%;
+  padding: 2px 2px;
+  top: -22px;
+  left: 0px;
+  background-color: blueviolet;
+}
+#viewer_controls .switch::before {
+  content: "🡣";
+}
+#viewer_controls .subpanel {
+  padding: 2px 5px;
+  border: 1px ridge silver;
+}
+#viewer_controls .panel_button {
+  padding: 0px 5px;
+  background-color: silver;
+  line-height: 140%;
+  display: inline-block;
+  border-radius: 3px;
+  transition: background-color 1s;
+  margin-right: 2px;
+  cursor: pointer;
+}
+#viewer_controls .panel_button:hover {
+  background-color: yellow;
+}
+#viewer_controls .panel_button:last-child {
+  margin-right: 0px;
+}
+#control_panel {
+  z-index: 50;
+  background-color: gray;
+  min-width: 30%;
+  box-sizing: border-box;
+  font-family: 'Fira Code', monospace;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  height: auto;
+  width: 25vw;
+  min-width: 400px;
+  border-radius: 5px;
+  line-height: 100%;
+  padding-top: 20px;
+  transition: height 2s;
+  opacity: 100%;
+  border: 2px outset silver;
+}
+#control_panel.collapsed {
+  height: 30px;
+  width: 30px !important;
+  min-width: 30px;
+  border-radius: 15px;
+  min-width: 20px;
+  overflow: hidden;
+  opacity: 30%;
+}
+#control_panel.collapsed:hover {
+  opacity: 100%;
+  color: white;
+}
+#control_panel.collapsed .close_button {
+  height: 30px;
+}
+#control_panel.collapsed .close_button::before {
+  content: "+";
+  font-size: 18px;
+}
+#control_panel .ui_pane {
+  margin: 4px;
+  padding: 10px;
+  border: 2px groove silver;
+  border-radius: 5px;
+}
+#control_panel .ui_pane h4 {
+  color: white;
+  margin: 0px;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+#control_panel .close_button {
+  border-radius: 5px 5px 0px 0px;
+  width: 100%;
+  height: 20px;
+  background-color: gray;
+  text-align: center;
+  position: absolute;
+  top: 0px;
+  cursor: pointer;
+}
+#control_panel .close_button:hover {
+  background-color: #88329a;
+  color: white;
+}
+#control_panel .close_button::before {
+  content: "—";
+  display: inline-block;
+}
+#control_panel .pane_button_any {
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 12px;
+  border-width: 1px;
+  display: inline-block;
+  margin-right: 2px;
+  cursor: pointer;
+}
+#control_panel .pane_button_any:hover {
+  background-color: yellow;
+}
+#control_panel .pane_button_any:last-child {
+  margin-right: 0px;
+}
+#control_panel .pane_button_any.small {
+  padding: 1px;
+  height: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+#control_panel .pane_button_active {
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 12px;
+  border-width: 1px;
+  display: inline-block;
+  margin-right: 2px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border-color: black;
+}
+#control_panel .pane_button_active:hover {
+  background-color: yellow;
+}
+#control_panel .pane_button_active:last-child {
+  margin-right: 0px;
+}
+#control_panel .pane_button_active.small {
+  padding: 1px;
+  height: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+#control_panel .pane_button_disabled {
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 12px;
+  border-width: 1px;
+  display: inline-block;
+  margin-right: 2px;
+  cursor: pointer;
+  background-color: gray;
+  color: white;
+  border-color: gray;
+}
+#control_panel .pane_button_disabled:hover {
+  background-color: yellow;
+}
+#control_panel .pane_button_disabled:last-child {
+  margin-right: 0px;
+}
+#control_panel .pane_button_disabled.small {
+  padding: 1px;
+  height: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+#control_panel #panel_container .pane {
+  background-color: silver;
+  padding: 10px;
+  min-height: 50px;
+  max-height: 50vh;
+  display: none;
+  overflow-y: scroll;
+}
+#control_panel #panels {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#control_panel .form_container .formrow {
+  width: 100%;
+  justify-content: stretch;
+  align-content: center;
+  margin-bottom: 4px;
+}
+#control_panel .form_container .formrow input {
+  border: 1px solid #aeaeae;
+  padding: 4px;
+  width: auto;
+}
+#control_panel .form_container .formrow:nth-child(even) input {
+  background-color: silver;
+}
+#control_panel .form_container .formrow .metaname {
+  font-weight: bold;
+}
+#control_panel .form_container .formrow .metavalue {
+  flex-grow: 1;
+}
+#control_panel .form_container .formrow .pane_button_active.small.minus {
+  display: block;
+  margin-left: 5px;
+  font-size: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #e68a68;
+  overflow: hidden;
+}
+#browser {
+  width: 100%;
+}
+body {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+}
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+}
+#block-editor-container {
+  border: 1px solid red;
+}

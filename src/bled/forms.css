@@ -1,0 +1,696 @@
+/*!
+* CleanSlate 
+!important stripped down
+*   github.com/premasagar/cleanslate
+*
+*/
+/*
+    An extreme CSS reset stylesheet, for normalising the styling of a container element and its children.
+
+    by Premasagar Rose
+        dharmafly.com
+
+    license
+        opensource.org/licenses/mit-license.php
+
+    **
+
+    v0.10.1
+
+*/
+/* == BLANKET RESET RULES == */
+/* HTML 4.01 */
+.cleanslate, .uistyle, .cleanslate h1, .uistyle h1, .cleanslate h2, .uistyle h2, .cleanslate h3, .uistyle h3, .cleanslate h4, .uistyle h4, .cleanslate h5, .uistyle h5, .cleanslate h6, .uistyle h6, .cleanslate p, .uistyle p, .cleanslate td, .uistyle td, .cleanslate dl, .uistyle dl, .cleanslate tr, .uistyle tr, .cleanslate dt, .uistyle dt, .cleanslate ol, .uistyle ol, .cleanslate form, .uistyle form, .cleanslate select, .uistyle select, .cleanslate option, .uistyle option, .cleanslate pre, .uistyle pre, .cleanslate div, .uistyle div, .cleanslate table, .uistyle table, .cleanslate th, .uistyle th, .cleanslate tbody, .uistyle tbody, .cleanslate tfoot, .uistyle tfoot, .cleanslate caption, .uistyle caption, .cleanslate thead, .uistyle thead, .cleanslate ul, .uistyle ul, .cleanslate li, .uistyle li, .cleanslate address, .uistyle address, .cleanslate blockquote, .uistyle blockquote, .cleanslate dd, .uistyle dd, .cleanslate fieldset, .uistyle fieldset, .cleanslate li, .uistyle li, .cleanslate iframe, .uistyle iframe, .cleanslate strong, .uistyle strong, .cleanslate legend, .uistyle legend, .cleanslate em, .uistyle em, .cleanslate summary, .uistyle summary, .cleanslate cite, .uistyle cite, .cleanslate span, .uistyle span, .cleanslate input, .uistyle input, .cleanslate sup, .uistyle sup, .cleanslate label, .uistyle label, .cleanslate dfn, .uistyle dfn, .cleanslate object, .uistyle object, .cleanslate big, .uistyle big, .cleanslate q, .uistyle q, .cleanslate samp, .uistyle samp, .cleanslate acronym, .uistyle acronym, .cleanslate small, .uistyle small, .cleanslate img, .uistyle img, .cleanslate strike, .uistyle strike, .cleanslate code, .uistyle code, .cleanslate sub, .uistyle sub, .cleanslate ins, .uistyle ins, .cleanslate textarea, .uistyle textarea, .cleanslate button, .uistyle button, .cleanslate var, .uistyle var, .cleanslate a, .uistyle a, .cleanslate abbr, .uistyle abbr, .cleanslate applet, .uistyle applet, .cleanslate del, .uistyle del, .cleanslate kbd, .uistyle kbd, .cleanslate tt, .uistyle tt, .cleanslate b, .uistyle b, .cleanslate i, .uistyle i, .cleanslate hr, .uistyle hr,
+.cleanslate article,
+.uistyle article, .cleanslate aside, .uistyle aside, .cleanslate figure, .uistyle figure, .cleanslate figcaption, .uistyle figcaption, .cleanslate footer, .uistyle footer, .cleanslate header, .uistyle header, .cleanslate menu, .uistyle menu, .cleanslate nav, .uistyle nav, .cleanslate section, .uistyle section, .cleanslate time, .uistyle time, .cleanslate mark, .uistyle mark, .cleanslate audio, .uistyle audio, .cleanslate video, .uistyle video, .cleanslate abbr, .uistyle abbr, .cleanslate address, .uistyle address, .cleanslate area, .uistyle area, .cleanslate blockquote, .uistyle blockquote, .cleanslate canvas, .uistyle canvas, .cleanslate caption, .uistyle caption, .cleanslate cite, .uistyle cite, .cleanslate code, .uistyle code, .cleanslate colgroup, .uistyle colgroup, .cleanslate col, .uistyle col, .cleanslate datalist, .uistyle datalist, .cleanslate fieldset, .uistyle fieldset, .cleanslate main, .uistyle main, .cleanslate map, .uistyle map, .cleanslate meta, .uistyle meta, .cleanslate optgroup, .uistyle optgroup, .cleanslate output, .uistyle output, .cleanslate progress, .uistyle progress, .cleanslate svg, .uistyle svg {
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: none;
+  /* This rule affects the use of pngfix JavaScript http://dillerdesign.com/experiment/DD_BelatedPNG for IE6, which is used to force the browser to recognise alpha-transparent PNGs files that replace the IE6 lack of PNG transparency. (The rule overrides the VML image that is used to replace the given CSS background-image). If you don't know what that means, then you probably haven't used the pngfix script, and this comment may be ignored :) */
+  background-position: 0 0;
+  background-repeat: repeat;
+  border-color: black;
+  border-color: currentColor;
+  /* `border-color` should match font color. Modern browsers (incl. IE9) allow the use of "currentColor" to match the current font 'color' value <http://www.w3.org/TR/css3-color/#currentcolor>. For older browsers, a default of 'black' is given before this rule. Guideline to support older browsers: if you haven't already declared a border-color for an element, be sure to do so, e.g. when you first declare the border-width. */
+  border-radius: 0;
+  border-style: none;
+  border-width: medium;
+  bottom: auto;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  counter-increment: none;
+  counter-reset: none;
+  cursor: auto;
+  direction: inherit;
+  display: inline;
+  float: none;
+  font-family: inherit;
+  /* As with other inherit values, this needs to be set on the root container element */
+  font-size: inherit;
+  font-style: inherit;
+  font-variant: normal;
+  font-weight: inherit;
+  height: auto;
+  left: auto;
+  letter-spacing: normal;
+  line-height: inherit;
+  list-style-type: inherit;
+  /* Could set list-style-type to none */
+  list-style-position: outside;
+  list-style-image: none;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  overflow: visible;
+  padding: 0;
+  position: static;
+  quotes: "" "";
+  right: auto;
+  table-layout: auto;
+  text-align: inherit;
+  text-decoration: inherit;
+  text-indent: 0;
+  text-transform: none;
+  top: auto;
+  unicode-bidi: normal;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  /* CSS3 */
+  /* Including all prefixes according to http://caniuse.com/ */
+  /* CSS Animations don't cascade, so don't require resetting */
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-size: auto;
+  -webkit-border-image: none;
+  -moz-border-image: none;
+  -o-border-image: none;
+  border-image: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-column-count: auto;
+  -moz-column-count: auto;
+  column-count: auto;
+  -webkit-column-gap: normal;
+  -moz-column-gap: normal;
+  column-gap: normal;
+  -webkit-column-rule: medium none black;
+  -moz-column-rule: medium none black;
+  column-rule: medium none black;
+  -webkit-column-span: 1;
+  -moz-column-span: 1;
+  /* doesn't exist yet but probably will */
+  column-span: 1;
+  -webkit-column-width: auto;
+  -moz-column-width: auto;
+  column-width: auto;
+  font-feature-settings: normal;
+  overflow-x: visible;
+  overflow-y: visible;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  hyphens: manual;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  -o-perspective: none;
+  perspective: none;
+  -webkit-perspective-origin: 50% 50%;
+  -moz-perspective-origin: 50% 50%;
+  -ms-perspective-origin: 50% 50%;
+  -o-perspective-origin: 50% 50%;
+  perspective-origin: 50% 50%;
+  -webkit-backface-visibility: visible;
+  -moz-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+  -o-backface-visibility: visible;
+  backface-visibility: visible;
+  text-shadow: none;
+  -webkit-transition: all 0s ease 0s;
+  transition: all 0s ease 0s;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transform-style: flat;
+  -moz-transform-style: flat;
+  -ms-transform-style: flat;
+  -o-transform-style: flat;
+  transform-style: flat;
+  word-break: normal;
+}
+
+/* == BLOCK-LEVEL == */
+/* Actually, some of these should be inline-block and other values, but block works fine (TODO: rigorously verify this) */
+/* HTML 4.01 */
+.cleanslate, .uistyle, .cleanslate h3, .uistyle h3, .cleanslate h5, .uistyle h5, .cleanslate p, .uistyle p, .cleanslate h1, .uistyle h1, .cleanslate dl, .uistyle dl, .cleanslate dt, .uistyle dt, .cleanslate h6, .uistyle h6, .cleanslate ol, .uistyle ol, .cleanslate form, .uistyle form, .cleanslate option, .uistyle option, .cleanslate pre, .uistyle pre, .cleanslate div, .uistyle div, .cleanslate h2, .uistyle h2, .cleanslate caption, .uistyle caption, .cleanslate h4, .uistyle h4, .cleanslate ul, .uistyle ul, .cleanslate address, .uistyle address, .cleanslate blockquote, .uistyle blockquote, .cleanslate dd, .uistyle dd, .cleanslate fieldset, .uistyle fieldset, .cleanslate hr, .uistyle hr,
+.cleanslate article,
+.uistyle article, .cleanslate dialog, .uistyle dialog, .cleanslate figure, .uistyle figure, .cleanslate footer, .uistyle footer, .cleanslate header, .uistyle header, .cleanslate hgroup, .uistyle hgroup, .cleanslate menu, .uistyle menu, .cleanslate nav, .uistyle nav, .cleanslate section, .uistyle section, .cleanslate audio, .uistyle audio, .cleanslate video, .uistyle video, .cleanslate address, .cleanslate blockquote, .cleanslate colgroup, .uistyle colgroup, .cleanslate main, .uistyle main, .cleanslate progress, .uistyle progress, .cleanslate summary, .uistyle summary {
+  display: block;
+}
+
+.cleanslate h1, .uistyle h1, .cleanslate h2, .uistyle h2, .cleanslate h3, .uistyle h3, .cleanslate h4, .uistyle h4, .cleanslate h5, .uistyle h5, .cleanslate h6, .uistyle h6 {
+  font-weight: bold;
+}
+
+.cleanslate h1, .uistyle h1 {
+  font-size: 2em;
+  padding: 0.67em 0;
+}
+
+.cleanslate h2, .uistyle h2 {
+  font-size: 1.5em;
+  padding: 0.83em 0;
+}
+
+.cleanslate h3, .uistyle h3 {
+  font-size: 1.17em;
+  padding: 0.83em 0;
+}
+
+.cleanslate h4, .uistyle h4 {
+  font-size: 1em;
+}
+
+.cleanslate h5, .uistyle h5 {
+  font-size: 0.83em;
+}
+
+.cleanslate p, .uistyle p {
+  margin: 1em 0;
+}
+
+.cleanslate table, .uistyle table {
+  display: table;
+}
+
+.cleanslate thead, .uistyle thead {
+  display: table-header-group;
+}
+
+.cleanslate tbody, .uistyle tbody {
+  display: table-row-group;
+}
+
+.cleanslate tfoot, .uistyle tfoot {
+  display: table-footer-group;
+}
+
+.cleanslate tr, .uistyle tr {
+  display: table-row;
+}
+
+.cleanslate th, .uistyle th, .cleanslate td, .uistyle td {
+  display: table-cell;
+  padding: 2px;
+}
+
+/* == SPECIFIC ELEMENTS == */
+/* Some of these are browser defaults; some are just useful resets */
+.cleanslate ol, .uistyle ol, .cleanslate ul, .uistyle ul {
+  margin: 1em 0;
+}
+
+.cleanslate ul li, .uistyle ul li, .cleanslate ul ul li, .cleanslate ul ul ul li, .cleanslate ol li, .uistyle ol li, .cleanslate ol ol li, .cleanslate ol ol ol li, .cleanslate ul ol ol li, .cleanslate ul ul ol li, .cleanslate ol ul ul li, .cleanslate ol ol ul li {
+  list-style-position: inside;
+  margin-top: 0.08em;
+}
+
+.cleanslate ol ol, .uistyle ol ol, .cleanslate ol ol ol, .cleanslate ul ul, .uistyle ul ul, .cleanslate ul ul ul, .cleanslate ol ul, .uistyle ol ul, .cleanslate ol ul ul, .cleanslate ol ol ul, .cleanslate ul ol, .uistyle ul ol, .cleanslate ul ol ol, .cleanslate ul ul ol {
+  padding-left: 40px;
+  margin: 0;
+}
+
+/* helper for general navigation */
+.cleanslate nav ul, .uistyle nav ul, .cleanslate nav ol, .uistyle nav ol {
+  list-style-type: none;
+}
+
+.cleanslate ul, .uistyle ul, .cleanslate menu, .uistyle menu {
+  list-style-type: disc;
+}
+
+.cleanslate ol, .uistyle ol {
+  list-style-type: decimal;
+}
+
+.cleanslate ol ul, .uistyle ol ul, .cleanslate ul ul, .uistyle ul ul, .cleanslate menu ul, .uistyle menu ul, .cleanslate ol menu, .uistyle ol menu, .cleanslate ul menu, .uistyle ul menu, .cleanslate menu menu, .uistyle menu menu {
+  list-style-type: circle;
+}
+
+.cleanslate ol ol ul, .uistyle ol ol ul, .cleanslate ol ul ul, .uistyle ol ul ul, .cleanslate ol menu ul, .uistyle ol menu ul, .cleanslate ol ol menu, .uistyle ol ol menu, .cleanslate ol ul menu, .uistyle ol ul menu, .cleanslate ol menu menu, .uistyle ol menu menu, .cleanslate ul ol ul, .uistyle ul ol ul, .cleanslate ul ul ul, .uistyle ul ul ul, .cleanslate ul menu ul, .uistyle ul menu ul, .cleanslate ul ol menu, .uistyle ul ol menu, .cleanslate ul ul menu, .uistyle ul ul menu, .cleanslate ul menu menu, .uistyle ul menu menu, .cleanslate menu ol ul, .uistyle menu ol ul, .cleanslate menu ul ul, .uistyle menu ul ul, .cleanslate menu menu ul, .uistyle menu menu ul, .cleanslate menu ol menu, .uistyle menu ol menu, .cleanslate menu ul menu, .uistyle menu ul menu, .cleanslate menu menu menu, .uistyle menu menu menu {
+  list-style-type: square;
+}
+
+.cleanslate li, .uistyle li {
+  display: list-item;
+  /* Fixes IE7 issue with positioning of nested bullets */
+  min-height: auto;
+  min-width: auto;
+  padding-left: 20px;
+  /* replace -webkit-padding-start: 40px; */
+}
+
+.cleanslate strong, .uistyle strong {
+  font-weight: bold;
+}
+
+.cleanslate em, .uistyle em {
+  font-style: italic;
+}
+
+.cleanslate kbd, .uistyle kbd, .cleanslate samp, .uistyle samp, .cleanslate code, .uistyle code, .cleanslate pre, .uistyle pre {
+  font-family: monospace;
+}
+
+.cleanslate a, .uistyle a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.cleanslate a:visited, .uistyle a:visited {
+  color: #529;
+}
+
+.cleanslate a, .uistyle a, .cleanslate a *, .uistyle a *, .cleanslate input[type=submit], .uistyle input[type=submit], .cleanslate input[type=button], .uistyle input[type=button], .cleanslate input[type=radio], .uistyle input[type=radio], .cleanslate input[type=checkbox], .uistyle input[type=checkbox], .cleanslate select, .uistyle select, .cleanslate button, .uistyle button {
+  cursor: pointer;
+}
+
+.cleanslate button, .uistyle button, .cleanslate input[type=submit], .uistyle input[type=submit] {
+  text-align: center;
+  padding: 2px 6px 3px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: arial, helvetica, sans-serif;
+  font-size: small;
+  background: white;
+  -webkit-appearance: push-button;
+  color: buttontext;
+  border: 1px #a6a6a6 solid;
+  background: lightgrey;
+  /* Old browsers */
+  background: white;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, white 0%, #dddddd 100%, #d1d1d1 100%, #dddddd 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dddddd), color-stop(100%, #d1d1d1), color-stop(100%, #dddddd));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, white 0%, #dddddd 100%, #d1d1d1 100%, #dddddd 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, white 0%, #dddddd 100%, #d1d1d1 100%, #dddddd 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, white 0%, #dddddd 100%, #d1d1d1 100%, #dddddd 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, white 0%, #dddddd 100%, #d1d1d1 100%, #dddddd 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff", endColorstr="#dddddd",GradientType=0 );
+  /* IE6-9 */
+  -webkit-box-shadow: 1px 1px 0px #eee;
+  -moz-box-shadow: 1px 1px 0px #eee;
+  -o-box-shadow: 1px 1px 0px #eee;
+  box-shadow: 1px 1px 0px #eee;
+  outline: initial;
+}
+
+.cleanslate button:active, .uistyle button:active, .cleanslate input[type=submit]:active, .uistyle input[type=submit]:active, .cleanslate input[type=button]:active, .uistyle input[type=button]:active, .cleanslate button:active {
+  background: #3b679e;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #3b679e 0%, #2b88d9 50%, #207cca 51%, #7db9e8 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3b679e), color-stop(50%, #2b88d9), color-stop(51%, #207cca), color-stop(100%, #7db9e8));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #3b679e 0%, #2b88d9 50%, #207cca 51%, #7db9e8 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #3b679e 0%, #2b88d9 50%, #207cca 51%, #7db9e8 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #3b679e 0%, #2b88d9 50%, #207cca 51%, #7db9e8 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #3b679e 0%, #2b88d9 50%, #207cca 51%, #7db9e8 100%);
+  /* W3C */
+  border-color: #5259b0;
+}
+
+.cleanslate button, .uistyle button {
+  padding: 1px 6px 2px 6px;
+  margin-right: 5px;
+}
+
+.cleanslate input[type=hidden], .uistyle input[type=hidden] {
+  display: none;
+}
+
+/* restore form defaults */
+.cleanslate textarea, .uistyle textarea {
+  -webkit-appearance: textarea;
+  background: white;
+  padding: 2px;
+  margin-left: 4px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font-size: 11px;
+  font-family: arial, helvetica, sans-serif;
+  line-height: 13px;
+  resize: both;
+}
+
+.cleanslate select, .uistyle select, .cleanslate textarea, .uistyle textarea, .cleanslate input, .uistyle input {
+  border: 1px solid #ccc;
+}
+
+.cleanslate select, .uistyle select {
+  font-size: 11px;
+  font-family: helvetica, arial, sans-serif;
+  display: inline-block;
+}
+
+.cleanslate textarea:focus, .uistyle textarea:focus, .cleanslate input:focus, .uistyle input:focus {
+  outline: auto 5px -webkit-focus-ring-color;
+  outline: initial;
+}
+
+.cleanslate input[type=text], .uistyle input[type=text] {
+  background: white;
+  padding: 1px;
+  font-family: initial;
+  font-size: small;
+}
+
+.cleanslate input[type=checkbox], .uistyle input[type=checkbox], .cleanslate input[type=radio], .uistyle input[type=radio] {
+  border: 1px #2b2b2b solid;
+  border-radius: 4px;
+}
+
+.cleanslate input[type=checkbox], .uistyle input[type=checkbox], .cleanslate input[type=radio], .uistyle input[type=radio] {
+  outline: initial;
+}
+
+.cleanslate input[type=radio], .uistyle input[type=radio] {
+  margin: 2px 2px 3px 2px;
+}
+
+.cleanslate abbr[title], .uistyle abbr[title], .cleanslate acronym[title], .uistyle acronym[title], .cleanslate dfn[title], .uistyle dfn[title] {
+  cursor: help;
+  border-bottom-width: 1px;
+  border-bottom-style: dotted;
+}
+
+.cleanslate ins, .uistyle ins {
+  background-color: #ff9;
+  color: black;
+}
+
+.cleanslate del, .uistyle del {
+  text-decoration: line-through;
+}
+
+.cleanslate blockquote, .uistyle blockquote, .cleanslate q, .uistyle q {
+  quotes: none;
+  /* HTML5 */
+}
+
+.cleanslate blockquote:before, .uistyle blockquote:before, .cleanslate blockquote:after, .uistyle blockquote:after, .cleanslate q:before, .uistyle q:before, .cleanslate q:after, .uistyle q:after, .cleanslate li:before, .uistyle li:before, .cleanslate li:after, .uistyle li:after {
+  content: "";
+}
+
+.cleanslate input, .uistyle input, .cleanslate select, .uistyle select {
+  vertical-align: middle;
+}
+
+.cleanslate table, .uistyle table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.cleanslate hr, .uistyle hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+
+.cleanslate *[dir=rtl], .uistyle *[dir=rtl] {
+  direction: rtl;
+}
+
+.cleanslate mark, .uistyle mark {
+  background-color: #ff9;
+  color: black;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.cleanslate menu, .uistyle menu {
+  padding-left: 40px;
+  padding-top: 8px;
+}
+
+/* additional helpers */
+.cleanslate [hidden], .uistyle [hidden],
+.cleanslate template,
+.uistyle template {
+  display: none;
+}
+
+.cleanslate abbr[title], .uistyle abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+.cleanslate sub, .uistyle sub, .cleanslate sup, .uistyle sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.cleanslate sup, .uistyle sup {
+  top: -0.5em;
+}
+
+.cleanslate sub, .uistyle sub {
+  bottom: -0.25em;
+}
+
+.cleanslate img, .uistyle img {
+  border: 0;
+}
+
+.cleanslate figure, .uistyle figure {
+  margin: 0;
+}
+
+.cleanslate textarea, .uistyle textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+/* == ROOT CONTAINER ELEMENT == */
+/* This contains default values for child elements to inherit  */
+.cleanslate, .uistyle {
+  font-size: medium;
+  line-height: 1;
+  direction: ltr;
+  text-align: left;
+  /* for IE, Opera */
+  text-align: start;
+  /* recommended W3C Spec */
+  font-family: "Times New Roman", Times, serif;
+  /* Override this with whatever font-family is required */
+  color: black;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  list-style-type: disc;
+}
+
+.cleanslate pre, .uistyle pre {
+  white-space: pre;
+}
+
+.uistyle {
+  font-size: 14px;
+  line-height: 1.2em;
+  padding: 4px;
+  width: initial;
+  background-color: #C4F7FA;
+  color: #00A1AB;
+}
+.uistyle, .uistyle * {
+  font-family: Arial, Helvetica, sans-serif !important;
+  box-sizing: border-box !important;
+  font-size: 14px;
+}
+.uistyle.uicontainer {
+  padding: 4px 8px;
+  margin: 0px !important;
+}
+.uistyle .one_of_two_panels {
+  all: initial;
+  box-sizing: border-box;
+}
+.uistyle label {
+  display: inline-block;
+  line-height: 24px;
+}
+.uistyle h5 {
+  color: #00A1AB;
+  margin: 16px 4px 16px 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.uistyle .formrow, .uistyle.formrow {
+  padding: 6px 12px 6px 12px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  line-height: 1.2em;
+  display: flex;
+  align-items: center;
+}
+.uistyle .formrow *, .uistyle.formrow * {
+  flex-grow: 1;
+  margin-right: 8px;
+  width: initial;
+}
+.uistyle .formrow *:last-child, .uistyle.formrow *:last-child {
+  margin-right: 0px;
+}
+.uistyle .formrow hr, .uistyle.formrow hr {
+  all: initial;
+  display: block;
+  width: 1px;
+  height: 18px;
+  background: none;
+  color: gray;
+  border: none;
+  flex-grow: 0;
+  margin: 0 12px !important;
+  border: none;
+  border-right: 2px dotted #00A1AB;
+}
+.uistyle .formrow hr:after, .uistyle .formrow hr:before, .uistyle.formrow hr:after, .uistyle.formrow hr:before {
+  all: unset !important;
+  content: none !important;
+}
+.uistyle .formrow input[type=button],
+.uistyle .formrow input[type=checkbox],
+.uistyle .formrow input[type=radio],
+.uistyle .formrow select,
+.uistyle .formrow option,
+.uistyle .formrow hr,
+.uistyle .formrow label,
+.uistyle .formrow label:last-child,
+.uistyle .formrow label:first-child, .uistyle.formrow input[type=button],
+.uistyle.formrow input[type=checkbox],
+.uistyle.formrow input[type=radio],
+.uistyle.formrow select,
+.uistyle.formrow option,
+.uistyle.formrow hr,
+.uistyle.formrow label,
+.uistyle.formrow label:last-child,
+.uistyle.formrow label:first-child {
+  flex-grow: 0;
+}
+.uistyle .formrow input[type=file], .uistyle.formrow input[type=file] {
+  border: none;
+}
+.uistyle select {
+  all: initial;
+  background-color: transparent;
+  position: relative;
+  color: black;
+  width: initial;
+  flex-grow: 0;
+  background-color: white;
+  padding-right: 24px;
+  border: 1px solid gray;
+}
+.uistyle input[type=radio], .uistyle input[type=checkbox] {
+  background-color: white;
+  border: 1px solid #00A1AB;
+  width: 16px;
+  height: 16px;
+  display: block;
+  box-sizing: border-box;
+}
+.uistyle input[type=radio]:checked:before, .uistyle input[type=checkbox]:checked:before {
+  content: " ";
+  width: 8px;
+  height: 8px;
+  margin: 3px;
+  display: block;
+  background-color: #00A1AB;
+}
+.uistyle input[type=radio] {
+  border-radius: 8px;
+}
+.uistyle input[type=radio]:checked:before {
+  border-radius: 4px;
+}
+.uistyle select, .uistyle button, .uistyle label {
+  height: 24px;
+}
+.uistyle input[type=text] {
+  border: 1px solid #00A1AB;
+  background-color: white;
+  padding: 4px;
+}
+.uistyle input[type=file] {
+  color: #00A1AB;
+}
+.uistyle input[type=button] {
+  outline: none;
+  background-color: #00A1AB;
+  border: none;
+  color: white;
+  border-radius: 2px;
+  padding: 2px 10px;
+}
+
+.block_editor_outer_container .starting_block {
+  display: flex;
+  font-family: sans-serif;
+}
+.block_editor_outer_container .starting_block::before, .block_editor_outer_container .starting_block::after {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAfCAYAAADa3IyoAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgB7cBBEQAABADBU0z/Ct6CUMHb3IL+iKwepKMFgZ4C+wBoOtYAAAAASUVORK5CYII=);
+  background-size: auto;
+  background-repeat: repeat-x;
+  background-position: 50% 50%;
+}
+.block_editor_outer_container .starting_block::before {
+  content: " ";
+  display: block;
+  flex-grow: 1;
+  border-left: 1px solid #3ED9E3;
+}
+.block_editor_outer_container .starting_block::after {
+  content: " ";
+  display: block;
+  flex-grow: 1;
+  border-right: 1px solid #3ED9E3;
+}
+
+/*# sourceMappingURL=forms.css.map */

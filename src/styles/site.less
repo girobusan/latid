@@ -1,0 +1,87 @@
+body,
+html {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'PT Sanc' , sans-serif;
+}
+
+header {
+    background-color: gray;
+    width: 100%;
+    min-height: 50px;
+    padding:50px;
+    color: white;
+    font-size: 30px;
+    box-sizing: border-box;
+    //text-align: center;
+
+}
+
+p{
+    line-height: 150%;
+}
+
+.content_container {
+    width: 100%;
+    position: relative;
+    padding-top: 100px;
+
+    h1,
+    article {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    figure {
+        padding: 0px;
+        margin:0px;
+        margin-bottom: 1em;
+        width:100%;
+        img{
+            margin: 0 auto;
+        }
+
+        &.stretched {
+            img {
+                width: 100%;
+                margin:0px;
+            }
+        }
+
+        figcaption {
+            font-size: 10px;
+        }
+    }
+
+}
+
+ul.main_nav{
+    
+    display: flex;
+    margin:0px;
+    padding:0px;
+    padding-left: 50px;
+    li{
+        display:block;
+        padding: 4px 10px;
+        &:first-child{
+            padding-left: 0px;
+        }
+        a{
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            color: black;
+            &:hover{
+                color: red;
+            }
+        }
+    }
+}
+
+table{
+border-collapse: colalpse;
+border: 1px solid gray;
+margin: 0 auto;
+
+}

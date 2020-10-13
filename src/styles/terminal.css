@@ -1,0 +1,78 @@
+#fancy_terminal {
+  background-color: black;
+  font-family: 'Fira Code', monospace;
+  border-radius: 3px;
+}
+#fancy_terminal .output {
+  color: #63b76c;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: black;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+  overflow: scroll;
+  width: 100%;
+  margin: 0px;
+  height: 25vh;
+  scrollbar-color: #63b76c #0000;
+  scrollbar-width: 4px;
+}
+#fancy_terminal .output::-webkit-scrollbar {
+  color: black;
+  width: 4px;
+  height: 4px;
+}
+#fancy_terminal .output::-webkit-scrollbar-corner {
+  background-color: black;
+}
+#fancy_terminal .output::-webkit-scrollbar-thumb {
+  background-color: #63b76c;
+  width: 4px;
+  border-radius: 4px;
+}
+@keyframes flash {
+  from {
+    color: white;
+  }
+  to {
+    color: orange;
+  }
+}
+#fancy_terminal .line {
+  display: flex;
+}
+#fancy_terminal .line.status_hi,
+#fancy_terminal .line.status_info {
+  color: #65d0e1;
+}
+#fancy_terminal .line.status_err,
+#fancy_terminal .line.status_error {
+  color: red;
+}
+#fancy_terminal .line.status_debug {
+  color: white;
+}
+#fancy_terminal .line.status_ask,
+#fancy_terminal .line.status_got {
+  color: white;
+  font-weight: bold;
+  animation: flash 0.5s infinite alternate-reverse;
+}
+#fancy_terminal .line .status {
+  padding-right: 8px;
+}
+#fancy_terminal input {
+  padding-left: 6px;
+  padding-right: 6px;
+  width: 100%;
+  border: none;
+  background-color: black;
+  color: #63b76c;
+  outline: none;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  box-sizing: border-box;
+  border-radius: 0px 0px 5px 5px;
+}
