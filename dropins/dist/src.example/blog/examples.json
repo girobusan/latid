@@ -1,0 +1,87 @@
+{
+  "content_format": "blocks",
+  "type": "src",
+  "meta": {
+    "title": "Text formatting examples",
+    "id": "47d28d20-0bd6-11eb-9828-97e58bb5e4b3",
+    "date": "2020.10.11 18:27",
+    "tags": "Examples"
+  },
+  "content": {
+    "editor": "BlEd/1.2.12",
+    "stime": "2020-10-13T14:31:35.165Z",
+    "time": 1602599495165,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "data": {
+          "text": "Here are formatting examples.<br>"
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Second level header<br>",
+          "level": "2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "text": "The quote<br>"
+        }
+      },
+      {
+        "type": "quote",
+        "data": {
+          "text": "It is better to keep your mouth closed and let people <br>think you are a fool than to open it and remove all doubt.",
+          "caption": "Mark Twain"
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Images",
+          "level": "2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "stretched": false,
+          "right": false,
+          "left": false,
+          "noresize": true,
+          "withBackground": true,
+          "border": false,
+          "withBorder": false,
+          "caption": "Kitty",
+          "link": "",
+          "file": {
+            "url": "/uploads/blog/287.jpeg"
+          }
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Code snippet<br>",
+          "level": "2"
+        }
+      },
+      {
+        "type": "code",
+        "data": {
+          "code": "#include &lt;stdio.h&gt;\nint main() {    \n\n    int number1, number2, sum;\n    \n    printf(\"Enter two integers: \");\n    scanf(\"%d %d\", &amp;number1, &amp;number2);\n\n    // calculating sum\n    sum = number1 + number2;      \n    \n    printf(\"%d + %d = %d\", number1, number2, sum);\n    return 0;\n}",
+          "language": ""
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "content_format": "blocks",
+  "type": "src",
+  "meta": {
+    "title": "Start page",
+    "date": "2020.10.10",
+    "list_custom": "pages",
+    "include_regexp": "/blog/.*"
+  },
+  "content": {
+    "editor": "BlEd/1.2.12",
+    "stime": "2020-10-13T13:11:44.857Z",
+    "time": 1602594704857,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "data": {
+          "text": "Lorem ipsum dolor sit amet, adipiscing elit, sed <strike>do</strike> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad."
+        }
+      }
+    ]
+  }
+}
