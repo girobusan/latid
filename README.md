@@ -43,5 +43,5 @@ I'm not a real programmer, so the code is, probably, awful. There are some known
 - Lack of documentation (will fix ASAP)
 
 ### Latid
-(zoology) Any member of the [Latidae family][https://en.wikipedia.org/wiki/Latidae].
+(zoology) Any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
 
