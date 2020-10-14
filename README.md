@@ -6,6 +6,8 @@ date: 13-10-2020
 
 Latid is a static site generator. 
 
+![screenshot](docs/pix/screenshot_00.jpg) 
+
 ## Concepts & Features
 
 - One dependency install (just drop files in and ensure you have node.js installed)
