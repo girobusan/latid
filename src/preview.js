@@ -410,7 +410,17 @@ export function preview() {
                 .on("click", function () {
                     this.parentNode.remove();
                 })
-                .html(delicon)
+                .html(delicon);
+
+            row.select("svg").style("width" , "24px").style("height" , "24px");
+
+            //let ddd = row.select("svg path")
+            //.attr("d")
+
+            //row.select("svg path")
+            //.attr("style" , "all:initial;width:auto;height:auto;display:inline")
+           
+            ;
 
             row.selectAll("input").on("change",
                 function () {
