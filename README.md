@@ -2,7 +2,7 @@
 title: Latid README
 date: 13-10-2020
 ---
-# <div style="font-size:200%;">&#128031;</div>latid
+# <div style="font-size:200%;">&#128031;</div>Latid
 
 Latid is a static site generator. 
 

@@ -3,6 +3,10 @@
   "version": "1.8.12b",
   "description": "Staic site generator with visual editor",
   "main": "loader.js",
+  "repository": {
+    "type": "git",
+    "url": "github:girobusan/latid"
+  },
   "scripts": {
     "build": "npx webpack --mode production",
     "serve": "cd site && python3 kittyserv.py",
