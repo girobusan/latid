@@ -6,7 +6,7 @@ date: 13-10-2020
 
 Latid is a static site generator. 
 
-![screenshot](docs/pix/screenshot_00.jpg) 
+![screenshot](docs/pix/main_gui.png) 
 
 ## Concepts & Features
 
@@ -43,6 +43,7 @@ I'm not a real programmer, so the code is, probably, awful. There are some known
 - Too basic default site design (users have to develop they own)
 - Everything is on early stage
 - Lack of documentation (will fix ASAP)
+- Custom JS may work quirky in GUI (there are workarounds)
 
 ### Latid
 (zoology) Any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).

@@ -4,9 +4,6 @@ name: gettingstarted
 lang: en
 ---
 
-Getting started
-===============
-
 Prerequisites
 -------------
 - Installed node.js, version > 11
@@ -29,8 +26,8 @@ Then look for directory named __dist__.
 
 
 Setup empty site
-----------
-Open distribution folder. Rename the directories:
+----------------
+Open distribution folder (dist). Rename the directories:
 
 1. _config.example to _config
 2. src.example to src
@@ -41,5 +38,5 @@ Assuming you have node.js installed, execute from the site folder:
 
     node latidserv.js
 
-Then point your browser to http://localhost:9999
+Then point your browser to http://localhost:9999/ You should see something like [that](gui.md)
 
