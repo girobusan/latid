@@ -1,12 +1,14 @@
 var unidecode = require('unidecode');
-import * as Pathops from "./pathops";
-import { tickIncrement } from "d3";
+//import * as Pathops from "./pathops";
 
-export function ticker(tick) {
-    this.callback = () => console.log("tick...");
-
-
-}
+/**
+ *  Converts Date object to Latid-specific string presentation
+*
+ * @param {Date} d - Date object
+ * @param {Boolean} short - Make short date
+ * 
+ * 
+ */
 
 export function date2str(d, short) {
     if (!d) {
@@ -27,7 +29,11 @@ export function date2str(d, short) {
 }
 
 
-
+/**
+ * Converts Latid-specific date string to Date object
+ * @param {String} st - date string 
+ * 
+ */
 export function str2date(st) {
     //console.log( "STRTODATE START" , st);
     // 2020.04.3 9:10
@@ -79,11 +85,18 @@ export function str2date(st) {
     }
     return rd;
 }
-
+/**
+ * Cleans up date string, returns short latid-specific date string.
+ * @param {String} s - date string
+ */
     export function prettyDate(s) {
         return date2str(str2date(s), true);
     }
 
+    /**
+     * Figure out sort value for view
+     * @param {View} e 
+     */
 
 export function pageSortValue(e) {
 
@@ -97,30 +110,23 @@ export function pageSortValue(e) {
     }
 
 }
-
+/**
+ * Transliterates a string
+ * @param {String} str 
+ */
 
 export function translit(str) {
     var decoded = unidecode(str.trim()).toLowerCase().replace(/\s+/g, "_");
     var bad = /[^a-z0-9_.-]/g;
     return decoded.replace(bad, "")
 }
-/*
 
-export function dateToRSS(dt) {
-    function pad2(n) {
-        return (n + 100).toString().substring(1);
-    }
-    var dw = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dt.getDay()];
-    var mo = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][dt.getMonth()];
-    var r = dw + ', ' + pad2(dt.getDate()) + " " + mo + " " + dt.getFullYear() +
-        " " + pad2(dt.getHours()) + ":" + pad2(dt.getMinutes()) + ":00 " + 'GMT'
-    //Wed, 02 Oct 2002 15:00:00 +0200
-    //<pubDate>Wed, 02 Oct 2002 13:00:00 GMT</pubDate>
-    return r; //dt.toString(); //TMP
-
-}
-*/
-
+/**
+ * Adds number to URI, like: index.html => index_01.html
+ * @param {String} uri URI to modify
+ * @param {Number} num Number to add
+ * @param {Number} pad Number of leading zeroes
+ */
 export function addNumToURI(uri, num, pad) {
     //if (!pad) { pad = 3 };
     if(pad){
@@ -134,6 +140,10 @@ export function addNumToURI(uri, num, pad) {
         return p1 + "_" + num + p2
     })
 }
+/**
+ * 
+ * Glues path parts together
+ */
 
 export function gluePath() {
     //console.log("my args" , arguments)
@@ -165,6 +175,11 @@ export function gluePath() {
 
 }
 
+/**
+ * Tries to guess excerpt. If there is excerpt field, returns it. Else returns first paragraph of text.
+ * @param {*} view 
+ */
+
 export function guessExcerpt(view) {
     //console.log("Guessing excerpt" , view.uri);
     if ("meta" in view.file && "excerpt" in view.file.meta) {
@@ -180,6 +195,10 @@ export function guessExcerpt(view) {
     }
     return "";
 }
+/**
+ * If there is article image defined, returns it. Else looks for image in article.
+ * @param {*} view 
+ */
 
 export function guessImage(view) {
     //console.log("Guess image", view, );

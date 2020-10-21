@@ -88,8 +88,6 @@ export function decodeFileFromPath(path, text_getter) {
                             //markdown
                             //console.log("This is MARKDOWN" , txt)
                             let mds = decodeMd(txt);
-                            //console.log("MDS" , mds);
-                            //console.log("MDS IS" , (mds? "truthy" : "falsy"))
                             if (mds) {
                                 res(
                                     Views.makeSrcView(

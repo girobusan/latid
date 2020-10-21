@@ -3,7 +3,7 @@ title: Working with GUI
 ---
 
 GUI parts
------------------
+---------
 That how tt looks the first time:
 
 ![](../pix/main_gui.png)

@@ -3,18 +3,6 @@ var Path = require("path");
 //const fs = require("fs");
 const fs = require('fs');//.promises;
 const fsp = require('fs').promises;
-/*var nunjucks = require('nunjucks');//   /_config/templates/template.nunjucks
-
-import * as Server from "./cli-server-adapter"; //NEVER USED
-
-import * as Views from "./views";
-import * as Tags from "./tags";
-import * as RSS from "./rss";
-import * as Listops from "./listops";
-import * as Template from "./nunjucks_template";
-import * as Rewriter from "./link_replacer";
-import * as Util from "./util";
-*/
 
 import * as Production from "./production";
 
@@ -95,8 +83,7 @@ l4.settings.output_path = outdir;
 console.log("Output to", outdir)
 
 
-//it s a hack :(
-//Server.defineL4(l4);
+
 
 //read all files
 //l4.files = l4.server.list(indir);

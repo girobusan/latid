@@ -229,7 +229,7 @@ export function preview() {
                 .then(my.goTo(fpuri));
 
         } else {
-            if (confirm("Name is already used, do you want to see that page?")) {
+            if (await smalltalk.confirm("Name is already used, do you want to see that page?")) {
                 my.goTo(fpuri);
             } else {
                 return;
