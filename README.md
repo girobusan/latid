@@ -2,7 +2,7 @@
 title: Latid README
 date:  2020.10.13
 ---
-# </div>Latid &#128031;
+# </div>Latid (l4) &#128031;
 
 Latid is a static site generator, which works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
 
@@ -54,6 +54,6 @@ I'm not a real programmer, so the code is, probably, awful. There are some known
 - Lack of documentation (will fix ASAP)
 - Custom JS may work quirky in GUI (there are workarounds)
 
-### Latid
-(zoology) Any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
+## Origin of name
+**La·tid**  *noun* (zoology) any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
 
