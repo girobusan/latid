@@ -1,7 +1,9 @@
 /*
 No DOM version
 */
-const markdown = require( "markdown" ).markdown;
+//const markdown = require( "markdown" ).markdown;
+var md = require('markdown-it')({html:true})
+.use(require('markdown-it-multimd-table') , {multiline: true , rowspan: true , headerless: true});
 
 
 export function dumbViewer() {
@@ -14,12 +16,17 @@ export function dumbViewer() {
 
 export function MdViewer(){
     this.show = function(m){
-        return markdown.toHTML(m.replace("<!--cut-->" , "") , "Maruku");
+        return md.render(m.replace("<!--cut-->" , ""));
     }
 }
 
 //
 const blockViews = {
+    
+    "markdown" : function(block){
+        return '<span class="markdown">' + md.render(block.data.markdown) + '</span>' ;
+
+    },
     "badge": function(block){
 
         return `<${block.data.tag} class="badge ${block.data.class}">${block.data.text}</${block.data.tag}>`
