@@ -2,7 +2,7 @@
 title: Latid README
 date:  2020.10.13
 ---
-# </div>Latid (l4) &#128031;
+# Latid (l4) &#128031;
 
 Latid is a static site generator, which works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
 
@@ -35,8 +35,7 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 
 ## How to get 
 
-You have better to wait and download release, but for now:
-
+You have better to download release, or:
 
     git clone git@github.com:girobusan/latid.git
     cd latid 
