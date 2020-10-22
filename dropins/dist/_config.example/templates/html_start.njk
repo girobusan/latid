@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		{% if view.path == 'index.json' %}
+		{{settings.site.title}}
+		{% else %}
+		{{view.file.meta.title}} :: {{settings.site.title}}
+		{% endif %}
+	</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" type="text/css" href="/theme/foundation.css">-->
+	<link rel="stylesheet" type="text/css" href="/theme/style.css">
+	
+	<link rel="stylesheet"
+	      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<style>
+.lead p{
+font-size: 1.2em !important;
+}
+</style>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+	<a href="/index.html" class="logo">
+		<img src="/theme/assets/logo.png" style="width: 2rem;">
+		<span>{{settings.site.title}}</span>
+	</a>
+
+	<nav>
+		<ul>
+			{% for mitem in site_menu %}
+{% if mitem.uri=="/index.html" %}
+{%else%}
+			<li>
+				<a href="{{mitem.uri}}">{{mitem.file.meta.title}}</a>
+			</li>
+{% endif %}
+			{% endfor %}
+		</ul>
+	</nav>
+</header>

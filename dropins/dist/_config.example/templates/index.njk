@@ -1,0 +1,26 @@
+{% set top_level_uri = r/^\/[^\\\/]*(\/index)??\.html$/i %}
+
+{% set subindex_path = r/^.+(\/index)\.json$/i %}
+{% set tag_uri = r/^(\/tags\/)/i %}
+{% set included = false %}
+
+{% if view.pages_list %}
+        {% set included = view.pages_list %}
+{%elseif view.tagged_list%}
+        {% set included = view.tagged_list %}
+{%endif%}
+
+{% set site_menu = paths.listTopLevel(views , "all") %}
+
+{% if view.path=='index.json'%}
+{% extends "cover.njk" %}
+{% elseif view.path=='tags/index.json'%}
+{% extends "tags.njk" %}
+{% elseif subindex_path.test(view.path) %}
+{%extends "subindex.njk" %}
+{% elseif tag_uri.test(view.uri) %}
+{%extends "tag.njk" %}
+{#default#}
+{%else%}
+{% extends "article.njk" %}
+{%endif%}

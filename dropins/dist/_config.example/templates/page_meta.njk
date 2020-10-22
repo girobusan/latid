@@ -1,0 +1,30 @@
+<div class="post-meta">
+				
+
+					<div class="posted-date">
+						<span class="icon calendar"></span>
+						<span>{{view.file.meta.date}}</span>
+					</div>
+
+                    {% if view.tagslist and view.tagslist.length>0 %}
+					<div class="tagged-in">
+						<span class="icon tag"></span>
+
+						<ul>
+					                    {% for tag in view.tagslist %}
+                                            <li>
+                                                <a href="{{tag.uri}}">#{{tag.file.meta.title}}</a>
+                                            </li>
+                                            {%endfor%}
+						</ul>
+
+
+
+
+					</div>
+{% endif %}
+					{#<div class="total-comments">
+						<span class="icon comment"></span>
+						<a href="#">107 Comments</a>
+					</div>#}
+				</div>

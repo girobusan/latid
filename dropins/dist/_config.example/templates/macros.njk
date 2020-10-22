@@ -1,0 +1,37 @@
+{% macro metas(v)%}
+<div class="post-meta">
+					<div class="posted-date">
+						<span class="icon calendar"></span>
+						<span>{{v.file.meta.date}}</span>
+					</div>
+                    {% if v.tagslist and v.tagslist.length>0 %}
+					<div class="tagged-in">
+						<span class="icon tag"></span>
+
+						<ul>
+					                    {% for tag in v.tagslist %}
+                                            <li>
+                                                <a href="{{tag.uri}}">#{{tag.file.meta.title}}</a>
+                                            </li>
+                                            {%endfor%}
+						</ul>
+					</div>
+{% endif %}
+				
+				</div>
+{%endmacro%}
+
+{% macro pagination(v)%}
+ {% if v.pager_uris %}
+<nav aria-label="Pagination">
+  <ul class="pagination">
+   {%for page in v.pager_uris%}
+
+    <li class=""><a href="{{page}}" class="{%if page==v.uri%}current{%endif%}">{{ loop.index }}</a></li>   
+
+    {%endfor%}
+    
+  </ul>
+</nav>
+ {%endif%}
+{%endmacro%}
