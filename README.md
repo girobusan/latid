@@ -22,15 +22,16 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 - Site may have any directory structure 
 - There is GUI app for working with the sites
 
-## Planned features
+## Planned features.
 
-- [ ] Custom (per site) default metadata for new files
-- [ ] _Markdown_ article block
+- [ ] Customize rendering of blocks via nunjucks
+- [x] _Markdown_ article block
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page
+- [ ] Custom (per site) default metadata for new files
 - [ ] Theming support
 - [ ] Working in browser without node.js
-- [ ] Customize rendering of blocks via nunjucks
+
 
 ## How to get 
 

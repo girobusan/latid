@@ -156,6 +156,8 @@ constructors.header = function (data, el, id, editor) {
     return blc;
 }
 
+
+
 constructors.code = function (data, el, id, editor) {
     let pre = document.createElement("pre");
     let cd = document.createElement("code");
@@ -204,6 +206,37 @@ constructors.code = function (data, el, id, editor) {
     blc.addToToolbar(opts);
     return blc;
 }
+
+constructors.markdown = function (data, el, id, editor) {
+    let edi = document.createElement("textarea");
+    edi.style.width = "100%";
+    edi.style.height = "5px";
+    edi.style.boxSizing = "border-box";
+    edi.style.border = "2px solid " + UI.mycyan;
+    edi.style.padding = "8px";
+    
+    let blc = {
+        render: function () {
+            el.innerHTML = "";
+            el.appendChild(edi);
+            if (data && data.markdown) {
+                edi.value = data.markdown;  
+                edi.style.height = "5px";              
+                edi.style.height = edi.scrollHeight + "px";
+            }else{                
+                edi.style.height = "300px";
+            }
+        },
+        save: function () {
+            return {
+                markdown: edi.value
+            };
+        }
+    }
+    return blc;
+
+
+};
 
 constructors.raw = function (data, el, id, editor) {
 

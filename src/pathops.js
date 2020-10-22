@@ -1,4 +1,9 @@
 import * as Util from "util";
+/**
+ * Is p2 a direct child of p1?
+ * @param {*} p1 
+ * @param {*} p2 
+ */
 
 export function isDirectChild(p1, p2) { //p1 = wannabe parent
     //console.log("WE HAVE" , p1 , p2)
@@ -12,16 +17,28 @@ export function isDirectChild(p1, p2) { //p1 = wannabe parent
     return p2p == p1p;
 }
 
+/**
+ * Splits path. Do not use it.
+ * @param {*} p 
+ */
 export function splitPath(p) {
     let pa = p.split("/");
     return pa.filter(e => e);
 }
-
+/**
+ * Join array of path parts to path
+ * @param {*} partsarray 
+ * @param {*} add_leading_slash 
+ */
 export function joinPath(partsarray, add_leading_slash) {
     let pj = partsarray.join("/");
     return add_leading_slash ? "/" + pj : pj;
 }
 
+/**
+ * Count parts of path
+ * @param {*} p 
+ */
 export function countPathParts(p) {
     return splitPath(p).length;
 }
@@ -75,6 +92,14 @@ export function getDir(p) { //regardless index it or not  //top level ==""
     }
 }
 
+/**
+ * Lists top level pages and dirs from given views list
+ * @param {Array} thelist  - list of all views
+ * @param {String} what - all | pages | dirs
+ * @param {Function} accessor 
+ * 
+ */
+
 export function listTopLevel(thelist, what, accessor) {
     if (!accessor) {
         accessor = e => e.path;
@@ -98,6 +123,11 @@ export function listTopLevel(thelist, what, accessor) {
     }
     return res;
 }
+
+/**
+ * Which path is one level up from the given one
+ * @param {String} p 
+ */
 
 export function upOne(p) { //retun index
     //console.log("UP FROM" , p)
@@ -149,7 +179,13 @@ export function listAllUnder(p, plist, pfield, what) {
     return filterByType(pr, what);
 
 }
-
+/**
+ * List direct children of path from given list
+ * @param {String} p - path
+ * @param {Array} plist - views list
+ * @param {String} what - all|pages|dirs
+ * @param {Function} accessor  - acessor function, view => path|uri
+ */
 export function listDirectChildren(p , plist , what , accessor){
     if (!accessor) {
         accessor = function (e) {

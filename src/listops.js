@@ -17,6 +17,11 @@ export function lister(viewslist) { //arg = list of views
     this.listChildren = function(p){
         
     }
+    /**
+     * Find index of view with given value of given field name
+     * @param {String} fieldname 
+     * @param {*} fieldvalue 
+     */
 
     this.getIndexByField = function (fieldname, fieldvalue) {
         
@@ -45,7 +50,11 @@ export function lister(viewslist) { //arg = list of views
 
 
 
-    
+    /**
+     * Find view with given value of given field name
+     * @param {String} fieldname  
+     * @param {*} fieldvalue 
+     */
     this.getByField = function (fieldname, fieldvalue) {
         //smart version
         return my.views[my.getIndexByField(fieldname , fieldvalue)] || null;
@@ -77,7 +86,11 @@ export function lister(viewslist) { //arg = list of views
         }
     }//8 800 250-04-05
 
-
+     /**
+     * Convert any link syntax to uri. Converts links like /+fieldname:value
+     * @param {String} fieldname  
+     * @param {*} fieldvalue 
+     */
 
     this.resolveAnyPath2URI = function (anypath) {
         if (anypath.startsWith("/")) {
@@ -100,6 +113,11 @@ export function lister(viewslist) { //arg = list of views
             return anypath;
         }
     }//resolve any path (?)
+
+    /**
+     * Find free path by adding numbers to the end of path if starting path is not unique
+     * @param {*} path 
+     */
 
     this.findFreePath = function(path) {
         //

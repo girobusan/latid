@@ -29,6 +29,7 @@ icons.add = require("./svg/add-24px.svg");
 icons.divider = require("./svg/divider-24px.svg");
 icons.symbols = require("./svg/symbols_24px.svg");
 icons.question = require("./svg/question-24px.svg");
+icons.markdown = require("./svg/markdown-24px.svg");
 
 icons.material = {};
 

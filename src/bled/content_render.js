@@ -1,6 +1,16 @@
 /*
 No DOM version
 */
+//const markdown = require( "markdown" ).markdown;
+var md = require('markdown-it')({html:true})
+.use(require('markdown-it-multimd-table') , {multiline: true , rowspan: true , headerless: true});
+
+//var md = MarkdownIt;
+
+//const markdown = {
+    //"toHTML" : md.render
+//}
+
 
 export function dumbViewer() {
     this.show = function (c) {
@@ -12,6 +22,10 @@ export function dumbViewer() {
 
 //
 const blockViews = {
+    "markdown" : function(block){
+        return '<span class="markdown">' + md.render(block.data.markdown) + '</span>' ;
+
+    },
     "paragraph": function (block) {
         return "<p>" + block.data.text + "</p>";
     },  
