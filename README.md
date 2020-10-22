@@ -2,9 +2,11 @@
 title: Latid README
 date: 13-10-2020
 ---
-# <div style="font-size:200%;">&#128031;</div>Latid
+# </div>Latid &#128031;
 
-Latid is a static site generator. 
+Latid is a static site generator, which works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
+
+It supports _markdown_ source files alongside with it's own JSON format (pretty clean to parse and use with any custom scripts|apps). Works nicely with Jamstack providers like Netify and Amazon Amplify (both tested).
 
 ![screenshot](docs/pix/main_gui.png) 
 
@@ -22,7 +24,13 @@ Latid is a static site generator.
 
 ## Planned features
 
+- [ ] Custom (per site) default metadata for new files
+- [ ] _Markdown_ article block
+- [ ] _Table_ (csv?) article block
+- [ ] List limits customization by page
 - [ ] Theming support
+- [ ] Working in browser without node.js
+- [ ] Customize rendering of blocks via nunjucks
 
 ## How to get 
 
@@ -34,6 +42,7 @@ You have better to wait and download release, but for now:
     npm install
     npm run build_all
 
+The output files now in the **dist** directory.
 
 ## Disclaimer
 
