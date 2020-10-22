@@ -1,6 +1,6 @@
 ---
 title: Latid README
-date: 13-10-2020
+date:  2020.10.13
 ---
 # </div>Latid &#128031;
 
