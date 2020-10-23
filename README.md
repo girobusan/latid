@@ -1,6 +1,5 @@
 ---
 title: Latid README
-date:  2020.10.13
 ---
 # Latid (l4) &#128031;
 

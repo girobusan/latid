@@ -1,7 +1,4 @@
-/*
-No DOM version
-*/
-//const markdown = require( "markdown" ).markdown;
+var nunjucks = require('nunjucks');
 var md = require('markdown-it')({html:true})
 .use(require('markdown-it-multimd-table') , {multiline: true , rowspan: true , headerless: true});
 
@@ -19,7 +16,8 @@ export function MdViewer(){
         return md.render(m.replace("<!--cut-->" , ""));
     }
 }
-
+//
+var block_templates_cache = {};
 //
 const blockViews = {
     
@@ -195,14 +193,25 @@ const blockViews = {
     }
 }
 
-export function blockViewer() {
+export function blockViewer(settings) {
     this.show = function (contentjson) {
         //console.log(contentjson);
         var stringHTML = "";
         if (contentjson && "blocks" in contentjson && Array.isArray(contentjson.blocks)) {
             //console.log("CTJSBLC" , contentjson)
             contentjson.blocks.forEach(function (b) {
-                if (b.type in blockViews) {
+                //check if there a custom template
+                if(b.type in settings.block_templates){
+                        console.log("custom block" , b.type)
+                //  if so, check if there an already compiled version of it
+                        if(!(b.type in block_templates_cache)){ //if not, compile
+                            console.log("compile" , b.type)
+                            block_templates_cache[b.type] = nunjucks.compile(settings.block_templates[b.type])
+                        }                //         
+                //  then use
+                stringHTML += block_templates_cache[b.type].render(b);                
+                }//else use default viewer:
+                else if (b.type in blockViews) {
                     stringHTML += blockViews[b.type](b);
                 } else {
                     //console.log("block", b.type, "not implemented yet");
@@ -215,12 +224,12 @@ export function blockViewer() {
     }
 }
 
-export function renderThis(view) {
+export function renderThis(view , settings) {
     let v = null;
     //console.log(view.uri);
     if (view.file.content_format == "blocks") {
         //console.log("Content render: blocks")
-        v = new blockViewer();
+        v = new blockViewer(settings);
     } else if (!("content_format" in view.file) || view.file.content_format == "raw"){
         //console.log("Content render: raw")
         v = new dumbViewer();

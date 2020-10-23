@@ -110,7 +110,7 @@ export function template(viewlist, settings, meta, loader) {
             "paths": Pathops,
             "settings": my.settings,
             "view": view,
-            "content": CRender.renderThis(view),//render content using CR
+            "content": CRender.renderThis(view , my.settings),//render content using CR
             "util": Util,
             "log": () => console.info.apply( this , ["Nunjucks:"].concat(arguments)),//console.log("NJK:" , t),
             "views": viewlist,

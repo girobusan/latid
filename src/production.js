@@ -394,19 +394,27 @@ export function routines(fileops) {
 
         //block templates
         let bt_list = await fileops.list("_config/templates/blocks");
-        let configs = [];
+        //let configs = [];
         //console.log("Block templates:" , bt_list);
-        let bt_promises = bt_list.map(e => fileops.get('_config/templates/blocks/' + e.path));
-        configs.push(fileops.get("_config/settings.json"));
+        let bt_promises = bt_list.map(e => fileops.get('_config/templates/blocks/' + e.path)
+        .then(r=>{return {'name':e.path , 'content':r}})  
+        );
+        let configs = [fileops.get("_config/settings.json")];
         configs = configs.concat(bt_promises);
 
         Promise.all(configs)
             //fileops.get(sp)
             .then(function (r) {
-                console.log("Result", r)
+                //console.log("Result", r)
                 //console.log(my.decoder.decode(r));
                 my.settings = JSON.parse(my.decoder.decode(r[0]));
-                my.settings.block_templates = r.slice(1).map(e => my.decoder.decode(e));
+                let tpls = r.slice(1);
+                tpls.forEach( e => e.content = my.decoder.decode(e.content) );
+                //console.log("reduce...")
+                let tpls_dict = tpls.reduce( function(a, c){ a[c.name.substring(0, c.name.lastIndexOf("."))] = c.content ; return a } , {} );
+
+                my.settings.block_templates = tpls_dict;
+                
                 console.info("Loaded settings:" , my.settings);
                 //console.log("create loader")
                 my.template_loader = Template.buildLoader(function (p) {
