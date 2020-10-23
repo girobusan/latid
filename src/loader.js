@@ -24,7 +24,7 @@ pb_pr.style.height = "5px";
 
 
 pb.appendChild(pb_pr);
-console.log(pb.innerHTML);
+//console.log(pb.innerHTML);
 var totalloaded = 0;
 
 window.l4.producer = new Producer.producer();
@@ -43,12 +43,14 @@ window.l4.producer.registerCallback("loadAll" , function(ms){
 window.l4.producer.init()
 .then(function(r){
     console.log('Init');
+    //check if there is an adress in adress bar
+    let loc = window.location.hash && window.location.hash.startsWith("#!") ? window.location.hash.substring(2) : "/index.html" ;
     
     document.getElementById("preloader").remove();
     console.log('Preloader removed');
     let preview = new Preview.preview();
     preview.init()
-    .then(()=>preview.goTo("/index.html"))
+    .then(()=>preview.goTo(loc))
     ;
   
 

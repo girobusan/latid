@@ -386,15 +386,28 @@ export function routines(fileops) {
     // field name, field value => view obj
 
     //preparations
-    this.init = function (readycallback) {
+    this.init = async function (readycallback) {
         //console.log(my.fileops.base);
         //console.log(Path.join( my.fileops.base , "_config/settings.json"));
-        let sp = "_config/settings.json";
-        fileops.get(sp)
+
+        //settings file
+
+        //block templates
+        let bt_list = await fileops.list("_config/templates/blocks");
+        let configs = [];
+        //console.log("Block templates:" , bt_list);
+        let bt_promises = bt_list.map(e => fileops.get('_config/templates/blocks/' + e.path));
+        configs.push(fileops.get("_config/settings.json"));
+        configs = configs.concat(bt_promises);
+
+        Promise.all(configs)
+            //fileops.get(sp)
             .then(function (r) {
+                console.log("Result", r)
                 //console.log(my.decoder.decode(r));
-                my.settings = JSON.parse(my.decoder.decode(r));
-                //console.log(my.settings);
+                my.settings = JSON.parse(my.decoder.decode(r[0]));
+                my.settings.block_templates = r.slice(1).map(e => my.decoder.decode(e));
+                console.info("Loaded settings:" , my.settings);
                 //console.log("create loader")
                 my.template_loader = Template.buildLoader(function (p) {
                     let c = my.fileops.getSync(p); //ArrayBuffer

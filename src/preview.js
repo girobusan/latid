@@ -98,15 +98,16 @@ export function preview() {
     my.current_view = null;
     my.current_editor = null;
     my.panel_collapsed = false;
+    my.site_root = "";
     //my.bled = Bled.makeTypicalEditor();
-    let loader = window.localFS ? new NTemplate.serverLoader() : null; //:TMP
-    my.site_root = window.localFS ? window.localFS.root : ""; //:TMP
+    //let loader = window.localFS ? new NTemplate.serverLoader() : null; //:TMP
+    //my.site_root = window.localFS ? window.localFS.root : ""; //:TMP
 
-    this.template = new NTemplate.template(l4.views, l4.settings, l4.meta, loader);
+    this.template = new NTemplate.template(l4.views, l4.settings, l4.meta, null);
 
     this.init = async function () {
         let sm = await window.l4.producer.getSettings();
-        console.log("Settings are gotten")
+        //console.log("Settings are gotten")
         my.settings = sm.settings;
         //let bs = await window.l4.producer.getBase("/src/fcuk.js");
         this.src_base = "/src/"; //bs.base; //FIXME
@@ -118,6 +119,10 @@ export function preview() {
             if (s.state) {
                 my.display(s.state)
             }
+        }
+
+        window.onhashchange = function(){
+            my.goTo(window.location.hash.substring(2));
         }
 
 
@@ -261,6 +266,7 @@ export function preview() {
             .then(function (h) {
                 doc.innerHTML = h.html;
                 fixScripts();
+                //console.log("scripts fixed")
                 my.attachUI();
 
             })
@@ -277,7 +283,8 @@ export function preview() {
                 //console.log("Get view from worker", v.view);
                 if (!v.ok) {
                     console.error("Preview: no such view:", uri);
-                    return;
+                    my.goTo("/index.html")
+                    //return;
                 }
                 my.current_view = v.view;
                 my.viewmode = true;
