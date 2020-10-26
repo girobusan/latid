@@ -21,7 +21,7 @@ const Empty =
     }
 };
 
-export function makeEmptyView(title, pth) {
+export function makeEmptyView(title, pth , meta) {
     let bs = JSON.parse(JSON.stringify(Empty));
     bs.file.meta.title = title;
     bs.path = pth;
@@ -29,6 +29,10 @@ export function makeEmptyView(title, pth) {
     bs.file.meta.date = Util.date2str(new Date())
     //TMP
     bs.uri = "/" + pth.replace(/\.json$/ , ".html");
+    if(meta){
+        bs.file.meta = Object.assign(bs.file.meta , meta, )
+       //return Object.assign(bs , {"file": {"meta" : meta}})
+    }
     return bs;
 }
 

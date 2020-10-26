@@ -1,8 +1,16 @@
 {
+    "version": "3",
     "site": {
-        "title": "Title",
-        "motto": "Always with",
+        "title": "Awesome",
+        "motto": "Dumb and brave",
         "url": "https://example.com"
+    },
+    "editor" : {
+        "content_selector": "#content",
+        "default_meta"  :{
+            "tags" : "",
+            "lang" : "all"
+        }
     },
     "output": {
         "dir": "static",

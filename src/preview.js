@@ -228,7 +228,10 @@ export function preview() {
         //
         if (!isunique.ok) { //not ok means — OK!
             //create empty view - it made from PATH, not URI
-            let nv = Files.makeEmptyView("Untitled", fpuri.substring(1).replace(/\.html$/, ".json"));
+            //console.log("Editor settings: " , my.settings.editor)
+            let nv = Files.makeEmptyView("Untitled", 
+            fpuri.substring(1).replace(/\.html$/, ".json") ,
+            my.settings.editor!== undefined ? my.settings.editor.default_meta : {});
             nv.modified = true;
             window.l4.producer.save(nv)
                 .then(my.goTo(fpuri));
