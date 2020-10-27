@@ -24,3 +24,12 @@ To add more blocks, hover your mouse over any existent block, and the plus butto
 
 Refer to `blockeditor.md` for detailed instructions.
 
+Generating static files
+-----------------------
+After you finish your edits, you can generate final, static version of the site. From GUI this function engaged by clicking *generate site* button. 
+
+You can also use the command line utility. Open your terminal, change current directory to your site directory and run following command:
+
+    node l4cli.js
+
+The result of both actions will be the same. The latter is useful, when you deploying to Jamstack server.
