@@ -22,12 +22,13 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 - There is GUI app for working with the sites
 
 ## Planned features.
+<small>The marked features are implemented, but not included in any release</small>
 
-- [ ] Customize rendering of blocks via nunjucks
+- [x] Customize rendering of blocks via nunjucks
 - [x] _Markdown_ article block
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page
-- [ ] Custom (per site) default metadata for new files
+- [x] Custom (per site) default metadata for new files
 - [ ] Theming support
 - [ ] Working in browser without node.js
 
@@ -50,7 +51,7 @@ I'm not a real programmer, so the code is, probably, awful. There are some known
 - Bad CSS isolation, styles may leak to GUI (will fix)
 - Too basic default site design (users have to develop they own)
 - Everything is on early stage
-- Lack of documentation (will fix ASAP)
+- Incomplete documentation (In process)
 - Custom JS may work quirky in GUI (there are workarounds)
 
 ## Origin of name
