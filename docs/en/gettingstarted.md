@@ -22,15 +22,15 @@ Download zip file and unzip it.
     npm install
     npm run build_all
 
-Then look for directory named __dist__.
+Then look for directory named `dist`.
 
 
 Setup empty site
 ----------------
 Open distribution folder (dist). Rename the directories:
 
-1. _config.example to _config
-2. src.example to src
+1. `_config.example` to `_config`
+2. `src.example` to `src`
 
 Run server
 ----------
