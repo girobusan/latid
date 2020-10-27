@@ -48,12 +48,12 @@ The output files now in the **dist** directory.
 
 I'm not a real programmer, so the code is, probably, awful. There are some known problems, including, but not limited to:
 
-- Bad CSS isolation, styles may leak to GUI (will fix)
+- Bad CSS isolation, styles may leak to GUI (fixing)
 - Too basic default site design (users have to develop they own)
 - Everything is on early stage
-- Incomplete documentation (In process)
+- Incomplete documentation (in process)
 - Custom JS may work quirky in GUI (there are workarounds)
 
 ## Origin of name
-**La·tid**  *noun* (zoology) any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
+**La·tid**  *noun* (zoology) — any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
 
