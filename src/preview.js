@@ -210,7 +210,7 @@ export function preview() {
     this.createPage = async function (question, is_index) {
         //ask filename
         if (!question) {
-            question = "Name your file (no extension, latin letters and digits only)"
+            question = "Name your file (no extension, latin letters, digits and _- only)"
         }        
 
        let fn = await smalltalk.prompt("Latid", question, "");
