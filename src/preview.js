@@ -355,9 +355,11 @@ export function preview() {
         //choose editor
         let editor_fn =
             my.current_view && my.current_view.file.content_format == "blocks" ? Bled.makeLatidEditor : (a, b, c, d) => new DumbEditor(a, b, c, d);
-
+        let content_selector = my.settings.editor && my.setting.editor.content_selector ? my.settings.editor.content_selector : my.settings.output.content_selector ;
         if (my.current_view.file.content_format == "blocks") {
-            my.blockeditor = editor_fn(l4, my.settings.output.content_selector, []);
+            my.blockeditor = editor_fn(l4, 
+                content_selector, 
+                []);
             console.log("Preview: Setting up browser upload fn")
             my.blockeditor.setUploadFunction(browserUpload);
             //console.log("after setup", my.blockeditor);
@@ -365,7 +367,9 @@ export function preview() {
             my.current_editor = my.blockeditor;
         } else {
             console.log("Preview: There are no blocks")
-            my.current_editor = editor_fn(l4, my.settings.output.content_selector, my.current_view.file.content);
+            my.current_editor = editor_fn(l4, 
+                content_selector, 
+                my.current_view.file.content);
             my.current_editor.start(my.current_view.file.content);
         }
     }

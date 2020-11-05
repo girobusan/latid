@@ -1,0 +1,32 @@
+{
+    "site": {
+        "title": "My Awesomness",
+        "motto": "Stupidity and bravery",
+        "url": "https://example.com"
+    },
+    "editor": {
+        "content_selector": "#content",
+        "default_meta": {
+            "tags": "",
+            "lang": "all"
+        }
+    },
+    "output": {
+        "dir": "static",
+        "time_diff": 0,
+        "debug": true,
+        "content_selector": "#content",
+        "list_max": 10
+    },
+    "tags": {
+        "dir": "/tags/"
+    },
+    "rss": {
+        "uri": "/rss.xml",
+        "count": 20
+    },
+    "publish": {
+        "command": "",
+        "args": ""
+    }
+}

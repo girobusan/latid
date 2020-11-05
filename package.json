@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "npx webpack --mode production",
-    "serve": "cd site && python3 kittyserv.py",
+    "serve": "cd site && node latidserv.js",
     "watch": "npx webpack",
     "build_site_css": "lessc src/styles/site.less site/src/styles/main.css",
     "watch_cli": "npx webpack --config cli.wp.config.js",
