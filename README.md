@@ -40,9 +40,9 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 - Custom (per site) default metadata for new files
 
 
-## How to get 
+## How to start 
 
-You have better to download latest release, or:
+You have better to download latest release and unsip it, or:
 
     git clone git@github.com:girobusan/latid.git
     cd latid 
@@ -52,16 +52,16 @@ You have better to download latest release, or:
 The output files now in the **dist** directory.
 
 
-Setup empty site
-----------------
-Open distribution folder (dist). Rename the directories:
+### Setup empty site
+
+Open distribution folder. Rename the directories:
 
 1. `_config.example` to `_config`
 2. `src.example` to `src`
 
-Run server
-----------
-Assuming you have node.js installed, execute from the site folder:
+### Run server
+
+Assuming you have node.js installed, execute from the same folder:
 
     node latidserv.js
 
