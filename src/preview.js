@@ -28,7 +28,7 @@ const path = require("path");
 //import * as Rewriter from "./link_replacer";
 //require("./styles/preview.less");
 //prepare meaaging
-if(!window.l4){window.l4={}};
+if (!window.l4) { window.l4 = {} };
 
 
 
@@ -36,14 +36,14 @@ if(!window.l4){window.l4={}};
 function writeWithProgress() {
     console.log("Now playing: nice progress bar")
     const my = this;
-    this.chunk = 10; 
+    this.chunk = 10;
     this.blockeditor = null;
     //my.loaded = 0;
 
-    
-    this.progress = smalltalk.progress('Latid', 'Generating site...' , {
+
+    this.progress = smalltalk.progress('Latid', 'Generating site...', {
         "cancel": false,
-       " buttons": {
+        " buttons": {
             //ok: 'Ok Label',
             cancel: 'Hide',
         }
@@ -54,21 +54,21 @@ function writeWithProgress() {
         console.log(msg);
         //my.loaded +=msg.data.number;
 
-        if (msg.data.status==='ready') {
+        if (msg.data.status === 'ready') {
             console.info("Ready")
             my.progress.setProgress(100);
-           //my.percent = 100;
+            //my.percent = 100;
             //my.update(100);
             //setTimeout(my.destroy, 1000); //1000
         } else if (msg.data.number == 0) {
             console.info("progress 1")
             //my.bar.style("transition", "width .2s");
             my.progress.setProgress(1);
-        } else {            
+        } else {
             let pcs = Math.round((msg.data.number / msg.data.of) * 100);
             pcs = pcs > 100 ? 100 : pcs;
             my.progress.setProgress(pcs);
-            
+
         }
         // console.log(msg.data.number , msg.data.from , msg.data.number/msg.data.from , msg);
     }
@@ -83,10 +83,10 @@ export function preview() {
     const my = this;
     //messaging
     window.l4.messages = {
-        "current" : null,
-        "publish_start" : ()=> this.current = smalltalk.alert("Latid" , "Starting publish command...") ,
-        "publish_end" : ()=> {if(this.current){this.current.dialog.remove() ; this.current = null} ; smalltalk.alert("Latid" , "Site published.")},
-        "publish_error" : ()=> {if(this.current){this.current.dialog.remove() ; this.current = null} ; smalltalk.alert("Latid" , "Publish error.")}
+        "current": null,
+        "publish_start": () => this.current = smalltalk.alert("Latid", "Starting publish command..."),
+        "publish_end": () => { if (this.current) { this.current.dialog.remove(); this.current = null }; smalltalk.alert("Latid", "Site published.") },
+        "publish_error": () => { if (this.current) { this.current.dialog.remove(); this.current = null }; smalltalk.alert("Latid", "Publish error.") }
 
     }
 
@@ -122,7 +122,7 @@ export function preview() {
             }
         }
 
-        window.onhashchange = function(){
+        window.onhashchange = function () {
             my.goTo(window.location.hash.substring(2));
         }
 
@@ -131,12 +131,8 @@ export function preview() {
 
         if (!this.listenerOn) {
             //
-            window.onbeforeunload = function(e) {
-                var dialogText = 'It is an external link, are you sure?';
-                e.returnValue = dialogText;
-                return dialogText;
-            }
-              
+
+
             //rewrite (make it better)
             window.addEventListener('error', function (e) {
                 const attrs = ["src", "href", "poster"];
@@ -176,18 +172,31 @@ export function preview() {
                     //var slink = tglink.getAttribute("href");
                     if (tglink.getAttribute("href").match(/^(http|ftp|news|gopher)/)) {
                         console.info("External link:", tglink.href);
-                        window.location = tglink;
 
-                        return false;
+                        smalltalk.confirm("Latid", "It is an external link, follow?")
+                            .then(function () {                                
+                                    window.location = tglink;                                
+                            })
+                            .catch(e=>e)
+
+                    } else {
+                        let tgl = tglink.href.substring(tglink.href.indexOf("/src") + 4)
+                        console.info("Internal link:", tglink.href)
+                        my.goTo(tgl);
+
+
                     }
-                    let tgl = tglink.href.substring(tglink.href.indexOf("/src") + 4)
-                    console.info("Internal link", tgl)
-                    my.goTo(tgl);
-                    return;
 
+                   // return true;
                 }
-                //default
-            });
+
+                return true;
+
+            })
+            //default
+
+            //}
+            //);
             //http requests
 
             //
@@ -216,13 +225,14 @@ export function preview() {
         });
     }
 
-    this.createPage = async function (question, is_index) {
-        //ask filename
+    this.createPage = async function (question, is_index , uri) {
+        //
         if (!question) {
             question = "Name your file (no extension, latin letters, digits and _- only)"
-        }        
+        }
+        //
 
-       let fn = await smalltalk.prompt("Latid", question, "");
+        let fn = await smalltalk.prompt("Latid", question, "");
 
         //...until it's unique or empty
         if (!fn) {
@@ -237,10 +247,10 @@ export function preview() {
         //
         if (!isunique.ok) { //not ok means — OK!
             //create empty view - it made from PATH, not URI
-            //console.log("Editor settings: " , my.settings.editor)
-            let nv = Files.makeEmptyView("Untitled", 
-            fpuri.substring(1).replace(/\.html$/, ".json") ,
-            my.settings.editor!== undefined ? my.settings.editor.default_meta : {});
+            //
+            let nv = Files.makeEmptyView("Untitled",
+                fpuri.substring(1).replace(/\.html$/, ".json"),
+                my.settings.editor !== undefined ? my.settings.editor.default_meta : {});
             nv.modified = true;
             window.l4.producer.save(nv)
                 .then(my.goTo(fpuri));
@@ -292,7 +302,9 @@ export function preview() {
                 //console.log("Get view from worker", v.view);
                 if (!v.ok) {
                     console.error("Preview: no such view:", uri);
-                    smalltalk.alert("Latid" , "No such page: " + uri);                    
+                    smalltalk.alert("Latid", "No such page: " + uri + "")
+                    //.then(()=> my.createPage(uri))
+                    //.catch(e=>e);
                     return;
                 }
                 my.current_view = v.view;
@@ -315,7 +327,7 @@ export function preview() {
                 Util.gluePath("uploads/", Pathops.getDir(my.current_view.path), fil.name))
 
             let readr = new FileReader();
-            
+
             //console.log("PP" , pp)
             //let ro = 
             return new Promise(function (res, rej) {
@@ -340,15 +352,15 @@ export function preview() {
 
         my.current_view.modified = true;
         my.viewmode = false;
-      
+
         //choose editor
         //console.log("my settings" , my.settings)
         let editor_fn =
             my.current_view && my.current_view.file.content_format == "blocks" ? Bled.makeLatidEditor : (a, b, c, d) => new DumbEditor(a, b, c, d);
-        let content_selector = my.settings.editor && my.settings.editor.content_selector ? my.settings.editor.content_selector : my.settings.output.content_selector ;
+        let content_selector = my.settings.editor && my.settings.editor.content_selector ? my.settings.editor.content_selector : my.settings.output.content_selector;
         if (my.current_view.file.content_format == "blocks") {
-            my.blockeditor = editor_fn(l4, 
-                content_selector, 
+            my.blockeditor = editor_fn(l4,
+                content_selector,
                 []);
             //console.log("Preview: Setting up browser upload fn")
             my.blockeditor.setUploadFunction(browserUpload);
@@ -357,8 +369,8 @@ export function preview() {
             my.current_editor = my.blockeditor;
         } else {
             console.log("Preview: There are no blocks")
-            my.current_editor = editor_fn(l4, 
-                content_selector, 
+            my.current_editor = editor_fn(l4,
+                content_selector,
                 my.current_view.file.content);
             my.current_editor.start(my.current_view.file.content);
         }
@@ -416,15 +428,15 @@ export function preview() {
                 })
                 .html(delicon);
 
-            row.select("svg").style("width" , "24px").style("height" , "24px");
+            row.select("svg").style("width", "24px").style("height", "24px");
 
-         
-           
+
+
             ;
 
             row.selectAll("input").on("change",
                 function () {
-                    
+
                     this.parentNode.classList.add("modified");
                     //
                 });
