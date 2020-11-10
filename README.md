@@ -42,7 +42,7 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 
 ## How to get 
 
-You have better to download release, or:
+You have better to download latest release, or:
 
     git clone git@github.com:girobusan/latid.git
     cd latid 
@@ -50,6 +50,22 @@ You have better to download release, or:
     npm run build_all
 
 The output files now in the **dist** directory.
+
+
+Setup empty site
+----------------
+Open distribution folder (dist). Rename the directories:
+
+1. `_config.example` to `_config`
+2. `src.example` to `src`
+
+Run server
+----------
+Assuming you have node.js installed, execute from the site folder:
+
+    node latidserv.js
+
+Then point your browser to http://localhost:9999/ 
 
 ## Disclaimer
 
