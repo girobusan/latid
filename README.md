@@ -22,15 +22,22 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 - There is GUI app for working with the sites
 
 ## Planned features.
-<small>The marked features are implemented, but not included in any release</small>
+<small>The marked features are implemented, but will be included in future release</small>
 
-- [x] Customize rendering of blocks via nunjucks
-- [x] _Markdown_ article block
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page
-- [x] Custom (per site) default metadata for new files
+- [ ] Better GUI style
 - [ ] Theming support
 - [ ] Working in browser without node.js
+
+## Releases
+
+### 1.8.14b
+- Bugs fixed
+- Improved UI (error handling)
+- Customize rendering of blocks via nunjucks
+- _Markdown_ article block
+- Custom (per site) default metadata for new files
 
 
 ## How to get 

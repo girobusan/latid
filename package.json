@@ -1,6 +1,6 @@
 {
   "name": "latid",
-  "version": "1.8.13b",
+  "version": "1.8.14b",
   "description": "Staic site generator with visual editor",
   "main": "loader.js",
   "repository": {

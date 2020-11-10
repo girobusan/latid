@@ -10,7 +10,7 @@ import * as Rewriter from "./link_replacer";
 var TD =null ;//|| require('util').TextDecoder ;
 
 if(typeof TextDecoder !== 'undefined'){
-    console.log("Clobal TextDecoder used.")
+    //console.log("Clobal TextDecoder used.")
     TD = TextDecoder;
 }else{
     TD = require("util").TextDecoder ;

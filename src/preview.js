@@ -106,8 +106,9 @@ export function preview() {
     this.template = new NTemplate.template(l4.views, l4.settings, l4.meta, null);
 
     this.init = async function () {
+        //console.log("Preview init")
         let sm = await window.l4.producer.getSettings();
-        //console.log("Settings are gotten")
+        //console.log("Settings are gotten" , sm);
         my.settings = sm.settings;
         //let bs = await window.l4.producer.getBase("/src/fcuk.js");
         this.src_base = "/src/"; //bs.base; //FIXME
@@ -129,7 +130,13 @@ export function preview() {
         //add event listener for links 
 
         if (!this.listenerOn) {
-            //fix attributes in __edit mode__
+            //
+            window.onbeforeunload = function(e) {
+                var dialogText = 'It is an external link, are you sure?';
+                e.returnValue = dialogText;
+                return dialogText;
+            }
+              
             //rewrite (make it better)
             window.addEventListener('error', function (e) {
                 const attrs = ["src", "href", "poster"];
@@ -153,8 +160,10 @@ export function preview() {
                 if (!e.target) {
                     return;
                 }
+                //console.log(e);
 
                 let tglink = e.target;
+
                 if (tglink.nodeName != 'A') {
                     //TARGET IS NOT A. maybe, we have to go higher
                     do {
@@ -162,7 +171,7 @@ export function preview() {
                     } while (tglink && tglink.nodeName != "A" && tglink.nodeName != "BODY")
                 }
 
-                if (tglink.nodeName == 'A') {
+                if (tglink.nodeName == 'A' && tglink.getAttribute("href")) {
                     e.preventDefault();
                     //var slink = tglink.getAttribute("href");
                     if (tglink.getAttribute("href").match(/^(http|ftp|news|gopher)/)) {
@@ -172,7 +181,7 @@ export function preview() {
                         return false;
                     }
                     let tgl = tglink.href.substring(tglink.href.indexOf("/src") + 4)
-                    console.log("Target", tgl)
+                    console.info("Internal link", tgl)
                     my.goTo(tgl);
                     return;
 
@@ -246,11 +255,11 @@ export function preview() {
     }
 
     var fixScripts = function () {
-        //console.log('Fix scripts')
+        //
         let st = document.querySelectorAll("script");
-        console.log('Fixing:', st.length);
+        //console.log('Fixing:', st.length);
         st.forEach(function (se, i) {
-            //console.log("Fixing" , se)
+            //
             let cm = document.createComment((i + 1) + " : script fixed");
             se.parentNode.insertBefore(cm, se);
             se.remove();
@@ -258,7 +267,7 @@ export function preview() {
             newscript.innerHTML = se.innerHTML;
             let scrattrs = Array.from(se.attributes);
             scrattrs.forEach(a => newscript.setAttribute(a.name, a.value))
-            //newscript.src = se.src;
+            //
             cm.parentNode.insertBefore(newscript, cm);
         })
     }
@@ -271,12 +280,9 @@ export function preview() {
                 fixScripts();
                 //console.log("scripts fixed")
                 my.attachUI();
-
             })
             .catch(err => console.error("Can not display", err))
             ;
-
-
     }
 
     this.goTo = function (uri) {
@@ -286,8 +292,8 @@ export function preview() {
                 //console.log("Get view from worker", v.view);
                 if (!v.ok) {
                     console.error("Preview: no such view:", uri);
-                    my.goTo("/index.html")
-                    //return;
+                    smalltalk.alert("Latid" , "No such page: " + uri);                    
+                    return;
                 }
                 my.current_view = v.view;
                 my.viewmode = true;
@@ -310,7 +316,7 @@ export function preview() {
 
             let readr = new FileReader();
             
-            console.log("PP" , pp)
+            //console.log("PP" , pp)
             //let ro = 
             return new Promise(function (res, rej) {
                 readr.onloadend = function (e) {
@@ -334,35 +340,19 @@ export function preview() {
 
         my.current_view.modified = true;
         my.viewmode = false;
-        //let editor_element = d3.select(l4.settings.content_selector);
-
-        //if editor ready
-        /*
-        if (my.current_editor && my.blockeditor && my.current_view.file.content_format == "blocks") {
-            console.log("Editor already here");
-            my.blockeditor.setBlocks(my.current_view.file.content.blocks);
-            my.blockeditor.show();
-            return;
-        }
-        if (my.current_editor && (!my.current_view.file.content_format || my.current_view.file.content_format != "blocks")) {
-            console.log("Dumb editor already here");
-            my.current_editor.start(my.current_view.file.content);
-            my.current_editor.show();
-            return;
-        }
-        */
-        //let testbled = Bled.makeBasicEditor(l4.settings.content_selector);
+      
         //choose editor
+        //console.log("my settings" , my.settings)
         let editor_fn =
             my.current_view && my.current_view.file.content_format == "blocks" ? Bled.makeLatidEditor : (a, b, c, d) => new DumbEditor(a, b, c, d);
-        let content_selector = my.settings.editor && my.setting.editor.content_selector ? my.settings.editor.content_selector : my.settings.output.content_selector ;
+        let content_selector = my.settings.editor && my.settings.editor.content_selector ? my.settings.editor.content_selector : my.settings.output.content_selector ;
         if (my.current_view.file.content_format == "blocks") {
             my.blockeditor = editor_fn(l4, 
                 content_selector, 
                 []);
-            console.log("Preview: Setting up browser upload fn")
+            //console.log("Preview: Setting up browser upload fn")
             my.blockeditor.setUploadFunction(browserUpload);
-            //console.log("after setup", my.blockeditor);
+            //
             my.blockeditor.start(my.current_view.file.content.blocks);
             my.current_editor = my.blockeditor;
         } else {
@@ -387,7 +377,7 @@ export function preview() {
 
     this.attachUI = function () {
         //return;
-        console.log("Attaching main UI");
+        //console.log("Attaching main UI");
         const bc = "editor_panel_expanded";
 
         //const delicon = require("./assets/delete-24px.svg");
@@ -395,7 +385,7 @@ export function preview() {
 
         function makeButtonHTML(title, fn) {
             var be = d3.select(document.createElement("div")).attr("class", "panel_button");
-
+            //be.style("padding" , "2px")
             be.html(title);
             be.on("click", fn);
             return be.node();
@@ -428,20 +418,15 @@ export function preview() {
 
             row.select("svg").style("width" , "24px").style("height" , "24px");
 
-            //let ddd = row.select("svg path")
-            //.attr("d")
-
-            //row.select("svg path")
-            //.attr("style" , "all:initial;width:auto;height:auto;display:inline")
+         
            
             ;
 
             row.selectAll("input").on("change",
                 function () {
-                    //console.log('CHANGE');
-                    //console.log(this.value)
+                    
                     this.parentNode.classList.add("modified");
-                    //this.style.backgroundColor = "yellow"
+                    //
                 });
             return row;
         }

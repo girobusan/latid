@@ -333,7 +333,7 @@ export function routines(fileops) {
         my.updateList();
         my.generateVirtuals();
         //save the view to source
-        console.log(this.lister.getByField("uri", view.uri));
+        //console.log(this.lister.getByField("uri", view.uri));
         if (view.type == 'src') {
             return this.fileops.write(Path.join("src/", view.path), Formats.encodeFile(view));
         } else {
