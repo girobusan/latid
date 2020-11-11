@@ -56,47 +56,12 @@ module.exports = function (env, argv) {
 
         module: {
             rules: [
-                /*
-                {
-                    test: /\.m?js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env']
-                        }
-                    }
-                },*/
+                
                 {
                     test: /\.svg$/,
                     loader: 'svg-inline-loader'
                 },
-                /*//
-                {
-                    test: /\.(less|css)$/,
-                   // exclude: path.resolve(__dirname, 'src/bled'),
-                    use: [
-                        //MiniCssExtractPlugin.loader,
-                        {
-                            loader: 'style-loader',
-                            options: {
-                                insert: '.block_editor_outer_container',
-                               // url: false
-                               injectType: "lazyStyleTag"
-
-                            }
-                        },
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                //insert: '.block_editor_outer_container',
-                                url: false
-                            }
-                        },
-                        'less-loader'
-                    ],
-                },
-                //*/
+                
                 {
                     test: /\.(less|css)$/,
                     //exclude: path.resolve(__dirname, 'src/bled'),
