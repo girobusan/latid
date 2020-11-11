@@ -8,7 +8,8 @@ const pkg = require('./package.json');
 const fs = require('fs');
 
 
-const env = process.env.NODE_ENV
+const env = process.env.NODE_ENV;
+
 const econfig = {
     mode: env || 'development'
 }
@@ -22,7 +23,7 @@ module.exports = function (env, argv) {
         if (!fs.existsSync('dist')) {
             fs.mkdirSync('dist');
         }
-        fs.writeFileSync("dist/VERSION", pkg.version);
+        fs.writeFileSync("dist/VERSION", pkg.version  + "\nBuilt: " + (new Date()).toLocaleString());
         builddir = 'dist';
     }
     return {
