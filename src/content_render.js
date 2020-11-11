@@ -202,10 +202,10 @@ export function blockViewer(settings) {
             contentjson.blocks.forEach(function (b) {
                 //check if there a custom template
                 if(b.type in settings.block_templates){
-                        console.log("custom block" , b.type)
+                        //console.log("custom block" , b.type)
                 //  if so, check if there an already compiled version of it
                         if(!(b.type in block_templates_cache)){ //if not, compile
-                            console.log("compile" , b.type)
+                            //console.log("compile" , b.type)
                             block_templates_cache[b.type] = nunjucks.compile(settings.block_templates[b.type])
                         }                //         
                 //  then use

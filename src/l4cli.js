@@ -1,4 +1,6 @@
-console.log("Latid", VERSION);
+console.log("\nLatid", VERSION);
+console.log("=========");
+console.log("Today:", (new Date()).toLocaleString());
 var Path = require("path");
 //const fs = require("fs");
 const fs = require('fs');//.promises;
@@ -6,7 +8,7 @@ const fsp = require('fs').promises;
 
 import * as Production from "./production";
 
-
+var work_time = (new Date()).getMilliseconds();
 //read params
 var parseargs = require('minimist');
 var cliargs = parseargs(process.argv.slice(2));
@@ -15,12 +17,11 @@ var sitedir = cliargs.s || process.cwd();//site directory
 //time-aware generation
 var timeawareness = cliargs.t || false;
 if (timeawareness) {
-    console.log("Time-aware generation on")
-    console.log("Today", (new Date()).toLocaleString())
+    console.log("Time-aware generation: on")    
 
 } else {
-    console.log("Time-aware generation off")
-    console.log("Today", (new Date()).toLocaleString())
+    console.log("Time-aware generation: off")
+    
 }
 var do_publish = cliargs.p || false ;
 
@@ -66,6 +67,7 @@ export function reclist(dir, filelist) {
 //
 
 var l4 = {
+    "loader" : "cli",
     "name": "l4",
     "version": "VERSION",
     
@@ -80,7 +82,8 @@ let confdir = l4.settings.output.dir ? l4.settings.output.dir : "static";
 
 var outdir = cliargs.o || Path.join(sitedir, confdir);//Path.join(sitedir, "static");
 l4.settings.output_path = outdir;
-console.log("Output to", outdir)
+console.log("Output to", outdir);
+console.log("---------")
 
 
 
@@ -142,15 +145,53 @@ let fileops = {
 
 let prod = new Production.routines(fileops );
 
-function printProgress(progress){
-    console.log(progress);
+let progress_acc = {};
+function formatTimestamp(ms){
+    if(ms<1000){
+        return ms + "ms";
+    };
+    let inms = ms;
+    let output = "";
+    //hours
+    let hrs = Math.floor(inms/(1000*60*60));
+    if(hrs>0){
+        output += hrs + "hrs. ";
+        inms = inms - hrs*60*60*1000;
+    }
+    //minutes
+    let minutes = Math.floor(inms/(1000*60));
+    if(minutes>0){
+        output += minutes + "min. ";
+        inms = inms - minutes*1000*60;
+    }
+    
+    //seconds
+    let seconds = Math.floor((inms/1000)*100)/100;
+    output += seconds + "sec.";
+    return output; 
+}
+
+function printProgress(what , e){
+    if(!progress_acc[what]){
+        progress_acc[what] = 0;
+    }
+    if(e.status=='working'|e.status=='loading') {progress_acc[what] += 10};
+    //console.log(e , progress_acc[what] );
+    if(progress_acc[what]>=parseInt(e.of)){        
+        progress_acc[what] += 100;
+        console.info(what + ": done at " + ((new Date()).getMilliseconds() - work_time) , "ms"  );
+        if(e.operation == 'generate_site'){
+            console.log("---------");
+            console.log("All done.");
+        }        
+    }    
 }
 
 prod.init(function () {
 
-    prod.loadAll(e=>printProgress(e.number + "/" + e.of))
-        .then(e=>console.log("\nAll done."))
-        .then(() => prod.generateAll())
+    prod.loadAll(e=>printProgress( "Files loading" , e))
+        //.then(e=>console.info("\nFiles Loaded at" , (new Date()).getMilliseconds() - work_time  ))
+        .then(() => prod.generateAll(  e=>printProgress("Generation" , e)   ))
         .catch(err=>console.error(err))
         ;
 });

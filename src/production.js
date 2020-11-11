@@ -415,7 +415,7 @@ export function routines(fileops) {
 
                 my.settings.block_templates = tpls_dict;
                 
-                console.info("Loaded settings:" , my.settings);
+                //console.info("Loaded settings:" , my.settings);
                 //console.log("create loader")
                 my.template_loader = Template.buildLoader(function (p) {
                     let c = my.fileops.getSync(p); //ArrayBuffer
