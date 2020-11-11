@@ -1,15 +1,8 @@
 {
     "site": {
-        "title": "My Awesomness",
-        "motto": "Stupidity and bravery",
+        "title": "Awesome site",
+        "motto": "If It's Not Broken, Don't Fix It",
         "url": "https://example.com"
-    },
-    "editor": {
-        "content_selector": "#content",
-        "default_meta": {
-            "tags": "",
-            "lang": "all"
-        }
     },
     "output": {
         "dir": "static",
@@ -25,8 +18,8 @@
         "uri": "/rss.xml",
         "count": 20
     },
-    "publish": {
-        "command": "",
-        "args": ""
+    "publish":{
+        "command" : "",
+        "args" : ""
     }
 }
