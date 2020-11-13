@@ -397,7 +397,8 @@ export function routines(fileops) {
         //let configs = [];
         //console.log("Block templates:" , bt_list);
         let bt_promises = bt_list.map(e => fileops.get('_config/templates/blocks/' + e.path)
-        .then(r=>{return {'name':e.path , 'content':r}})  
+        .then(r=>{return {'name':e.path , 'content':r}})
+        .catch(err=> console.info("No custom block templates found.")) 
         );
         let configs = [fileops.get("_config/settings.json")];
         configs = configs.concat(bt_promises);
