@@ -391,33 +391,30 @@ export function routines(fileops) {
         //console.log(Path.join( my.fileops.base , "_config/settings.json"));
 
         //settings file
-
+        let bt_promises = [];
         //block templates
-        let bt_list = await fileops.list("_config/templates/blocks");
-        //let configs = [];
-        //console.log("Block templates:" , bt_list);
-        let bt_promises = bt_list.map(e => fileops.get('_config/templates/blocks/' + e.path)
-        .then(r=>{return {'name':e.path , 'content':r}})
-        .catch(err=> console.info("No custom block templates found.")) 
-        );
+        await fileops.list("_config/templates/blocks")
+            .then(function (r) {
+                r.details.forEach(function (e) {
+                    bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
+                })
+            })
+            .catch(e => console.info("No custom block templates found."));
+
         let configs = [fileops.get("_config/settings.json")];
         configs = configs.concat(bt_promises);
 
         Promise.all(configs)
             //fileops.get(sp)
             .then(function (r) {
-                //console.log("Result", r)
-                //console.log(my.decoder.decode(r));
+                //console.log("Result", r)             
                 my.settings = JSON.parse(my.decoder.decode(r[0]));
                 let tpls = r.slice(1);
-                tpls.forEach( e => e.content = my.decoder.decode(e.content) );
+                tpls.forEach(e => e.content = my.decoder.decode(e.content));
                 //console.log("reduce...")
-                let tpls_dict = tpls.reduce( function(a, c){ a[c.name.substring(0, c.name.lastIndexOf("."))] = c.content ; return a } , {} );
+                let tpls_dict = tpls.reduce(function (a, c) { a[c.name.substring(0, c.name.lastIndexOf("."))] = c.content; return a }, {});
 
                 my.settings.block_templates = tpls_dict;
-                
-                //console.info("Loaded settings:" , my.settings);
-                //console.log("create loader")
                 my.template_loader = Template.buildLoader(function (p) {
                     let c = my.fileops.getSync(p); //ArrayBuffer
                     //console.log("Buffer" , c)
