@@ -96,8 +96,13 @@ export function template(viewlist, settings, meta, loader) {
     my.nunjucks.addFilter('nbsp' , function(str){
       
          //glue to next
-        const nbsprx = /((?:\s)+(?:[a-zа-яА-Я]{1,2}))(\s+)(?:<[^>]+>)?/gi ;
-        return str.replace(nbsprx , "$1&nbsp;")
+        //const nbsprx = /((?:\s)+(?:[a-zа-яА-Я]{1,2}))(\s+)(?:<[^>]+>)?/gi ;
+        const nbsprx = /(>[^<]+?\s+\(?[a-zа-яА-Я]{1,2}\.?)(\s+)(<[^>]+>)?/gi;
+        let fstring = str;
+        while(fstring.match(nbsprx)){
+            fstring = fstring.replace(nbsprx , "$1&nbsp;$3")
+        }
+        return fstring;
         //return str.replace(regxp , "_nbsp;$2");
     })
     my.lister = new Listops.lister(viewlist);
