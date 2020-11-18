@@ -1,7 +1,7 @@
 ---
 title: Latid README
 ---
-# Latid (l4) &#128031;
+# Latid (L4) &#128031;
 
 Latid is a static site generator, which works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
 
