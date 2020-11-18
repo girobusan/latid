@@ -98,6 +98,23 @@ export function template(viewlist, settings, meta, loader) {
     //console.log()
     var my = this;
     my.nunjucks = new nunjucks.Environment(loader, { autoescape: false });
+    my.nunjucks.addFilter('nbsp' , function(str){
+        /*
+        const words_to_glue = ("а в и к о с у я " +
+        `б г г\\. ж м р\\. т\\. ` + 
+        `во вы да до за из ко мы на не ни но ну об он от ох по со та те то ту ты уж ` + 
+        `га гг\\. дм долл\\. др\\. же кг мг мл мин. млн. млрд. мм нм с\\. см стр\\. руб\\. ` +
+        `\\$ € % — &mdash;`).split(" ");
+        words_to_glue.concat(["т. п." , "т. д."]);
+
+        const regxp = new RegExp( "(\s+)(" + words_to_glue.join("|") + ")" , "gi");
+        //console.log(regxp);
+          */
+         //glue to next
+        const nbsprx = /((?:\s)+(?:[a-zа-яА-Я]{1,2}))(\s+)(?:<[^>]+>)?/gi ;
+        return str.replace(nbsprx , "$1&nbsp;")
+        //return str.replace(regxp , "_nbsp;$2");
+    })
     my.lister = new Listops.lister(viewlist);
     //console.log("test lister" , this.lister.getByField("uri" , "/tags/index.html" ));
     //console.log("ABOUT TO DEFINE RENDER")
