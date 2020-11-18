@@ -76,7 +76,7 @@ Then point your browser to http://localhost:9999/
 2. [On templates](docs/en/templates.md)
 2. [Template variables](docs/en/template_vars.md)
 2. ["View"](docs/en/view.md)
-2. [Command line ooperation](docs/en/cli.md)
+2. [Command line operation](docs/en/cli.md)
 2. [Working with GUI](docs/en/gui.md)
 
 ## Disclaimer
