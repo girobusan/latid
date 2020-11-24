@@ -392,14 +392,18 @@ export function routines(fileops) {
 
         //settings file
         let bt_promises = [];
+        let bt_names = [];
         //block templates
         await fileops.list("_config/templates/blocks")
             .then(function (r) {
-                r.details.forEach(function (e) {
+                console.log("R" , r)
+                r.forEach(function (e) {
+                    console.log("E" , e)
+                    bt_names.push(e.path.substring(0 , e.path.indexOf(".")))
                     bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
                 })
             })
-            .catch(e => console.info("No custom block templates found."));
+            .catch(e => console.info("No custom block templates found:", e));
 
         let configs = [fileops.get("_config/settings.json")];
         configs = configs.concat(bt_promises);
@@ -407,12 +411,16 @@ export function routines(fileops) {
         Promise.all(configs)
             //fileops.get(sp)
             .then(function (r) {
-                //console.log("Result", r)             
+                console.log("Result", r)             
                 my.settings = JSON.parse(my.decoder.decode(r[0]));
+                console.log(my.settings)
                 let tpls = r.slice(1);
-                tpls.forEach(e => e.content = my.decoder.decode(e.content));
+                tpls = tpls.map(e => my.decoder.decode(e).toString());
+                console.log("T" , tpls)
+                let tpls_dict = tpls.reduce(function (a,c,i){ a[bt_names[i]] = c ; return a} , {})
+
                 //console.log("reduce...")
-                let tpls_dict = tpls.reduce(function (a, c) { a[c.name.substring(0, c.name.lastIndexOf("."))] = c.content; return a }, {});
+               // let tpls_dict = tpls.reduce(function (a, c) { a[c.name.substring(0, c.name.lastIndexOf("."))] = c.content; return a }, {});
 
                 my.settings.block_templates = tpls_dict;
                 my.template_loader = Template.buildLoader(function (p) {

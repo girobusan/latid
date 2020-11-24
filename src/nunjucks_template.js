@@ -19,6 +19,59 @@ if(typeof TextDecoder !== 'undefined'){
 const path = require("path");
 const dec = new TD("utf-8");
 
+export function nbsp(str){
+    let words = str.split(/\s|&nbsp;/g);
+    const shortword = /^\(?\"?«?[a-zА-Яа-я0-9]{1,2}\.?$/gi;
+    const skip = /^<.+>$/g;
+    const tag = /<[^>]+>|^[^>]+>|<[^>]+$/g;
+    const addbefore = /^—|–|-|&mdash;$/g;
+    let in_tag = false;
+    let testShort = function(w){
+        let s = w.replace(tag, "");
+        //console.log("S" , w, s , s.match(shortword)!==null);
+        return s.match(shortword) !== null;
+    }
+    let spaces = words.map(function (e, i, a) { //return NEXT space symbol
+        //chek if we're get the tag:
+        if (e.match(skip)) { //it is a htm
+            return " ";
+        }
+        //check if we're entering tag
+        let opens = e.split("<").length - 1;
+        let closes = e.split(">").length - 1;
+
+        if (opens - closes == 1 && !in_tag) {
+            in_tag = true;
+        }
+        //check if we're exiting tag
+        if (closes - opens == 1 && in_tag) {
+            in_tag = false;
+        }
+        if (in_tag) { //inside tag, next space is just space
+            return " " 
+        }
+        //fix before?
+        if (i + 1 < a.length && a[i + 1].match(addbefore)) {
+            return "&nbsp;" //before smth 
+        }
+        //last token
+        if (i + 1 == a.length) {
+            return "";
+        }
+        //chek if there is a case for nbsp
+        if (testShort(e)) {
+            return "&nbsp;"
+        }
+        //default: space
+        return " ";
+    });
+    //insert spaces between symbols
+    // add space to each symbol
+    let r = words.map((e, i) => e + spaces[i]).join("");
+    //console.log("return" , r)
+    return r; 
+};
+
 
 
 export function rewriteLinks(htx, uri, views) {
@@ -93,57 +146,7 @@ export function template(viewlist, settings, meta, loader) {
     
     var my = this;
     my.nunjucks = new nunjucks.Environment(loader, { autoescape: false });
-    my.nunjucks.addFilter('nbsp' , function(str){
-        let words = str.split(/\s|&nbsp;/g);
-        const shortword = /^\(?\"?«?[a-zА-Яа-я0-9]{1,2}\.?$/gi;
-        const skip = /^<.+>$/g;
-        const tag = /<[^>]+>|^[^>]+>|<[^>]+$/g;
-        const addbefore = /^—|–|-|&mdash;$/g;
-        let in_tag = false;
-        let testShort = function(w){
-            let s = w.replace(tag, "");
-            //console.log("S" , w, s , s.match(shortword)!==null);
-            return s.match(shortword) !== null;
-        }
-        let spaces = words.map(function (e, i, a) { //return NEXT space symbol
-            //chek if we're get the tag:
-            if (e.match(skip)) { //it is a htm
-                return " ";
-            }
-            //check if we're entering tag
-            let opens = e.split("<").length - 1;
-            let closes = e.split(">").length - 1;
-
-            if (opens - closes == 1 && !in_tag) {
-                in_tag = true;
-            }
-            //check if we're exiting tag
-            if (closes - opens == 1 && in_tag) {
-                in_tag = false;
-            }
-            if (in_tag) { //inside tag, next space is just space
-                return " " 
-            }
-            //fix before?
-            if (i + 1 < a.length && a[i + 1].match(addbefore)) {
-                return "&nbsp;" //before smth 
-            }
-            //last token
-            if (i + 1 == a.length) {
-                return "";
-            }
-            //chek if there is a case for nbsp
-            if (testShort(e)) {
-                return "&nbsp;"
-            }
-            //default: space
-            return " ";
-        });
-        //insert spaces between symbols
-        // add space to each symbol
-        let r = words.map((e, i) => e + spaces[i]).join("");
-        return r; 
-    });
+    my.nunjucks.addFilter('nbsp' , nbsp);
 
     my.lister = new Listops.lister(viewlist);
     //console.log("test lister" , this.lister.getByField("uri" , "/tags/index.html" ));
@@ -156,6 +159,7 @@ export function template(viewlist, settings, meta, loader) {
             "list": my.lister,
             "paths": Pathops,
             "settings": my.settings,
+            "build_date": (new Date()).toISOString(),
             "view": view,
             "content": CRender.renderThis(view , my.settings),//render content using CR
             "util": Util,
