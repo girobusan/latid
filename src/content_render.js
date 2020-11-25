@@ -197,7 +197,7 @@ const blockViews = {
 export function blockViewer(settings) {
     var nenv = new nunjucks.Environment(null,{autoescape:false});
     nenv.addFilter("nbsp" , nbsp);
-    console.log(settings)
+    //console.log(settings)
     this.show = function (contentjson) {
         //console.log(contentjson);
         var stringHTML = "";
@@ -206,7 +206,7 @@ export function blockViewer(settings) {
             contentjson.blocks.forEach(function (b) {
                 //check if there a custom template
                 if(b.type in settings.block_templates){
-                        console.log("Custom block" , b.type)
+                        //console.log("Custom block" , b.type)
                 //  if so, check if there an already compiled version of it
                         if(!(b.type in block_templates_cache)){ //if not, compile
                             //console.log("compile" , b.type)

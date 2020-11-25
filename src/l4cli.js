@@ -140,6 +140,7 @@ let fileops = {
         return new Promise(function (res, rej) {
             if(fs.existsSync(rp)){
             let mylist = reclist(fulldir).map(p => ({ "path": p.substring(fulldir.length+1) }));
+            //console.log("MULIST" , mylist)
             res(mylist);
             }else{
                 rej("No such dir")

@@ -82,11 +82,28 @@ var serv = {
         }
     },
     "list": function (p) {
+        //console.log("LIST called")
         //var request = new XMLHttpRequest();
+        return new Promise(function(res,rej){
+            return fetch(api_root + "list/?" + p)
+            .then(r=>r.json())
+            .then(function(r){
+                //console.log("LIST result" , r)
+                if(r.status==='success'){
+                    //console.log("Sucessful list", p , r);
+                    res(r.details.map(e=>{e.path = e.path.replace(/^\// , "") ; return e} )) 
+                }else{
+                    rej("List impossible:" , p)
+                }
+            })
+        })
+
+/*
         return fetch(api_root + "list/?" + p)
             .then(r => r.json())
             .then(j=>j.details.map(e=> { e.path = e.path.replace(/^\/+/ , "") ; return e }))
             .catch(err => console.error("Can not list", p , err))
+            */
     },
     "copy": function (p1, p2) {
         return fetch(api_root + "copy/?from=" + p1 + "&to=" + p2);

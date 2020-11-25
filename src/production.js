@@ -185,7 +185,7 @@ export function routines(fileops) {
         return new Promise(function (res, rej) {
             my.fileops.list("src")
                 .then(function (r) {
-                    //console.log("R" , r)
+                    //console.log("Fileops list" , r)
                     let filepromises = [];
                     r = r.filter(e => !Path.basename(e.path).match(/^(\.|_)/));
                     r.forEach((e, ix) => filepromises.push(injectCallback(my.path2view(e.path), ix, r.length)));//
@@ -396,9 +396,9 @@ export function routines(fileops) {
         //block templates
         await fileops.list("_config/templates/blocks")
             .then(function (r) {
-                console.log("R" , r)
+                console.info("Custom block templates used.")
                 r.forEach(function (e) {
-                    console.log("E" , e)
+                    //console.log("E" , e)
                     bt_names.push(e.path.substring(0 , e.path.indexOf(".")))
                     bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
                 })
@@ -411,12 +411,12 @@ export function routines(fileops) {
         Promise.all(configs)
             //fileops.get(sp)
             .then(function (r) {
-                console.log("Result", r)             
+                //console.log("Result", r)             
                 my.settings = JSON.parse(my.decoder.decode(r[0]));
-                console.log(my.settings)
+                //console.log(my.settings)
                 let tpls = r.slice(1);
                 tpls = tpls.map(e => my.decoder.decode(e).toString());
-                console.log("T" , tpls)
+                //console.log("T" , tpls)
                 let tpls_dict = tpls.reduce(function (a,c,i){ a[bt_names[i]] = c ; return a} , {})
 
                 //console.log("reduce...")
