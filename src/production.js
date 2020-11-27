@@ -194,11 +194,8 @@ export function routines(fileops) {
                     PA.then(
                         function (r2) {
                             //console.info('All files processed.')
-                            my.views = my.views.concat(r2);
-                            //console.log("Now updating")
-                            my.updateList();
-                            //console.log("Views" , my.views )
-                            //console.log("RESOLVING");
+                            my.views = my.views.concat(r2);                            
+                            my.updateList();                            
                             res();
                         }
                     )
@@ -293,9 +290,7 @@ export function routines(fileops) {
                     .then(() => { if (myclb) { myclb() } })
                     .catch(err => console.error("Can not write (in generateAll)", v.uri, err));
             }
-            //if (i == my.views.length - 1 && callback) {
-            //    myclb = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
-            //}
+            
 
         });
         //
@@ -416,22 +411,21 @@ export function routines(fileops) {
                 //console.log(my.settings)
                 let tpls = r.slice(1);
                 tpls = tpls.map(e => my.decoder.decode(e).toString());
-                //console.log("T" , tpls)
-                let tpls_dict = tpls.reduce(function (a,c,i){ a[bt_names[i]] = c ; return a} , {})
-
-                //console.log("reduce...")
-               // let tpls_dict = tpls.reduce(function (a, c) { a[c.name.substring(0, c.name.lastIndexOf("."))] = c.content; return a }, {});
-
+                //
+                let tpls_dict = tpls.reduce(function (a,c,i){ a[bt_names[i]] = c ; return a} , {});
+                
                 my.settings.block_templates = tpls_dict;
                 my.template_loader = Template.buildLoader(function (p) {
                     let c = my.fileops.getSync(p); //ArrayBuffer
                     //console.log("Buffer" , c)
                     var tc = c;
+                    /*
                     try {
                         var tc = my.decoder.decode(c);
                     } catch (e) {
-                        //console.log("Not buffer")
+                        console.error("Production: template loader error:" , p , c , e);
                     }
+                    */
 
                     //console.log("Template" , tc);
                     return tc;
@@ -440,7 +434,7 @@ export function routines(fileops) {
                 readycallback();
 
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error("Can not load settings:" , err))
     }
 }
 

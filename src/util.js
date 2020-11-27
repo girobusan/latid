@@ -44,22 +44,8 @@ export function str2date(st) {
     //if timestamp (digits only)
     if (str.match(/^\d{12,}$/)) {
         var r = new Date(parseInt(str));
-        //test if correct date
-        //if (r.getTime() == r.getTime()) {
-            return r
-        //} else {
-            //return null;
-        //}
+        return r
     }
-    //if js formatted string
-    /*
-    let ir = new Date(str);
-    if (ir.getTime() == ir.getTime()) {
-        return ir;
-    }
-    */
-
-    //if our custom
 
     var parts = str.split(/[^0-9]+/g).map(e => parseInt(e)).filter(e => !isNaN(e));
     if (parts.length < 3) {
@@ -72,7 +58,6 @@ export function str2date(st) {
         rd.setMonth(parts[1] - 1);
         rd.setDate(parts[2]);
 
-        //}
         if (parts.length >= 5) {
             rd.setHours(parts[3]);
             rd.setMinutes(parts[4]);
@@ -80,8 +65,6 @@ export function str2date(st) {
     } catch (err) {
         console.log("Invalid date", str, err);
         return null;
-        //console.log("STR2DATE", st, "=>", rd)      
-
     }
     return rd;
 }
@@ -89,14 +72,14 @@ export function str2date(st) {
  * Cleans up date string, returns short latid-specific date string.
  * @param {String} s - date string
  */
-    export function prettyDate(s) {
-        return date2str(str2date(s), true);
-    }
+export function prettyDate(s) {
+    return date2str(str2date(s), true);
+}
 
-    /**
-     * Figure out sort value for view
-     * @param {View} e 
-     */
+/**
+ * Figure out sort value for view
+ * @param {View} e 
+ */
 
 export function pageSortValue(e) {
 
@@ -129,12 +112,12 @@ export function translit(str) {
  */
 export function addNumToURI(uri, num, pad) {
     //if (!pad) { pad = 3 };
-    if(pad){
+    if (pad) {
         let pv = 1;
-        for(i = 0 ; i <= pad ; i++){
-            pv = pw*10
+        for (i = 0; i <= pad; i++) {
+            pv = pw * 10
         }
-        num = (pv+num).toString().substring(1);
+        num = (pv + num).toString().substring(1);
     }
     return uri.replace(/(.+)(\.[a-z]+$)/i, function (match, p1, p2) {
         return p1 + "_" + num + p2

@@ -2,14 +2,6 @@ const d3 = Object.assign({}, require("d3-selection"));
 //var Dialogs = require('dialogs');
 const smalltalk = require('./smalltalk');
 
-
-
-
-/*..import {
-    blockEditor as BlockEditor
-} from "./block_editor";
-
-*/
 import "./styles/preview.less";
 //import * as BledUI from "./bled/ui";
 import {
@@ -31,15 +23,11 @@ const path = require("path");
 if (!window.l4) { window.l4 = {} };
 
 
-
-
 function writeWithProgress() {
     console.log("Now playing: nice progress bar")
     const my = this;
     this.chunk = 10;
     this.blockeditor = null;
-    //my.loaded = 0;
-
 
     this.progress = smalltalk.progress('Latid', 'Generating site...', {
         "cancel": false,
@@ -90,18 +78,12 @@ export function preview() {
 
     }
 
-
-    //my.files = new Files.fileMaker(l4);
-    //my.lister = l4.lister;
     my.listenerOn = false;
     my.viewmode = true;
     my.current_view = null;
     my.current_editor = null;
     my.panel_collapsed = false;
     my.site_root = "";
-    //my.bled = Bled.makeTypicalEditor();
-    //let loader = window.localFS ? new NTemplate.serverLoader() : null; //:TMP
-    //my.site_root = window.localFS ? window.localFS.root : ""; //:TMP
 
     this.template = new NTemplate.template(l4.views, l4.settings, l4.meta, null);
 
@@ -130,29 +112,26 @@ export function preview() {
         //add event listener for links 
 
         if (!this.listenerOn) {
-            //
-
 
             //rewrite (make it better)
             window.addEventListener('error', function (e) {
                 const attrs = ["src", "href", "poster"];
-                //console.log('Suspicious error at', e.target);
                 if (!e.target.getAttribute) {
                     //console.log("Not our business");
                     return;
                 }
-                //console.log("fix" , e.target.src , "to" , my.src_base)
-                attrs.forEach(function (a) {
-                    if (e.target.getAttribute(a) && e.target.getAttribute(a).startsWith("/") && !e.target.classList.contains("fix_" + a)) {
+                //fix links to external resources
+                attrs.forEach(function (a) {   // links which starts with / , but not //
+
+                    if (e.target.getAttribute(a) && e.target.getAttribute(a).match(/^\/[^\/]/) && !e.target.classList.contains("fix_" + a)) {
                         e.target[a] = Util.gluePath(my.src_base, e.target.getAttribute(a));
                         e.target.classList.add("fix_" + a);
                         e.preventDefault();
                     }
                 });
             }, true);
-            //click on links            
+            //handle click on links            
             document.addEventListener("click", function (e) {
-                //return;
                 if (!e.target) {
                     return;
                 }
@@ -161,7 +140,7 @@ export function preview() {
                 let tglink = e.target;
 
                 if (tglink.nodeName != 'A') {
-                    //TARGET IS NOT A. maybe, we have to go higher
+                    //TARGET IS NOT A. maybe, we have to go higher (until nearest link or top)
                     do {
                         tglink = tglink.parentNode;
                     } while (tglink && tglink.nodeName != "A" && tglink.nodeName != "BODY")
@@ -170,14 +149,14 @@ export function preview() {
                 if (tglink.nodeName == 'A' && tglink.getAttribute("href")) {
                     e.preventDefault();
                     //var slink = tglink.getAttribute("href");
-                    if (tglink.getAttribute("href").match(/^(http|ftp|news|gopher)/)) {
+                    if (tglink.getAttribute("href").match(/^(http|ftp|news|gopher|\/\/)/)) {
                         console.info("External link:", tglink.href);
 
                         smalltalk.confirm("Latid", "It is an external link, follow?")
-                            .then(function () {                                
-                                    window.location = tglink;                                
+                            .then(function () {
+                                window.location = tglink;
                             })
-                            .catch(e=>e)
+                            .catch(e => e)
 
                     } else {
                         let tgl = tglink.href.substring(tglink.href.indexOf("/src") + 4)
@@ -186,20 +165,12 @@ export function preview() {
 
 
                     }
-
-                   // return true;
                 }
-
+                //no links, default handler
                 return true;
 
             })
-            //default
 
-            //}
-            //);
-            //http requests
-
-            //
             this.listenerOn = true;
         } else {
             console.warn("Listeners already on, probably preview.init() called twice")
@@ -225,7 +196,7 @@ export function preview() {
         });
     }
 
-    this.createPage = async function (question, is_index , uri) {
+    this.createPage = async function (question, is_index, uri) {
         //
         if (!question) {
             question = "Name your file (no extension, latin letters, digits and _- only)"
@@ -287,11 +258,10 @@ export function preview() {
         window.l4.producer.getHTML(uri, "uri")
             .then(function (h) {
                 doc.innerHTML = h.html;
-                fixScripts();
-                //console.log("scripts fixed")
+                fixScripts();                
                 my.attachUI();
             })
-            .catch(err => console.error("Can not display", err))
+            .catch(err => console.error("Can not display:", err))
             ;
     }
 
@@ -306,12 +276,16 @@ export function preview() {
                     //.then(()=> my.createPage(uri))
                     //.catch(e=>e);
                     return;
-                }
+                }else if(v.view.type=='src'){
                 my.current_view = v.view;
                 my.viewmode = true;
                 history.pushState(uri, null, "/#!" + uri);
                 //console.log("About to display", v.view);
                 my.display(uri);
+                }else{
+                    //it's copy?
+                    console.info("It's a file" , v)
+                }
             })
 
     }
@@ -375,6 +349,7 @@ export function preview() {
             my.current_editor.start(my.current_view.file.content);
         }
     }
+
     this.switchToView = async function () {
         console.log("Switch to view mode.")
         my.viewmode = true;
@@ -430,15 +405,9 @@ export function preview() {
 
             row.select("svg").style("width", "24px").style("height", "24px");
 
-
-
-            ;
-
             row.selectAll("input").on("change",
                 function () {
-
                     this.parentNode.classList.add("modified");
-                    //
                 });
             return row;
         }
@@ -531,8 +500,6 @@ export function preview() {
         });
         document.body.appendChild(dlist);
 
-
-
         let metaedit_panel = panel.append("div").attr("class", "subpanel metaeditor");
         let metaedit = metaedit_panel.append("div").attr("class", "inputs")
         let lines = metaedit.selectAll("div").data(metadatas)
@@ -543,7 +510,7 @@ export function preview() {
         metaedit_panel.node().appendChild(makeButtonHTML("commit", function () {
 
             //this.style.backgroundColor = "yellow"
-            let r = metaedit.selectAll("input").nodes(); //.call(touch);
+            let r = metaedit.selectAll("input").nodes(); 
             //console.log(r);
             let r2 = Array.from(r).map(e => e.value);
             my.current_view.file.meta = {};
@@ -559,13 +526,11 @@ export function preview() {
         }));
 
         metaedit_panel.node().appendChild(makeButtonHTML("reset", function () {
-
             metaedit.html("");
             metaedit.selectAll("div").data(metadatas)
                 .enter()
                 .append("div")
                 .call(addLine);
-
         }));
 
         metaedit_panel.node().appendChild(makeButtonHTML("+ meta", function () {

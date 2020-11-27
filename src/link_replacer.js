@@ -2,10 +2,11 @@ import * as Linkops from "./linkops";
 import * as Listops from "./listops";
 import * as Util from "./util";
 
-const linkre = /(<[^>!]*)(href|src|poster)(\s*=\s*)("|')\s*(\/.+?)\4/gi; //g5 = link g4 = ";
+const linkre = /(<[^>!]*)(href|src|poster)(\s*=\s*)("|')\s*(\/[^\/].+?)\4/gi; //g5 = link g4 = ";
 const slashplusre = /\/\+([^:]+):(.+)/;
 const linktagre = /(<[^>!]*)(href|src|poster)[^>!]+\>/gi;
-const paramre = /(href|src|poster)(\s*=\s*)("|')\s*(\/.+?)\3/gi; //g4 = href
+//                   param_name       =      '       /  then not /
+const paramre = /(href|src|poster)(\s*=\s*)("|')\s*(\/[^\/].+?)\3/gi; //g4 = href
 
 export function rewriter(views) {
     var my = this;
