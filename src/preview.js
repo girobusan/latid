@@ -258,7 +258,7 @@ export function preview() {
         window.l4.producer.getHTML(uri, "uri")
             .then(function (h) {
                 doc.innerHTML = h.html;
-                fixScripts();                
+                fixScripts();
                 my.attachUI();
             })
             .catch(err => console.error("Can not display:", err))
@@ -276,15 +276,16 @@ export function preview() {
                     //.then(()=> my.createPage(uri))
                     //.catch(e=>e);
                     return;
-                }else if(v.view.type=='src'){
-                my.current_view = v.view;
-                my.viewmode = true;
-                history.pushState(uri, null, "/#!" + uri);
-                //console.log("About to display", v.view);
-                my.display(uri);
-                }else{
+                } else if (v.view.type == 'src') {
+                    my.current_view = v.view;
+                    my.viewmode = true;
+                    history.pushState(uri, null, "/#!" + uri);
+                    //console.log("About to display", v.view);
+                    my.display(uri);
+                } else {
                     //it's copy?
-                    console.info("It's a file" , v)
+                    console.info("It's a file", v);
+                    window.location = (v.view.path);
                 }
             })
 
@@ -510,7 +511,7 @@ export function preview() {
         metaedit_panel.node().appendChild(makeButtonHTML("commit", function () {
 
             //this.style.backgroundColor = "yellow"
-            let r = metaedit.selectAll("input").nodes(); 
+            let r = metaedit.selectAll("input").nodes();
             //console.log(r);
             let r2 = Array.from(r).map(e => e.value);
             my.current_view.file.meta = {};
