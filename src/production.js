@@ -1,3 +1,11 @@
+/*
+
+ Platform-independent 
+ recipes for system  operations
+ (requires save/load routines on init)
+ 
+*/
+
 import * as Views from "./views";
 import * as Formats from "./formats";
 import * as Listops from "./listops";
@@ -20,9 +28,7 @@ if (typeof TextDecoder !== 'undefined') {
     TD = require("util").TextDecoder;
 }
 
-/**
- * Recipes for different operations
- * requires save/load routines on init
+
  /*
  {
      get:       f(p),      //async ~

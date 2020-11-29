@@ -1,7 +1,8 @@
+/*
+worker functions, 
+which will be called by preview/editor process
 
-//worker functions, 
-//which will be called by preview/editor process
-//
+*/
 
 //    0 init => Promise => void
 
