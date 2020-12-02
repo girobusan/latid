@@ -41,6 +41,6 @@ Assuming you have node.js installed, execute from the site folder:
 Then point your browser to http://localhost:9999/ You should see something like [that](gui.md).
 You also could use -b key, and the adress will be opened for you automagically (hopefully):
 
-   node latidserv.js -b
+    node latidserv.js -b
 
 (in newer versions of latidserv)
