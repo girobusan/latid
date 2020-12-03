@@ -117,7 +117,11 @@ let fileops = {
     },
 
     "getSync": function (p) {
+        if(p.match(/\.(njk|txt)$/)){
+            return fs.readFileSync(Path.join(sitedir, p) , "utf-8");
+        }else{
         return toArrayBuffer(fs.readFileSync(Path.join(sitedir, p)));
+        }
     },
     "write": function (p, c) {
         ensureDirectoryExistence(Path.join(sitedir, p));
