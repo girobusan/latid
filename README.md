@@ -79,6 +79,13 @@ Then point your browser to http://localhost:9999/
 2. [Command line operation](docs/en/cli.md)
 2. [Working with GUI](docs/en/gui.md)
 
+## When the "beta" status will end
+
+There are goals, which must be achieved before removing "beta" status:
+
+1. Finalization of block editor interface design
+2. Stabilisation of latid server API (which is not stable now)
+
 ## Disclaimer
 
 I'm not a real programmer, so the code is, probably, awful. There are some known problems, including, but not limited to:
