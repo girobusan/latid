@@ -85,6 +85,10 @@ There are goals, which must be achieved before removing "beta" status:
 
 1. Finalization of block editor interface design
 2. Stabilisation of latid server API (which is not stable now)
+3. Clean up console output
+4. Remove obsolete code
+
+Other functionality is pretty usable. 
 
 ## Disclaimer
 
