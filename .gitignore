@@ -12,7 +12,8 @@ site/
 .DS_store
 */.DS_store
 **/.DS_store
-
+tags
+src/yags
 /dist
 trash/
 

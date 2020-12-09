@@ -23,6 +23,7 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 
 ## Planned features.
 <small>The marked features are implemented, but will be included in future release</small>
+- [ ] Option to fix links in markdown (.md -> .html)
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page

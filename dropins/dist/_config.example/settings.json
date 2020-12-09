@@ -9,6 +9,7 @@
         "time_diff": 0,
         "debug": true,
         "content_selector": "#content",
+        "fix_md_links": true,
         "list_max": 10
     },
     "tags": {
