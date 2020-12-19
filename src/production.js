@@ -228,7 +228,7 @@ export function routines(fileops) {
         }
         my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
 
-        let rp = new Rewriter.rewriter(this.views, "/src/");
+        let rp = new Rewriter.rewriter(this.views, "/src/" , my.settings);
 
         let bf = fld || "uri";
         let v = this.lister.getByField(bf, val);

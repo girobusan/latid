@@ -8,7 +8,7 @@ const linktagre = /(<[^>!]*)(href|src|poster)[^>!]+\>/gi;
 //                   param_name       =      '       /  then not /
 const paramre = /(href|src|poster)(\s*=\s*)("|')\s*(\/[^\/].+?)\3/gi; //g4 = href
 
-export function rewriter(views) {
+export function rewriter(views,settings) {
     var my = this;
     my.lister = new Listops.lister(views)
 
@@ -53,6 +53,9 @@ export function rewriter(views) {
 
     this.rewriteAllLinks = function(txt , from , basehref){
         //console.log(txt , from)
+        if(settings && settings.markdown && settings.markdown.fix_links){
+        txt = txt.replace(/(\<\s*a[^>]+href\s*=\s*["'][^'"]+\.)(md|markdown)/gi , "$1html");
+        }
         return txt.replace(linktagre, createReplacer(from, basehref));
     }
 

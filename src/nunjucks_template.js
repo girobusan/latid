@@ -74,8 +74,8 @@ export function nbsp(str){
 
 
 
-export function rewriteLinks(htx, uri, views) {
-    var rp = new Rewriter.rewriter(views);
+export function rewriteLinks(htx, uri, views , settings) {
+    var rp = new Rewriter.rewriter(views,settings);
     return rp.rewriteAllLinks(htx, uri);
 }
 

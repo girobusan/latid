@@ -1,26 +1,33 @@
 {
-    "site": {
-        "title": "Awesome site",
-        "motto": "If It's Not Broken, Don't Fix It",
-        "url": "https://example.com"
-    },
-    "output": {
-        "dir": "static",
-        "time_diff": 0,
-        "debug": true,
-        "content_selector": "#content",
-        "fix_md_links": true,
-        "list_max": 10
-    },
-    "tags": {
-        "dir": "/tags/"
-    },
-    "rss": {
-        "uri": "/rss.xml",
-        "count": 20
-    },
-    "publish":{
-        "command" : "",
-        "args" : ""
-    }
+  "//": [
+    "This is an example Latid config file",
+    "tweak it as you want"
+  ],
+  "site": {
+    "title": "Awesome site",
+    "motto": "If It's Not Broken, Don't Fix It",
+    "url": "https://example.com"
+  },
+  "output": {
+    "dir": "static",
+    "time_diff": 0,
+    "debug": true,
+    "content_selector": "#content",
+    "list_max": 10
+  },
+  "markdown":{
+    "fix_links" : true ,
+    "force_source" : false
+  },
+  "tags": {
+    "dir": "/tags/"
+  },
+  "rss": {
+    "uri": "/rss.xml",
+    "count": 20
+  },
+  "publish":{
+    "command" : "",
+    "args" : ""
+  }
 }
