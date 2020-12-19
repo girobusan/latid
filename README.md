@@ -23,6 +23,7 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 
 ## Planned features.
 <small>The marked features are implemented, but will be included in future release</small>
+- [ ] Proper linkng between Markdown files
 - [ ] Option to fix links in markdown (.md -> .html)
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
@@ -43,7 +44,8 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 
 ## How to start 
 
-You have better to download latest release and unsip it, or:
+You have better to download latest release and unsip it, or build latid from repo.
+It's strongly NOT recommended, but you can:
 
     git clone git@github.com:girobusan/latid.git
     cd latid 
