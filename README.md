@@ -13,7 +13,7 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 
 - One dependency install (just drop files in and ensure you have node.js installed)
 - Can work as regular command line utility
-- Can work with markdown source files (you need to add frontmatter header with at least "title" field)
+- Can work with markdown source files (you need to add frontmatter header with at least "title" and "date" fields)
 - Can also work in GUI mode in a browser, with the simplistic block editor
 - JSON file format for pages created with block editor
 - Nunjucks templates
