@@ -44,7 +44,7 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 
 ## How to start 
 
-You have better to download latest release and unsip it, or build latid from repo.
+You have better to download latest release and unzip it, or build latid from repo.
 It's strongly NOT recommended, but you can:
 
     git clone git@github.com:girobusan/latid.git
