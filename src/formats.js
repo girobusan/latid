@@ -63,7 +63,6 @@ export async function decodeFileFromPath(path, text_getter) {
   }
 //==Get file content
   let txt = await text_getter(path);
-
   //console.log("DECODING")
   return new Promise(
     function (res, rej) {

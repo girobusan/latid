@@ -164,7 +164,7 @@ export function gluePath() {
  */
 
 export function guessExcerpt(view) {
-    console.log("Guessing excerpt" , view.uri);
+    //console.log("Guessing excerpt" , view.uri);
     if ("meta" in view.file && "excerpt" in view.file.meta && view.file.meta.excerpt) {
         return view.file.meta.excerpt.replace(/\<img[^>]+\>/gi, "");
     }
