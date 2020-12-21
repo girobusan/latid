@@ -55,8 +55,8 @@ function decodeMd(mdt) {
 
 
 
-export async function decodeFileFromPath(path, text_getter) {
-  //console.log("decode", path)
+export async function decodeFileFromPath(path, text_getter , additional_file_info) {
+////  console.log("decode", additional_file_info)
 //==If it's definetly not source file, return Copy
   if (!path.match(/\.(json|md|markdown)$/gi)) {
     return new Promise(function (res, rej) { res(Views.makeCopyView(path)) });

@@ -96,7 +96,7 @@ var serv = {
             .then(function(r){
                 //console.log("LIST result" , r)
                 if(r.status==='success'){
-                    console.log("Sucessful list", p , r);
+                    //console.log("Sucessful list", p , r);
                     res(r.details.map(e=>{e.path = e.path.replace(/^\// , "") ; return e} )) 
                 }else{
                     rej("List impossible:" , p)
