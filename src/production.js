@@ -12,7 +12,7 @@ import * as Listops from "./listops";
 import * as Template from "./nunjucks_template"; //loader?
 import * as Path from "path";
 import * as Rewriter from "./link_replacer";
-import * as Tags from "./tags";
+import * as Tags from "./tags.js";
 import * as Util from "./util";
 import * as RSS from "./rss";
 //const fs = require("fs")

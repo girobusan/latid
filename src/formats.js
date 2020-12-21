@@ -41,8 +41,6 @@ function decodeMd(mdt) {
 
             fdata.meta.excerpt = mds.excerpt || fdata.meta.excerpt;
 
-            //fdata.meta.excerpt = mds.excerpt || "";
-            //console.log("RETURN" , fdata)
             return fdata;
         } else {
             //console.log("data" in mds  , "title" in mds.data , "date" in mds.data)
@@ -57,61 +55,54 @@ function decodeMd(mdt) {
 
 
 
-export function decodeFileFromPath(path, text_getter) {
-    //test first
-    //console.log("decode", path)
-    //text_getter(path).then(t=>console.log(t));
-    if (path.match(/\.(json|md|markdown)$/gi)) {
-        //console.log("DECODING")
-        return new Promise(
-            function (res, rej) {
-                text_getter(path)
-                    .then(function (txt) {
-                        //console.log("GOT" , path , '"' + txt + '"')
-                        if (path.match(/\.json$/gi)) {
-                            //console.log("THis is JSON" , path)
-                            let djs = decodeJSON(txt);
-                            //console.log(djs,txt)
-                            if (djs) {
-                                //console.log("Resolvin JSON src")
-                                res(
-                                    Views.makeSrcView(
-                                        path,
-                                        "/" + path.replace(".json", ".html"),
-                                        djs))
-                            } else {
-                                //console.log("resolving COPY")
-                                res(Views.makeCopyView(path));
-                            }
+export async function decodeFileFromPath(path, text_getter) {
+  //console.log("decode", path)
+//==If it's definetly not source file, return Copy
+  if (!path.match(/\.(json|md|markdown)$/gi)) {
+    return new Promise(function (res, rej) { res(Views.makeCopyView(path)) });
+  }
+//==Get file content
+  let txt = await text_getter(path);
 
-                        } else {
-                            //markdown
-                            //console.log("This is MARKDOWN" , txt)
-                            let mds = decodeMd(txt);
-                            if (mds) {
-                                res(
-                                    Views.makeSrcView(
-                                        path,
-                                        "/" + path.replace(/\.[a-zA_Z]+$/, ".html"),
-                                        mds)
-                                );
+  //console.log("DECODING")
+  return new Promise(
+    function (res, rej) {
+        //console.log("GOT" , path , '"' + txt + '"')
+        if (path.match(/\.json$/gi)) {
+          //console.log("THis is JSON" , path)
+          let djs = decodeJSON(txt);
+          //console.log(djs,txt)
+          if (djs) {
+            //console.log("Resolvin JSON src")
+            res(
+              Views.makeSrcView(
+                path,
+                "/" + path.replace(".json", ".html"),
+              djs))
+          } else {
+            //console.log("resolving COPY")
+            res(Views.makeCopyView(path));
+          }
 
-                            } else {
-                                //console.error("INVALID MARKDOWN", path);
-                                res(Views.makeCopyView(path));
-                            }
-                        }
-                    })
-                    .catch(e => { console.error("ERROR", e); rej() });
-            });
+        } else {
+          //markdown
+          //console.log("This is MARKDOWN" , txt)
+          let mds = decodeMd(txt);
+          if (mds) {
+            res(
+              Views.makeSrcView(
+                path,
+                "/" + path.replace(/\.[a-zA_Z]+$/, ".html"),
+              mds)
+            );
 
-    } else {
-        //console.log("DEFINETELY A COPY");
-        return new Promise(function (res, rej) { res(Views.makeCopyView(path)) });
-    }
+          } else {
+            res(Views.makeCopyView(path));
+          }
+        }
+    });
 }
 
-//console.log("something went wrong")
 
 //view => text
 export function encodeFile(view) {
@@ -130,14 +121,12 @@ export function encodeFile(view) {
         if (ex) { md += "excerpt: " + ex.trim("\n").replace("\n", "\\") + "\n" }
         md += "---\n";
         //add excerpt
-
-
-
         //
         md += view.file.content;
         return md;
+    }else{
+     console.error("This file can not be encoded as source:" , view.path)
 
     }
-
 }
 

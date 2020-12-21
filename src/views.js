@@ -2,7 +2,7 @@
 import * as Listops from "./listops";
 import * as Pathops from "./pathops";
 import * as Util from "./util";
-import * as Tags from "./tags";
+import * as Tags from "./tags.js";
 import * as Formats from "./formats";
 
 export function refreshViewsWeb(l4 , vlist){
