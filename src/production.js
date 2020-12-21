@@ -127,7 +127,7 @@ export function routines(fileops) {
 
     //one file processing
     //returns ptromise
-    this.path2view = function (p, callback) {
+    this.path2view = function (finfo, callback  ) {
         //console.log("P2V" , p);
         //let callback = callback || function () { };
         let tg = function (p) {
@@ -139,7 +139,7 @@ export function routines(fileops) {
                     .catch(rej)
             })
         }
-        let result = Formats.decodeFileFromPath(p, tg);
+        let result = Formats.decodeFileFromPath(finfo.path, tg , finfo);
         //console.dir(result);
         //console.log(typeof result);
         return result; //Formats.decodeFileFromPath(p, tg);
@@ -194,7 +194,7 @@ export function routines(fileops) {
                     //console.log("Fileops list" , r)
                     let filepromises = [];
                     r = r.filter(e => !Path.basename(e.path).match(/^(\.|_)/));
-                    r.forEach((e, ix) => filepromises.push(injectCallback(my.path2view(e.path), ix, r.length)));//
+                    r.forEach((e, ix) => filepromises.push(injectCallback(my.path2view(e), ix, r.length)));//
                     let PA = Promise.all(filepromises);
                     //console.dir(filepromises);
                     PA.then(
