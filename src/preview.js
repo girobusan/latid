@@ -189,22 +189,22 @@ export function preview() {
         clink.addEventListener("click", function () {
             let p = window.location.hash.substring(3).replace(/\.[^.]+$/, ".json");
             //replace state
-            my.files.createNew(p).then(function (r) {
+            my.createPage(null , false , p ).then(function (r) {
                 //history.replaceState(r.uri , r.uri , "#!"+r.uri)
                 my.goTo(r);
             });
         });
     }
 
-    this.createPage = async function (question, is_index, uri) {
+    this.createPage = async function (question, is_index, uri ) {
         //
         if (!question) {
             question = "Name your file (no extension, latin letters, digits and _- only)"
         }
         //
 
-        let fn = await smalltalk.prompt("Latid", question, "");
-
+        let fn =  await smalltalk.prompt("Latid", question, "");
+         
         //...until it's unique or empty
         if (!fn) {
             return;
