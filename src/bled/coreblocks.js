@@ -135,7 +135,7 @@ constructors.header = function (data, el, id, editor) {
     });
     //class input
     let class_label = document.createElement("label")
-    class_label.innerHTML = "Class:"
+    class_label.innerHTML = "Class"
     //
     let class_input = document.createElement("input")
     class_input.type = "text";
@@ -220,6 +220,7 @@ constructors.markdown = function (data, el, id, editor) {
             el.innerHTML = "";
             el.appendChild(edi);
             if (data && data.markdown) {
+            //console.log("textarea size" , edi.getBoundingClientRect());
                 edi.value = data.markdown;  
                 edi.style.height = "5px";              
                 edi.style.height = edi.scrollHeight + "px";
@@ -275,8 +276,8 @@ constructors.blockquote = function (data, el, id, editor) {
 
     blctag.appendChild(blcin);
     blctag.appendChild(blfoot);
-    blcin.innerHTML = data && data.text ? data.text : "Цитата";
-    blcite.innerHTML = data && data.caption ? data.caption : "";
+    blcin.innerHTML = data && data.text ? data.text : "Quote";
+    blcite.innerHTML = data && data.caption ? data.caption : "Author";
 
     let block = {
         render: function () {
@@ -301,7 +302,7 @@ constructors.attachment = function (data, el, id, editor) {
     }
     //panel
     let epanel = document.createElement("div");
-    epanel.classList.add("uistyle");
+    epanel.classList.add("bleduistyle");
     epanel.classList.add("uicontainer");
     epanel.innerHTML = "<h5>File attachment</h5>"
     //title
@@ -309,25 +310,25 @@ constructors.attachment = function (data, el, id, editor) {
     let tinput = document.createElement("input");
     tinput.type = "text";
     tinput.value = data && data.title ? data.title : "";
-    tlabel.innerHTML = "Title:";
+    tlabel.innerHTML = "Title";
     epanel.appendChild(templates.formRow([tlabel, tinput]) , "Title of the file");  
     //src
     let srclabel = document.createElement("label");
-    srclabel.innerHTML = "URL:";
+    srclabel.innerHTML = "URL";
     let srcinput = document.createElement("input")
     srcinput.type = "text";
     srcinput.value = data && data.href ?  data.href : "";
     epanel.appendChild(templates.formRow([srclabel, srcinput]) , "Link");
      //+class
      let cllabel = document.createElement("label");
-     cllabel.innerHTML = "Add class:";
+     cllabel.innerHTML = "Class";
      let clinput = document.createElement("input")
      clinput.type = "text";
      clinput.value = data && data.class ? data.class : "";
      epanel.appendChild(templates.formRow([cllabel, clinput]));
      //hidden
      let hdlabel = document.createElement("label");
-     hdlabel.innerText = "Hidden:";
+     hdlabel.innerText = "Hidden";
      let hdcb = document.createElement("input");
      hdcb.type = "checkbox";
      hdcb.checked = data && data.hidden ? data.hidden : false;
@@ -495,8 +496,11 @@ constructors.image = function (data, el, id, editor) {
     linkinput.type = "text";
     linkinput.value = data && data.link ? data.link : "";
     blc.addToEditor(templates.formRow([linklabel, linkinput]))
-    ////classes
+    //////////////////////////////////////////
     //////stretched
+    let classes_controls = [];
+    //////////////////////////////////////////////
+    ////classes
     let stretchlabel = document.createElement("label");
     stretchlabel.innerHTML = "stretched"
     let stretched = document.createElement("input");
@@ -512,6 +516,8 @@ constructors.image = function (data, el, id, editor) {
         }
     }
     stretched.checked = data && data.stretched;
+    //
+    classes_controls.push(templates.labeledInput("Stretched", stretched))
     //////noresize
     let nrlabel = document.createElement("label");
     nrlabel.innerHTML = "no resize"
@@ -524,6 +530,7 @@ constructors.image = function (data, el, id, editor) {
         }
     };
     noresize.checked = data && (data.noresize || data.withbackground);
+    classes_controls.push(templates.labeledInput("No resize", noresize))
     /////left
     let llabel = document.createElement("label");
     llabel.innerHTML = "left"
@@ -536,6 +543,7 @@ constructors.image = function (data, el, id, editor) {
         }
     };
     left.checked = data && data.left;
+    classes_controls.push(templates.labeledInput("Left", left))
     ////right
     let rlabel = document.createElement("label");
     rlabel.innerHTML = "right"
@@ -548,6 +556,7 @@ constructors.image = function (data, el, id, editor) {
         }
     }
     right.checked = data && data.right;
+    classes_controls.push(templates.labeledInput("Right", right))
 
     ////border
     let blabel = document.createElement("label");
@@ -562,13 +571,9 @@ constructors.image = function (data, el, id, editor) {
         }
     }
     border.checked = data && data.border;
+    classes_controls.push(templates.labeledInput("Border", border))
 
-    blc.addToEditor(templates.formRow([stretched, stretchlabel,
-        noresize, nrlabel,
-        left, llabel,
-        right, rlabel,
-        border, blabel
-    ]));
+    blc.addToEditor(templates.formRow( classes_controls   ));
 
     //
     blc.save = function () {
@@ -652,20 +657,20 @@ constructors.video = function (data, el, id, editor) {
     blc.addToEditor(templates.formRow([srclabel, srcinput]));
     ////params
     let params = [{
-        name: "autoplay",
+        name: "Autoplay",
         checked: data && data.autoplay,
-        label: "autoplay"
+        label: "Autoplay"
     },
     {
-        name: "controls",
+        name: "Controls",
         checked: data && data.controls,
     },
     {
-        name: "loop",
+        name: "Loop",
         checked: data && data.loop,
     },
     {
-        name: "muted",
+        name: "Muted",
         checked: data && data.muted,
     },
 
@@ -675,9 +680,9 @@ constructors.video = function (data, el, id, editor) {
         if (!blc.data[e.name]) {
             blc.data[e.name] = false;
         }
-        let plabel = document.createElement("label");
-        plabel.style.flexGrow = 1;
-        plabel.innerHTML = e.name;
+        //let plabel = document.createElement("label");
+        //plabel.style.flexGrow = 1;
+        //plabel.innerHTML = e.name;
         let pcheck = document.createElement("input");
         pcheck.type = "checkbox";
         pcheck.checked = data && data[e.name];
@@ -686,8 +691,9 @@ constructors.video = function (data, el, id, editor) {
             blc.data[e.name] = this.checked;
             vtag.setAttribute(e.name, this.checked);
         };
-        pels.push(pcheck);
-        pels.push(plabel);
+        //pels.push(pcheck);
+        //pels.push(plabel);
+        pels.push(templates.labeledInput(e.name , pcheck , null))
 
 
     });
@@ -837,7 +843,7 @@ constructors.list = function (data, el, id, editor) {
     /// add input for class
     ///--label
     let class_label = document.createElement("label");
-    class_label.innerHTML = "List class:"
+    class_label.innerHTML = "Class"
     let list_class = document.createElement("input");
     list_class.type = "text";
     list_class.value = (data&&data.class) || "";

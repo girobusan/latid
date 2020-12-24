@@ -1,7 +1,7 @@
 import * as UI from "./ui";
 import { constructors as Coreblocks } from "./coreblocks";
-import "./forms.css";
-export const version = "1.2.14";
+import "./scss/forms.css";
+export const version = "1.2.15";
 
 export function BlockEditor({
     selector
@@ -120,7 +120,7 @@ export function BlockEditor({
         //start UI
         UI.tooltips();
         UI.textTools();
-        UI.addCommonStyles(this.element);
+        //UI.addCommonStyles(this.element);
     }
 
     this.blockByID = function (id) {
@@ -248,7 +248,7 @@ export function BlockEditor({
             //this.blocks[bID] = block;
             console.log("no editor for", type);
             //return null;
-            bcontent.classList.add("uistyle");
+            bcontent.classList.add("bleduistyle");
             bcontent.innerHTML = "Unknown block: <strong>" + type + "</strong>";
             bcontent.style.backgroundColor = UI.Colours.light;
             bcontent.style.color = "white";

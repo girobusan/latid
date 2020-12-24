@@ -1,0 +1,73 @@
+.uistyle {
+  background-color: #C4F7FA;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #444444;
+  font-size: 14px;
+}
+.uistyle.uicontainer {
+  padding: 8px;
+  margin: 0px !important;
+}
+.uistyle .one_of_two_panels {
+  box-sizing: border-box;
+}
+.uistyle h5 {
+  color: #00A1AB;
+  margin: 8px 0px 8px 0px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.uistyle .formrow, .uistyle.formrow {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+.uistyle .formrow *, .uistyle.formrow * {
+  flex-grow: 1;
+}
+.uistyle .formrow input[type=button],
+.uistyle .formrow input[type=checkbox],
+.uistyle .formrow input[type=radio],
+.uistyle .formrow select,
+.uistyle .formrow option,
+.uistyle .formrow label:last-child,
+.uistyle .formrow label:first-child, .uistyle.formrow input[type=button],
+.uistyle.formrow input[type=checkbox],
+.uistyle.formrow input[type=radio],
+.uistyle.formrow select,
+.uistyle.formrow option,
+.uistyle.formrow label:last-child,
+.uistyle.formrow label:first-child {
+  flex-grow: 0;
+}
+.uistyle input[type=text] {
+  border: 1px solid #00A1AB;
+}
+.uistyle input[type=file] {
+  color: #00A1AB;
+}
+.uistyle input[type=button] {
+  outline: none;
+  background-color: #00A1AB;
+  border: none;
+  color: white;
+  height: 24px;
+  border-radius: 12px;
+  padding: 0px 10px;
+}
+
+.block_editor_container .startig_block {
+  display: flex;
+}
+.block_editor_container .startig_block:before {
+  display: block;
+  flex-grow: 1;
+  border-left: 1px solid black;
+}
+.block_editor_container .startig_block:after {
+  display: block;
+  flex-grow: 1;
+  border-right: 1px solid black;
+}
+
+/*# sourceMappingURL=forms.css.map */

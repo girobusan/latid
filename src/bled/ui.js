@@ -1,10 +1,6 @@
-/*
-import {
-    css,
-    cx
-} from 'emotion';
-*/
-const smalltalk = require('smalltalk');
+
+require("./scss/forms.scss");
+//const smalltalk = require('smalltalk');
 
 
 export var icons = {};
@@ -105,15 +101,6 @@ export function Ask(pr) {
 
 export function tooltips() {
     //console.log("engaging tooltips");
-    let teststyle = document.createElement("style");
-    teststyle.id = "test_style";
-    teststyle.innerHTML = `.editortooltip{
-        background-color: ${ Colours.dark};
-        color: white;
-        padding: 4px 8px;
-        font-family: sans-serif;
-    }`
-    document.head.appendChild(teststyle);
 
     let tt = document.createElement("div");
     tt.style.position = "absolute";
@@ -125,16 +112,6 @@ export function tooltips() {
 
     ttin.classList.add("editortooltip")
     tt.appendChild(ttin);
-    //ttin.style.backgroundColor = Colours.dark;
-    //ttin.style.color = "white";
-    ttin.style.pointerEvents = "none";
-    ttin.style.fontSize = "12px";
-    //ttin.style.padding = "4px 8px";
-    ttin.style.position = "relative";
-    ttin.style.borderRadius = "2px";
-    ttin.style.boxShadow = "1px 1px 3px 2px #00000022";
-    ttin.style.right = "50%";
-    ttin.style.bottom = "16px";
 
     document.body.appendChild(tt);
 
@@ -524,32 +501,6 @@ export function addPlusButton(block, menu) {
 
 
 }
-export function addCommonStyles(editorel) {
-    let styleid = "blockeditor_common_styles";
-    if (!document.getElementById(styleid)) {
-        let stag = document.createElement("style");
-        stag.id = styleid;
-        stag.innerHTML =
-            "*[contenteditable='true']:empty{ " +
-            "background-color:" + Colours.pale + ";" +
-            "border-bottom: 1px dashed " + Colours.dark + ";" +
-            "min-height: 1rem;" +
-            "min-width: 1rem;" +
-            "display: block;" +
-            "}" +
-            ".block_editor_unit{" +
-            "border: 1px solid transparent;" +
-            "border-width: 1px 1px;" +
-            "}" +
-            ".block_editor_unit:hover{" +
-            "border-color:" + Colours.light + ";" +
-            "}" +
-            "div.common_block_controls div:hover svg{fill:black;}"
-        "div.ddown:hover svg{fill:black;}"
-        editorel.appendChild(stag);
-    }
-
-}
 
 export function addBlockControls(block, items, ed) {
     /**
@@ -594,10 +545,12 @@ export function addBlockControls(block, items, ed) {
     ctrls.classList.add(ourclass);
     ctrls.style.position = "absolute";
     ctrls.style.top = "0px";
+    ctrls.style.marginRight = "-1px";
     ctrls.style.right = "0px";
     ctrls.style.width = "32px";
     ctrls.style.boxSizing = "border-box";
-    ctrls.style.backgroundColor = "#ffffffee";
+    ctrls.style.backgroundColor = Colours.light;
+    ctrls.style.border = "1px solid " + Colours.light ;
     //ctrls.style.borderLeft = "3px solid " + Colours.light;
     ctrls.style.color = "white";
     ctrls.style.textAlign = "center";
@@ -629,7 +582,7 @@ export function addBlockControls(block, items, ed) {
         mi.style.cursor = "pointer";
         mi.style.height = "24px";
         mi.style.marginLeft="4px";
-        mi.style.fill = Colours.light;
+        mi.style.fill = "white";
         mi.style.overflow = "hidden";
         mi.addEventListener("click", function () {
             e.handler(block.dataset.block_id);
