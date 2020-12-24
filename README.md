@@ -21,14 +21,15 @@ It supports _markdown_ source files alongside with it's own JSON format (pretty 
 - Site may have any directory structure 
 - There is GUI app for working with the sites
 
-## Planned features.
-<small>The marked features are implemented, but will be included in future release</small>
+## Plans 
+<small>The marked ones are implemented, but will be included in future release</small>
 - [X] Option to fix links in markdown (.md|.markdown -> .html)
+- [X] Clean up block editor interface
+- [X] Make LIST server API more usable
 - [ ] Option to treat every Markdown file as source 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page
-- [ ] Better GUI style
 - [ ] Themes support
 - [ ] Working in browser without node.js
 
@@ -97,7 +98,6 @@ Other functionality is pretty usable.
 
 I'm not a real programmer, so the code is, probably, awful. There are some known problems, including, but not limited to:
 
-- Bad CSS isolation, styles may leak to GUI (fixing)
 - Too basic default site design (users have to develop they own)
 - Everything is on early stage
 - Incomplete documentation (in process)

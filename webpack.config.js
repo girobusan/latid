@@ -72,6 +72,20 @@ module.exports = function (env, argv) {
           ],
         },
         {
+          test: /\.(scss)$/,
+          //exclude: path.resolve(__dirname, 'src/bled'),
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                url: false
+              }
+            },
+            'sass-loader'
+          ],
+        },
+        {
           test: /\.(woff|ttf)$/,
           use: [{
             loader: 'file-loader',

@@ -32,6 +32,8 @@
     "marked": "^1.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-pre-gyp": "^0.14.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
     "style-loader": "^1.0.0",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.42.0",
