@@ -8,6 +8,13 @@
     "motto": "If It's Not Broken, Don't Fix It",
     "url": "https://example.com"
   },
+  "editor" : {
+    "content_selector": "#content",
+    "default_meta"  :{
+      "tags" : "",
+      "lang" : "all"
+    }
+  },
   "output": {
     "dir": "static",
     "time_diff": 0,

@@ -19,14 +19,21 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
             }
         },
         "output": {
-            "dir": "static",
-            "time_diff": 0,
-            "debug": true,
-            "content_selector": "#content",
-            "list_max": 10
+          "dir": "static",
+          "time_diff": 0,
+          "debug": true,
+          "content_selector": "#content",
+          "list_max": 10
         },
+
+        "markdown":{
+          "fix_links" : true ,
+          "force_source" : false
+        },
+
+
         "tags": {
-            "dir": "/tags/"
+          "dir": "/tags/"
         },
         "rss": {
             "uri": "/rss.xml",
@@ -92,6 +99,22 @@ Required. CSS selector of the main content container. Used in GUI mode. Will be 
 
 ### list_max
 Required. Maximum number of items per page in multipage article lists.
+
+## markdown
+
+
+        "markdown":{
+          "fix_links" : true ,
+          "force_source" : false
+        }
+### fix_links
+Fix links to markdown files, change extension from 
+`md|markdown` to `html`.
+
+### force_source
+If true, every markdown file, even without frontmatter, 
+will be processed as source file. Will be implemented in 
+nearest future. 
 
 **tags**
 ----
