@@ -43,10 +43,6 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
-- [X] Option to fix links in markdown (.md|.markdown -> .html)
-- [X] Clean up block editor interface
-- [X] Make LIST server API more usable
-- [X] Figure out file creation date from mtime, if not specified in file
 - [ ] Option to treat Markdown files without frontmatter as a source 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
@@ -55,6 +51,14 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 - [ ] Working in browser without node.js
 
 ## Releases
+
+### 1.9.0b
+
+- Option to fix links in markdown (.md|.markdown -> .html)
+- Make LIST server API more usable
+- Figure out file creation date from mtime, if not specified in file
+- Improvements to block editor UI
+- Cleanup and refactoring
 
 ### 1.8.14b
 - Bugs fixed

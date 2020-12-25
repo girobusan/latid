@@ -275,7 +275,7 @@ export function routines(fileops) {
         //this.updateList();
         console.info("Preparing to generate", my.views.length, "files")
         //console.log(my.views.map(e=>({"path" : e.path , "uri" : e.uri})))
-        let rp = new Rewriter.rewriter(my.views);
+        let rp = new Rewriter.rewriter(my.views ,false, my.settings);
         my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
         my.views.forEach(function (v, i, a) {
             var myclb = null;

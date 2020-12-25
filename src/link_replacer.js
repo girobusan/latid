@@ -9,7 +9,7 @@ const linktagre = /(<[^>!]*)(href|src|poster)[^>!]+\>/gi;
 const paramre = /(href|src|poster)(\s*=\s*)("|')\s*(\/[^\/].+?)\3/gi; //g4 = href
 
 export function rewriter(views, basehref , settings) {
-   console.log("rewriter" , settings);
+   //console.log("rewriter" , settings);
     var my = this;
     my.lister = new Listops.lister(views)
 
