@@ -43,6 +43,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
+- [ ] More descriptive error handing (preview, editor start)
 - [ ] Option to treat Markdown files without frontmatter as a source 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
