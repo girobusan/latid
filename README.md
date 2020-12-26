@@ -53,7 +53,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 
 ## Releases
 
-### 1.9.0b
+### 1.9.1b
 
 - Option to fix links in markdown (.md|.markdown -> .html)
 - Make LIST server API more usable
