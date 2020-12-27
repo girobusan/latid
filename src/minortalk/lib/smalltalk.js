@@ -1,6 +1,6 @@
 'use strict';
 
-require('../css/smalltalk.css');
+require('../css/smalltalk.scss');
 
 const currify = require('currify');
 const store = require('fullstore');
@@ -17,6 +17,9 @@ const BUTTON_OK_CANCEL = {
     cancel: 'Cancel',
 };
 
+const BUTTON_ABORT = {
+    cancel: 'Cancel',
+};
 const zIndex = store(100);
 
 exports.alert = (title, msg, options) => {
@@ -44,12 +47,10 @@ exports.confirm = (title, msg, options) => {
 exports.progress = (title, message, options) => {
     const valueStr = `
         <progress value="0" data-name="js-progress" class="progress" max="100"></progress>
-        <span data-name="js-counter">0%</span>
+        <span class="percents" data-name="js-counter">0%</span>
     `;
-    
-    const buttons = {
-        //cancel: 'Abort',
-    };
+    //PATCH 
+    const buttons = getButtons(options) || {};
     
     const promise = showDialog(title, message, valueStr, buttons, options);
     const {ok, dialog} = promise;

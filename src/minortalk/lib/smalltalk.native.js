@@ -1,6 +1,6 @@
 'use strict';
 
-require('../css/smalltalk.css');
+require('../css/smalltalk.scss');
 
 exports.alert = (title, message) => {
     const promise = new Promise((resolve) => {

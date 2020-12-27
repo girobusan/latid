@@ -1,0 +1,199 @@
+.smalltalk {
+  all: inital;
+  font-family: Arial,  Helvetica, sans-serif;
+    box-sizing: border-box;
+  *{
+    all: initial; 
+    font-family: Arial,  Helvetica, sans-serif;
+    box-sizing: border-box;
+  }
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  transition: 200ms opacity;
+
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  z-index: 100;
+  input[type=text]{
+  font-size: 14px;
+  padding: 2px;
+  }
+}
+
+.smalltalk + .smalltalk {
+  transition: ease 1s;
+}
+
+.smalltalk .page {
+  display: block;
+  padding: 36px 24px 24px 24px;
+  border-radius: 3px;
+  height: auto;
+  background: white;
+  box-shadow: 0 4px 23px 5px rgba(0, 0, 0, .2), 0 2px 6px rgba(0, 0, 0, .15);
+  color: #333;
+  min-width: 400px;
+  //padding: 0;
+  position: relative;
+  z-index: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .smalltalk .page {
+    min-width: 0;
+  }
+}
+
+.smalltalk .page > .close-button {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAUklEQVR4XqXPYQrAIAhAYW/gXd8NJxTopVqsGEhtf+L9/ERU2k/HSMFQpKcYJeNFI9Be0LCMij8cYyjj5EHIivGBkwLfrbX3IF8PqumVmnDpEG+eDsKibPG2JwAAAABJRU5ErkJggg==);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 14px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  width: 14px;
+  z-index: 1;
+}
+
+.smalltalk .page > .close-button:hover {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAnUlEQVR4XoWQQQ6CQAxFewjkJkMCyXgJPMk7AiYczyBeZEAX6AKctGIaN+bt+trk9wtGQc/IkhnoKGxqqiWxOSZalapWFZ6VrIUDExsN0a5JRBq9LoVOR0eEQMoEhKizXhhsn0p1sCWVo7CwOf1RytPL8CPvwuBUoHL6ugeK30CVD1TqK7V/hdpe+VNChhOzV8xWny/+xosHF8578W/Hmc1OOC3wmwAAAABJRU5ErkJggg==);
+}
+
+.smalltalk progress {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  border: none;
+  display: block;
+  margin: 12px 0px;
+  width: 100%;
+  height: 8px;
+  background-color: silver;
+  border-radius: 4px;
+  color: #00A1AB;
+  &::-moz-progress-bar , &::-webkit-progress-value{
+    background: #00A1AB;
+    border-radius: 4px;
+  }
+
+}
+
+.smalltalk .page header {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 500px;
+  font-size: 12px; //PATCH
+  user-select: none;
+  color: #666; //PATCH
+  //font-size: 120%;
+  font-weight: bold; //PATCH
+  //text-transform: uppercase;
+  letter-spacing: 0.05em; margin: 0;
+  padding: 0;
+  text-shadow: white 0 1px 2px;
+  //PATCH
+  position: absolute;
+  top: 7px;
+  left:24px;
+}
+
+.smalltalk .page .content-area {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  padding: 16px 0px 16px 0px;
+  //margin-top: 24px !important;
+  
+  position: relative;
+  .percents{
+ display: block;
+ margin-top: 8px;
+  }
+  input,progress{
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+}
+
+.smalltalk .page .action-area {
+display: block;
+  padding: 0 ;
+}
+
+button {
+  font-family: Ubuntu, Arial, sans-serif;
+}
+
+.smalltalk button, .smalltalk .smalltalk {
+  min-height: 2em;
+  min-width: 4em;
+}
+
+.smalltalk button {
+  text-align: center;
+  appearance: none;
+  user-select: none;
+  background-image: linear-gradient(#ededed, #ededed 38%, #dedede);
+
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+  color: #444;
+  font: inherit;
+  margin: 0 1px 0 0;
+  text-shadow: 0 1px 0 rgb(240, 240, 240);
+}
+
+.smalltalk button::-moz-focus-inner {
+  border: 0;
+}
+
+.smalltalk button:enabled:active {
+  background-image: linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.smalltalk .page .button-strip {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.smalltalk .page .button-strip > button {
+  margin-left: 10px;
+}
+
+.smalltalk input {
+  width: 100%;
+  border: 1px solid #bfbfbf;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #444;
+  font: inherit;
+  margin: 0;
+  min-height: 2em;
+  padding: 3px;
+  outline: none;
+}
+
+.smalltalk button:enabled:focus, .smalltalk input:enabled:focus {
+  transition: border-color 200ms;
+  border-color: #00A1AB;
+  outline: none;
+}
+

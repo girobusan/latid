@@ -1,6 +1,6 @@
 const d3 = Object.assign({}, require("d3-selection"));
 //var Dialogs = require('dialogs');
-const smalltalk = require('./smalltalk');
+const smalltalk = require('./minortalk/lib/smalltalk');
 
 import "./styles/preview.less";
 //import * as BledUI from "./bled/ui";
