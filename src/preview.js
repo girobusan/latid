@@ -24,7 +24,7 @@ if (!window.l4) { window.l4 = {} };
 
 
 function writeWithProgress() {
-    console.log("Now playing: nice progress bar")
+    //console.log("Now playing: nice progress bar")
     const my = this;
     this.chunk = 10;
     this.blockeditor = null;
@@ -39,7 +39,7 @@ function writeWithProgress() {
     this.progress.buttons = {};
 
     this.callback = function (msg) {
-        console.log(msg);
+        //console.log(msg);
         //my.loaded +=msg.data.number;
 
         if (msg.data.status === 'ready') {
