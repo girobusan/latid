@@ -103,6 +103,7 @@ function getType(options = {}) {
 function getTemplate(title, msg, value, buttons) {
     const encodedMsg = msg.replace(/\n/g, '<br>');
     
+    if(Object.keys(buttons).length !=0){
     return `<div class="page">
         <div data-name="js-close" class="close-button"></div>
         <header>${ title }</header>
@@ -113,6 +114,19 @@ function getTemplate(title, msg, value, buttons) {
             </div>
         </div>
     </div>`;
+    }else{
+    return `<div class="page">
+        <div data-name="js-close" class="close-button"></div>
+        <header>${ title }</header>
+        <div class="content-area">${ encodedMsg }${ value }</div>
+        <!--<div class="action-area">
+            <div class="button-strip">
+                ${parseButtons(buttons)}
+            </div>
+        </div>-->
+    </div>`;
+
+    }
 }
 
 function parseButtons(buttons) {
