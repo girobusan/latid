@@ -146,7 +146,7 @@ export function encodeFile(view) {
     let ks = Object.keys(view.file.meta).filter(k => k != "excerpt");
     //meta
     for (let k in ks) {
-      let s = ks[k] + ": " + view.file.meta[ks[k]] + "\n";
+      let s = ks[k] + ": " + view.file.meta[ks[k]].replace("\n" , " ") + "\n";
       md += s;
     }
     if (ex) { md += "excerpt: " + ex.trim("\n").replace("\n", "\\") + "\n" }
