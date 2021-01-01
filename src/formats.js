@@ -4,22 +4,22 @@ Source file formats
 const matter = require('gray-matter');
 import * as Views from "./views";
 
-function prepFields(frjson , additional_file_info , force){
+function prepFields(frjson , additional_file_info  ){
 //console.log("PF" , frjson , additional_file_info , force);
-  //do we have a date?
+  //fix date field
   if(!"date" in frjson.meta){
     frjson.date = additional_file_info.mtime;
     console.info("Fix date at" , additional_file_info.path );
   }
-  //
+  //fix title field in markdown
   if(!("title" in frjson.meta) 
-    && force 
   && frjson.content_format==='markdown'){
-    let first_lb = frjson.content.indexOf("\n");
+    let first_lb = frjson.content.trim().indexOf("\n");
     if(first_lb==-1){
-      return frjson;
+      //return frjson;
+      first_lb = 100;
     }
-    let ttl = frjson.substring(0, first_lb)
+    let ttl = frjson.content.trim().substring(0, first_lb)
     .replace(/^\s*#+\s*/ , "")
     .trim();
 
@@ -54,28 +54,33 @@ function decodeJSON(jsnt) {
   }
 }
 
-function decodeMd(mdt) {
-  //console.log("MARKDOWN")
+function decodeMd(mdt , force) {
+  console.log("MARKDOWN" , force)
   try {
+    let fdata = {"content_format": "markdown"}
     let mds = matter(mdt, { excerpt: true, excerpt_separator: '<!--cut-->' });
     //console.log("MD:" , mds);
     if ("data" in mds && "title" in mds.data) {
-      let fdata = {
-        "meta": mds.data,
-        "content": mds.content,
-        "content_format": "markdown"
-      }
-
+      console.log("data and title" , mds.data);
+      fdata.meta =  mds.data;
+      fdata.content = mds.content.trim();
       fdata.meta.excerpt = mds.excerpt || fdata.meta.excerpt;
-
-      return fdata;
+    } else if ( ("data" in mds) && force){
+    console.log("data only");
+      fdata.meta =  mds.data;
+      fdata.content = mds.content.trim();
+      fdata.meta.excerpt = mds.excerpt || fdata.meta.excerpt;
+    } else if(force){
+    console.log("force only");
+      fdata.meta = {};
+      fdata.content = mdt.trim();
     } else {
-      //console.log("data" in mds  , "title" in mds.data , "date" in mds.data)
       return null
     }
+    return fdata;
 
   } catch (e) {
-    console.log("Really invalid", e)
+    console.error("Probably, invalid markdown:", e)
     return null;
   }
 }
@@ -101,7 +106,7 @@ export async function decodeFileFromPath(path, text_getter , additional_file_inf
       } else {
         //markdown
         //console.log("This is MARKDOWN" , txt)
-        parsed_file = decodeMd(txt);
+        parsed_file = decodeMd(txt , settings.markdown.force_source);
 
       }
       //console.log(djs,txt)

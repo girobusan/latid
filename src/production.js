@@ -139,7 +139,7 @@ export function routines(fileops) {
                     .catch(rej)
             })
         }
-        let result = Formats.decodeFileFromPath(finfo.path, tg , finfo);
+        let result = Formats.decodeFileFromPath(finfo.path, tg , finfo , my.settings);
         //console.dir(result);
         //console.log(typeof result);
         return result; //Formats.decodeFileFromPath(p, tg);
