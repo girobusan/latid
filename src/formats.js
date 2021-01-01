@@ -2,31 +2,38 @@
 Source file formats
 */
 const matter = require('gray-matter');
+const mdit = require('markdown-it-multimd-table'); 
 import * as Views from "./views";
+//????
+var md = require('markdown-it')({html:true})
+.use(mdit , {multiline: true , rowspan: true , headerless: true});
 
 function prepFields(frjson , additional_file_info  ){
-//console.log("PF" , frjson , additional_file_info , force);
+  //console.log("PF" , frjson , additional_file_info , force);
   //fix date field
   if(!"date" in frjson.meta){
     frjson.date = additional_file_info.mtime;
     console.info("Fix date at" , additional_file_info.path );
   }
-  //fix title field in markdown
-  if(!("title" in frjson.meta) 
-  && frjson.content_format==='markdown'){
-    let first_lb = frjson.content.trim().indexOf("\n");
-    if(first_lb==-1){
-      //return frjson;
-      first_lb = 100;
+  //fix excerpt in markdown
+  if(frjson.content_format==='markdown'){
+    frjson.meta.excerpt = md.render(frjson.meta.excerpt).replace("\n" , " ");
+    //fix title field in markdown
+    if(!("title" in frjson.meta) 
+    && frjson.content_format==='markdown'){
+      let first_lb = frjson.content.trim().indexOf("\n");
+      if(first_lb==-1){
+        //return frjson;
+        first_lb = 100;
+      }
+      let ttl = frjson.content.trim().substring(0, first_lb)
+      .replace(/^\s*#+\s*/ , "")
+      .trim();
+      if(ttl.length>250){
+        ttl = ttl.substring(0,250)
+      }
+      frjson.meta.title = ttl;
     }
-    let ttl = frjson.content.trim().substring(0, first_lb)
-    .replace(/^\s*#+\s*/ , "")
-    .trim();
-
-    if(ttl.length>250){
-      ttl = ttl.substring(0,250)
-    }
-    frjson.meta.title = ttl;
   }
   return frjson;
 }
@@ -54,6 +61,7 @@ function decodeJSON(jsnt) {
   }
 }
 
+
 function decodeMd(mdt , force) {
   console.log("MARKDOWN" , force)
   try {
@@ -61,17 +69,17 @@ function decodeMd(mdt , force) {
     let mds = matter(mdt, { excerpt: true, excerpt_separator: '<!--cut-->' });
     //console.log("MD:" , mds);
     if ("data" in mds && "title" in mds.data) {
-      console.log("data and title" , mds.data);
+      //console.log("data and title" , mds.data);
       fdata.meta =  mds.data;
       fdata.content = mds.content.trim();
       fdata.meta.excerpt = mds.excerpt || fdata.meta.excerpt;
     } else if ( ("data" in mds) && force){
-    console.log("data only");
+    //console.log("data only");
       fdata.meta =  mds.data;
       fdata.content = mds.content.trim();
       fdata.meta.excerpt = mds.excerpt || fdata.meta.excerpt;
     } else if(force){
-    console.log("force only");
+    //console.log("force only");
       fdata.meta = {};
       fdata.content = mdt.trim();
     } else {
