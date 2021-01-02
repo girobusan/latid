@@ -6,7 +6,8 @@ You can use markdown formatted source files on your site alongside with others. 
 
 Requirements
 -----------
-Markdown file will be recognized as source if it has frontmatter header with, at least, `title` field defined, like this:
+Markdown file will be recognized as source if it has frontmatter header with, at least, `title` field
+defined, like this, unless the option `markdown.force_source` in settings file is set to `true`:
 
     ---
     title: Writting in Markdown
@@ -16,7 +17,10 @@ Markdown file will be recognized as source if it has frontmatter header with, at
     -----------------
     And it rocks
 
-If there is no frontmatter or no title field in frontmatter, the file will be simply copied to output. 
+If there is no frontmatter or no title field in frontmatter, the file will be simply copied to output.
+
+If `force_source` is set, Latid will use all markdown files as source, and figure out metadata by using
+some not-so-sophisticated heuristics.
 
 All metadata fields are respected and editable in GUI metaeditor. Feel free to use it like this:
 
@@ -27,6 +31,15 @@ All metadata fields are respected and editable in GUI metaeditor. Feel free to u
     id: 23789
     custom: field
     ---
+
+Links in markdown
+-----------------
+Links in markdown text is rewritten by [regular rulers](links.md) (absolute links rewritten to relative, 
+ "plus links" expanded, others are not touched). If you have a bunch interlinked markdown files, which use relative
+links between them, you'd better to set`markdown.fix_links` in settings to `true`. Thus the extensions
+`.md` and `.markdown` in links will be replaced with `.html`, and, therefore, point to html files
+generated from  markdown. This option is set to `true` by default.
+
 
 Markdown flavor
 ---------------
