@@ -102,6 +102,7 @@ Then point your browser to http://localhost:9999/
 1. [Getting started](docs/en/gettingstarted.md)
 2. [Config file](docs/en/settings_json.md)
 2. [Site directory structure](docs/en/site_directory_structure.md)
+2. [Links HOWTO](docs/en/links.md)
 2. [On Markdown files](docs/en/markdown_src.md)
 2. [On templates](docs/en/templates.md)
 2. [Template variables](docs/en/template_vars.md)
