@@ -113,8 +113,7 @@ Fix links to markdown files, change extension from
 
 ### force_source
 If true, every markdown file, even without frontmatter, 
-will be processed as source file. Will be implemented in 
-nearest future. 
+will be processed as source file.
 
 **tags**
 ----

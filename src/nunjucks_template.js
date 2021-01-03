@@ -19,6 +19,25 @@ if(typeof TextDecoder !== 'undefined'){
 const path = require("path");
 const dec = new TD("utf-8");
 
+function msort(views_array , reverse, field_name  ){
+  let r = views_array.slice(0);
+  r.sort(function(a,b){
+    if (a.file.meta[field_name] > b.file.meta[field_name]){
+      return 1;
+
+    }else if( a.file.meta[field_name]< b.file.meta[field_name]){
+      return -1
+
+    }else{
+      return 0;
+    }
+
+
+  })
+  if(reverse){r.reverse()};
+  return r;
+}
+
 export function nbsp(str){
     let words = str.split(/\s|&nbsp;/g);
     const shortword = /^\(?\"?«?[a-zА-Яа-я0-9]{1,2}\.?$/gi;
@@ -147,7 +166,7 @@ export function template(viewlist, settings, meta, loader) {
     var my = this;
     my.nunjucks = new nunjucks.Environment(loader, { autoescape: false });
     my.nunjucks.addFilter('nbsp' , nbsp);
-
+    my.nunjucks.addFilter('msort' , msort); 
     my.lister = new Listops.lister(viewlist);
     //console.log("test lister" , this.lister.getByField("uri" , "/tags/index.html" ));
     //console.log("ABOUT TO DEFINE RENDER")
