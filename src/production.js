@@ -128,7 +128,7 @@ export function routines(fileops) {
     //one file processing
     //returns ptromise
     this.path2view = function (finfo, callback  ) {
-        //console.log("P2V" , p);
+        //console.log("P2V" , finfo.path);
         //let callback = callback || function () { };
         let tg = function (p) {
             return new Promise(function (res, rej) {
