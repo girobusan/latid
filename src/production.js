@@ -103,7 +103,7 @@ export function routines(fileops) {
             if (!a.file && b.file) {
                 return 1;
             }
-            //console.log(a,b);
+            //console.log(a,b); //
             let aval = a.file.meta.date && Util.str2date(a.file.meta.date) ? Util.str2date(a.file.meta.date) : sd;
             let bval = b.file.meta.date && Util.str2date(b.file.meta.date) ? Util.str2date(b.file.meta.date) : sd;
 
@@ -205,7 +205,7 @@ export function routines(fileops) {
                             res();
                         }
                     )
-                        .catch(e => { console.error("Can not read all", e); rej(e) })
+                        .catch(e => { console.error("Can not read all", e , e.stack); rej(e) })
                 })
         });
     }

@@ -1,6 +1,7 @@
 /*
 Source file formats
 */
+const util = require("./util");
 const matter = require('gray-matter');
 const mdit = require('markdown-it-multimd-table'); 
 import * as Views from "./views";
@@ -9,15 +10,17 @@ var md = require('markdown-it')({html:true})
 .use(mdit , {multiline: true , rowspan: true , headerless: true});
 
 function prepFields(frjson , additional_file_info  ){
-  //console.log("PF" , frjson , additional_file_info , force);
+  //console.log("PF" ,  additional_file_info );
   //fix date field
-  if(!"date" in frjson.meta){
-    frjson.date = additional_file_info.mtime;
-    console.info("Fix date at" , additional_file_info.path );
+  if(!("date" in frjson.meta)){
+    frjson.meta.date = util.date2str( new Date(parseFloat(additional_file_info.mtimeMs)));
+    //console.info("Fix date at" , additional_file_info , "to" , frjson.date );
   }
   //fix excerpt in markdown
   if(frjson.content_format==='markdown'){
+    if(frjson.meta.excerpt){
     frjson.meta.excerpt = md.render(frjson.meta.excerpt).replace("\n" , " ");
+    }
     //fix title field in markdown
     if(!("title" in frjson.meta) 
     && frjson.content_format==='markdown'){
@@ -50,7 +53,7 @@ function decodeJSON(jsnt) {
     let tp = JSON.parse(jsnt);
     //console.log(tp)
     if ("meta" in tp && "content" in tp ) {
-      //console.log("VALID")
+      //console.log("VALID JSON")
       return tp;
     } else {
       return false;
@@ -63,7 +66,7 @@ function decodeJSON(jsnt) {
 
 
 function decodeMd(mdt , force) {
-  console.log("MARKDOWN" , force)
+  //console.log("MARKDOWN" , force)
   try {
     let fdata = {"content_format": "markdown"}
     let mds = matter(mdt, { excerpt: true, excerpt_separator: '<!--cut-->' });
@@ -83,6 +86,7 @@ function decodeMd(mdt , force) {
       fdata.meta = {};
       fdata.content = mdt.trim();
     } else {
+      //console.log("Markdown to copy" , mdt);
       return null
     }
     return fdata;

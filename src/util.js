@@ -18,13 +18,17 @@ export function date2str(d, short) {
     if (!(d instanceof Date)) {
         //console.log("IT IS NOT A DATE", d)
     }
+    function pad2(n){
+     return (n+100).toString().substring(1);
+    }
+    //console.log("prep" , d);
     var year = d.getFullYear();
     var month = d.getMonth() + 1;
     var day = d.getDate();
     var hrs = d.getHours();
     var mins = d.getMinutes();
-    let ds = "" + year + "." + (month + 100).toString().substring(1) + "." + day;
-    if (!short) { ds += " " + (100 + hrs).toString().substring(1) + ":" + mins };
+    let ds = "" + year + "." + pad2(month) + "." + pad2(day);
+    if (!short) { ds += " " + pad2(hrs) + ":" + pad2(mins) };
     return ds;
 }
 
@@ -66,6 +70,7 @@ export function str2date(st) {
         console.log("Invalid date", str, err);
         return null;
     }
+    //console.log(rd);
     return rd;
 }
 /**
