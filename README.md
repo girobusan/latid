@@ -127,9 +127,8 @@ Other functionality is pretty usable.
 I'm not a real programmer, so the code is, probably, awful. There are some known problems, including, but not limited to:
 
 - Too basic default site design (users have to develop they own)
-- Everything is on early stage
 - Incomplete documentation (in process)
-- Custom JS may work quirky in GUI (there are workarounds)
+- Custom JS may work quirky in GUI (affects only GUI preview, there are workarounds)
 
 ## Origin of name
 **La·tid**  *noun* (zoology) — any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
