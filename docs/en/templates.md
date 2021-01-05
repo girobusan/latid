@@ -4,11 +4,12 @@ title: Templates
 
 Site templates
 --------------
-Site templates located in [site directopry]/_config/templates.
+Site templates located in `[site directopry]/_config/templates`.
 
-Latid uses [nunjucks templates](https://mozilla.github.io/nunjucks/). There is mandatory file, index.njk, from where you may set up all the routing and other logic using nunjucks abilities to conditionally extend, include and so on. 
+Latid uses [nunjucks templates](https://mozilla.github.io/nunjucks/). There is mandatory file, `index.njk`, from where you may set up all the routing and other logic using nunjucks abilities to conditionally extend, include and so on. 
 
-Site templates can utilize all features of nunjuck template language, you may have any number of files. Note, that only index.njk is loaded directly, other templates has to be extended, included or otherwise accessed through it.
+Site templates can utilize all features of nunjuck template language, you may have any number of files. 
+Note, that only index.njk is loaded directly, other templates have to be extended, included or otherwise accessed through it.
 
 Additional filters
 ------------------
@@ -22,13 +23,18 @@ it's not always play well with html tags.
 ### msort  
 Returns copy of views list, sorted by specified meta value. Example: 
 
-    {{ array | msort(reverse, field_name }}
+    {% set sorted = array | msort(reverse, field_name , as_number) %}
+
+parameters are:
+- `reverse`: reverse order, boolean
+- `field_name`: name of the metadata field to sort by
+- `as_number`: if true, treat field value as number, if false (default) - string.
 
 
 
 Blocks templates
 ----------------
-Custom block templates are located in [site directory]/_config/templates/blocks. By using those templates, you can customize an html rendering of article blocks.
+Custom block templates are located in `[site directory]/_config/templates/blocks`. By using those templates, you can customize an html rendering of article blocks.
 
 __It's better to stick with default html for blocks in any case. Customizing of block html must be considered the last option.__
 
