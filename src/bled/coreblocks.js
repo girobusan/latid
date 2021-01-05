@@ -417,11 +417,12 @@ constructors.badge = function(data, el, id, editor){
     }
     // input
     let clbl = document.createElement("label");
-    clbl.innerText = "Class:";
+    clbl.innerText = "Class";
     clbl.style.flexGrow = 0;
     let clinp = document.createElement("input")
     clinp.type = "text";
     clinp.style.flexGrow = "1";
+    clinp.value = classes;
     clinp.setAttribute("list" , "bled_badge_block_datalist" );
     //
     clinp.addEventListener("change" , function(ev){

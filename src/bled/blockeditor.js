@@ -1,7 +1,7 @@
 import * as UI from "./ui";
 import { constructors as Coreblocks } from "./coreblocks";
 import "./scss/forms.css";
-export const version = "1.2.15";
+export const version = "1.2.16";
 
 export function BlockEditor({
     selector
