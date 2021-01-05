@@ -4,6 +4,7 @@ title: Links
 Latid tries to generate site, viewable as from internet, so from local storage. Therefore, 
 it rewrites links to relative ones, when possible. There is two options to set links
 between pages of Latid-powered site.
+<!--cut-->
 
 We'll show examples, written in plain HTML, but the same syntax for uris used in latid GUI and markdown
 sources.

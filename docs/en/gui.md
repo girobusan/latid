@@ -1,6 +1,9 @@
 ---
 title: Working with GUI
 ---
+Latid has a very simple (let's say — condensed) GUI, which works in 
+your web browser or Latid app.
+<!--cut-->
 
 GUI parts
 ---------

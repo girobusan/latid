@@ -4,6 +4,7 @@ date: 24.10.2020
 ---
 
 The settings file is  [your site dir/]_config/settings.json. That's how it looks like, explanation follows.
+<!--cut-->
 
     {
         "site": {

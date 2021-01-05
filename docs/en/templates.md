@@ -1,15 +1,14 @@
 ---
 title: Templates
 ---
-
-Site templates
---------------
-Site templates located in `[site directopry]/_config/templates`.
-
+A lots of Latid site functionality is based upon it's templating mechanics. 
 Latid uses [nunjucks templates](https://mozilla.github.io/nunjucks/). There is mandatory file, `index.njk`, from where you may set up all the routing and other logic using nunjucks abilities to conditionally extend, include and so on. 
+<!--cut-->
 
 Site templates can utilize all features of nunjuck template language, you may have any number of files. 
 Note, that only index.njk is loaded directly, other templates have to be extended, included or otherwise accessed through it.
+
+Site templates located in `[site directopry]/_config/templates`.
 
 Additional filters
 ------------------

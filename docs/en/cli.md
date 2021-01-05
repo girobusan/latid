@@ -2,7 +2,11 @@
 title: Command Line Interface
 ---
 
-Latid can be invoked as command line utility. Execute this from the site directory:
+Latid can be invoked as command line utility. It's useful, when hosting on Jamstack. Just setup
+your build action, using `l4cli.js` utility.
+<!--cut-->
+
+Execute this from the site directory:
 
     node l4cli.js
 

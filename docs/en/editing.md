@@ -1,6 +1,8 @@
 ---
 title: Editing, saving and generating site
 ---
+Editing files in GUI is pretty easy, and almost self-explanatory. 
+<!--cut-->
 
 Editing existing page
 ---------------------
@@ -28,7 +30,7 @@ Generating static files
 -----------------------
 After you finish your edits, you can generate final, static version of the site. From GUI this function engaged by clicking *generate site* button. 
 
-You can also use the command line utility. Open your terminal, change current directory to your site directory and run following command:
+You can also use the [command line utility](cli.md). Open your terminal, change current directory to your site directory and run following command:
 
     node l4cli.js
 

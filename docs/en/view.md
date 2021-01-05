@@ -2,7 +2,9 @@
 title: Files and views
 ---
 
-*View* is an internal representation of site page. It is an object with the following fields:
+*View* is an internal representation of site page. It is an object with fields, containing
+various file information.
+<!--cut-->
 
 uri
 ---

@@ -1,7 +1,9 @@
 ---
 title: Site directory structure
 ---
+
 The site files organized as follows:
+<!--cut-->
 
     📁 site
         |

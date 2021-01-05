@@ -1,7 +1,8 @@
 ---
 title: Template variables
 ---
-There are variables, which can be accessed from template:
+There are bunch of variables, which can be accessed from your nunjucks templates.
+<!--cut-->
 
 editmode
 --------

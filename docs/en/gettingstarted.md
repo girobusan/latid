@@ -3,6 +3,8 @@ title: Getting started
 name: gettingstarted
 lang: en
 ---
+There are your first steps in setting up and start using Latid.
+<!--cut-->
 
 Prerequisites
 -------------
@@ -16,6 +18,8 @@ Install
 Download zip file and unzip it. 
 
 ### From repo
+
+This method is strongly not recommended, but works.
 
     git clone git@github.com:girobusan/latid.git
     cd latid 
