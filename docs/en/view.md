@@ -38,7 +38,7 @@ List of uris of pages, if the source file was split to multiple pages, and this 
 
 current_page
 ------------
-If the fview represents one of multiple pages, number of page which this particular view represents.
+If the view represents one of multiple pages, number of page which this particular view represents.
 
 tagged_list
 -----------
