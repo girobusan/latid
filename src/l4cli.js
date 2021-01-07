@@ -143,7 +143,7 @@ let fileops = {
         //console.log(mylist)
         return new Promise(function (res, rej) {
             if(fs.existsSync(rp)){
-            let mylist = reclist(fulldir).map(p => ({ "path": p.substring(fulldir.length+1) }));
+            let mylist = reclist(fulldir).map(p => {let fst = fs.statSync(p); /*console.log(fst)*/ ; return { "path": p.substring(fulldir.length+1) , "mtime" : fst.mtime , "mtimeMs" : fst.mtimeMs }});
             //console.log("MULIST" , mylist)
             res(mylist);
             }else{

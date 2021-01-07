@@ -11,6 +11,7 @@ var unidecode = require('unidecode');
  */
 
 export function date2str(d, short) {
+    //console.log("DATE?" , d);
     if (!d) {
         //console.log("NO DATE GIVEN");
         return "?";
