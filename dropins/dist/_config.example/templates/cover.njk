@@ -1,59 +1,18 @@
-{% include "html_start.njk" %}
-{% import "macros.njk" as macros %}
+{% extends "page.njk" %}
+{% block hero %}
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+<h1 class="display-3">{{settings.site.title | nbsp}}</h1>
+<p class="lead">{{settings.site.motto}}</p>
+<hr />
+<div id="content">{{content}}</div>
+</div>
+</div>
+{% endblock %}
 
-<main class="main">
-	<article>
-		<h1>{{view.file.meta.title}}</h1>
-<div class="intro lead" id="content" style="margin-bottom: 3em;">{{content}}</div>
-
-<h2 class="subheader">Latest:</h1>
-{% for ac in included %}
-		<article>
-			<header>
-				<div class="title-and-meta">
-					<h3><a href="{{ac.uri}}">{{ac.file.meta.title}}</a></h3>                
-
-					<div class="post-meta">               
-                   
-						
-						{{ macros.metas(ac) }}
-					
-					</div>
-				</div>
-			</header>
-
-            {% set ai = util.guessImage(ac) %}
-{% if ai %}
-			<figure class="poster-image">
-				<img src="{{ai}}">
-			</figure>
-{% endif %}
-		{{util.guessExcerpt(ac)}}
-
-			<div class="continue-reading">
-				<a href="{{ac.uri}}">Continue Reading →</a>
-			</div>
-		</article>
-
-{%endfor%}
-{#
-<nav aria-label="Pagination">
-  <ul class="pagination">
-   
-    <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
-    <li><a href="#" aria-label="Page 2">2</a></li>
-    <li><a href="#" aria-label="Page 3">3</a></li>
-    <li><a href="#" aria-label="Page 4">4</a></li>
-
-    
-  </ul>
-</nav>
-#}
-{{macros.pagination(view)}}
-
-
-		
-	</article>
-</main>
-
-{% include "html_end.njk" %}
+{% block header %}
+<h1 class="">Latest posts</h1>
+{% endblock %}
+{% block content %}
+{% include "article_list.njk" %}
+{% endblock %}

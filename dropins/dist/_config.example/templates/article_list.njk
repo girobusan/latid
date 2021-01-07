@@ -1,0 +1,39 @@
+{% for ac in included %}
+<article>
+<hr>
+<h2><a href="{{ac.uri}}">{{ac.file.meta.title}}</a></h2>
+{% if ac.tagslist and ac.tagslist.length>0 %}
+<div class="row mb-3" >
+<div class="group1 col-sm-6 col-md-6">
+{% for tag in ac.tagslist %}
+<a href="{{tag.uri}}"><span class="badge badge-primary">{{tag.file.meta.title}}</span></a>
+{% endfor %}
+</div>
+<div class="group2 col-sm-6 col-md-6">
+<!--group to the right-->
+</div>
+</div>
+{% endif %}
+{% set aimg = util.guessImage(ac) %}
+{% if aimg %}
+<img src="{{aimg}}" class="w-100 mb-3 d-block">
+{% endif %}
+
+{% set exc = util.guessExcerpt(ac) %}
+{% if exc %}  <div>{{exc}}</div> {% endif %}
+<div class ="row mb-3">
+<div class = "col-sm-12 col-md-6 text-muted">
+<!--{{view.file.meta.date}}:{{testDate}}-->
+{% set date = util.prettyDate(ac.file.meta.date) %}
+<small>{{date}}</small>
+</div>
+<div class = "col-sm-12 col-md-6">
+<p class="text-right">
+<a href="{{ac.uri}}" >
+continue reading...
+</a>
+</p>
+</div>
+</div>
+</article>
+{% endfor %}

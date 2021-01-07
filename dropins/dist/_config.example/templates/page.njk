@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style/style.css" rel="stylesheet">
+
+    <title>{{view.file.meta.title}} | {{settings.site.title}}</title>           
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/index.html">{{settings.site.title}}</a>
+      <button class="navbar-toggler" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#nbcontent" 
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nbcontent">
+        <ul class="navbar-nav nav">
+          {% for mitem in site_menu %}
+          {% if mitem.path=="index.json" %}
+          {% else %}
+          <li class="nav-item" >
+          <a  class="nav-link" href="{{mitem.uri}}">{{mitem.file.meta.title}}</a></li>
+          {% endif %}
+          {% endfor %}
+          {#<li class="nav-item active"><a  class="nav-link" href="#">Home</a></li>
+          <li class="nav-item" ><a  class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item" ><a    class="nav-link" href="#">About</a></li>
+          #}
+        </ul>
+      </div>
+    </div>
+    </nav>
+
+      {% block hero %}{% endblock %}
+    <div id="body" class="container">
+      <div class="row justify-content-between">
+
+        <div class="col-md-8 col-xl-7">
+        {% block header %}
+          <h1 class="">Latest posts</h1>
+          <p class="lead">
+          This is how we go with every 
+          </p>
+          {% endblock %}
+
+          {% block content %}
+          <!--content-->
+          {% endblock %}{# content #}
+
+          {#          <nav aria-label="Page navigation ">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+          </ul>
+          </nav>
+          #}
+{% block pagination %}
+ {% if view.pager_uris %}
+<nav aria-label="Pagination">
+  <ul class="pagination">
+   {%for page in view.pager_uris%}
+
+   <li class="page-item {%if page==view.uri%}active{%endif%}"><a href="{{page}}" class="page-link ">{{ loop.index }}</a></li>   
+
+    {% endfor %}
+    
+  </ul>
+</nav>
+ {%endif%}
+    {% endblock %}
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-2 border-primary">
+            <div class="card-body">
+              Subscribe to my feed:
+              <br />
+              <a href="{{settings.rss.uri}}">RSS</a>
+
+            </div>
+          </div>
+          <div class="card mb-2">
+            <div class="card-header">Latest posts</div>
+            <ul class = "list-group list-group-flush">
+              {% set latests = views |rejectattr("virtual") | rejectattr("is_index")  %}
+                 {% for late in latests.slice(0,5)   %}
+                 <li class="list-group-item"><a href="{{late.uri}}">{{late.file.meta.title}}</a></li>
+              {% endfor %}
+            </ul>
+
+
+          </div>
+          <div class="card">
+            <div class="card-header">Top tags</div>
+            <div class="card-body">
+            {% set toptags = meta.tags | sort(false,false,"count") %}
+            {%for tag in toptags.reverse().slice(0, 15) %} 
+            
+            {% set isfav = not list.getByField("uri", tag.uri).virtual  %}                   
+                
+            <a href="{{tag.uri}}"><span class="badge badge-primary"> {{tag.name}}</span></a>
+            
+            {#<span class="pages_num">({{tag.count}})</span>#}
+            <!--</li>-->
+                {%endfor%}
+              </div>
+                <div class="card-footer">
+                 <a href="/tags/index.html" class="text-right">See all tags</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <footer >
+      <hr />
+      <div class="row" >
+        <div class="col-12"><p class="text-left text-small text-muted">
+          Powered by &#128031; <a href="https://github.com/girobusan/latid">Latid</a> & <a href="https://getbootstrap.com/">Bootstrap</a></p></div>
+      </div>
+      <script src="/style/bootstrap.bundle.min.js"></script>
+      </footer>
+    </body>
+  </html>
+

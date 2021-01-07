@@ -1,12 +1,13 @@
-{% extends "page.njk" %}
+{% extends "subindex.njk" %}
 {% block header%}
 <h1 class="display-4">
 {% block prefix %}{% endblock %}
 {{view.file.meta.title | nbsp}}</h1>
-<div class="lead" id="content">
-{{content}}
-</div>
+<hr />
 {% endblock %}
 {% block content %}
-{% include "article_list.njk" %}
+<span id="content">
+{{content}}
+</span>
 {% endblock %}
+

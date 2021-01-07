@@ -1,1 +1,7 @@
 {% extends "subindex.njk" %}
+{% block prefix %}
+Таg: 
+{% endblock %}
+{% block content %}
+{% include "article_list_short.njk" %}
+{% endblock %}

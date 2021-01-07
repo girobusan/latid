@@ -1,6 +1,6 @@
 {% set top_level_uri = r/^\/[^\\\/]*(\/index)??\.html$/i %}
 
-{% set subindex_path = r/^.+(\/index)\.json$/i %}
+{% set subindex_path = r/^.+(\/index)\.(json|md|markdown)$/i %}
 {% set tag_uri = r/^(\/tags\/)/i %}
 {% set included = false %}
 
@@ -10,7 +10,7 @@
         {% set included = view.tagged_list %}
 {%endif%}
 
-{% set site_menu = paths.listTopLevel(views , "all") %}
+{% set site_menu = paths.listTopLevel(views , "all") | msort(false, "order" , true) %}
 
 {% if view.path=='index.json'%}
 {% extends "cover.njk" %}
@@ -20,6 +20,8 @@
 {%extends "subindex.njk" %}
 {% elseif tag_uri.test(view.uri) %}
 {%extends "tag.njk" %}
+{% elseif view.file.meta.top_level_page %}
+{%extends "top_page.njk" %}
 {#default#}
 {%else%}
 {% extends "article.njk" %}

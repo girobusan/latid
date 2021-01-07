@@ -5,17 +5,17 @@
     "title": "Start page",
     "date": "2020.10.10",
     "list_custom": "pages",
-    "include_regexp": "/blog/.*"
+    "include_regexp": "/(blog|docs)/.*"
   },
   "content": {
-    "editor": "BlEd/1.2.12",
-    "stime": "2020-10-19T07:34:53.527Z",
-    "time": 1603092893527,
+    "editor": "BlEd/1.2.15",
+    "stime": "2021-01-05T11:29:01.580Z",
+    "time": 1609846141580,
     "blocks": [
       {
         "type": "paragraph",
         "data": {
-          "text": "Lorem ipsum dolor sit amet, adipiscing elit, sed <strike>do</strike> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad."
+          "text": "Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad."
         }
       }
     ]

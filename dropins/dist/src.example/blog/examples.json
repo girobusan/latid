@@ -2,20 +2,20 @@
   "content_format": "blocks",
   "type": "src",
   "meta": {
-    "title": "Text formatting examples",
+    "title": "Block examples",
     "id": "47d28d20-0bd6-11eb-9828-97e58bb5e4b3",
-    "date": "2020.10.11 18:27",
-    "tags": "Examples"
+    "date": "2020.12.11 18:27",
+    "tags": "Examples, Blocks"
   },
   "content": {
-    "editor": "BlEd/1.2.12",
-    "stime": "2020-10-13T14:31:35.165Z",
-    "time": 1602599495165,
+    "editor": "BlEd/1.2.16",
+    "stime": "2021-01-06T14:04:01.689Z",
+    "time": 1609941841689,
     "blocks": [
       {
         "type": "paragraph",
         "data": {
-          "text": "Here are formatting examples.<br>"
+          "text": "Block examples.<br>"
         }
       },
       {
@@ -26,15 +26,47 @@
         }
       },
       {
+        "type": "header",
+        "data": {
+          "text": "Third level header<br>",
+          "level": "3"
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Fourth level header<br>",
+          "level": "4"
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Fifth level header<br>",
+          "level": "5"
+        }
+      },
+      {
+        "type": "divider",
+        "data": {}
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Blockquote",
+          "level": "2"
+        }
+      },
+      {
         "type": "paragraph",
         "data": {
-          "text": "The quote<br>"
+          "text": "The blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>"
         }
       },
       {
         "type": "quote",
         "data": {
-          "text": "It is better to keep your mouth closed and let people <br>think you are a fool than to open it and remove all doubt.",
+          "text": "It is better to keep your mouth closed and let people think you are a fool than to open it and remove all doubt.",
           "caption": "Mark Twain"
         }
       },
@@ -54,6 +86,23 @@
       {
         "type": "image",
         "data": {
+          "stretched": true,
+          "right": false,
+          "left": false,
+          "noresize": false,
+          "withBackground": false,
+          "border": false,
+          "withBorder": false,
+          "caption": "Kitty — stretched&nbsp;",
+          "link": "",
+          "file": {
+            "url": "/kitty.jpg"
+          }
+        }
+      },
+      {
+        "type": "image",
+        "data": {
           "stretched": false,
           "right": false,
           "left": false,
@@ -61,11 +110,42 @@
           "withBackground": true,
           "border": false,
           "withBorder": false,
-          "caption": "Kitty",
+          "caption": "Kitty — no resize",
           "link": "",
           "file": {
-            "url": "/uploads/blog/287.jpeg"
+            "url": "/kitty.jpg"
           }
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Lists",
+          "level": "2"
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "class": "",
+          "style": "unordered",
+          "items": [
+            "Lorem Ipsum<br>",
+            "Dolor",
+            "<span id=\"content\"> Ut enim ad minim</span>"
+          ]
+        }
+      },
+      {
+        "type": "list",
+        "data": {
+          "class": "",
+          "style": "ordered",
+          "items": [
+            "Lorem lorem<br>",
+            "Ipsum Ipsum<br>",
+            "Ut enim ad mimim<br>"
+          ]
         }
       },
       {
@@ -80,6 +160,48 @@
         "data": {
           "code": "#include &lt;stdio.h&gt;\nint main() {    \n\n    int number1, number2, sum;\n    \n    printf(\"Enter two integers: \");\n    scanf(\"%d %d\", &amp;number1, &amp;number2);\n\n    // calculating sum\n    sum = number1 + number2;      \n    \n    printf(\"%d + %d = %d\", number1, number2, sum);\n    return 0;\n}",
           "language": ""
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "Markdown &amp; table<br>",
+          "level": "2"
+        }
+      },
+      {
+        "type": "markdown",
+        "data": {
+          "markdown": "This is Markdown formatted text.\n\n\n| Tables        | Are           | Cool  |\n| ------------- |:-------------:| -----:|\n| col 3 is      | right-aligned | $1600 |\n| col 2 is      | centered      |   $12 |\n| zebra stripes | are neat      |    $1 |\n\nLorem ipsum dolor sit amet, *consectetur* adipiscing elit. Curabitur in scelerisque mauris, vitae condimentum ante. Morbi fringilla sollicitudin fermentum. Mauris id ante bibendum, pulvinar ligula sed, laoreet sem. Etiam hendrerit suscipit odio, ac egestas massa"
+        }
+      },
+      {
+        "type": "header",
+        "data": {
+          "text": "\"Badges\"<br>",
+          "level": "2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "data": {
+          "text": "Badges are for making emphasized blocks of text.<br>"
+        }
+      },
+      {
+        "type": "badge",
+        "data": {
+          "class": "warning",
+          "tag": "div",
+          "text": "Warning!"
+        }
+      },
+      {
+        "type": "badge",
+        "data": {
+          "class": "note",
+          "tag": "div",
+          "text": "Friendly note<br>"
         }
       }
     ]

@@ -4,15 +4,14 @@
     "tweak it as you want"
   ],
   "site": {
-    "title": "Awesome site",
-    "motto": "If It's Not Broken, Don't Fix It",
+    "title": "Example Latid Site",
+    "motto": "Proud To Be Default",
     "url": "https://example.com"
   },
   "editor" : {
     "content_selector": "#content",
     "default_meta"  :{
-      "tags" : "",
-      "lang" : "all"
+      "tags" : ""
     }
   },
   "output": {

@@ -1,16 +1,16 @@
 {% extends "subindex.njk" %}
-{% block listing%}
+{% block content %}
+<hr />
 <ul class="tagslist" style="column-count: 2 ; column-gap: 2rem;" >
-            {%for tag in meta.tags|sort( false , false , "name") %} 
-            {% set isfav = not list.getByField("uri", tag.uri).virtual  %}                   
-                <li>{% if isfav %}<strong> {%endif%}
-                    <a href="{{tag.uri}}">{{tag.name}}</a>
-                    {% if isfav %}</strong><span style="font-family: Times, 'Times New Roman' , serif">&#128172;</span>{%endif%}
-                    <span class="pages_num">({{tag.count}})</span>
-                </li>
-                {%endfor%}
-    </ul>
+{%for tag in meta.tags|sort( false , false , "name") %} 
+{% set isfav = not list.getByField("uri", tag.uri).virtual  %}                   
+<li>{% if isfav %}<strong> {%endif%}
+<a href="{{tag.uri}}">{{tag.name}}</a>
+{% if isfav %}</strong><span style="font-family: Times, 'Times New Roman' , serif">&#128172;</span>{%endif%}
+<span class="pages_num">({{tag.count}})</span>
+</li>
+{%endfor%}
+</ul>
 {%endblock%}
-{% block pagination%}
-<!--no pagination-->
-{% endblock%}
+{% block pagination %}
+{% endblock %}
