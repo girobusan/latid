@@ -11,17 +11,18 @@ javascript-free) content (blogs, documentation, portfolios).
 
 ## Features
 
-- One dependency (node.js), no install, just drop in.
-- Native JSON source file format, which is pretty semantic and can be used with other frontends.
-- Can use markdown source files as well.
-- Browser-based GUI.
-- Also works as command line utility.
-- Jamstack-friendly.
-- Nunjucks templates with all its might.
-- Tags, persistent and transient tag pages.
-- I18n ready.
-- Site may have any directory structure.
-- There is  a GUI app for working with the sites ([other repo](https://github.com/girobusan/latid-browser), in process).
+- One dependency (node.js), no install, just drop in
+- Relative links: easy URL change, viewable from local machine without server
+- Native JSON source file format, which is pretty semantic and can be used with other frontends
+- Can use markdown source files as well
+- Browser-based GUI
+- Also works as command line utility
+- Jamstack-friendly
+- Nunjucks templates with all its might
+- Tags, persistent and transient tag pages
+- Relative links: easy URL change, viewable from local machine without server
+- I18n ready
+- Site may have any directory structure
 
 ![screenshot](docs/pix/readme_cover.png) 
 
@@ -42,7 +43,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 - [ ] More descriptive error handing (preview, editor start)
 - [X] Option to treat Markdown files without frontmatter as a source 
 - [X] Filter: sort views by any user-defined meta 
-- [ ] Custom sorting of pages 
+- [X] Custom sorting of pages 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page
