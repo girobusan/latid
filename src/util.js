@@ -47,8 +47,8 @@ export function str2date(st) {
     };
     var str = st.toString().trim();
     //if timestamp (digits only)
-    if (str.match(/^\d{12,}$/)) {
-        var r = new Date(parseInt(str));
+    if (str.match(/^\d{10,}(\.\d+)?$/)) {
+        var r = new Date(parseFloat(str));
         return r
     }
 

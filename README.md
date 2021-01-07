@@ -3,31 +3,27 @@ title: Latid README
 ---
 # Latid (L4) &#128031;
 
-Latid is a static site generator, which works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
-
+Latid is a static site generator, which works as traditional 
+command line utility and|or with browser based GUI (allowing to use block editor). 
 It works best for multipage sites (tested with >2000 pages) with primary static 
 (even completely 
 javascript-free) content (blogs, documentation, portfolios).
 
-One of it's goals is to separate author's experience from developer's one — adding and editing content 
-is simple, but there is still enough to fiddle around under the hood to
-customize design and behaviour.
-
-It supports _markdown_ source files alongside with it's own JSON format (pretty clean to parse and use with any custom scripts|apps). Works nicely with Jamstack providers like Netify and Amazon Amplify (both tested).
-
-![screenshot](docs/pix/main_gui.png) 
-
 ## Features
 
-- One dependency install (just drop files in and ensure you have node.js installed)
-- Can work as regular command line utility
-- Can work with markdown source files (you need to add frontmatter header with at least "title" field)
-- Can also work in GUI mode in a browser, with the simplistic block editor
-- JSON file format for pages created with block editor
-- Nunjucks templates
-- Tags 
-- Site may have any directory structure 
-- There is GUI app for working with the sites ([other repo](https://github.com/girobusan/latid-browser), in process)
+- One dependency (node.js), no install, just drop in.
+- Native JSON source file format, which is pretty semantic and can be used with other frontends.
+- Can use markdown source files as well.
+- Browser-based GUI.
+- Also works as command line utility.
+- Jamstack-friendly.
+- Nunjucks templates with all its might.
+- Tags, persistent and transient tag pages.
+- I18n ready.
+- Site may have any directory structure.
+- There is  a GUI app for working with the sites ([other repo](https://github.com/girobusan/latid-browser), in process).
+
+![screenshot](docs/pix/readme_cover.png) 
 
 ## Requirements
 
@@ -46,6 +42,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 - [ ] More descriptive error handing (preview, editor start)
 - [X] Option to treat Markdown files without frontmatter as a source 
 - [X] Filter: sort views by any user-defined meta 
+- [ ] Custom sorting of pages 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page

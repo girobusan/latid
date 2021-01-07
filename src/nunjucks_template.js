@@ -19,7 +19,7 @@ if(typeof TextDecoder !== 'undefined'){
 const path = require("path");
 const dec = new TD("utf-8");
 
-function msort(views_array , reverse, field_name  , as_number){
+export function msort(views_array , reverse, field_name  , as_number){
   let r = views_array.slice(0);
   r.sort(function(a,b){
     let av = as_number ? parseFloat(a.file.meta[field_name]) : a.file.meta[field_name].toString();

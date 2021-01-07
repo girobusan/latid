@@ -4,6 +4,7 @@ import * as Pathops from "./pathops";
 import * as Util from "./util";
 import * as Tags from "./tags.js";
 import * as Formats from "./formats";
+import { msort } from "./nunjucks_template";
 
 export function refreshViewsWeb(l4 , vlist){
     l4.views = vlist.filter(e=> (!e.virtual));
@@ -107,6 +108,14 @@ export function makeViewForLink(p) { //need nothing
  * @param {Function} accessor       - function, which adds new view to pool (addView)
  */
 export function buildPagesSequence(v, viewlist, listmax, list_field_name , putter) {//returns last page number
+     //do we sort?
+     if ("sort_by" in v.file.meta && v.file.meta.sort_by){
+         //we need to sort
+         let numeric = v.file.meta.sort_as_number || false;
+         let reverse = v.file.meta.sort_reverse || false;
+         viewlist = msort(viewlist , reverse , v.file.meta.sort_by , numeric); 
+
+     }
     //console.log("BUILD PAGE SEQUENCE");
     //defaults    
     if (!list_field_name) {
