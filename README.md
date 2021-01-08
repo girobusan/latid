@@ -35,20 +35,6 @@ for oldest browsers, but you will need the descent one for using Latid GUI (Lati
 
 Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work. 
 
-
-
-## Plans 
-<small>The marked ones are implemented, but will be included in future release</small>
-- [ ] More descriptive error handing (preview, editor start)
-- [X] Option to treat Markdown files without frontmatter as a source 
-- [X] Filter: sort views by any user-defined meta 
-- [X] Custom sorting of pages 
-- [ ] Ability to create page, if it's linked, but do not exist on the fly
-- [ ] _Table_ (csv?) article block
-- [ ] List limits customization by page
-- [ ] Themes support
-- [ ] Working in browser without node.js
-
 ## Releases
 
 ### 1.9.1b
@@ -65,6 +51,18 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 - Customize rendering of blocks via nunjucks
 - _Markdown_ article block
 - Custom (per site) default metadata for new files
+
+## Plans 
+<small>The marked ones are implemented, but will be included in future release</small>
+- [ ] More descriptive error handing (preview, editor start)
+- [X] Option to treat Markdown files without frontmatter as a source 
+- [X] Filter: sort views by any user-defined meta 
+- [X] Custom sorting of pages 
+- [ ] Ability to create page, if it's linked, but do not exist on the fly
+- [ ] _Table_ (csv?) article block
+- [ ] List limits customization by page
+- [ ] Themes support
+- [ ] Working in browser without node.js
 
 
 ## How to start 
