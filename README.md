@@ -12,6 +12,7 @@ javascript-free) content (blogs, documentation, portfolios).
 ## Features
 
 - One dependency (node.js), no install, just drop in
+- Dead simple content management 
 - Native JSON source file format, which is pretty semantic and can be used with other frontends
 - Can use markdown source files as well
 - Browser-based GUI

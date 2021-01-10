@@ -45,3 +45,16 @@ Same, but in reverse.
 ### list_criteria
 
 (Will be used in future) - which field of view to match in order to compose custom list.
+
+### sort_by
+
+Name of the meta field to sort list of views, attached to this one, used on index 
+or tag pages.
+
+### sort_reverse
+
+Reverse sorting order of attached list (if `sort_by` is specified)
+
+### sort_as_number
+
+Interpret meta, which name was specified in `sort_by` as number (default: string)   
