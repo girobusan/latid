@@ -44,6 +44,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 - Filter: sort views by any user-defined meta 
 - Custom sorting of pages 
 - Better block editor design
+- New improved default site design
 - Bugs fixed
 
 
