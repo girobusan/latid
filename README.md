@@ -38,6 +38,15 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 
 ## Releases
 
+### 1.9.2b
+
+- Option to treat Markdown files without frontmatter as a source 
+- Filter: sort views by any user-defined meta 
+- Custom sorting of pages 
+- Better block editor design
+- Bugs fixed
+
+
 ### 1.9.1b
 
 - Option to fix links in markdown (.md|.markdown -> .html)
@@ -56,9 +65,6 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
 - [ ] More descriptive error handing (preview, editor start)
-- [X] Option to treat Markdown files without frontmatter as a source 
-- [X] Filter: sort views by any user-defined meta 
-- [X] Custom sorting of pages 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [ ] List limits customization by page
