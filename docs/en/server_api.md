@@ -12,6 +12,10 @@ is included with Latid distribution, but it's pretty easy to implement in almost
 | /api/write?filename           | PUT |  write file        | status object, JSON encoded | 200 + status object |            
 | /api/copy?from=name1&to=name2 | GET |  copy file         | status object, JSON encoded | 200 + status object |        
 
+## Paths
+
+Paths for copy command supposed to be relative to server root directory, 
+e. g. site directory.
 
 ## Status object
 
