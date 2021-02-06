@@ -9,11 +9,11 @@ import * as Views from "./views";
 var md = require('markdown-it')({html:true})
 .use(mdit , {multiline: true , rowspan: true , headerless: true});
 
-function prepFields(frjson , additional_file_info  ){
+function prepFields(frjson , additional_file_info , default_date ){
   //console.log("PF" ,  additional_file_info );
   //fix date field
   if(!("date" in frjson.meta)){
-    frjson.meta.date = util.date2str( new Date(parseFloat(additional_file_info.mtimeMs)));
+    frjson.meta.date = default_date || util.date2str( new Date(parseFloat(additional_file_info.mtimeMs)));
     //console.info("Fix date at" , additional_file_info , "to" , frjson.date );
   }
   //fix excerpt in markdown
@@ -114,11 +114,11 @@ export async function decodeFileFromPath(path, text_getter , additional_file_inf
       var parsed_file;
       if (path.match(/\.json$/gi)) {
         //console.log("THis is JSON" , path)
-        parsed_file = decodeJSON(txt);
+        parsed_file = decodeJSON(txt, settings.output.default_date||null);
       } else {
         //markdown
         //console.log("This is MARKDOWN" , txt)
-        parsed_file = decodeMd(txt , settings.markdown.force_source);
+        parsed_file = decodeMd(txt , settings.markdown.force_source );
 
       }
       //console.log(djs,txt)
@@ -128,7 +128,7 @@ export async function decodeFileFromPath(path, text_getter , additional_file_inf
           Views.makeSrcView(
             path,
             "/" + path.replace(/\.[a-zA-Z]+$/ , ".html"),
-            prepFields(parsed_file , additional_file_info , false)
+            prepFields(parsed_file , additional_file_info )
             ));
       } else {
         //console.log("resolving COPY")

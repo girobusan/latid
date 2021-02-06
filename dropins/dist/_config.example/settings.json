@@ -19,7 +19,8 @@
     "time_diff": 0,
     "debug": true,
     "content_selector": "#content",
-    "list_max": 10
+    "list_max": 10,
+    "default_date" : "19.08.1980 16:00"
   },
   "markdown":{
     "fix_links" : true ,

@@ -37,15 +37,14 @@ export function buildRSS(settings, views) {
     //items
     //console.log("TO RSS" , LATID$.views.length)
     var items = views
-        .filter(v => "file" in v && !v.nolist && !Pathops.isIndex(v.uri) && "meta" in v.file && !v.file.meta.nolist && "date" in v.file.meta && Util.str2date(v.file.meta.date))
+        .filter(v => "file" in v && !v.nolist && (v.file.meta && !v.file.meta.nolist) && !Pathops.isIndex(v.uri) && "meta" in v.file && !v.file.meta.nolist && "date" in v.file.meta && Util.str2date(v.file.meta.date))
         //.sort(function (a, b) {
             //console.log(a , b);
         //    return Util.str2date(a.file.meta.date).getMilliseconds() - Util.str2date(b.file.meta.date).getMilliseconds();
         //})
-        .slice(0, settings.rss.count - 1)
+        .slice(0, parseInt(settings.rss.count) - 1)
         ;
 
-    //console.log("foreach" , LATID$.site_url)
 
 
     items.forEach(function (e) {
