@@ -417,12 +417,11 @@ constructors.badge = function(data, el, id, editor){
     }
     // input
     let clbl = document.createElement("label");
-    clbl.innerText = "Class";
+    clbl.innerText = "Class:";
     clbl.style.flexGrow = 0;
     let clinp = document.createElement("input")
     clinp.type = "text";
     clinp.style.flexGrow = "1";
-    clinp.value = classes;
     clinp.setAttribute("list" , "bled_badge_block_datalist" );
     //
     clinp.addEventListener("change" , function(ev){
@@ -678,19 +677,19 @@ constructors.video = function (data, el, id, editor) {
     ]
     let pels = [];
     params.forEach(function (e) {
-        if (!blc.data[e.name]) {
-            blc.data[e.name] = false;
+        if (!blc.data[e.name.toLowerCase()]) {
+            blc.data[e.name.toLowerCase()] = false;
         }
         //let plabel = document.createElement("label");
         //plabel.style.flexGrow = 1;
         //plabel.innerHTML = e.name;
         let pcheck = document.createElement("input");
         pcheck.type = "checkbox";
-        pcheck.checked = data && data[e.name];
+        pcheck.checked = data && data[e.name.toLowerCase()];
         pcheck.onclick = function (ev) {
             console.log(e, blc.data, e.name);
-            blc.data[e.name] = this.checked;
-            vtag.setAttribute(e.name, this.checked);
+            blc.data[e.name.toLowerCase()] = this.checked;
+            vtag.setAttribute(e.name.toLowerCase(), this.checked);
         };
         //pels.push(pcheck);
         //pels.push(plabel);
