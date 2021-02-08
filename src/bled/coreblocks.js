@@ -623,6 +623,10 @@ constructors.video = function (data, el, id, editor) {
     //let srctag = document.createElement("source");
     //vtag.appendChild(srctag);
     vtag.src = data && data.file.url ? data.file.url : "";
+    vtag.controls = data && data.controls;
+    vtag.loop = data && data.loop;
+    vtag.muted = data && data.muted;
+    vtag.autoplay = data && data.autoplay;
     //editor
     ////upload     
     let upld = document.createElement("input");
@@ -688,7 +692,7 @@ constructors.video = function (data, el, id, editor) {
         pcheck.checked = data && data[e.name.toLowerCase()];
         pcheck.onclick = function (ev) {
             console.log(e, blc.data, e.name);
-            blc.data[e.name.toLowerCase()] = this.checked;
+            blc.data[e.name.to.toLowerCaseLowerCase()] = this.checked;
             vtag.setAttribute(e.name.toLowerCase(), this.checked);
         };
         //pels.push(pcheck);

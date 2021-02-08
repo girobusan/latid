@@ -1,6 +1,6 @@
 
 require("./scss/forms.scss");
-//const smalltalk = require('smalltalk');
+const smalltalk = require('../minortalk/lib/smalltalk');
 
 
 export var icons = {};
