@@ -417,11 +417,12 @@ constructors.badge = function(data, el, id, editor){
     }
     // input
     let clbl = document.createElement("label");
-    clbl.innerText = "Class:";
+    clbl.innerText = "Class";
     clbl.style.flexGrow = 0;
     let clinp = document.createElement("input")
     clinp.type = "text";
     clinp.style.flexGrow = "1";
+    clinp.value = classes;
     clinp.setAttribute("list" , "bled_badge_block_datalist" );
     //
     clinp.addEventListener("change" , function(ev){
@@ -623,10 +624,10 @@ constructors.video = function (data, el, id, editor) {
     //let srctag = document.createElement("source");
     //vtag.appendChild(srctag);
     vtag.src = data && data.file.url ? data.file.url : "";
-    vtag.controls = data && data.controls;
     vtag.loop = data && data.loop;
-    vtag.muted = data && data.muted;
     vtag.autoplay = data && data.autoplay;
+    vtag.controls = data && data.controls;
+    vtag.muted = data && data.muted;
     //editor
     ////upload     
     let upld = document.createElement("input");
@@ -681,8 +682,8 @@ constructors.video = function (data, el, id, editor) {
     ]
     let pels = [];
     params.forEach(function (e) {
-        if (!blc.data[e.name.toLowerCase()]) {
-            blc.data[e.name.toLowerCase()] = false;
+        if (!blc.data[e.name]) {
+            blc.data[e.name] = false;
         }
         //let plabel = document.createElement("label");
         //plabel.style.flexGrow = 1;
@@ -692,8 +693,12 @@ constructors.video = function (data, el, id, editor) {
         pcheck.checked = data && data[e.name.toLowerCase()];
         pcheck.onclick = function (ev) {
             console.log(e, blc.data, e.name);
-            blc.data[e.name.to.toLowerCaseLowerCase()] = this.checked;
-            vtag.setAttribute(e.name.toLowerCase(), this.checked);
+            blc.data[e.name.toLowerCase()] = this.checked;
+            if(this.checked){
+            vtag.setAttribute(e.name.toLowerCase(), blc.data[e.name.toLowerCase()]);
+            }else{
+            vtag.removeAttribute(e.name.toLowerCase());
+            }
         };
         //pels.push(pcheck);
         //pels.push(plabel);

@@ -1,7 +1,7 @@
 import * as UI from "./ui";
 import { constructors as Coreblocks } from "./coreblocks";
 import "./scss/forms.css";
-export const version = "1.2.15";
+export const version = "1.2.17";
 
 export function BlockEditor({
     selector
@@ -95,6 +95,7 @@ export function BlockEditor({
         let zero = document.createElement("div");
         zero.classList.add("starting_block");
         //zero.style.height = "8px";
+        zero.style.boxSizing = "content-box";
         zero.style.width = "100%";
         zero.style.marginLeft = "-32px";
         zero.style.marginRight = "-32px";

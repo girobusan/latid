@@ -1,6 +1,6 @@
 
 require("./scss/forms.scss");
-const smalltalk = require('../minortalk/lib/smalltalk');
+const smalltalk = require("../minortalk/lib/smalltalk");
 
 
 export var icons = {};
@@ -509,6 +509,7 @@ export function addBlockControls(block, items, ed) {
      */
 
     block.style.padding = "0 32px";
+    block.style.boxSizing = "content-box";
     block.style.width = "100%";
     block.style.margin = "0 -32px"
     if (!items && ed) {
