@@ -116,6 +116,12 @@ export function buildPagesSequence(v, viewlist, listmax, list_field_name , putte
          viewlist = msort(viewlist , reverse , v.file.meta.sort_by , numeric); 
 
      }
+     var local_max = null;
+     if("list_max" in v.file.meta){
+     let dfl = parseInt(v.file.meta.list_max);
+     local_max = dfl>0 ? dfl : local_max;
+     }
+
     //console.log("BUILD PAGE SEQUENCE");
     //defaults    
     if (!list_field_name) {
@@ -123,6 +129,9 @@ export function buildPagesSequence(v, viewlist, listmax, list_field_name , putte
         list_field_name = "pages_list";
     }
     //console.log(listmax)
+    if(local_max){
+      listmax = local_max;
+    }
     if (!listmax) {
         //console.log("DEFAULT LISTMAX")
         listmax = 20 ; //l4.settings.list_max;
