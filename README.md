@@ -66,6 +66,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
 - [x] Custom default date for files without date
+- [x] Custom sorting of lists
 - [ ] Improve list exclusion 
 - [ ] More descriptive error handing (preview, editor start)
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
