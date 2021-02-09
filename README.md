@@ -71,7 +71,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 - [ ] More descriptive error handing (preview, editor start)
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
-- [ ] List limits customization by page
+- [x] List limits customization by page
 - [ ] Themes support
 - [ ] Working in browser without node.js
 
