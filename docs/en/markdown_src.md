@@ -1,5 +1,6 @@
 ---
 title: Markdown source files
+section: "01.10"
 ---
 
 You can use markdown formatted source files on your site alongside with others. It's possible to edit those files in GUI, including metadata. But you can not create markdown source files from GUI (yet).

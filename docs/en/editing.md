@@ -1,5 +1,6 @@
 ---
 title: Editing, saving and generating site
+section: "01.05"
 ---
 Editing files in GUI is pretty easy, and almost self-explanatory. 
 <!--cut-->

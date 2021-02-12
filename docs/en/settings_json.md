@@ -1,6 +1,7 @@
 ---
 title: Settings.json structure
 date: 24.10.2020
+section: "01.03"
 ---
 
 The settings file is  [your site dir/]_config/settings.json. That's how it looks like, explanation follows.

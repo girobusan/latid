@@ -1,5 +1,6 @@
 ---
 title: Files and views
+section: 03.03
 ---
 
 *View* is an internal representation of site page. It is an object with fields, containing

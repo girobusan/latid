@@ -1,6 +1,7 @@
 ---
 title: Getting started
 name: gettingstarted
+section: "01.02"
 lang: en
 ---
 There are your first steps in setting up and start using Latid.
