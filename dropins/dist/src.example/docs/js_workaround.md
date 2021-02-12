@@ -1,5 +1,6 @@
 ---
 title: Java Script workaround 
+section: "04.01"
 ---
 
 If your site has scripts, which are launched on DOMContentLoaded or something like this, they might not launch in GUI mode. 

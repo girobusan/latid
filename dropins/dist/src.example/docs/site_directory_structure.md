@@ -1,5 +1,6 @@
 ---
 title: Site directory structure
+section: "01.04"
 ---
 
 The site files organized as follows:

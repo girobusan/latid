@@ -1,8 +1,9 @@
 ---
 title: Settings.json structure
 date: 24.10.2020
-excerpt: <p>The settings file is  [your site dir/]_config/settings.json. That's how it looks like, explanation follows.</p>
+section: "01.03"
 ---
+
 The settings file is  [your site dir/]_config/settings.json. That's how it looks like, explanation follows.
 <!--cut-->
 
@@ -24,7 +25,8 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
           "time_diff": 0,
           "debug": true,
           "content_selector": "#content",
-          "list_max": 10
+          "list_max": 10,
+          "default_date"  : "01.01.1970 12:30"
         },
 
         "markdown":{
@@ -83,7 +85,8 @@ Optional. Default metadata, which will be added to newly created files.
         "time_diff": 0,
         "debug": true,
         "content_selector": "#content",
-        "list_max": 10
+        "list_max": 10,
+        "default_date"  : "01.01.1970 12:30"
     }
 
 ### debug
@@ -100,6 +103,10 @@ Required. CSS selector of the main content container. Used in GUI mode. Will be 
 
 ### list_max
 Required. Maximum number of items per page in multipage article lists.
+
+### default_date
+Optional. Default date for files without date. If not defined, file modification date
+will be used instead.
 
 ## markdown
 
