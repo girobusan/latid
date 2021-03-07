@@ -111,12 +111,8 @@ Then point your browser to http://localhost:9999/
 2. [Config file](docs/en/settings_json.md)
 2. [Site directory structure](docs/en/site_directory_structure.md)
 2. [Links HOWTO](docs/en/links.md)
-2. [On Markdown files](docs/en/markdown_src.md)
-2. [On templates](docs/en/templates.md)
-2. [Template variables](docs/en/template_vars.md)
-2. ["View"](docs/en/view.md)
-2. [Command line operation](docs/en/cli.md)
-2. [Working with GUI](docs/en/gui.md)
+
+[More...](docs/en/index.md) 
 
 ## When the "beta" status will end
 

@@ -16,12 +16,12 @@
 {% extends "cover.njk" %}
 {% elseif view.path=='tags/index.json'%}
 {% extends "tags.njk" %}
+{% elseif view.file.meta.top_level_page %}
+{%extends "top_page.njk" %}
 {% elseif subindex_path.test(view.path) %}
 {%extends "subindex.njk" %}
 {% elseif tag_uri.test(view.uri) %}
 {%extends "tag.njk" %}
-{% elseif view.file.meta.top_level_page %}
-{%extends "top_page.njk" %}
 {#default#}
 {%else%}
 {% extends "article.njk" %}
