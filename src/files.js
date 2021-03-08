@@ -16,7 +16,16 @@ const Empty =
             "title": ''
         },
         "content": {
-            "blocks": []
+          "blocks": [ 
+           {
+              "type": "paragraph",
+              "data": 
+              {
+              "text": "Lorem Ipsum"
+              }
+          }
+
+          ]
         }
     }
 };
