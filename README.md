@@ -41,11 +41,10 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 ### 1.9.3b
 
 -  Improved documentation
--  Better default site (now docs included with it)
 -  Fixed some GUI flaws 
 -  Custom default date for files without date
 -  Custom sorting of lists
--  Improve example site contents
+-  Improve example site contents (docs included)
 -  List limits customization by page
 -  Bugs fixed
 
@@ -108,12 +107,11 @@ Assuming you have node.js installed, execute from the same folder:
 
 Then point your browser to http://localhost:9999/ 
 
-### Some other docs (so far)
+### Documentation
 
 1. [Getting started](docs/en/gettingstarted.md)
 2. [Config file](docs/en/settings_json.md)
 2. [Site directory structure](docs/en/site_directory_structure.md)
-2. [Links HOWTO](docs/en/links.md)
 
 [More...](docs/en/index.md) 
 
