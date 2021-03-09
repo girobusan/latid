@@ -38,6 +38,18 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 
 ## Releases
 
+### 1.9.3b
+
+-  Improved documentation
+-  Better default site (now docs included with it)
+-  Fixed some GUI flaws 
+-  Custom default date for files without date
+-  Custom sorting of lists
+-  Improve example site contents
+-  List limits customization by page
+-  Bugs fixed
+
+
 ### 1.9.2b
 
 - Option to treat Markdown files without frontmatter as a source 
@@ -56,23 +68,14 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 - Improvements to block editor UI
 - Cleanup and refactoring
 
-### 1.8.14b
-- Bugs fixed
-- Improved UI (error handling)
-- Customize rendering of blocks via nunjucks
-- _Markdown_ article block
-- Custom (per site) default metadata for new files
 
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
-- [x] Custom default date for files without date
-- [x] Custom sorting of lists
-- [x] Improve example site contents
+
 - [ ] Improve list exclusion 
 - [ ] More descriptive error handing (preview, editor start)
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
-- [x] List limits customization by page
 - [ ] Themes support
 - [ ] Working in browser without node.js
 
