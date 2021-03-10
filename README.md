@@ -72,9 +72,8 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 <small>The marked ones are implemented, but will be included in future release</small>
 
 - [ ] Improve list exclusion 
-- [ ] More descriptive error handing
-      - [  ] Show better error screen when no page (404)
-      - [  ] Handle server down situation
+- [ ] Show better error screen when no page (404)
+- [ ] Handle server down situation
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [ ] Themes support
