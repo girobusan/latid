@@ -34,7 +34,7 @@ The sites, produced with Latid may be completely static and adapted even
 for oldest browsers, but you will need the descent one for using Latid GUI (Latid can 
   work without GUI with some limitations). 
 
-Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work. 
+Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work. 
 
 ## Releases
 
@@ -72,7 +72,9 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work.
 <small>The marked ones are implemented, but will be included in future release</small>
 
 - [ ] Improve list exclusion 
-- [ ] More descriptive error handing (preview, editor start)
+- [ ] More descriptive error handing
+      - [  ] Show better error screen when no page (404)
+      - [  ] Handle server down situation
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [ ] Themes support

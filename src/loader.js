@@ -52,6 +52,7 @@ window.l4.producer.init()
         document.getElementById("preloader").remove();
         //console.log('Preloader removed');
         let preview = new Preview.preview();
+        window.l4.producer.registerCallback("serverError" , preview.showError)
         preview.init()
             .then(() => preview.goTo(loc))
             ;

@@ -28,7 +28,9 @@ export function producer() {
         //console.log(m);
         if (m.data.id && my.msgRegistry[m.data.id]) {
             //console.log("Reply to msg" , m.data.id)        
-            my.msgRegistry[m.data.id].resolve(m.data); //= Promise.resolve( m.data); 
+            let myclb = my.msgRegistry[m.data.id];
+            //if(myclb.then)
+            myclb.resolve(m.data);//.then(myclb); //= Promise.resolve( m.data); 
             delete (my.msgRegistry[m.data.id]);
         } else if (m.data.callback && my.callbacks[m.data.callback]) {
             my.callbacks[m.data.callback](m);
@@ -50,6 +52,7 @@ export function producer() {
     }
 
     this.registerCallback = function (ev, f) {
+        console.log("Callback added" , ev)
         this.callbacks[ev] = f;
     }
     this.removeCallback = function (ev) {

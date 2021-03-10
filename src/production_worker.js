@@ -123,4 +123,23 @@ self.setup = function(){
 }
 
 var Production = new routines(serv);
+//ping
+setInterval(function(){
+//ping server
+        var request = new XMLHttpRequest();
+        
+        request.overrideMimeType("text/plain");
+        request.open("GET", api_root + "areyouthere" , false);
+        request.send();
+        if (request.status == 200) {
+            
+            console.log("%c...server pinged..." , "color: gray");
+        } else {
+            console.error("Server doesn't work")
+            postMessage({"callback" : "serverError" , "type": "error"})
+        }
+
+}, 10000)
+
+//
 onmessage = makeMessaging(Production , self , "local web server");

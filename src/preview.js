@@ -182,6 +182,10 @@ export function preview() {
         return my.current_view ? false : true;
     }
 
+    this.showError = function(err){
+      console.log("Error" , err )
+    }
+
     this.showEmpty = function () {
         console.log("SHOW EMPTY")
         doc.innerHTML = "<html><head></head><body>Probably, we shoud <a class='create' href='#'>create page</a></body></html>"
