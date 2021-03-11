@@ -18,7 +18,6 @@ import * as Pathops from "./pathops";
 import * as Util from "./util";
 const path = require("path");
 //import * as Rewriter from "./link_replacer";
-//require("./styles/preview.less");
 //prepare meaaging
 if (!window.l4) { window.l4 = {} };
 
@@ -84,6 +83,7 @@ export function preview() {
     my.current_editor = null;
     my.panel_collapsed = false;
     my.site_root = "";
+    my.faulted = false;
 
     this.template = new NTemplate.template(l4.views, l4.settings, l4.meta, null);
 
@@ -105,6 +105,9 @@ export function preview() {
         }
 
         window.onhashchange = function () {
+          if(window.location.hash == "#!error"){
+          return;
+          }
             my.goTo(window.location.hash.substring(2));
         }
 
@@ -133,7 +136,7 @@ export function preview() {
             //handle click on links            
             document.addEventListener("click", function (e) {
                 if (!e.target) {
-                    return;
+                    return true;
                 }
                 //console.log(e);
 
@@ -143,10 +146,10 @@ export function preview() {
                     //TARGET IS NOT A. maybe, we have to go higher (until nearest link or top)
                     do {
                         tglink = tglink.parentNode;
-                    } while (tglink && tglink.nodeName != "A" && tglink.nodeName != "BODY")
+                    } while (tglink && tglink.nodeName != "A" && tglink.nodeName != "BODY" && tglink.nodeName!='HTML')
                 }
 
-                if (tglink.nodeName == 'A' && tglink.getAttribute("href")) {
+                if (tglink && tglink.nodeName == 'A' && tglink.getAttribute("href")) {
                     e.preventDefault();
                     //var slink = tglink.getAttribute("href");
                     if (tglink.getAttribute("href").match(/^(http|ftp|news|gopher|\/\/)/)) {
@@ -183,7 +186,38 @@ export function preview() {
     }
 
     this.showError = function(err){
+      let error_title = "Generic Error";
+      let error_message = "Generic error message";
+      let error_action = "Generic error action";
+
+      console.log("Show fatal error:" , err);
+      //
+      if(err.data.type=="no_server"){
+       error_title = "Local server down";
+       error_message = "Server down or misconfigured. Fix issue and reload the site.";
+       error_action = "";
+
+      }
+      //
+      let errorHTML = `<html><head><title>Error: ${error_title}</title></head>
+      <body id="latid_error_page">
+      <div id="content">
+      <h1>${error_title}</h1>
+      <div id="message">${error_message}</div>
+      <div id = "action">${error_action}</div>
+      </div>
+      </body></html>`
+      //my.faulted = true;
+      let css = document.getElementById("latid_gui_styles");
+      //console.log("Faulted" , my.faulted)
+      //window.location.hash = "#!error";
       console.log("Error" , err )
+      doc.innerHTML = errorHTML;
+      document.head.appendChild(css);
+
+    }
+    this.exitError = function(msg){
+      my.faulted = false;
     }
 
     this.showEmpty = function () {
@@ -277,7 +311,7 @@ export function preview() {
                 if (!v.ok) {
                     console.error("Preview: no such view:", uri);
                     smalltalk.alert("Latid", "No such page: " + uri + "")
-                    //.then(()=> my.createPage(uri))
+                    .then(()=> history.back())
                     //.catch(e=>e);
                     return;
                 } else if (v.view.type == 'src') {
@@ -419,7 +453,9 @@ export function preview() {
         d3.select("#viewer_controls").remove();
 
         //d3.select("head").append("link").attr("rel", "stylesheet").attr("type", "text/css").attr("href", "/_system/styles/preview.css")
-        d3.select("head").append("link").attr("rel", "stylesheet").attr("type", "text/css")
+        d3.select("head").append("link").attr("rel", "stylesheet")
+        .attr("type", "text/css")
+        .attr("id" , "latid_gui_styles")
             .attr("href", path.join(my.site_root, "/_system/scripts/l4.css"));
         let vtt = VERSION;
         let panel = d3.select("body")

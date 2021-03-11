@@ -133,10 +133,10 @@ setInterval(function(){
         request.send();
         if (request.status == 200) {
             
-            console.log("%c...server pinged..." , "color: gray");
+            console.info("%c...server pinged..." , "color: gray");
         } else {
             console.error("Server doesn't work")
-            postMessage({"callback" : "serverError" , "type": "error"})
+            postMessage({"callback" : "serverError" , "type": "no_server"})
         }
 
 }, 10000)
