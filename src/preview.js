@@ -211,7 +211,7 @@ export function preview() {
       let css = document.getElementById("latid_gui_styles");
       //console.log("Faulted" , my.faulted)
       //window.location.hash = "#!error";
-      console.log("Error" , err )
+      //console.log("Error" , err )
       doc.innerHTML = errorHTML;
       document.head.appendChild(css);
 
