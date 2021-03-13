@@ -10,11 +10,11 @@ GUI parts
 ---------
 That how it looks the first time:
 
-![](../pix/main_gui.png)
+![](pix/main_gui.png)
 
 Let's break it down:
 
-![](../pix/gui_scheme.png)
+![](pix/gui_scheme.png)
 
 ### A
 Page operations. Switch to|from edit mode, save current page, create page in the current directory.

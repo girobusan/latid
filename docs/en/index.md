@@ -22,6 +22,7 @@ top_level_page: true
 - [ View ](view.md)
 - [ Templates ](templates.md)
 - [ Template variables ](template_vars.md)
+- [ Util module ](util.md)
 
 ## Advanced
 - [ JavaScript workaround ](js_workaround.md)

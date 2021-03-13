@@ -24,7 +24,7 @@ javascript-free) content (blogs, documentation, portfolios).
 - I18n ready
 - Site may have any directory structure
 
-![screenshot](docs/pix/readme_cover.png) 
+![screenshot](pix/readme_cover.png) 
 
 ## Requirements
 
