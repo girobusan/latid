@@ -5,26 +5,28 @@ top_level_page: true
 ---
 
 ## Basics
-- [ Introduction ](intro.md)
-- [ Getting started ](gettingstarted.md)
-- [ Site directory structure ](site_directory_structure.md)
-- [ Settings file ](settings_json.md)
-- [ Command line interface ](cli.md)
+1. [ Introduction ](intro.md)
+1. [ Getting started ](gettingstarted.md)
+1. [ Site directory structure ](site_directory_structure.md)
+1. [ Settings file ](settings_json.md)
+1. [ Command line interface ](cli.md)
 
 ## Editing
-- [ File metadata ](file_meta.md)
-- [ Linking ](links.md)
-- [ Using GUI ](gui.md)
-- [ Block editor ](blockeditor.md) (to be written)
-- [ Using Markdown files ](markdown_src.md)
+1. [ File metadata ](file_meta.md)
+1. [ Linking ](links.md)
+1. [ Using GUI ](gui.md)
+1. [ Block editor ](blockeditor.md) (to be written)
+1. [ JSON source files ](json_src.md)
+1. [ Using Markdown files ](markdown_src.md)
 
 ## Templating
-- [ View ](view.md)
-- [ Templates ](templates.md)
-- [ Template variables ](template_vars.md)
+1. [ View ](view.md)
+1. [ Templates ](templates.md)
+1. [ Template variables ](template_vars.md)
+1. [ Util module ](util.md)
 
 ## Advanced
-- [ JavaScript workaround ](js_workaround.md)
-- [ Server API ](server_api.md)
+1. [ JavaScript workaround ](js_workaround.md)
+1. [ Server API ](server_api.md)
 
 

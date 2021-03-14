@@ -9,6 +9,7 @@ It works best for multipage sites (tested with >2000 pages) with primary static
 (even completely 
 javascript-free) content (blogs, documentation, portfolios).
 
+
 ## Features
 
 - One dependency (node.js), no install, just drop in
@@ -24,7 +25,7 @@ javascript-free) content (blogs, documentation, portfolios).
 - I18n ready
 - Site may have any directory structure
 
-![screenshot](docs/pix/readme_cover.png) 
+![screenshot](pix/readme_cover.png) 
 
 ## Requirements
 

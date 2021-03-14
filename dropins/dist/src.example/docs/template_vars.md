@@ -31,7 +31,7 @@ Page content
 
 util
 ----
-Utilities, see util module.
+Utilities, see [util](util.md) module.
 
 log
 ----
@@ -39,7 +39,7 @@ Log function (obsolete)
 
 views
 -----
-List of all views (pages and files)
+List of all [views](views.md) (pages and files)
 
 meta
 ----
