@@ -9,6 +9,7 @@ It works best for multipage sites (tested with >2000 pages) with primary static
 (even completely 
 javascript-free) content (blogs, documentation, portfolios).
 
+
 ## Features
 
 - One dependency (node.js), no install, just drop in
