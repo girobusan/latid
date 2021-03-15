@@ -11,6 +11,8 @@ javascript-free) content (blogs, documentation, portfolios).
 
 It's now in active use by author (me), tested and is pretty mature.
 
+([There are some docs](docs/en/index.md))
+
 ## Features
 
 - One dependency (node.js), no install, just drop in
