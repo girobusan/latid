@@ -1,7 +1,9 @@
 ---
 title: Latid README
 ---
-# Latid (L4) &#128031;
+<span style='color:#00a1ab'>
+<h1 style='font-size:4rem'> Latid (L4) &#128031;</h1>
+</span>
 
 Latid is a static site generator, which works as traditional 
 command line utility and|or with browser based GUI (allowing to use block editor). 
