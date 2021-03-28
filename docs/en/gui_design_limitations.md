@@ -2,6 +2,7 @@
 title: Adapting your design to GUI
 ---
 
+
 When in Latid GUI, pages are not browsed as usual, but rather manipulated with some javascript
 magic. If you want to use custom scripts in your design, and want them to
 work smoothly in GUI, you have to consider some
@@ -9,6 +10,7 @@ technical limitations of that preview mode.
 
 Most straightforward way to overcome those limitation is to use `editmode` [template variable](template_vars.md) for excluding 
 code, which must not be in GUI or to include additional code for preview in GUI.
+
 
 You can easily pass the `editmode` flag to your page scripts. Put this in
 your template, somewhere in html head:
@@ -59,7 +61,7 @@ workaround:
 No `location` and hash
 ------------
 
-Location does not change in GUI. Rather, hash is used to keep location info.
+Location does not change in GUI. Instead, the hash is used to keep location info.
 If you want to check location in your custom script **and** use it in preview
 mode, you may add alternative routine to check location in preview, 
 by parsing hash.

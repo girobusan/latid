@@ -19,7 +19,7 @@ top_level_page: true
 1. [ JSON source files ](json_src.md)
 1. [ Using Markdown files ](markdown_src.md)
 
-## Designng and templating
+## Designing and templating
 1. [ View ](view.md)
 1. [ Templates ](templates.md)
 1. [ Template variables ](template_vars.md)
