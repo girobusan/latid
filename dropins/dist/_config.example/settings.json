@@ -36,5 +36,9 @@
   "publish":{
     "command" : "",
     "args" : ""
+  },
+  "themes":{
+    "enabled" : false,
+    "theme" : "default"
   }
 }

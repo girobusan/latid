@@ -173,7 +173,7 @@ export var serverLoader = buildLoader(function (name) {
 export function template(viewlist, settings, meta, loader) {
     //console.log("NUNJUCKI", meta)
     if (!loader) {
-        //console.log("no loader");
+        console.info("Using worker as template loader");
         loader = new workerLoader('/_config/templates');
     } else {
         //console.log("custom loader", loader);
