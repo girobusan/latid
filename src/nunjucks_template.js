@@ -171,8 +171,9 @@ export var serverLoader = buildLoader(function (name) {
  */
 
 export function template(viewlist, settings, meta, loader) {
-    //console.log("NUNJUCKI", meta)
+    console.log("NUNJUCKI", settings || "no settings supplied")
     if (!loader) {
+    console.log("Creating default loader");
         console.info("Using worker as template loader");
         loader = new workerLoader('/_config/templates');
     } else {

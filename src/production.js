@@ -392,29 +392,15 @@ export function routines(fileops) {
         //console.log(Path.join( my.fileops.base , "_config/settings.json"));
 
         //settings file
-        let bt_promises = [];
-        let bt_names = [];
-        //block templates
-        await fileops.list("_config/templates/blocks")
-            .then(function (r) {
-                console.info("Custom block templates used.")
-                r.forEach(function (e) {
-                    //console.log("E" , e)
-                    bt_names.push(e.path.substring(0 , e.path.indexOf(".")))
-                    bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
-                })
-            })
-            .catch(e => console.info("No custom block templates found:", e));
 
         let configs = [fileops.get("_config/settings.json")];
-        configs = configs.concat(bt_promises);
 
         Promise.all(configs)
-            //fileops.get(sp)
             .then(function (r) {
-                //console.log("Result", r)             
+                //parse settings
                 my.settings = JSON.parse(my.decoder.decode(r[0]));
-                //console.log(my.settings)
+
+                //look for block templates if any
                 let tpls = r.slice(1);
                 tpls = tpls.map(e => my.decoder.decode(e).toString());
                 //
@@ -422,24 +408,46 @@ export function routines(fileops) {
                 
                 my.settings.block_templates = tpls_dict;
                 my.template_loader = Template.buildLoader(function (p) {
+                console.log("Template Loader was created on load");
                     let c = my.fileops.getSync(p); //ArrayBuffer
                     //console.log("Buffer" , c)
                     var tc = c;
-                    /*
-                    try {
-                        var tc = my.decoder.decode(c);
-                    } catch (e) {
-                        console.error("Production: template loader error:" , p , c , e);
-                    }
-                    */
-
-                    //console.log("Template" , tc);
                     return tc;
                 });
 
-                readycallback();
+                //readycallback();
+                return my.settings;
 
             })
+            .then(async function(s){
+              //preload block templates 
+              let bt_promises = [];
+              let bt_names = [];
+
+              //block templates list
+              await fileops.list("_config/templates/blocks")
+              .then(function (r) {
+                console.info("Custom block templates used.")
+                r.forEach(function (e) {
+                  //console.log("E" , e)
+                  bt_names.push(e.path.substring(0 , e.path.indexOf(".")))
+                  bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
+                })
+              })
+              .catch(e => console.info("No custom block templates found:", e));
+
+              //push them to settings
+              Promise.all(bt_promises) //load all srources
+              .then(function(r){
+                r.forEach(function(e , i){
+                 console.log(bt_names[i] , my.decoder.decode(e).toString())
+                 s.block_templates[bt_names[i]] = my.decoder.decode(e).toString();
+                })
+              });
+                  
+
+            }) //load block tempaltes
+            .then(readycallback) //readycallback
             .catch(err => console.error("Can not load settings:" , err))
     }
 }
