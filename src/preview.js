@@ -85,7 +85,6 @@ export function preview() {
     my.site_root = "";
     my.faulted = false;
 
-    this.template = new NTemplate.template(l4.views, l4.settings, l4.meta, null);
 
     this.init = async function () {
         //console.log("Preview init")

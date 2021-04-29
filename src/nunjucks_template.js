@@ -134,9 +134,37 @@ export function buildLoader(rdr) {
     return l;
 }
 
-var workerLoader = nunjucks.Loader.extend(
+function makeWorkerLoader(basepath){
+   let wl = nunjucks.Loader.extend(
+    
     {
         //async: true,
+
+        "getSource": function (name, callback) {
+            const basename = basepath || '/_config/templates/';
+            //let source = null;
+            var request = new XMLHttpRequest();
+            request.open('GET', basename + name, false);
+            request.send(null);
+            if (request.status == 200) {
+                return {
+                    src: request.responseText,
+                    path: name
+                }
+            } else {
+                console.log("request status ", request.status)
+                return null;
+            }
+        }
+    });
+    return wl;
+}
+
+var workerLoader = nunjucks.Loader.extend(
+    
+    {
+        //async: true,
+
         "getSource": function (name, callback) {
             const basename = '/_config/templates/';
             //let source = null;
@@ -171,11 +199,11 @@ export var serverLoader = buildLoader(function (name) {
  */
 
 export function template(viewlist, settings, meta, loader) {
-    console.log("NUNJUCKI", settings || "no settings supplied")
+    //console.log("NUNJUCKI", settings || "no settings supplied")
     if (!loader) {
-    console.log("Creating default loader");
-        console.info("Using worker as template loader");
-        loader = new workerLoader('/_config/templates');
+      console.log("Creating default loader");
+      console.info("Using worker as template loader");
+      loader =  makeWorkerLoader('/_config/templates');
     } else {
         //console.log("custom loader", loader);
     }

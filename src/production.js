@@ -408,10 +408,8 @@ export function routines(fileops) {
                 
                 my.settings.block_templates = tpls_dict;
                 my.template_loader = Template.buildLoader(function (p) {
-                console.log("Template Loader was created on load");
-                    let c = my.fileops.getSync(p); //ArrayBuffer
-                    //console.log("Buffer" , c)
-                    var tc = c;
+                //console.log("Template Loader was created on load");
+                    let tc = my.fileops.getSync(p); //ArrayBuffer
                     return tc;
                 });
 
@@ -419,34 +417,37 @@ export function routines(fileops) {
                 return my.settings;
 
             })
-            .then(async function(s){
-              //preload block templates 
-              let bt_promises = [];
-              let bt_names = [];
+            .then(function(settings){
+               
+                return fileops.list("_config/templates/blocks")
+                .catch(err=>console.log("No custom block templates"));
+                ;
+           })
+           .then(async function(blist){
+             if(!blist){
+               return ;
+             }
+             blist = blist || [];
+             //preload block templates 
+             let bt_promises = [];
+             let bt_names = [];
 
-              //block templates list
-              await fileops.list("_config/templates/blocks")
-              .then(function (r) {
-                console.info("Custom block templates used.")
-                r.forEach(function (e) {
-                  //console.log("E" , e)
-                  bt_names.push(e.path.substring(0 , e.path.indexOf(".")))
-                  bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
-                })
-              })
-              .catch(e => console.info("No custom block templates found:", e));
+             //block templates list
+             blist.forEach(function (e) {
+               bt_names.push(e.path.substring(0 , e.path.indexOf(".")))
+               bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
+             })
 
-              //push them to settings
-              Promise.all(bt_promises) //load all srources
-              .then(function(r){
-                r.forEach(function(e , i){
-                 console.log(bt_names[i] , my.decoder.decode(e).toString())
-                 s.block_templates[bt_names[i]] = my.decoder.decode(e).toString();
-                })
-              });
-                  
+             //push them to settings
+             Promise.all(bt_promises) //load all srources
+             .then(function(r){
+               r.forEach(function(e , i){
+                 my.settings.block_templates[bt_names[i]] = my.decoder.decode(e).toString();
+               })
+             });
 
-            }) //load block tempaltes
+
+           }) // block tempaltes loaded
             .then(readycallback) //readycallback
             .catch(err => console.error("Can not load settings:" , err))
     }
