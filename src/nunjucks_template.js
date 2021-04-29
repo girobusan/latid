@@ -116,12 +116,13 @@ export function rewriteLinks(htx, uri, views , settings) {
     return rp.rewriteAllLinks(htx, uri);
 }
 
-export function buildLoader(rdr) {
-    //console.log("Building template loader with", rdr)
-    let l = function () { }
+export function buildLoader(rdr , basename) {
+     //console.log("Building NJK loader" , rdr)
+     basename = "/_config/templates/" || basename ;
+
+    let l = function () { };
     l.getSource = function (name) {
         //console.log("my get source")
-        const basename = '/_config/templates/';
         //console.log("reading NJK")
         return {
             src: rdr(Util.gluePath(basename, name)),
@@ -132,6 +133,10 @@ export function buildLoader(rdr) {
 
     //console.log(Object.keys(l.prototype), l.getSource());
     return l;
+}
+
+function decideBasePath(default_path , settings){
+ return default_path;
 }
 
 function makeWorkerLoader(basepath){
@@ -160,28 +165,6 @@ function makeWorkerLoader(basepath){
     return wl;
 }
 
-var workerLoader = nunjucks.Loader.extend(
-    
-    {
-        //async: true,
-
-        "getSource": function (name, callback) {
-            const basename = '/_config/templates/';
-            //let source = null;
-            var request = new XMLHttpRequest();
-            request.open('GET', basename + name, false);
-            request.send(null);
-            if (request.status == 200) {
-                return {
-                    src: request.responseText,
-                    path: name
-                }
-            } else {
-                console.log("request status ", request.status)
-                return null;
-            }
-        }
-    });
 
 
 
@@ -203,7 +186,7 @@ export function template(viewlist, settings, meta, loader) {
     if (!loader) {
       console.log("Creating default loader");
       console.info("Using worker as template loader");
-      loader =  makeWorkerLoader('/_config/templates');
+      loader =  makeWorkerLoader(decideBasePath('/_config/templates' , settings));
     } else {
         //console.log("custom loader", loader);
     }
