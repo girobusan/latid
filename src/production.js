@@ -417,16 +417,29 @@ export function routines(fileops) {
                 return my.settings;
 
             })
-            .then(function(settings){
-               
-                return fileops.list("_config/templates/blocks")
-                .catch(err=>console.log("No custom block templates"));
+            .then(async function(settings){
+                //figure out blocks path
+                console.log("BLOCK FINDING");
+                console.log("themes" in settings);
+                console.log(settings.themes.enabled);
+                console.log(settings.themes.theme);
+                if("themes" in settings && settings.themes.enabled && settings.themes.theme){
+                  var block_path = "_config/themes/" + settings.themes.theme + ".t/blocks/"; 
+                }else{
+                 console.log("No theme");
+                 block_path = "_config/templates/blocks/";
+                }
+              console.log("Blocks are in", block_path) ;
+                let bl = await fileops.list(block_path) ;
+                return bl.map(e=> {  e.name = e.path ; e.path =block_path + e.path;  return e})
+                //.catch(err=>console.log("No custom block templates", err));
                 ;
            })
            .then(async function(blist){
              if(!blist){
                return ;
              }
+             console.log(blist);
              blist = blist || [];
              //preload block templates 
              let bt_promises = [];
@@ -434,15 +447,17 @@ export function routines(fileops) {
 
              //block templates list
              blist.forEach(function (e) {
-               bt_names.push(e.path.substring(0 , e.path.indexOf(".")))
-               bt_promises.push(fileops.get('_config/templates/blocks/' + e.path));
-             })
+               console.log("block template" , e.path)
+               bt_names.push(e.name.substring(0, e.name.lastIndexOf(".")))
+               bt_promises.push(fileops.get(e.path));
+             });
 
              //push them to settings
              Promise.all(bt_promises) //load all srources
              .then(function(r){
                r.forEach(function(e , i){
                  my.settings.block_templates[bt_names[i]] = my.decoder.decode(e).toString();
+             console.log("BLOCKS ADDED" , my.settings)
                })
              });
 
