@@ -411,18 +411,20 @@ export function routines(fileops) {
                 //console.log("Template Loader was created on load");
                     let tc = my.fileops.getSync(p); //ArrayBuffer
                     return tc;
-                });
+                } , my.settings);
 
                 //readycallback();
                 return my.settings;
 
             })
+            // immediately load 
+            // block templates
             .then(async function(settings){
                 //figure out blocks path
-                console.log("BLOCK FINDING");
-                console.log("themes" in settings);
-                console.log(settings.themes.enabled);
-                console.log(settings.themes.theme);
+//                console.log("BLOCK FINDING");
+//                console.log("themes" in settings);
+//                console.log(settings.themes.enabled);
+//                console.log(settings.themes.theme);
                 if("themes" in settings && settings.themes.enabled && settings.themes.theme){
                   var block_path = "_config/themes/" + settings.themes.theme + ".t/blocks/"; 
                 }else{
@@ -435,6 +437,8 @@ export function routines(fileops) {
                 //.catch(err=>console.log("No custom block templates", err));
                 ;
            })
+           // load pack them to settings object
+           // it's not the best solutuion
            .then(async function(blist){
              if(!blist){
                return ;
@@ -457,7 +461,7 @@ export function routines(fileops) {
              .then(function(r){
                r.forEach(function(e , i){
                  my.settings.block_templates[bt_names[i]] = my.decoder.decode(e).toString();
-             console.log("BLOCKS ADDED" , my.settings)
+             //console.log("BLOCKS ADDED" , my.settings)
                })
              });
 

@@ -131,11 +131,12 @@ setInterval(function(){
         request.overrideMimeType("text/plain");
         request.open("GET", api_root + "areyouthere" , false);
         request.send();
+            console.info("%cping..." , "color: gray");
         if (request.status == 200) {
             
-            console.info("%c...server pinged..." , "color: gray");
+            console.info("%c...pong!" , "color: green");
         } else {
-            console.error("Server doesn't work")
+            console.error("no responce.")
             postMessage({"callback" : "serverError" , "type": "no_server"})
         }
 

@@ -116,9 +116,9 @@ export function rewriteLinks(htx, uri, views , settings) {
     return rp.rewriteAllLinks(htx, uri);
 }
 
-export function buildLoader(rdr , basename) {
+export function buildLoader(rdr , settings) {
      //console.log("Building NJK loader" , rdr)
-     basename = "/_config/templates/" || basename ;
+     const basename = decideBasePath( "/_config/templates/" , settings);
 
     let l = function () { };
     l.getSource = function (name) {
@@ -135,8 +135,15 @@ export function buildLoader(rdr , basename) {
     return l;
 }
 
-function decideBasePath(default_path , settings){
- return default_path;
+export function decideBasePath(default_path , settings){
+  if(settings && settings.themes 
+  && settings.themes.enabled 
+  && settings.themes.theme){
+    console.info("Theme set: settings.themes.theme");
+    return "/_config/themes/" + settings.themes.theme + ".t/"
+    }
+    console.info("Theme not set.");
+    return default_path;
 }
 
 function makeWorkerLoader(basepath){
