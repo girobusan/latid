@@ -4,7 +4,7 @@ import * as CRender from "./content_render";
 import * as Pathops from "./pathops";
 import * as Util from "./util";
 import * as Rewriter from "./link_replacer";
-//import {TextDecoder as _TD} from "util";
+import * as Themes from "./themes";
 
 
 var TD =null ;//|| require('util').TextDecoder ;
@@ -18,6 +18,9 @@ if(typeof TextDecoder !== 'undefined'){
 
 const path = require("path");
 const dec = new TD("utf-8");
+//
+//template addons
+//
 
 export function msort(views_array , reverse, field_name  , as_number){
   let r = views_array.slice(0);
@@ -109,13 +112,19 @@ export function nbsp(str){
     return r; 
 };
 
-
+//link rewriter
 
 export function rewriteLinks(htx, uri, views , settings) {
     var rp = new Rewriter.rewriter(views,settings);
     return rp.rewriteAllLinks(htx, uri);
 }
 
+//loaders
+/*
+ * @param rdr reader function
+ * @param settings Latid settings
+ *
+ */
 export function buildLoader(rdr , settings) {
      //console.log("Building NJK loader" , rdr)
      const basename = decideBasePath( "/_config/templates/" , settings);
@@ -187,8 +196,9 @@ export var serverLoader = buildLoader(function (name) {
  * @param {Object} meta 
  * @param {Object} loader 
  */
-
+ //must be: list , context(incl. meta for pages) , loader :?
 export function template(viewlist, settings, meta, loader) {
+
     //console.log("NUNJUCKI", settings || "no settings supplied")
     if (!loader) {
       console.log("Creating default loader");
@@ -211,13 +221,14 @@ export function template(viewlist, settings, meta, loader) {
         //console.log("NJK render" , view.uri);
         //create context
         let context = {
-            "editmode": typeof window == 'undefined' ? false : true,
+        //it knows too much
+            "editmode": typeof window == 'undefined' ? false : true, //move
             "list": my.lister,
             "paths": Pathops,
-            "settings": my.settings,
+            "settings": my.settings,  //move
             "build_date": (new Date()).toISOString(),
-            "view": view,
-            "content": CRender.renderThis(view , my.settings),//render content using CR
+            "view": view, //move!
+            "content": CRender.renderThis(view , my.settings),//move?
             "util": Util,
             "log": () => console.info.apply( this , ["Nunjucks:"].concat(arguments)),//console.log("NJK:" , t),
             "views": viewlist,
@@ -238,4 +249,63 @@ export function template(viewlist, settings, meta, loader) {
         return my.render(view);
     }
 
+}
+//new versions
+export function FbuildLoader(reader , pathfinder) {
+
+    let l = function () { };
+    l.getSource = function (name) {
+        return {
+            src: reader(pathfinder(name)),
+            path: name
+        }
+    }
+
+    return l;
+}
+
+export function viewToContext(view){
+  return {
+   "meta" : view.file.meta,
+   "view" : view
+  }
+}
+
+//New universal (hopefully) functions
+// ?????????????
+// f(file loader) => f(pathifinder func) => f(tpl_name) => f(context) -> html
+//
+//f(file load function)-> f(pathfinder) -> loader
+//stage 1
+//f(file loader func) => f(pathfinder func)
+
+//f(file loader) => f(pathifinder func)
+export function loadTemplate(floader){
+  const common_context = {
+    "util": Util,
+    "paths" : Pathops,
+    "log": () => console.info.apply( this , ["Nunjucks:"].concat(arguments)),//console.log("NJK:" , t),
+  }
+
+  return function(pfinder){
+    //here we can setup nunjucks engine
+    let loader = FbuildLoader(floader , pfinder) ; //not right
+    var nunjucks = new nunjucks.Environment(loader, { autoescape: false });
+    nunjucks.addFilter('nbsp' , nbsp);
+    nunjucks.addFilter('msort' , msort); 
+
+    // f(pathifinder func) => f(tpl_name)
+    return function(tpl_name){
+
+      // f(tpl_name) => f(context)
+      return function(context){
+        //composing context 
+        local_context = Object.assign(common_context , context);
+        //add current fields to context
+        local_context.build_date = (new Date()).toISOString();
+
+        return nunjucjs.render(tpl_name , local_context);
+      }
+    }     
+  }
 }

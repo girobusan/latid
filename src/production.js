@@ -127,7 +127,7 @@ export function routines(fileops) {
 
     //one file processing
     //returns ptromise
-    this.path2view = function (finfo, callback  ) {
+    this.path2view = function (finfo) {
         //console.log("P2V" , finfo.path);
         //let callback = callback || function () { };
         let tg = function (p) {
@@ -300,7 +300,6 @@ export function routines(fileops) {
 
         });
         //
-        //buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site")();
     }
     /*
     
@@ -386,7 +385,9 @@ export function routines(fileops) {
     //locate view by field (listops)
     // field name, field value => view obj
 
-    //preparations
+    //Loading settings
+    //creating template loader?
+    //
     this.init = async function (readycallback) {
         //console.log(my.fileops.base);
         //console.log(Path.join( my.fileops.base , "_config/settings.json"));
@@ -408,7 +409,7 @@ export function routines(fileops) {
                 
                 my.settings.block_templates = tpls_dict;
                 my.template_loader = Template.buildLoader(function (p) {
-                //console.log("Template Loader was created on load");
+                console.log("Template Loader was created on load");
                     let tc = my.fileops.getSync(p); //ArrayBuffer
                     return tc;
                 } , my.settings);
@@ -426,19 +427,20 @@ export function routines(fileops) {
 //                console.log(settings.themes.enabled);
 //                console.log(settings.themes.theme);
                 if("themes" in settings && settings.themes.enabled && settings.themes.theme){
-                  var block_path = "_config/themes/" + settings.themes.theme + ".t/blocks/"; 
+                  var block_path = "_config/themes/" + settings.themes.theme + "/templates/blocks"; 
                 }else{
                  console.log("No theme");
-                 block_path = "_config/templates/blocks/";
+                 block_path = "_config/templates/blocks";
                 }
               console.log("Blocks are in", block_path) ;
                 let bl = await fileops.list(block_path) ;
-                return bl.map(e=> {  e.name = e.path ; e.path =block_path + e.path;  return e})
+                //console.log("BL" , bl)
+                return bl.map(e=> {  e.name = e.path ; e.path =block_path + "/" + e.path;  return e})
                 //.catch(err=>console.log("No custom block templates", err));
                 ;
            })
            // load pack them to settings object
-           // it's not the best solutuion
+           // it's not the best solution
            .then(async function(blist){
              if(!blist){
                return ;
@@ -467,7 +469,7 @@ export function routines(fileops) {
 
 
            }) // block tempaltes loaded
-            .then(readycallback) //readycallback
+            .then(()=>readycallback(my.settings)) //readycallback
             .catch(err => console.error("Can not load settings:" , err))
     }
 }

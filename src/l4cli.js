@@ -61,6 +61,9 @@ export function reclist(dir, filelist) {
             filelist.push(Path.join(dir, file));
         }
     });
+    if(dir.indexOf("template")!=-1 && false){
+      console.log("RECLIST" , filelist)
+    }
     return filelist;
 };
 
@@ -138,6 +141,7 @@ let fileops = {
     },
     "list": function (rp) {
         let fulldir = Path.join(sitedir, rp);
+        console.log("Full DIr" , fulldir);
 
         //let mylist = reclist(fulldir).map(p => ({ "path": p.substring(fulldir.length+1) }));
         //console.log(mylist)
