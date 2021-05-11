@@ -1,3 +1,5 @@
+
+
 /*
 
  Platform-independent 
@@ -9,7 +11,11 @@
 import * as Views from "./views";
 import * as Formats from "./formats";
 import * as Listops from "./listops";
+//new templating mechanics
 import * as Template from "./nunjucks_template"; //loader?
+import * as Themes from "./themes";
+import * as CRender from "./content_render";
+//
 import * as Path from "path";
 import * as Rewriter from "./link_replacer";
 import * as Tags from "./tags.js";
@@ -421,6 +427,17 @@ export function routines(fileops) {
             // immediately load 
             // block templates
             .then(async function(settings){
+                //new template routines
+                my.FblockTemplate = Template
+                .loadTemplate(Template.FbuildLoader(my.fileops.getSync))
+                (Themes.templatePath(settings))                
+                ;
+                my.FviewTemplate = Template
+                .loadTemplate(Template.FbuildLoader(my.fileops.getSync))
+                (Themes.templatePath(settings))                
+                ("index.njk")
+                ;
+
                 //figure out blocks path
 //                console.log("BLOCK FINDING");
 //                console.log("themes" in settings);

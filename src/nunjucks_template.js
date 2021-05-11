@@ -290,9 +290,10 @@ export function loadTemplate(floader){
   return function(pfinder){
     //here we can setup nunjucks engine
     let loader = FbuildLoader(floader , pfinder) ; //not right
-    var nunjucks = new nunjucks.Environment(loader, { autoescape: false });
-    nunjucks.addFilter('nbsp' , nbsp);
-    nunjucks.addFilter('msort' , msort); 
+    //nt stands for Nunjucks Template
+    var nt = new nunjucks.Environment(loader, { autoescape: false });
+    nt.addFilter('nbsp' , nbsp);
+    nt.addFilter('msort' , msort); 
 
     // f(pathifinder func) => f(tpl_name)
     return function(tpl_name){
@@ -304,7 +305,12 @@ export function loadTemplate(floader){
         //add current fields to context
         local_context.build_date = (new Date()).toISOString();
 
-        return nunjucjs.render(tpl_name , local_context);
+        try{
+          return nt.render(tpl_name , local_context);
+        }catch(err){
+        console.error("No template" , err)
+        return ""
+        }
       }
     }     
   }

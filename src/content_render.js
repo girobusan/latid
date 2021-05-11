@@ -227,6 +227,20 @@ export function blockViewer(settings) {
         return stringHTML;
     }
 }
+//
+export function FblockViewer(tpl_fn){
+  this.show = function(content){
+    //blocks are in content.blocks
+    let htm = content.blocks.reduce(function(a , e , i){
+      let cbh = tpl_fn(e.type)(e.data) || blockViews[e.type](e);
+      a+=cbh;
+      return a;
+    } , "");
+    return htm;
+
+  }
+
+}
 
 export function renderThis(view , settings) {
     let v = null;
