@@ -16,6 +16,7 @@ export function templatePath(settings){
   }
 
   return function(...p){
-    return current_path + p.join("/");
+    console.log("Looking for" , p.join("/"));
+    return current_path + "/" +  p.join("/");
   }
 }

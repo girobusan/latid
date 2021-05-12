@@ -252,24 +252,22 @@ export function template(viewlist, settings, meta, loader) {
 }
 //new versions
 export function FbuildLoader(reader , pathfinder) {
+  //console.log("Incoming reader" , reader)
 
-    let l = function () { };
-    l.getSource = function (name) {
+    return {
+      "getSource" : function (name) {
+        console.log("F get source" , pathfinder(name))
+        //console.log("Reader" ,reader("/index.html"));
+        //console.log("Reader fn", reader);
         return {
-            src: reader(pathfinder(name)),
-            path: name
-        }
+          src: reader(pathfinder(name)),
+          path: name
+          
+
+        }}}
+
     }
 
-    return l;
-}
-
-export function viewToContext(view){
-  return {
-   "meta" : view.file.meta,
-   "view" : view
-  }
-}
 
 //New universal (hopefully) functions
 // ?????????????
@@ -280,36 +278,39 @@ export function viewToContext(view){
 //f(file loader func) => f(pathfinder func)
 
 //f(file loader) => f(pathifinder func)
-export function loadTemplate(floader){
-  const common_context = {
+export function FTemplate(floader){
+  var common_context = {
     "util": Util,
     "paths" : Pathops,
     "log": () => console.info.apply( this , ["Nunjucks:"].concat(arguments)),//console.log("NJK:" , t),
   }
 
+  // f(pathifinder func) => f(tpl_name)
   return function(pfinder){
     //here we can setup nunjucks engine
-    let loader = FbuildLoader(floader , pfinder) ; //not right
+    let Tloader = FbuildLoader(floader , pfinder) ; //not right
+    //
     //nt stands for Nunjucks Template
-    var nt = new nunjucks.Environment(loader, { autoescape: false });
+    var nt = new nunjucks.Environment(Tloader, { autoescape: false });
     nt.addFilter('nbsp' , nbsp);
     nt.addFilter('msort' , msort); 
 
-    // f(pathifinder func) => f(tpl_name)
+    // f(tpl_name) => f(context)
     return function(tpl_name){
 
-      // f(tpl_name) => f(context)
+      //f(context) => html
       return function(context){
         //composing context 
-        local_context = Object.assign(common_context , context);
+        let local_context = Object.assign({} , common_context , context);
         //add current fields to context
         local_context.build_date = (new Date()).toISOString();
 
         try{
+         //console.log("NT" , nt)
           return nt.render(tpl_name , local_context);
         }catch(err){
-        console.error("No template" , err)
-        return ""
+          console.info("No template" , pfinder(tpl_name ), err);
+          return ""
         }
       }
     }     

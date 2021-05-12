@@ -124,8 +124,27 @@ export function routines(fileops) {
         my.lister = new Listops.lister(my.views);
     }
 
+    this.view2context = function(view){
+    console.log("WorkerGlobalScope", WorkerGlobalScope!== undefined)
+      return {
+        "content" : CRender.FrenderThis(view, my.FTemplate), //render
+        "meta" : view.file.meta,
+        "list" : new Listops.lister(my.views),
+        "settings" : my.settings,
+        "view" : view,
+        "editmode":  WorkerGlobalScope !== undefined ,
+        "views" : my.views
+      
+      }
+    }
+
+    this.renderOneFile = function(view){
+      my.FTemplate("index.njk")(my.view2context(view));
+
+    }
+
     this.getBase = function (pt) {
-        return Path.join(this.fileops.base, Path.dirname(pt)) + "/";
+        return Path.join(this.fileops.base, Path.dirname(pt));// + "/";
     }
     ////////////////
     /// LOADING  ///
@@ -240,13 +259,15 @@ export function routines(fileops) {
         let v = this.lister.getByField(bf, val);
         //console.log("Lister got View" , v)
         if (v) {
-            let tr = my.template.render(v);
-            //console.log("After template" , tr)
-            let h = tr;
-            h = rp.rewriteAllLinks(tr, v.uri);
-            if (!h) {
-                console.log("No HTML")
-                return null
+          let context = my.view2context(v);
+          let tr = my.FTemplate("index.njk")(context);
+          //let tr = my.template.render(v);
+          //console.log("After template" , tr)
+          let h = tr;
+          h = rp.rewriteAllLinks(tr, v.uri);
+          if (!h) {
+            console.log("No HTML")
+            return null
             }
             if (add_local_base_tag) {
                 let lb = Path.join(this.fileops.base, "src/", Path.dirname(v.path));
@@ -282,7 +303,7 @@ export function routines(fileops) {
         console.info("Preparing to generate", my.views.length, "files")
         //console.log(my.views.map(e=>({"path" : e.path , "uri" : e.uri})))
         let rp = new Rewriter.rewriter(my.views ,false, my.settings);
-        my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
+        //my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
         my.views.forEach(function (v, i, a) {
             var myclb = null;
             if (i % 10 == 0 && i < my.views.length && callback) {
@@ -296,7 +317,8 @@ export function routines(fileops) {
                     .then(() => { if (myclb) { myclb() } })
                     .catch(err => console.error(err));
             } else {
-                let c = my.template.render(v);
+                //let c = my.template.render(v);
+                let c = my.renderOneFile(v);
                 c = rp.rewriteAllLinks(c, v.uri);
                 my.fileops.write(Path.join(my.settings.output.dir, v.uri), c)
                     .then(() => { if (myclb) { myclb() } })
@@ -428,14 +450,14 @@ export function routines(fileops) {
             // block templates
             .then(async function(settings){
                 //new template routines
-                my.FblockTemplate = Template
-                .loadTemplate(Template.FbuildLoader(my.fileops.getSync))
+                //do there a basic calcs
+                //new context on each run
+                //
+                //result: f(template name) => f(context) => html
+                //console.log("reader" , my.fileops.getSync)
+                my.FTemplate = Template
+                .FTemplate(my.fileops.getSync)
                 (Themes.templatePath(settings))                
-                ;
-                my.FviewTemplate = Template
-                .loadTemplate(Template.FbuildLoader(my.fileops.getSync))
-                (Themes.templatePath(settings))                
-                ("index.njk")
                 ;
 
                 //figure out blocks path

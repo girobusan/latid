@@ -232,7 +232,10 @@ export function FblockViewer(tpl_fn){
   this.show = function(content){
     //blocks are in content.blocks
     let htm = content.blocks.reduce(function(a , e , i){
-      let cbh = tpl_fn(e.type)(e.data) || blockViews[e.type](e);
+      let treturn = tpl_fn(e.type + ".njk")(e.data);
+      //console.info('Template returns' , treturn);
+      let cbh = tpl_fn("blocks/" +  e.type + ".njk")(e.data) || blockViews[e.type](e);
+      //console.log("we get " , cbh);
       a+=cbh;
       return a;
     } , "");
@@ -240,6 +243,23 @@ export function FblockViewer(tpl_fn){
 
   }
 
+}
+
+
+export function FrenderThis(view , tpl) {
+    let v = null;
+    //console.log(view.uri);
+    if (view.file.content_format == "blocks") {
+        //console.log("Content render: blocks")
+        v = new FblockViewer(tpl);
+    } else if (!("content_format" in view.file) || view.file.content_format == "raw"){
+        //console.log("Content render: raw")
+        v = new dumbViewer();
+    }else if (view.file.content_format == "markdown"){
+        //console.log("Content render: markdown")
+        v = new MdViewer();
+    }
+    return v.show(view.file.content);
 }
 
 export function renderThis(view , settings) {
