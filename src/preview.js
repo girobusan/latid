@@ -46,6 +46,7 @@ function writeWithProgress() {
     } else {
       let pcs = Math.round((msg.data.number / msg.data.of) * 100);
       pcs = pcs > 100 ? 100 : pcs;
+      console.log("progress" , pcs)
       my.progress.setProgress(pcs);
 
     }

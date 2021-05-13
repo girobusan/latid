@@ -185,7 +185,7 @@ export function FbuildLoader(reader , pathfinder) {
         //console.log("Reader" ,reader("/index.html"));
         //console.log("Reader fn", reader);
         return {
-          src: reader(pathfinder(name)),
+          src: reader(pathfinder(name)) || "",
           path: name
           
 
@@ -234,9 +234,7 @@ export function FbuildLoader(reader , pathfinder) {
               //console.log("NT" , nt)
               return nt.render(tpl_name , local_context);
             }catch(err){
-              console.groupCollapsed("No custom template:" , pfinder(tpl_name ));
-              console.log(err);
-              console.groupEnd();
+              console.info("No custom template:" , pfinder(tpl_name ));
               return ""
             }
           }

@@ -7,7 +7,9 @@
 const Path = require("path")
 import { routines } from "./production";
 import { makeMessaging } from "./production_worker_messaging";
-console.info("Worker: web: on");
+var debug_count = 1;
+
+postMessage("Worker: web: on" );
 //
 /*
 {
@@ -84,7 +86,7 @@ var serv = {
         if (request.status == 200) {
             return request.response.arrayBuffer;
         } else {
-            console.error("Can not writeSync", p, "code", request.status)
+            postMessage("Can not writeSync"+p+ "code"+ request.status)
             return null;
         }
     },
@@ -120,7 +122,8 @@ var serv = {
 
 //
 self.setup = function(){
-    console.log('Local webserver worker setup');
+    console.log('Local webserver worker setup' , debug_count);
+    debug_count +=1;
 }
 
 var Production = new routines(serv);

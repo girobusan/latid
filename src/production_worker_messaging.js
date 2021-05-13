@@ -13,9 +13,10 @@ which will be called by preview/editor process
 //    0 get View!!! 
 
 export function makeMessaging(Production, wrkr, WorkerType) {
-    //console.info("Init messaging for" , WorkerType);
+    console.info("Init messaging for" , WorkerType);
     return function (m) {
         //console.log("Worker: message", m.data.action);
+           //console.log("Worker message " , m.data.id  , "action" , m.data.action)
         switch (m.data.action) {
             case "setup":
                 wrkr.setup(m.data);
@@ -80,6 +81,7 @@ export function makeMessaging(Production, wrkr, WorkerType) {
                 break;
 
             case "getSettings":
+                
                 this.postMessage({ id: m.data.id, "settings": Production.getSettings() });
                 break;
         }

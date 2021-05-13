@@ -135,7 +135,7 @@ export function routines(fileops) {
         "list" : new Listops.lister(my.views),
         "settings" : my.settings,
         "view" : view,
-        "editmode":  WorkerGlobalScope !== undefined ,
+        //"editmode":  WorkerGlobalScope !== undefined ,
         "views" : my.views
       
       };
@@ -143,6 +143,7 @@ export function routines(fileops) {
     }
 
     this.renderOneFile = function(view , context){
+      //context.editmode = true;
       return my.FTemplate("index.njk")(my.view2context(view , context));
 
     }
@@ -263,7 +264,7 @@ export function routines(fileops) {
         let v = this.lister.getByField(bf, val);
         //console.log("Lister got View" , v)
         if (v) {
-          let context = my.view2context(v , {"editmode":preview});
+          let context = my.view2context(v , {"editmode":true});
           let tr = my.FTemplate("index.njk")(context);
           //let tr = my.template.render(v);
           //console.log("After template" , tr)
@@ -311,7 +312,7 @@ export function routines(fileops) {
         my.views.forEach(function (v, i, a) {
             var myclb = null;
             if (i % 10 == 0 && i < my.views.length && callback) {
-              console.log("CALLBACK");
+              //console.log("CALLBACK");
                 myclb = buildCallback(callback, i, my.views.length, "working", "generate_site");
             } else if (i == my.views.length - 1 && callback) {
                 myclb = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
@@ -323,10 +324,10 @@ export function routines(fileops) {
                     .catch(err => console.error(err));
             } else {
                 //let c = my.template.render(v);
-                let c = my.renderOneFile(v);
+                let c = my.renderOneFile(v , {editmode: false});
                 c = rp.rewriteAllLinks(c, v.uri);
                 my.fileops.write(Path.join(my.settings.output.dir, v.uri), c)
-                    .then(() => { if (myclb) { myclb() } })
+                    .then(() => { if (myclb) { console.log("CALLBACK"); myclb() } })
                     .catch(err => console.error("Can not write (in generateAll)", v.uri, err));
             }
             

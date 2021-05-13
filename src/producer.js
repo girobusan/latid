@@ -9,6 +9,7 @@ Launch and communicate with web worker
 export function producer() {
     var my = this;
     var work = null;
+    console.info("Setup web worker")
     work = new Worker("/_system/scripts/production.js");
     work.postMessage({ "action": "setup" });
 
@@ -35,7 +36,7 @@ export function producer() {
         } else if (m.data.callback && my.callbacks[m.data.callback]) {
             my.callbacks[m.data.callback](m);
         } else {
-            console.warn("Unregistered message:", m);
+            console.info("Worker message:", m.data);
         }
     }
 
