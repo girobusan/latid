@@ -124,22 +124,26 @@ export function routines(fileops) {
         my.lister = new Listops.lister(my.views);
     }
 
-    this.view2context = function(view){
-    console.log("WorkerGlobalScope", WorkerGlobalScope!== undefined)
-      return {
+    //creates context from view
+    //for use in templates
+    //optional additional context
+
+    this.view2context = function(view , context){
+      let view_context =  {
         "content" : CRender.FrenderThis(view, my.FTemplate), //render
-        "meta" : view.file.meta,
+        "meta" : my.meta,
         "list" : new Listops.lister(my.views),
         "settings" : my.settings,
         "view" : view,
         "editmode":  WorkerGlobalScope !== undefined ,
         "views" : my.views
       
-      }
+      };
+      return context ? Object.assign(view_context , context) : view_context;
     }
 
-    this.renderOneFile = function(view){
-      my.FTemplate("index.njk")(my.view2context(view));
+    this.renderOneFile = function(view , context){
+      return my.FTemplate("index.njk")(my.view2context(view , context));
 
     }
 
@@ -244,14 +248,14 @@ export function routines(fileops) {
     //generate html from view and return it as text
     //sync 
     //view creds => html
-    this.getHTMLSync = function (val, fld, add_local_base_tag) {
+    this.getHTMLSync = function (val, fld, add_local_base_tag , preview) {
         //var my = this;
         this.generateVirtuals();
         //this.updateList()
         if (add_local_base_tag) {
             my.meta.preview = true;
         }
-        my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
+        //my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
 
         let rp = new Rewriter.rewriter(this.views, "/src/" , my.settings);
 
@@ -259,7 +263,7 @@ export function routines(fileops) {
         let v = this.lister.getByField(bf, val);
         //console.log("Lister got View" , v)
         if (v) {
-          let context = my.view2context(v);
+          let context = my.view2context(v , {"editmode":preview});
           let tr = my.FTemplate("index.njk")(context);
           //let tr = my.template.render(v);
           //console.log("After template" , tr)
@@ -272,7 +276,7 @@ export function routines(fileops) {
             if (add_local_base_tag) {
                 let lb = Path.join(this.fileops.base, "src/", Path.dirname(v.path));
                 lb = lb.endsWith("/") ? lb : lb + "/";
-                h = h.replace("<head>", "<head><base href='" + lb + "'>");
+                h = h.replace("<head>", "<head><!--base--><base href='" + lb + "'>");
             }
             return h;
         } else {
@@ -307,6 +311,7 @@ export function routines(fileops) {
         my.views.forEach(function (v, i, a) {
             var myclb = null;
             if (i % 10 == 0 && i < my.views.length && callback) {
+              console.log("CALLBACK");
                 myclb = buildCallback(callback, i, my.views.length, "working", "generate_site");
             } else if (i == my.views.length - 1 && callback) {
                 myclb = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
@@ -428,26 +433,9 @@ export function routines(fileops) {
             .then(function (r) {
                 //parse settings
                 my.settings = JSON.parse(my.decoder.decode(r[0]));
-
-                //look for block templates if any
-                let tpls = r.slice(1);
-                tpls = tpls.map(e => my.decoder.decode(e).toString());
-                //
-                let tpls_dict = tpls.reduce(function (a,c,i){ a[bt_names[i]] = c ; return a} , {});
-                
-                my.settings.block_templates = tpls_dict;
-                my.template_loader = Template.buildLoader(function (p) {
-                console.log("Template Loader was created on load");
-                    let tc = my.fileops.getSync(p); //ArrayBuffer
-                    return tc;
-                } , my.settings);
-
-                //readycallback();
                 return my.settings;
 
             })
-            // immediately load 
-            // block templates
             .then(async function(settings){
                 //new template routines
                 //do there a basic calcs
@@ -458,56 +446,7 @@ export function routines(fileops) {
                 my.FTemplate = Template
                 .FTemplate(my.fileops.getSync)
                 (Themes.templatePath(settings))                
-                ;
-
-                //figure out blocks path
-//                console.log("BLOCK FINDING");
-//                console.log("themes" in settings);
-//                console.log(settings.themes.enabled);
-//                console.log(settings.themes.theme);
-                if("themes" in settings && settings.themes.enabled && settings.themes.theme){
-                  var block_path = "_config/themes/" + settings.themes.theme + "/templates/blocks"; 
-                }else{
-                 console.log("No theme");
-                 block_path = "_config/templates/blocks";
-                }
-              console.log("Blocks are in", block_path) ;
-                let bl = await fileops.list(block_path) ;
-                //console.log("BL" , bl)
-                return bl.map(e=> {  e.name = e.path ; e.path =block_path + "/" + e.path;  return e})
-                //.catch(err=>console.log("No custom block templates", err));
-                ;
-           })
-           // load pack them to settings object
-           // it's not the best solution
-           .then(async function(blist){
-             if(!blist){
-               return ;
-             }
-             console.log(blist);
-             blist = blist || [];
-             //preload block templates 
-             let bt_promises = [];
-             let bt_names = [];
-
-             //block templates list
-             blist.forEach(function (e) {
-               console.log("block template" , e.path)
-               bt_names.push(e.name.substring(0, e.name.lastIndexOf(".")))
-               bt_promises.push(fileops.get(e.path));
-             });
-
-             //push them to settings
-             Promise.all(bt_promises) //load all srources
-             .then(function(r){
-               r.forEach(function(e , i){
-                 my.settings.block_templates[bt_names[i]] = my.decoder.decode(e).toString();
-             //console.log("BLOCKS ADDED" , my.settings)
-               })
-             });
-
-
-           }) // block tempaltes loaded
+                ;})
             .then(()=>readycallback(my.settings)) //readycallback
             .catch(err => console.error("Can not load settings:" , err))
     }

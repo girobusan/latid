@@ -125,7 +125,7 @@ export function rewriteLinks(htx, uri, views , settings) {
  * @param settings Latid settings
  *
  */
-export function buildLoader(rdr , settings) {
+export function old_buildLoader(rdr , settings) {
      //console.log("Building NJK loader" , rdr)
      const basename = decideBasePath( "/_config/templates/" , settings);
 
@@ -144,18 +144,9 @@ export function buildLoader(rdr , settings) {
     return l;
 }
 
-export function decideBasePath(default_path , settings){
-  if(settings && settings.themes 
-  && settings.themes.enabled 
-  && settings.themes.theme){
-    console.info("Theme set: settings.themes.theme");
-    return "/_config/themes/" + settings.themes.theme + ".t/"
-    }
-    console.info("Theme not set.");
-    return default_path;
-}
 
-function makeWorkerLoader(basepath){
+function old_makeWorkerLoader(basepath){
+   console.error("OBSOLETE: MAKEWORKERLOADER")
    let wl = nunjucks.Loader.extend(
     
     {
@@ -184,79 +175,13 @@ function makeWorkerLoader(basepath){
 
 
 
-export var serverLoader = buildLoader(function (name) {
-    let r = l4.server.getSync(path.join('/_config/templates/', name));
-    return dec.decode(r.details);
-}
-);
-/**
- * 
- * @param {Array} viewlist 
- * @param {Object} settings 
- * @param {Object} meta 
- * @param {Object} loader 
- */
- //must be: list , context(incl. meta for pages) , loader :?
-export function template(viewlist, settings, meta, loader) {
 
-    //console.log("NUNJUCKI", settings || "no settings supplied")
-    if (!loader) {
-      console.log("Creating default loader");
-      console.info("Using worker as template loader");
-      loader =  makeWorkerLoader(decideBasePath('/_config/templates' , settings));
-    } else {
-        //console.log("custom loader", loader);
-    }
-    this.views = viewlist;
-    this.settings = settings;    
-    
-    var my = this;
-    my.nunjucks = new nunjucks.Environment(loader, { autoescape: false });
-    my.nunjucks.addFilter('nbsp' , nbsp);
-    my.nunjucks.addFilter('msort' , msort); 
-    my.lister = new Listops.lister(viewlist);
-    //console.log("test lister" , this.lister.getByField("uri" , "/tags/index.html" ));
-    //console.log("ABOUT TO DEFINE RENDER")
-    this.render = function (view) {
-        //console.log("NJK render" , view.uri);
-        //create context
-        let context = {
-        //it knows too much
-            "editmode": typeof window == 'undefined' ? false : true, //move
-            "list": my.lister,
-            "paths": Pathops,
-            "settings": my.settings,  //move
-            "build_date": (new Date()).toISOString(),
-            "view": view, //move!
-            "content": CRender.renderThis(view , my.settings),//move?
-            "util": Util,
-            "log": () => console.info.apply( this , ["Nunjucks:"].concat(arguments)),//console.log("NJK:" , t),
-            "views": viewlist,
-            "meta": meta
-        }
-        //console.dir(context);
-        let r = my.nunjucks.render("index.njk", context);
-        //console.log("Result" , r)
-        //console.log(CRender.renderThis(view));
-
-        //render
-        //return string
-        return r;
-
-    }
-
-    this.populate = function (view) {
-        return my.render(view);
-    }
-
-}
-//new versions
 export function FbuildLoader(reader , pathfinder) {
   //console.log("Incoming reader" , reader)
 
     return {
       "getSource" : function (name) {
-        console.log("F get source" , pathfinder(name))
+        //console.log("F get source" , pathfinder(name))
         //console.log("Reader" ,reader("/index.html"));
         //console.log("Reader fn", reader);
         return {
@@ -278,41 +203,43 @@ export function FbuildLoader(reader , pathfinder) {
 //f(file loader func) => f(pathfinder func)
 
 //f(file loader) => f(pathifinder func)
-export function FTemplate(floader){
-  var common_context = {
-    "util": Util,
-    "paths" : Pathops,
-    "log": () => console.info.apply( this , ["Nunjucks:"].concat(arguments)),//console.log("NJK:" , t),
-  }
-
-  // f(pathifinder func) => f(tpl_name)
-  return function(pfinder){
-    //here we can setup nunjucks engine
-    let Tloader = FbuildLoader(floader , pfinder) ; //not right
-    //
-    //nt stands for Nunjucks Template
-    var nt = new nunjucks.Environment(Tloader, { autoescape: false });
-    nt.addFilter('nbsp' , nbsp);
-    nt.addFilter('msort' , msort); 
-
-    // f(tpl_name) => f(context)
-    return function(tpl_name){
-
-      //f(context) => html
-      return function(context){
-        //composing context 
-        let local_context = Object.assign({} , common_context , context);
-        //add current fields to context
-        local_context.build_date = (new Date()).toISOString();
-
-        try{
-         //console.log("NT" , nt)
-          return nt.render(tpl_name , local_context);
-        }catch(err){
-          console.info("No template" , pfinder(tpl_name ), err);
-          return ""
-        }
+    export function FTemplate(floader){
+      var common_context = {
+        "util": Util,
+        "paths" : Pathops,
+        "log": () => console.info.apply( this , ["Template:"].concat(arguments)),//console.log("NJK:" , t),
       }
-    }     
-  }
-}
+
+      // f(pathifinder func) => f(tpl_name)
+      return function(pfinder){
+        //here we can setup nunjucks engine
+        let Tloader = FbuildLoader(floader , pfinder) ; //not right
+        //
+        //nt stands for Nunjucks Template
+        var nt = new nunjucks.Environment(Tloader, { autoescape: false });
+        nt.addFilter('nbsp' , nbsp);
+        nt.addFilter('msort' , msort); 
+
+        // f(tpl_name) => f(context)
+        return function(tpl_name){
+
+          //f(context) => html
+          return function(context){
+            //composing context 
+            let local_context = Object.assign({} , common_context , context);
+            //add current fields to context
+            local_context.build_date = (new Date()).toISOString();
+
+            try{
+              //console.log("NT" , nt)
+              return nt.render(tpl_name , local_context);
+            }catch(err){
+              console.groupCollapsed("No custom template:" , pfinder(tpl_name ));
+              console.log(err);
+              console.groupEnd();
+              return ""
+            }
+          }
+        }     
+      }
+    }

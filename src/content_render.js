@@ -232,9 +232,11 @@ export function FblockViewer(tpl_fn){
   this.show = function(content){
     //blocks are in content.blocks
     let htm = content.blocks.reduce(function(a , e , i){
-      let treturn = tpl_fn(e.type + ".njk")(e.data);
-      //console.info('Template returns' , treturn);
-      let cbh = tpl_fn("blocks/" +  e.type + ".njk")(e.data) || blockViews[e.type](e);
+      let treturn = tpl_fn("blocks/" + e.type + ".njk")(e.data);
+      //console.info(e.type , 'Template returns' , treturn);
+      //console.info( e.type , "Default is" , blockViews[e.type](e))
+      
+      let cbh = treturn || blockViews[e.type](e);
       //console.log("we get " , cbh);
       a+=cbh;
       return a;
@@ -263,6 +265,7 @@ export function FrenderThis(view , tpl) {
 }
 
 export function renderThis(view , settings) {
+ throw "Obsolete function";
     let v = null;
     //console.log(view.uri);
     if (view.file.content_format == "blocks") {

@@ -33,7 +33,7 @@ var serv = {
 
     },
     "getSync": function (p) {
-      console.info("Getting in sync" , p)
+      //console.info("Getting in sync" , p)
         var request = new XMLHttpRequest();
         if(p.match(/\.(njk|txt)$/)){
             request.overrideMimeType("text/plain");
@@ -44,7 +44,7 @@ var serv = {
         if (request.status == 200) {          
             return request.response;
         } else {
-            console.error("Can not getSync", p, "code", request.status)
+            console.info("No file:", p, "Code:", request.status)
             return null;
         }
 

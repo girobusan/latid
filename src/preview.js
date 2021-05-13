@@ -279,8 +279,8 @@ export function preview() {
   }
 
   this.display = function (uri) {
-    //console.log("Display", uri);
-    window.l4.producer.getHTML(uri, "uri")
+    console.log("Display", uri);
+    window.l4.producer.getHTML(uri, "uri" , true)
     .then(function (h) {
       doc.innerHTML = h.html;
       fixScripts();

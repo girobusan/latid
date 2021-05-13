@@ -49,7 +49,7 @@ export function makeMessaging(Production, wrkr, WorkerType) {
                 break;
 
             case "getHTML":
-                let h = Production.getHTMLSync(m.data.value, m.data.field, true);
+                let h = Production.getHTMLSync(m.data.value, m.data.field, true , m.data.preview);
                 if (h) {
                     postMessage({ id: m.data.id, ok: true, html: h });
                 } else {

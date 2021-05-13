@@ -53,8 +53,7 @@ export function rewriter(views, basehref , settings) {
     }
 
     this.rewriteAllLinks = function(txt , from , basehref){
-    //console.log("fix all links" , settings);
-        //console.log(txt , from)
+        if(!txt){return ""}
         if(settings && settings.markdown && settings.markdown.fix_links){
         //console.log("Fix Markdown links");
         txt = txt.replace(/(\<\s*a[^>]+href\s*=\s*["'][^'"]+\.)(md|markdown)/gi , "$1html");

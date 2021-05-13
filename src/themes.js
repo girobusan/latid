@@ -8,15 +8,16 @@ export function templatePath(settings){
   if(settings && settings.themes 
     && settings.themes.enabled 
   && settings.themes.theme){
-    console.info("Theme set: settings.themes.theme");
+    console.info("Theme set:" , settings.themes.theme);
     current_path =  "/_config/themes/" + settings.themes.theme + "/templates"
   }else{
+  console.info("Theme not set");
 
     current_path =  default_path;
   }
 
   return function(...p){
-    console.log("Looking for" , p.join("/"));
+    //console.log("Looking for" , p.join("/"));
     return current_path + "/" +  p.join("/");
   }
 }

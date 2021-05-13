@@ -73,8 +73,8 @@ export function producer() {
         return this.sendMsg({ "action": "generateAll" });
     }
     //Production.getHTMLSync(m.data.value, m.data.field, true);
-    this.getHTML = function (val, fld) {
-        return this.sendMsg({ "action": "getHTML", "value": val, "field": fld });
+    this.getHTML = function (val, fld , preview) {
+        return this.sendMsg({ "action": "getHTML", "value": val, "field": fld , "preview":preview});
     }
 
     this.getSettings = function () {
