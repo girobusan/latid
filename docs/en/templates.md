@@ -9,7 +9,8 @@ Latid uses [nunjucks templates](https://mozilla.github.io/nunjucks/). There is m
 Site templates can utilize all features of nunjuck template language, you may have any number of files. 
 Note, that only index.njk is loaded directly, other templates have to be extended, included or otherwise accessed through it.
 
-Site templates located in `[site directopry]/_config/templates`.
+Site templates located in `[site directory]/_config/templates`, if no theme is used.
+See  [themes](themes.md) for additional info.
 
 Additional filters
 ------------------
@@ -17,7 +18,7 @@ There are additional filters, available in Latid. For now:
 
 ### nbsp
 
-Adds non-breakable spave after short words. Use with caution, 
+Adds non-breakable space after short words. Use with caution, 
 it's not always play well with html tags.
 
 ### msort  
@@ -45,8 +46,8 @@ Block templates must be kept in separate files, named by the respective block na
 custom templates for divider must be named `divider.njk`.
 
 ### Template features in block templates
-You can not use extend, include or any other nunjucks method, which requires loading
-of external templates in block templates, contrary to the site templates.
-Additional filters also may be unavailable.
-
+If you want to use include, use or other template functions, which require to 
+load other templates, use prefix `block/`, like `block/inclusion_tpl_name.njk`. It's
+better to avoid inclusions and imports for now, this mechanics is at testing stage
+(v1.9.x), and may be changed in future. 
 

@@ -23,6 +23,7 @@ top_level_page: true
 1. [ View ](view.md)
 1. [ Templates ](templates.md)
 1. [ Template variables ](template_vars.md)
+1. [Themes support](themes.md)
 1. [ Util module ](util.md)
 1. [ GUI mode limitations ](gui_design_limitations.md)
 
