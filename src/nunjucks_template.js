@@ -21,6 +21,9 @@ const dec = new TD("utf-8");
 //
 //template addons
 //
+export function metasort(views_array, field_name , reverse , as_number){
+  return msort(views_array , reverse, field_name  , as_number);
+}
 
 export function msort(views_array , reverse, field_name  , as_number){
   let r = views_array.slice(0);

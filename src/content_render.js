@@ -194,39 +194,6 @@ const blockViews = {
     }
 }
 
-export function blockViewer(settings) {
-    var nenv = new nunjucks.Environment(null,{autoescape:false});
-    nenv.addFilter("nbsp" , nbsp);
-    //console.log(settings)
-    this.show = function (contentjson) {
-        //console.log(contentjson);
-        var stringHTML = "";
-        if (contentjson && "blocks" in contentjson && Array.isArray(contentjson.blocks)) {
-            //console.log("CTJSBLC" , contentjson)
-            contentjson.blocks.forEach(function (b) {
-                //check if there a custom template
-                if(b.type in settings.block_templates){
-                        //console.log("Custom block" , b.type)
-                //  if so, check if there an already compiled version of it
-                        if(!(b.type in block_templates_cache)){ //if not, compile
-                            //console.log("compile" , b.type)
-                            block_templates_cache[b.type] = nunjucks.compile(settings.block_templates[b.type] , nenv)
-                        }                //         
-                //  then use
-                stringHTML += block_templates_cache[b.type].render(b);                
-                }//else use default viewer:
-                else if (b.type in blockViews) {
-                    stringHTML += blockViews[b.type](b);
-                } else {
-                    //console.log("block", b.type, "not implemented yet");
-                    stringHTML += "<div style = 'color:red;'> Not implemented: " + b.type + "</div>"
-                };
-            });
-        }
-        //d3elem.html(stringHTML);
-        return stringHTML;
-    }
-}
 //
 export function FblockViewer(tpl_fn){
   this.show = function(content){
@@ -264,19 +231,3 @@ export function FrenderThis(view , tpl) {
     return v.show(view.file.content);
 }
 
-export function renderThis(view , settings) {
- throw "Obsolete function";
-    let v = null;
-    //console.log(view.uri);
-    if (view.file.content_format == "blocks") {
-        //console.log("Content render: blocks")
-        v = new blockViewer(settings);
-    } else if (!("content_format" in view.file) || view.file.content_format == "raw"){
-        //console.log("Content render: raw")
-        v = new dumbViewer();
-    }else if (view.file.content_format == "markdown"){
-        //console.log("Content render: markdown")
-        v = new MdViewer();
-    }
-    return v.show(view.file.content);
-}

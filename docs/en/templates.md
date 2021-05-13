@@ -31,6 +31,11 @@ parameters are:
 - `field_name`: name of the metadata field to sort by
 - `as_number`: if true, treat field value as number, if false (default) - string.
 
+### metasort
+Same, but with more sane parameters order:
+1. `field_name`
+1. `reverse`
+1. `as_number`
 
 
 Blocks templates
