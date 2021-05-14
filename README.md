@@ -77,12 +77,13 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
 
-- [ ] Improve list exclusion 
+- [ ] Increase generation speed
+- [ ] Better WYSIWYG in block editor
 - [ ] Show better error screen when no page (404)
 - [X] Handle server down situation
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
-- [ ] Themes support
+- [X] Themes support
 - [ ] Working in browser without node.js
 
 
