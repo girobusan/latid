@@ -1,23 +1,19 @@
 var nunjucks = require('nunjucks');//   /_config/templates/template.nunjucks
-import * as Listops from "./listops";
-import * as CRender from "./content_render";
 import * as Pathops from "./pathops";
 import * as Util from "./util";
 import * as Rewriter from "./link_replacer";
-import * as Themes from "./themes";
 
 
-var TD =null ;//|| require('util').TextDecoder ;
+  // var TD =null ;//|| require('util').TextDecoder ;
+  // 
+  // if(typeof TextDecoder !== 'undefined'){
+  //     //console.log("Clobal TextDecoder used.")
+  //     TD = TextDecoder;
+  // }else{
+  //     TD = require("util").TextDecoder ;
+  // }
 
-if(typeof TextDecoder !== 'undefined'){
-    //console.log("Clobal TextDecoder used.")
-    TD = TextDecoder;
-}else{
-    TD = require("util").TextDecoder ;
-}
-
-const path = require("path");
-const dec = new TD("utf-8");
+//const path = require("path");
 //
 //template addons
 //
@@ -117,66 +113,11 @@ export function nbsp(str){
 
 //link rewriter
 
-export function rewriteLinks(htx, uri, views , settings) {
-    var rp = new Rewriter.rewriter(views,settings);
-    return rp.rewriteAllLinks(htx, uri);
-}
-
-//loaders
-/*
- * @param rdr reader function
- * @param settings Latid settings
- *
- */
-export function old_buildLoader(rdr , settings) {
-     //console.log("Building NJK loader" , rdr)
-     const basename = decideBasePath( "/_config/templates/" , settings);
-
-    let l = function () { };
-    l.getSource = function (name) {
-        //console.log("my get source")
-        //console.log("reading NJK")
-        return {
-            src: rdr(Util.gluePath(basename, name)),
-            path: name
-        }
-    }
-
-
-    //console.log(Object.keys(l.prototype), l.getSource());
-    return l;
-}
-
-
-function old_makeWorkerLoader(basepath){
-   console.error("OBSOLETE: MAKEWORKERLOADER")
-   let wl = nunjucks.Loader.extend(
-    
-    {
-        //async: true,
-
-        "getSource": function (name, callback) {
-            const basename = basepath || '/_config/templates/';
-            //let source = null;
-            var request = new XMLHttpRequest();
-            request.open('GET', basename + name, false);
-            request.send(null);
-            if (request.status == 200) {
-                return {
-                    src: request.responseText,
-                    path: name
-                }
-            } else {
-                console.log("request status ", request.status)
-                return null;
-            }
-        }
-    });
-    return wl;
-}
-
-
-
+// export function rewriteLinks(htx, uri, views , settings) {
+//   
+//     var rp = new Rewriter.rewriter(views,settings);
+//     return rp.rewriteAllLinks(htx, uri);
+// }
 
 
 export function FbuildLoader(reader , pathfinder) {
@@ -184,26 +125,23 @@ export function FbuildLoader(reader , pathfinder) {
 
     return {
       "getSource" : function (name) {
-        //console.log("F get source" , pathfinder(name))
-        //console.log("Reader" ,reader("/index.html"));
-        //console.log("Reader fn", reader);
         return {
           src: reader(pathfinder(name)) || "",
           path: name
-          
 
         }}}
 
     }
 
 
-//New universal (hopefully) functions
-// ?????????????
-// f(file loader) => f(pathifinder func) => f(tpl_name) => f(context) -> html
-//
-//f(file load function)-> f(pathfinder) -> loader
-//stage 1
-//f(file loader func) => f(pathfinder func)
+/*
+ *
+ * Main template function
+ *
+ * f(file loader) => f(pathifinder_func) => f(tpl_name) => f(context) -> html
+ *
+ */
+
 
 //f(file loader) => f(pathifinder func)
     export function FTemplate(floader){
@@ -237,6 +175,9 @@ export function FbuildLoader(reader , pathfinder) {
               //console.log("NT" , nt)
               return nt.render(tpl_name , local_context);
             }catch(err){
+            // In most cases, it means that there is no template
+            // which is normal for blocks 
+            // we must return empty string 
               console.info("No custom template:" , pfinder(tpl_name ));
               return ""
             }

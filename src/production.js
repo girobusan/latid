@@ -327,7 +327,7 @@ export function routines(fileops) {
                 let c = my.renderOneFile(v , {editmode: false});
                 c = rp.rewriteAllLinks(c, v.uri);
                 my.fileops.write(Path.join(my.settings.output.dir, v.uri), c)
-                    .then(() => { if (myclb) { console.log("CALLBACK"); myclb() } })
+                    .then(() => { if (myclb) {  myclb() } })
                     .catch(err => console.error("Can not write (in generateAll)", v.uri, err));
             }
             
@@ -416,8 +416,6 @@ export function routines(fileops) {
     }
 
 
-    //locate view by field (listops)
-    // field name, field value => view obj
 
     //Loading settings
     //creating template loader?
