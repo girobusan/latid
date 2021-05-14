@@ -13,6 +13,7 @@ top_level_page: true
 
 ## Editing
 1. [ File metadata ](file_meta.md)
+1. [Tags and persistent tags pages](tags.md)
 1. [ Linking ](links.md)
 1. [ Using GUI ](gui.md)
 1. [ Block editor ](blockeditor.md) (to be written)

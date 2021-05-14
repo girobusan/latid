@@ -84,7 +84,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] _Table_ (csv?) article block
 - [X] Themes support
-- [ ] Working in browser without node.js
+- [ ] ~~Working in browser without node.js~~ (looks impossible for now)
 
 
 ## How to start 
