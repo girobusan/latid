@@ -61,6 +61,7 @@ export function makeTagsNew(viewlist, settings,appender) { // views=>lister , se
             //do file have taglist
             //if (!("tagslist" in e)) { e.tagslist = [] }
             e.tagslist = [];
+            e.tags_list = [];
             var tagarray = e.file.meta.tags.split(",").map(ee => ee.trim());
 
             tagarray.forEach(function (t) {
@@ -105,6 +106,7 @@ export function makeTagsNew(viewlist, settings,appender) { // views=>lister , se
 
                 //l4.debug("Add tag", taguri, t)
                 e.tagslist.push(nv);
+                e.tags_list.push(nv);
             });
         }
     });
@@ -127,6 +129,7 @@ export function makeTags(l4, appender) { // views=>lister , settings
             //do file have taglist
             //if (!("tagslist" in e)) { e.tagslist = [] }
             e.tagslist = [];
+            e.tags_list = [];
             var tagarray = e.file.meta.tags.split(",").map(ee => ee.trim());
 
             tagarray.forEach(function (t) {
@@ -171,8 +174,10 @@ export function makeTags(l4, appender) { // views=>lister , settings
 
                 //l4.debug("Add tag", taguri, t)
                 e.tagslist.push(nv);
+                e.tags_list.push(nv);
             });
         }
+
     });
     //console.log("tagmeta", tagmeta)
     l4.meta.tags = Object.values(tagmeta).map(e => { e.count = e.pages.length; return e });

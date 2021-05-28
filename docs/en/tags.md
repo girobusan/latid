@@ -12,8 +12,8 @@ to your design.
 
 ### Page tags list
 
-      {% if view.tagslist and view.tagslist.length>0 %}
-      {% for tag in view.tagslist %}
+      {% if view.tags_list and view.tags_list.length>0 %}
+      {% for tag in view.tags_list %}
       <a href="{{tag.uri}}"><span class="badge badge-primary">{{tag.file.meta.title}}</span></a>
       {% endfor %}
       {% endif %}
@@ -45,16 +45,15 @@ To make page for tag persistent, do the following:
 
 ### List of tags, with persistent tags highlighted
 
-
         <ul>
-        {% for tag in meta.tags %} 
-        <!-- check, if tag page has virtual property -->
-        <!-- if not, this is a persistent page -->
-        {% set is_fav = not list.getByField("uri", tag.uri).virtual  %}                   
-        <li>{% if is_fav %}<strong> {% endif %}
-        <a href="{{tag.uri}}">{{tag.name}}</a>
-        {% if isfav %}</strong> (important one)</span>{% endif %}
-        <span>({{tag.count}})</span>
-        </li>
-        {% endfor %}
+            {% for tag in meta.tags %} 
+            <!-- check, if tag page has virtual property -->
+            <!-- if not, this is a persistent page -->
+            {% set is_fav = not list.getByField("uri", tag.uri).virtual  %}                   
+                <li>{% if is_fav %}<strong> {% endif %}
+                <a href="{{tag.uri}}">{{tag.name}}</a>
+                {% if isfav %}</strong> (important one) {% endif %}
+                <span>&mdash;{{tag.count}}</span>
+                </li>
+            {% endfor %}
         </ul>
