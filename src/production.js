@@ -231,7 +231,8 @@ export function routines(fileops) {
                         function (r2) {
                             //console.info('All files processed.')
                             my.views = my.views.concat(r2);                            
-                            my.updateList();                            
+                            my.generateVirtuals();
+                            //my.updateList();                            
                             res();
                         }
                     )
@@ -251,6 +252,7 @@ export function routines(fileops) {
     //view creds => html
     this.getHTMLSync = function (val, fld, add_local_base_tag , preview) {
         //var my = this;
+        console.info("Get HTML sync")
         this.generateVirtuals();
         //this.updateList()
         if (add_local_base_tag) {
@@ -426,12 +428,12 @@ export function routines(fileops) {
 
         //settings file
 
-        let configs = [fileops.get("_config/settings.json")];
+        let config = fileops.get("_config/settings.json");
 
-        Promise.all(configs)
+        config
             .then(function (r) {
                 //parse settings
-                my.settings = JSON.parse(my.decoder.decode(r[0]));
+                my.settings = JSON.parse(my.decoder.decode(r));
                 return my.settings;
 
             })
@@ -445,7 +447,9 @@ export function routines(fileops) {
                 my.FTemplate = Template
                 .FTemplate(my.fileops.getSync)
                 (Themes.templatePath(settings))                
-                ;})
+                ;
+
+                })
             .then(()=>readycallback(my.settings)) //readycallback
             .catch(err => console.error("Can not load settings:" , err))
     }
