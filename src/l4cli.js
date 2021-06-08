@@ -8,7 +8,7 @@ const fsp = require('fs').promises;
 
 import * as Production from "./production";
 
-var work_time = (new Date()).getMilliseconds();
+var work_time = (new Date()).getTime();
 //read params
 var parseargs = require('minimist');
 var cliargs = parseargs(process.argv.slice(2));
@@ -61,9 +61,9 @@ export function reclist(dir, filelist) {
             filelist.push(Path.join(dir, file));
         }
     });
-    if(dir.indexOf("template")!=-1 && false){
-      console.log("RECLIST" , filelist)
-    }
+    //if(dir.indexOf("template")!=-1 && false){
+     // console.log("RECLIST" , filelist)
+    //}
     return filelist;
 };
 
@@ -141,7 +141,7 @@ let fileops = {
     },
     "list": function (rp) {
         let fulldir = Path.join(sitedir, rp);
-        console.log("Full DIr" , fulldir);
+        //console.log("Full DIr" , fulldir);
 
         //let mylist = reclist(fulldir).map(p => ({ "path": p.substring(fulldir.length+1) }));
         //console.log(mylist)
@@ -161,30 +161,6 @@ let fileops = {
 let prod = new Production.routines(fileops );
 
 let progress_acc = {};
-function formatTimestamp(ms){
-    if(ms<1000){
-        return ms + "ms";
-    };
-    let inms = ms;
-    let output = "";
-    //hours
-    let hrs = Math.floor(inms/(1000*60*60));
-    if(hrs>0){
-        output += hrs + "hrs. ";
-        inms = inms - hrs*60*60*1000;
-    }
-    //minutes
-    let minutes = Math.floor(inms/(1000*60));
-    if(minutes>0){
-        output += minutes + "min. ";
-        inms = inms - minutes*1000*60;
-    }
-    
-    //seconds
-    let seconds = Math.floor((inms/1000)*100)/100;
-    output += seconds + "sec.";
-    return output; 
-}
 
 function printProgress(what , e){
     if(!progress_acc[what]){
@@ -194,7 +170,7 @@ function printProgress(what , e){
     //console.log(e , progress_acc[what] );
     if(progress_acc[what]>=parseInt(e.of)){        
         progress_acc[what] += 100;
-        console.info(what + ": done at " + ((new Date()).getMilliseconds() - work_time) , "ms"  );
+        console.info(what + ": done at " + ((new Date()).getTime() - work_time) , "ms"  );
         if(e.operation == 'generate_site'){
             console.log("---------");
             console.log("All done.");
