@@ -2,8 +2,10 @@
 title: Latid README
 ---
 <span style='color:#00a1ab'>
-<h1 style='font-size:4rem'> Latid (L4) &#128031;</h1>
+<h1 style='font-size:4rem'> Latid (L4)</h1>
 </span>
+
+![Latid](docs/pix/readme_image.png)
 
 Latid is a static site generator, which works as traditional 
 command line utility and|or with browser based GUI (allowing to use block editor). 
@@ -79,8 +81,13 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Better WYSIWYG in block editor
 - [ ] Show better error screen when no page (404)
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
+- [ ] Rework local server (cleaner API)
 - [ ] _Table_ (csv?) article block
 - [ ] ~~Working in browser without node.js~~ (looks impossible for now)
+
+### Maybe plans
+
+- [ ] Set local server port in site settings?
 
 
 ## How to start 
