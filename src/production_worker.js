@@ -136,7 +136,7 @@ setInterval(function(){
         request.open("GET", api_root + "areyouthere" , false);
         request.send();
             //console.info("%cping..." , "color: gray");
-        if (!request.status == 200) {
+        if (request.status != 200) {
             
             console.error("No responce from server.")
             postMessage({"callback" : "serverError" , "type": "no_server"})

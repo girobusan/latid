@@ -178,7 +178,7 @@ export function FbuildLoader(reader , pathfinder) {
             // In most cases, it means that there is no template
             // which is normal for blocks 
             // we must return empty string 
-              console.info("No custom template:" , pfinder(tpl_name ));
+              //console.info("No custom template:" , pfinder(tpl_name ));
               return ""
             }
           }
