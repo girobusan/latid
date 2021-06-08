@@ -5,7 +5,7 @@ title: Latid README
 <h1 style='font-size:4rem'> Latid (L4)</h1>
 </span>
 
-![Latid](docs/pix/readme_image.png)
+<img src = "" style = "margin-top: -32px;" src = "docs/pix/readme_image.png" alt = "Latid" >
 
 Latid is a static site generator, which works as traditional 
 command line utility and|or with browser based GUI (allowing to use block editor). 
@@ -147,4 +147,14 @@ I'm not a real programmer, so the code is, probably, awful. There are some known
 
 ## Origin of name
 **La·tid**  *noun* (zoology) — any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
+
+## Image source
+
+https://commons.wikimedia.org/wiki/File:Psammoperca_vaigiensis.jpg
+
+This image is Crown Copyright because it is owned by the Australian Government 
+or that of the states or territories, and is in the public domain because 
+it was created or published prior to 1971 and the copyright has therefore 
+expired. The government of Australia has declared that the expiration 
+of Crown Copyrights applies worldwide.
 
