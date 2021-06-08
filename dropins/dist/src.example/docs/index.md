@@ -13,19 +13,22 @@ top_level_page: true
 
 ## Editing
 1. [ File metadata ](file_meta.md)
+1. [Tags and persistent tags pages](tags.md)
 1. [ Linking ](links.md)
 1. [ Using GUI ](gui.md)
 1. [ Block editor ](blockeditor.md) (to be written)
 1. [ JSON source files ](json_src.md)
 1. [ Using Markdown files ](markdown_src.md)
 
-## Templating
+## Designing and templating
 1. [ View ](view.md)
 1. [ Templates ](templates.md)
 1. [ Template variables ](template_vars.md)
+1. [Themes support](themes.md)
 1. [ Util module ](util.md)
+1. [ GUI mode limitations ](gui_design_limitations.md)
 
-## Advanced
+## Additional info
 1. [ JavaScript workaround ](js_workaround.md)
 1. [ Server API ](server_api.md)
 
