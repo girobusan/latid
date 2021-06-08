@@ -44,6 +44,14 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 
 ## Releases
 
+### 1.9.4b
+
+- Increased generation speed
+- Handle server down situation with descriptive error message
+- Themes support 
+- More documentation
+- Lots of errors and bugs fixed
+
 ### 1.9.3b
 
 -  Improved documentation
@@ -63,15 +71,6 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - Better block editor design
 - New improved default site design
 - Bugs fixed
-
-
-### 1.9.1b
-
-- Option to fix links in markdown (.md|.markdown -> .html)
-- Make LIST server API more usable
-- Figure out file creation date from mtime, if not specified in file
-- Improvements to block editor UI
-- Cleanup and refactoring
 
 
 ## Plans 
