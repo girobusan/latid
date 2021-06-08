@@ -5,7 +5,7 @@ title: Latid README
 <h1 style='font-size:4rem'> Latid (L4)</h1>
 </span>
 
-<img src = "" style = "margin-top: -32px;" src = "https://raw.githubusercontent.com/girobusan/latid/master/docs/pix/readme_image.png" alt = "Latid" >
+![Latid](docs/pix/readme_image.png)
 
 Latid is a static site generator, which works as traditional 
 command line utility and|or with browser based GUI (allowing to use block editor). 
