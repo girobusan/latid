@@ -84,6 +84,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Rework local server (cleaner API)
 - [ ] _Table_ (csv?) article block
 - [ ] ~~Working in browser without node.js~~ (looks impossible for now)
+- [ ] Embed rendered page content to template
 
 ### Maybe plans
 

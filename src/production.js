@@ -136,7 +136,16 @@ export function routines(fileops) {
         "settings" : my.settings,
         "view" : view,
         //"editmode":  WorkerGlobalScope !== undefined ,
-        "views" : my.views
+        "views" : my.views,
+        "embed" : function(euri , fn){
+           //get view 
+           const lister = new Listops.lister(my.views);
+           let v = lister.getByField(euri , fn||"uri");
+
+           //CRender
+           return CRender.FrenderThis(v, my.FTemplate);
+
+        }
       
       };
       return context ? Object.assign(view_context , context) : view_context;
