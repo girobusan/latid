@@ -6,6 +6,7 @@ top_level_page: true
 
 ## Basics
 1. [ Introduction ](intro.md)
+1. [Required knowledge](required_knowledge.md)
 1. [ Getting started ](gettingstarted.md)
 1. [ Site directory structure ](site_directory_structure.md)
 1. [ Settings file ](settings_json.md)
