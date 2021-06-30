@@ -26,6 +26,7 @@ It's now in active use by author (me), tested and is pretty mature.
 - Also works as command line utility
 - Jamstack-friendly
 - Nunjucks templates with all its might
+- Automatic multipage lists
 - Tags, persistent and transient tag pages
 - Relative links: easy URL change, viewable from local machine without server
 - I18n ready
