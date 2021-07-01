@@ -23,13 +23,11 @@ It's now in active use by author (me), tested and is pretty mature.
 - Native JSON source file format, which is pretty semantic and can be used with other frontends
 - Can use markdown source files as well
 - Browser-based GUI
-- Also works as command line utility
-- Jamstack-friendly
+- Also works as command line utility, [jamstack](https://jamstack.org)-friendly
 - Nunjucks templates with all its might
 - Automatic multipage lists
-- Tags, persistent and transient tag pages
+- Tags, persistent and transient tag pages, tags in almost any language
 - Relative links: easy URL change, viewable from local machine without server
-- I18n ready
 - Site may have any directory structure
 
 ![screenshot](docs/pix/readme_cover.png) 
@@ -101,7 +99,7 @@ It's strongly NOT recommended, but you can:
     npm install
     npm run build_all
 
-The output files now in the **dist** directory.
+The output files now in the `dist` directory.
 
 
 ### Setup empty site
@@ -117,7 +115,7 @@ Assuming you have node.js installed, execute from the same folder:
 
     node latidserv.js
 
-Then point your browser to http://localhost:9999/ 
+Then point your browser to `http://localhost:9999/` 
 
 ### Documentation
 
