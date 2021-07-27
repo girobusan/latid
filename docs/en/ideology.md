@@ -13,6 +13,13 @@ in the world, where freedom of speech is oppressed on regular basis. Web sites a
 either by state authorities or by other parties, web creators prosecuted or _canceled_. So, what 
 do you, as guerrilla web author, need from your site generator?
 
+### Hide and deny
+
+Your site with everything needed for its operation kept in one directory.
+It's easy to hide it somewhere and than deny the very fact of its existence.
+There are no specific libraries or external modules to keep, the node.js
+is legal and its presence may be easily justified.
+
 
 ### Easy move your authoring work to other computer
 
