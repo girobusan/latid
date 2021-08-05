@@ -33,6 +33,11 @@ body, html{
     
 }
 
+#preloader.wrong_proto::before{
+  content: "This file must be loaded via local server";
+  animation: none;
+}
+
 .credentials{
     font-size: 0.8em;
     position: absolute;

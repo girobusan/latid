@@ -12,6 +12,15 @@ if (!window.l4) {
     }
 }
 
+//test if http://
+
+const proto = window.location.protocol;
+if( !proto.startsWith("http")){
+let prl = document.getElementById("preloader");
+prl.classList.add("wrong_proto");
+throw("Not right proto")
+};
+
 
 let pb = document.getElementById("progressbar");
 pb.style.width = "40%";
