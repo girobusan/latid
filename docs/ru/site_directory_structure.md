@@ -1,35 +1,35 @@
 ---
-title: Site directory structure
+title: Структура директории сайта 
 section: "01.04"
 ---
 
-The site files organized as follows:
+Структура директории сайта такова:
 <!--cut-->
 
     📁 site
         |
         📁 _config
         |     |
-        |     setttings.json - main config file
+        |     setttings.json - основной конфигурационный файл
         |     |
         |     📁 templates
         |           |
-        |           index.njk - root template
+        |           index.njk - корневой шаблон
         |           ...
         |           📁 blocks
         |                |
-        📁 _system      [custom block templates]
+        📁 _system      [пользовательские шаблоны блоков]
         |    |
-        |   [...system stuff...]
+        |   [...системные штуки...]
         |
         📁 src
         |    |
-        |   [site source files]
+        |   [исходные файлы сайта]
         |
         📁 static
         |    |
-        |   [output]
+        |   [вывод]
         |
         index.html
-        latidserv.js - local server script
-        l4cli.js - command line utility
+        latidserv.js - локальный сервер
+        l4cli.js - утилита командной строки

@@ -1,51 +1,51 @@
 ---
-title: Getting started
+title: Первые шаги
 name: gettingstarted
 section: "01.02"
-lang: en
+lang: ru
 ---
-There are your first steps in setting up and start using Latid.
+Первые шаги по работе с Latid
 <!--cut-->
 
-Prerequisites
+Предварительные требования
 -------------
-- Installed node.js, version > 11
-- Git, if you dare
+- Установленный node.js, версия > 11
+- Git, для рисковых
 
-Install
+Установка
 -------
-### By downloading the release:
+### Из релиза
 
-Download zip file and unzip it. 
+Скачайте zip и распакуйте его
 
-### From repo
+### Из репозитория
 
-This method is strongly not recommended, but works.
+Такой способ строго не рекомендуется, но может сработать.
 
     git clone git@github.com:girobusan/latid.git
     cd latid 
     npm install
     npm run build_all
 
-Then look for directory named `dist`.
+Вам нужна директория `dist`.
 
 
-Setup empty site
+Начальная настройка сайта
 ----------------
-Open distribution folder (dist). Rename the directories:
+Откройте папку с дистрибутивом (dist). Переименуйте там:
 
-1. `_config.example` to `_config`
-2. `src.example` to `src`
+1. `_config.example` в `_config`
+2. `src.example` в `src`
 
-Run server
+Запустите локальный сервер
 ----------
-Assuming you have node.js installed, execute from the site folder:
+ Если у вас установлен node.js:
 
     node latidserv.js
 
-Then point your browser to http://localhost:9999/ You should see something like [that](gui.md).
-You also could use -b key, and the adress will be opened for you automagically (hopefully):
+Откройте в браузере адрес http://localhost:9999/ Вы должны увидеть нечто [такое](gui.md).
+Вы можете добавить к команде ключ -b, чтобы браузер запустился автоматически:
 
     node latidserv.js -b
 
-(in newer versions of latidserv)
+(в новых версиях сервера)

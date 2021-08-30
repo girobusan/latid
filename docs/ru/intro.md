@@ -1,38 +1,38 @@
 ---
-title: What is Latid
+title: Что такое Latid
 section: "01.01"
 ---
 
-Latid is a static site generator, which works as traditional 
-command line utility and|or with browser based GUI (allowing to use block editor). 
-It works best for multipage sites (tested with >2000 pages) with primary static 
-(even completely 
-javascript-free) content (blogs, documentation, portfolios).
 
+Latid — генератор статических сайтов, который работает как утилита командной строки,
+а также через GUI в браузере (с использованием блочного редактора).
 
-## Features
+Он идеален для многостраничных сайтов (проверено с сайтами с более чем 2000 страниц) со статическим
+(необязательн) контентом (блогов, документации, портфолио)
 
-- One dependency (node.js), no install, just drop in
-- Dead simple content management 
-- Native JSON source file format, which is pretty semantic and can be used with other frontends
-- Can use markdown source files as well
-- Browser-based GUI
-- Also works as command line utility
-- Jamstack-friendly
-- Nunjucks templates with all its might
-- Tags, persistent and transient tag pages
-- Relative links: easy URL change, viewable from local machine without server
-- I18n ready
-- Site may have any directory structure
+## Возможности
+
+- Одна зависимость (node.js), не требует инсталляции (просто положите файлы куда надо)
+- Максимально простое управление контентом
+- Основной формат исходных файлов — JSON, максимально семантический, можно использовать с разными фронтендами
+- Можно использовать markdown в качестве исходных файлов
+- GUI, в браузере
+- Работает как утилита командной строки
+- Работает в Jamstack
+- Шаблонизатор Nunjucks со всеми плюшками
+- Поддержка меток, генерируемые на лету и постоянные страницы для меток
+- Относительные ссылки, простая смена URL страниц, сайт можно просматривать с локального диска не используя сервер
+- Многоязычность и уникод
+- Произзвольная структура сайта
 
 ![screenshot](pix/readme_cover.png) 
 
-## Requirements
+## Требования
 
-You will need node.js, version 11 and up.
+Нужен node.js, версия 11 или старше.
 
-The sites, produced with Latid may be completely static and adapted even 
-for oldest browsers, but you will need the descent one for using Latid GUI (Latid can 
-  work without GUI with some limitations). 
+Сайты, созданные с помощью Latid могут боль полностью статичны и совместимы с самыми
+древними браузерами (и текстовыми), но для использования GUI для редактирования
+вам понадобится современный браузер. Можно обойтись без GUI, с некоторыми ограничениями.
 
-Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 may also work. 
+Проверены: Firefox, версия>68, Chrome, >77. Safari >12 тоже может сработать. 
