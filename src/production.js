@@ -77,6 +77,7 @@ function buildCallback(callback, n, t, s, w) {
 
 
 
+
 export function routines(fileops) {
     //console.log("We are routines")
     var my = this;
@@ -93,6 +94,27 @@ export function routines(fileops) {
 
     this.getSettings = function () {
         return this.settings;
+    }
+
+    this.loadCustomScripts = function(){
+    console.info("Loading custom scripts")
+    //list _config/scripts
+    return this.fileops.list("_config/scripts")
+    .then(r=>{
+       if(r.length==0){console.info("No custom scripts used");return}
+       r.forEach(f=>{
+
+         let d = eval(this.fileops.getSync(Path.join("_config/scripts" , f.path)));
+         console.log("Script:" , d);
+         let testvar = "Test variable";
+         let util = Util;
+         console.log(d.procedure("test p"));
+         //test("???")
+         //d("test in place")
+       })
+    })
+     
+    //.catch(e=>console.info("No custom scripts defined"))
     }
 
 
@@ -438,6 +460,7 @@ export function routines(fileops) {
         //settings file
 
         let config = fileops.get("_config/settings.json");
+        //load custom scripts
 
         config
             .then(function (r) {
@@ -459,6 +482,7 @@ export function routines(fileops) {
                 ;
 
                 })
+            .then(this.loadCustomScripts())
             .then(()=>readycallback(my.settings)) //readycallback
             .catch(err => console.error("Can not load settings:" , err))
     }
