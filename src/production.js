@@ -110,6 +110,7 @@ export function routines(fileops) {
 
         let util = Util;
         let fileops = this.fileops;
+        let settings = this.settings;
         
         let d = eval(this.fileops.getSync(Path.join("_config/scripts" , f.path)));
         console.log(i + ". script:" , d.title || d.toString());
