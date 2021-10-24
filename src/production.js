@@ -83,6 +83,7 @@ export function routines(fileops) {
     var my = this;
     this.ready = false;
     this.fileops = fileops;
+    this.customScripts = {};
     //views kept inside
     this.views = [];
     //also meta (list of tags)
@@ -101,20 +102,31 @@ export function routines(fileops) {
     //list _config/scripts
     return this.fileops.list("_config/scripts")
     .then(r=>{
-       if(r.length==0){console.info("No custom scripts used");return}
-       r.forEach(f=>{
+      let l = r.filter(e=>!e.path.startsWith('disabled'));
+      //console.log("LIST" , l);
+      if(l.length==0){console.info("No custom scripts used.");return}
+      console.info("Loading custom scripts");
+      l.forEach((f,i)=>{
 
-         let d = eval(this.fileops.getSync(Path.join("_config/scripts" , f.path)));
-         console.log("Script:" , d);
-         let testvar = "Test variable";
-         let util = Util;
-         console.log(d.procedure("test p"));
-         //test("???")
-         //d("test in place")
-       })
+        let util = Util;
+        let fileops = this.fileops;
+        
+        let d = eval(this.fileops.getSync(Path.join("_config/scripts" , f.path)));
+        console.log(i + ". script:" , d.title || d.toString());
+        //console.log(d.hooks);
+        d.hooks.forEach( h=>{
+          if(this.customScripts[h[0]]){
+            this.customScripts[h[0]].push(h[1])
+          }else{
+            this.customScripts[h[0]] = [h[1]]
+          }
+        })
+        //test("???")
+        //d("test in place")
+      })
     })
      
-    //.catch(e=>console.info("No custom scripts defined"))
+    .catch(e=>console.info("No custom scripts found:" , e))
     }
 
 

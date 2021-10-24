@@ -81,12 +81,14 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] Rework local server (cleaner API)
 - [ ] _Table_ (csv?) article block
-- [ ] ~~Working in browser without node.js~~ (looks impossible for now)
 - [ ] Embed rendered page content to template
+- [x] Themes
+- [ ] Custom scripts 
 
 ### Maybe plans
 
 - [ ] Set local server port in site settings?
+- [ ] Hosted version 
 
 
 ## How to start 

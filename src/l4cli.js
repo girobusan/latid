@@ -120,7 +120,7 @@ let fileops = {
     },
 
     "getSync": function (p) {
-        if(p.match(/\.(njk|txt)$/)){
+        if(p.match(/\.(njk|txt|js)$/)){
             return fs.readFileSync(Path.join(sitedir, p) , "utf-8");
         }else{
         return toArrayBuffer(fs.readFileSync(Path.join(sitedir, p)));
