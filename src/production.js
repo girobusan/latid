@@ -341,7 +341,8 @@ export function routines(fileops) {
                 lb = lb.endsWith("/") ? lb : lb + "/";
                 h = h.replace("<head>", "<head><!--base--><base href='" + lb + "'>");
             }
-            return h;
+            let rh = my.callCustomScripts("one_html" , h)
+            return rh;
         } else {
             console.error("Can not find", val, "in", fld, my.views);
             return null;
