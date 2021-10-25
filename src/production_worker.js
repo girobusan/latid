@@ -115,7 +115,7 @@ var serv = {
             */
     },
     "copy": function (p1, p2) {
-        return fetch(api_root + "copy/?from=" + p1 + "&to=" + p2);
+        return fetch(encodeURI(api_root + "copy/?from=" + p1 + "&to=" + p2));
     }
 
 }

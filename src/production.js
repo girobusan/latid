@@ -97,6 +97,18 @@ export function routines(fileops) {
         return this.settings;
     }
 
+    this.callCustomScripts = function(hook, args){
+      if(this.customScripts.hasOwnProperty(hook)){
+        return this.customScripts[hook].reduce((a,s)=>{
+          a = s(a);
+          return a;
+
+        } , args);
+      }else{
+        return args;
+      }
+    }
+
     this.loadCustomScripts = function(){
     console.info("Loading custom scripts")
     //list _config/scripts
@@ -113,10 +125,10 @@ export function routines(fileops) {
         let settings = this.settings;
         
         let d = eval(this.fileops.getSync(Path.join("_config/scripts" , f.path)));
-        console.log(i + ". script:" , d.title || d.toString());
+        console.info((i+1) + "." , d.title || d.toString());
         //console.log(d.hooks);
         d.hooks.forEach( h=>{
-          if(this.customScripts[h[0]]){
+          if(h[0] in this.customScripts){
             this.customScripts[h[0]].push(h[1])
           }else{
             this.customScripts[h[0]] = [h[1]]
@@ -188,7 +200,9 @@ export function routines(fileops) {
 
     this.renderOneFile = function(view , context){
       //context.editmode = true;
-      return my.FTemplate("index.njk")(my.view2context(view , context));
+      let htm =   my.FTemplate("index.njk")(my.view2context(view , context));
+      htm = this.callCustomScripts("one_html" , htm);
+      return htm;
 
     }
 
@@ -274,8 +288,10 @@ export function routines(fileops) {
                     PA.then(
                         function (r2) {
                             //console.info('All files processed.')
+                            my.callCustomScripts('all_loaded'  ,r2)
                             my.views = my.views.concat(r2);                            
                             my.generateVirtuals();
+                            my.callCustomScripts('all_ready'  , my.views)
                             //my.updateList();                            
                             res();
                         }
