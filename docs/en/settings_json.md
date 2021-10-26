@@ -15,6 +15,7 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
         },
         "editor" : {
         "content_selector": "#content",
+        "local_server_port" : 1234,
         "default_meta"  :{
             "tags" : "",
             "lang" : "all"
@@ -72,6 +73,7 @@ The title, motto and url of your site. The url is required. Do not accidentally 
 
         "editor" : {
         "content_selector": "#content",
+        "local_server_port" : 1234,
         "default_meta"  :{
             "tags" : "",
             "lang" : "all"
@@ -79,6 +81,9 @@ The title, motto and url of your site. The url is required. Do not accidentally 
 
 ### content_selector
 Required. CSS selector of the main content container. Used in GUI mode. Formerly was defined in *output* section.
+
+### local_server_port
+Optional. Port, on which local server will listen.
 
 ### default_meta
 Optional. Default metadata, which will be added to newly created files.

@@ -110,7 +110,6 @@ export function routines(fileops) {
     }
 
     this.loadCustomScripts = function(){
-    console.info("Loading custom scripts")
     //list _config/scripts
     return this.fileops.list("_config/scripts")
     .then(r=>{
@@ -176,8 +175,10 @@ export function routines(fileops) {
     //optional additional context
 
     this.view2context = function(view , context){
+        let cnt = CRender.FrenderThis(view, my.FTemplate);
+        cnt = my.callCustomScripts("one_content" , cnt);
       let view_context =  {
-        "content" : CRender.FrenderThis(view, my.FTemplate), //render
+        "content" : cnt,//render
         "meta" : my.meta,
         "list" : new Listops.lister(my.views),
         "settings" : my.settings,
@@ -327,6 +328,7 @@ export function routines(fileops) {
         //console.log("Lister got View" , v)
         if (v) {
           let context = my.view2context(v , {"editmode":true});
+          //internal html
           let tr = my.FTemplate("index.njk")(context);
           //let tr = my.template.render(v);
           //console.log("After template" , tr)

@@ -63,7 +63,8 @@ Hooks
 |-------------|---------------------------------------------|------------------|----------------------|------------|
 | all_loaded  | called when all files are loaded first time | [views](view.md) list | views list      | tested     |
 | all_ready   | files are loaded and virtual pages ready    | views list       | views list           | not tested |
-| one_html    | called on prepared html before saving       | html as string   | html as string       | tested     |
+| one_content | called on prepared content html before saving    | html as string | html as string    | not tested |
+| one_html    | called on prepared whole page html before saving | html as string | html as string    | tested     |
 | one_saving  | called on every file before saving          | view             | view                 | not tested |
 | all_saved   | after generation of all site files          | views list       | views list           | tested     |
 
