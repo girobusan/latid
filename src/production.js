@@ -125,7 +125,7 @@ export function routines(fileops) {
         let settings = this.settings;
         
         let d = eval(this.fileops.getSync(Path.join("_config/scripts" , f.path)));
-        console.info((i+1) + "." , d.title || d.toString());
+        console.info((i+1) + "." , d.title || f.path);
         //console.log(d.hooks);
         d.hooks.forEach( h=>{
           if(h[0] in this.customScripts){
@@ -373,6 +373,7 @@ export function routines(fileops) {
         let rp = new Rewriter.rewriter(my.views ,false, my.settings);
         //my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
         my.views.forEach(function (v, i, a) {
+            my.callCustomScripts("one_saving" , v);
             var myclb = null;
             if (i % 10 == 0 && i < my.views.length && callback) {
               //console.log("CALLBACK");
@@ -396,6 +397,7 @@ export function routines(fileops) {
             
 
         });
+        my.callCustomScripts("all_saved" , my.views);
         //
     }
     /*

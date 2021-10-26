@@ -28,6 +28,10 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
           "list_max": 10,
           "default_date"  : "01.01.1970 12:30"
         },
+        "themes" :{
+          "enabled" : false,
+          "theme" : "theme_name"
+        },
 
         "markdown":{
           "fix_links" : true ,
@@ -107,6 +111,17 @@ Required. Maximum number of items per page in multipage article lists.
 ### default_date
 Optional. Default date for files without date. If not defined, file modification date
 will be used instead.
+
+## themes
+     "themes" :{
+       "enabled" : false,
+       "theme" : "dummy"
+     },
+Themes settings
+### enabled
+Is themes enabled
+### theme
+Name of the theme
 
 ## markdown
 

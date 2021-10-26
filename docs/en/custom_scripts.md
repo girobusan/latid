@@ -2,7 +2,7 @@
 title: Custom scripts
 status: draft
 ---
-This is planned feature, and this document is an early draft.
+This document is a draft.
 
 You may extend the functionality of Latid using your own
 custom scripts. Scripts are written in Java Script and placed 
@@ -33,6 +33,8 @@ Possible use
 - Image optimization*
 - Colophon generation
 
+\* may require external tools
+
 Script format
 -------------
 Each script must evaluate to an object with properties "title" and "hooks",
@@ -56,19 +58,21 @@ identifier as string as first element and handler function as second.
 Hooks
 -----
 
-| id          | description                                 | handler argument | handler must return | status      |
+| id          | description                                 | handler argument | handler must* return | status      |
 |-------------|---------------------------------------------|------------------|---------------------|-------------|
-| all_loaded  | called when all files are loaded first time | [views](view.md) list  | nothing       | not tested  |
+| all_loaded  | called when all files are loaded first time | [views](view.md) list  | nothing       | tested  |
 | all_ready   | files are loaded and virtual pages ready    | views list      | nothing             | not tested  |
 | one_html    | called on prepared html before saving       | html as string   | html as string      | tested      |
-| one_saving  | called on every file before saving          | view             | nothing             | -- |
-| all_saved   | after generation of all site files          | views list ?     | nothing             | -- |
+| one_saving  | called on every file before saving          | view             | nothing             | not tested |
+| all_saved   | after generation of all site files          | views list ?     | nothing             | tested |
+
+\* handler actually _must_ return this.
 
 
 Variables, available in handler function
 ---------------------------------------
 - `util`  — [util](util.md) module
-- `fileops` — internal file operation routines
+- `fileops` — [internal file operation](internal_file_operations.md) routines
 - `settinds` — site [settings](settings_json.md), as an object
 
 How to check, if script running in web GUI or command line

@@ -37,7 +37,7 @@ var serv = {
     "getSync": function (p) {
       //console.info("Getting in sync" , p)
         var request = new XMLHttpRequest();
-        if(p.match(/\.(njk|txt)$/)){
+        if(p.match(/\.(njk|txt|js)$/)){
             request.overrideMimeType("text/plain");
         }
         

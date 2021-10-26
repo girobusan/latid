@@ -1,6 +1,9 @@
 import * as Production from "./production";
 var JSZip = require("jszip");
 
+//Experimental
+//zip loader
+
 //init
 //load binary | ArrayBuffer
 //create fileops
