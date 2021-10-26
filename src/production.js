@@ -380,6 +380,7 @@ export function routines(fileops) {
                 myclb = buildCallback(callback, i, my.views.length, "working", "generate_site");
             } else if (i == my.views.length - 1 && callback) {
                 myclb = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
+                my.callCustomScripts("all_saved" , my.views);
             }
 
             if (v.type == "copy") {
@@ -397,7 +398,6 @@ export function routines(fileops) {
             
 
         });
-        my.callCustomScripts("all_saved" , my.views);
         //
     }
     /*

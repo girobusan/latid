@@ -49,6 +49,9 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
         "publish":{
             "command" : "",
             "args" : ""
+        },
+        "custom":{
+          "name" : "value"
         }
     }
 
@@ -117,11 +120,13 @@ will be used instead.
        "enabled" : false,
        "theme" : "dummy"
      },
-Themes settings
+
+[Themes](themes.md) settings
+
 ### enabled
-Is themes enabled
+Required. Is themes enabled or not.
 ### theme
-Name of the theme
+Optional. Name of the theme.
 
 ## markdown
 

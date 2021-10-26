@@ -1,8 +1,7 @@
 ---
 title: Custom scripts
-status: draft
 ---
-This document is a draft.
+This feature is new and something about it can be changed.
 
 You may extend the functionality of Latid using your own
 custom scripts. Scripts are written in Java Script and placed 
@@ -42,31 +41,37 @@ where `title` is a short descriptive string, and `hooks` is an array
 of two-element arrays. Each of two-element arrays must contain hook 
 identifier as string as first element and handler function as second.
 
+Try not to define variables or functions on top level of the script, keep everything
+inside.
+
     //example of custom script file content
     
-    function myScript(){
+    new (function(){
        this.title = "Cool&Custom"
        this.hooks = [
          ["all_loaded" , (v)=>console.log("There was" , v.length , "files")],
          ["all_saved" , (v)=>console.log("Okay, we're done")]
          ]
 
-    }
+    })();
 
-    new myScript();
 
 Hooks
 -----
 
-| id          | description                                 | handler argument | handler must* return | status      |
-|-------------|---------------------------------------------|------------------|---------------------|-------------|
-| all_loaded  | called when all files are loaded first time | [views](view.md) list  | nothing       | tested  |
-| all_ready   | files are loaded and virtual pages ready    | views list      | nothing             | not tested  |
-| one_html    | called on prepared html before saving       | html as string   | html as string      | tested      |
-| one_saving  | called on every file before saving          | view             | nothing             | not tested |
-| all_saved   | after generation of all site files          | views list ?     | nothing             | tested |
+| id          | description                                 | handler argument | handler must* return | status     |
+|-------------|---------------------------------------------|------------------|----------------------|------------|
+| all_loaded  | called when all files are loaded first time | [views](view.md) list | views list      | tested     |
+| all_ready   | files are loaded and virtual pages ready    | views list       | views list           | not tested |
+| one_html    | called on prepared html before saving       | html as string   | html as string       | tested     |
+| one_saving  | called on every file before saving          | view             | view                 | not tested |
+| all_saved   | after generation of all site files          | views list       | views list           | tested     |
 
 \* handler actually _must_ return this.
+
+If you define more than one hook-handler pair for the same hook in single script, handlers will be 
+executed in specified order, and each next handler will get the result of previous
+as parameter. Order of execution of scripts, defined in different files is not guaranteed.
 
 
 Variables, available in handler function
