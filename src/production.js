@@ -187,11 +187,18 @@ export function routines(fileops) {
         "views" : my.views,
         "embed" : function(euri , fn){
            //get view 
+           console.log("EURI" , euri)
            const lister = new Listops.lister(my.views);
-           let v = lister.getByField(euri , fn||"uri");
+           let v = lister.getByField(  fn||"uri" , euri);
 
-           //CRender
-           return CRender.FrenderThis(v, my.FTemplate);
+           console.log('EMBED' , v , my.views);
+           if(v===null){
+           console.error("Embed failed:" , euri);
+            return " ";
+           }
+
+           return CRender.FrenderThis(v, my.FTemplate) ;
+           //return "embed";
 
         }
       
