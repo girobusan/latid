@@ -97,15 +97,16 @@ export function routines(fileops) {
         return this.settings;
     }
 
-    this.callCustomScripts = function(hook, args){
+    this.callCustomScripts = function(hook, arg , hint){
+      const h = hint;
       if(this.customScripts.hasOwnProperty(hook)){
-        return this.customScripts[hook].reduce((a,s)=>{
-          a = s(a);
+        return this.customScripts[hook].reduce((a,s)=>{          
+          a = s(a , h);
           return a;
 
-        } , args);
+        } , arg);
       }else{
-        return args;
+        return arg;
       }
     }
 
@@ -176,7 +177,7 @@ export function routines(fileops) {
 
     this.view2context = function(view , context){
         let cnt = CRender.FrenderThis(view, my.FTemplate);
-        cnt = my.callCustomScripts("one_content" , cnt);
+        cnt = my.callCustomScripts("one_content" , cnt , view);
       let view_context =  {
         "content" : cnt,//render
         "meta" : my.meta,
@@ -187,11 +188,10 @@ export function routines(fileops) {
         "views" : my.views,
         "embed" : function(euri , fn){
            //get view 
-           console.log("EURI" , euri)
            const lister = new Listops.lister(my.views);
            let v = lister.getByField(  fn||"uri" , euri);
 
-           console.log('EMBED' , v , my.views);
+           //console.log('EMBED' , v , my.views);
            if(v===null){
            console.error("Embed failed:" , euri);
             return " ";
@@ -209,7 +209,7 @@ export function routines(fileops) {
     this.renderOneFile = function(view , context){
       //context.editmode = true;
       let htm =   my.FTemplate("index.njk")(my.view2context(view , context));
-      htm = this.callCustomScripts("one_html" , htm);
+      htm = this.callCustomScripts("one_html" , htm , view);
       return htm;
 
     }
@@ -350,7 +350,7 @@ export function routines(fileops) {
                 lb = lb.endsWith("/") ? lb : lb + "/";
                 h = h.replace("<head>", "<head><!--base--><base href='" + lb + "'>");
             }
-            let rh = my.callCustomScripts("one_html" , h)
+            let rh = my.callCustomScripts("one_html" , h , v);
             return rh;
         } else {
             console.error("Can not find", val, "in", fld, my.views);

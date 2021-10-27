@@ -80,13 +80,12 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Show better error screen when no page (404)
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 - [ ] Rework local server (cleaner API)
-- [ ] _Table_ (csv?) article block
 - [x] Embed rendered page content to template
 - [x] Custom scripts 
 
 ### Maybe plans
 
-- [x] Set local server port in site settings?
+- [x] Set local server port in site settings
 - [ ] Hosted version 
 
 

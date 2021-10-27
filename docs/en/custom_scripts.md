@@ -59,21 +59,20 @@ inside.
 Hooks
 -----
 
-| id          | description                                 | handler argument | handler must* return | status     |
-|-------------|---------------------------------------------|------------------|----------------------|------------|
-| all_loaded  | called when all files are loaded first time | [views](view.md) list | views list      | tested     |
-| all_ready   | files are loaded and virtual pages ready    | views list       | views list           | not tested |
-| one_content | called on prepared content html before saving    | html as string | html as string    | not tested |
-| one_html    | called on prepared whole page html before saving | html as string | html as string    | tested     |
-| one_saving  | called on every file before saving          | view             | view                 | not tested |
-| all_saved   | after generation of all site files          | views list       | views list           | tested     |
+| id          | description                                 | handler 1st arg. | 2nd arg. | handler must* return | status     |
+|-------------|---------------------------------------------|------------------|----------|----------------------|------------|
+| all_loaded  | called when all files are loaded first time | [views](view.md) list | no  | views list           | tested     |
+| all_ready   | files are loaded and virtual pages ready    | views list          | no    | views list           | not tested |
+| one_content | called on prepared content html before saving    | html as string | view  | html as string       | not tested |
+| one_html    | called on prepared whole page html before saving | html as string | view  | html as string       | tested     |
+| one_saving  | called on every file before saving          | view                | no    | view                 | not tested |
+| all_saved   | after generation of all site files          | views list          | no    | views list           | tested     |
 
-\* handler actually _must_ return this.
 
 If you define more than one hook-handler pair for the same hook in single script, handlers will be 
-executed in specified order, and each next handler will get the result of previous
-as parameter. Order of execution of scripts, defined in different files is not guaranteed.
-
+executed in specified order. Order of execution of scripts, defined 
+in different files is not guaranteed. Each subsequent handler of one hook will get the result of previous
+as a 1st argument (second argument will be passed unchanged). 
 
 Variables, available in handler function
 ---------------------------------------

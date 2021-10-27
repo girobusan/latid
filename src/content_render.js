@@ -217,6 +217,10 @@ export function FblockViewer(tpl_fn){
 
 export function FrenderThis(view , tpl) {
     let v = null;
+    if(view===null || !view.file){
+      console.error("Wrong view to render" , view)
+      return "";
+    }
     //console.log(view.uri);
     if (view.file.content_format == "blocks") {
         //console.log("Content render: blocks")
