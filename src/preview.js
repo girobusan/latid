@@ -182,21 +182,21 @@ export function preview() {
     let error_message = "Generic error message";
     let error_action = "Generic error action";
 
-    console.log("Show fatal error:" , err);
-    //
+    //console.log("Show fatal error:" , err);
+    //if error came from worker
     if(err.data && err.data.type && err.data.type=="no_server"){
       error_title = "Local server down";
       error_message = "Server down or misconfigured. Fix issue and reload the site.";
       error_action = "";
 
     }else{
-    error_title = err.title || error_title;
-    error_message = err.message || error_message;
-    error_action = err.action || error_action;
+      error_title = err.title || error_title;
+      error_message = err.message || error_message;
+      error_action = err.action || error_action;
     }
     //
     let errorHTML = `<html><head>
-   <link rel="stylesheet" type="text/css" id="latid_gui_styles" href="/_system/scripts/l4.css"> 
+    <link rel="stylesheet" type="text/css" id="latid_gui_styles" href="/_system/scripts/l4.css"> 
     <title>Error: ${error_title}</title></head>
     <body id="latid_error_page">
     <div id="content">
@@ -214,14 +214,37 @@ export function preview() {
 
   this.showEmpty = function () {
     console.log("SHOW EMPTY")
+    //Let's find some variants
+    let variants = [];
+    var variants_text = "a";
+    //Is there an index page?
+
+    let inx = window.l4.producer.getView("/index.hml");
+    if(inx){
+       variants.push(`Go to the <a href="/src/index.html">main page</a>`)
+    };
+
+    //sum up
+    if(variants.length>0){
+     variants_text = "<h3>Possible actions:</h3><ul>";
+     variants_text += variants.reduce((a,e)=>{
+     a = a + "<li>" + e + "</li>";
+     return a;
+     } , "");
+     variants_text +="</ul>";
+    }else{
+    variants_text = "Probably, something went wrong, check site files amd settings"
+    }
+    
+
     my.showError({
        title: "No such page",
        message: "No page at this URL, try another",
-       action: " "
+       action: variants_text
     });
     return;
     /*
-    doc.innerHTML = "<html><head></head><body>Probably, we shoud <a class='create' href='#'>create page</a></body></html>"
+    doc.innerHTML = "<html><head></head><body>Probably, we   shoud <a class='create' href='#'>create page</a></body></html>"
     let clink = doc.getElementsByClassName("create")[0];
     clink.addEventListener("click", function () {
       let p = window.location.hash.substring(3).replace(/\.[^.]+$/, ".json");
