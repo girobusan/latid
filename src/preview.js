@@ -184,14 +184,20 @@ export function preview() {
 
     console.log("Show fatal error:" , err);
     //
-    if(err.data.type=="no_server"){
+    if(err.data && err.data.type && err.data.type=="no_server"){
       error_title = "Local server down";
       error_message = "Server down or misconfigured. Fix issue and reload the site.";
       error_action = "";
 
+    }else{
+    error_title = err.title || error_title;
+    error_message = err.message || error_message;
+    error_action = err.action || error_action;
     }
     //
-    let errorHTML = `<html><head><title>Error: ${error_title}</title></head>
+    let errorHTML = `<html><head>
+   <link rel="stylesheet" type="text/css" id="latid_gui_styles" href="/_system/scripts/l4.css"> 
+    <title>Error: ${error_title}</title></head>
     <body id="latid_error_page">
     <div id="content">
     <h1>${error_title}</h1>
@@ -199,9 +205,7 @@ export function preview() {
     <div id = "action">${error_action}</div>
     </div>
     </body></html>`
-    let css = document.getElementById("latid_gui_styles");
     doc.innerHTML = errorHTML;
-    document.head.appendChild(css);
 
   }
   this.exitError = function(msg){
@@ -210,6 +214,13 @@ export function preview() {
 
   this.showEmpty = function () {
     console.log("SHOW EMPTY")
+    my.showError({
+       title: "No such page",
+       message: "No page at this URL, try another",
+       action: " "
+    });
+    return;
+    /*
     doc.innerHTML = "<html><head></head><body>Probably, we shoud <a class='create' href='#'>create page</a></body></html>"
     let clink = doc.getElementsByClassName("create")[0];
     clink.addEventListener("click", function () {
@@ -220,6 +231,7 @@ export function preview() {
         my.goTo(r);
       });
     });
+    */
   }
 
   this.createPage = async function (question, is_index, uri ) {
@@ -299,7 +311,13 @@ export function preview() {
       if (!v.ok) {
         console.error("Preview: no such view:", uri);
         smalltalk.alert("Latid", "No such page: " + uri + "")
-        .then(()=> history.back())
+        .then(()=> { 
+        //if we where somewhere, go there
+        if(my.current_view){history.back()} 
+        //if not, show empty
+        console.log("empty");
+        my.showEmpty();
+        })
         //.catch(e=>e);
         return;
       } else if (v.view.type == 'src') {
