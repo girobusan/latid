@@ -77,8 +77,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 <small>The marked ones are implemented, but will be included in future release</small>
 
 - [ ] Better WYSIWYG in block editor
-- [ ] Show better error screen when no page (404)
-- [ ] Ability to create page, if it's linked, but do not exist on the fly
+- [x] Show better error when no page (404)
 - [ ] Rework local server (cleaner API)
 - [x] Embed rendered page content to template
 - [x] Custom scripts 
@@ -87,6 +86,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 
 - [x] Set local server port in site settings
 - [ ] Hosted version 
+- [ ] Ability to create page, if it's linked, but do not exist on the fly
 
 
 ## How to start 
