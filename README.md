@@ -25,7 +25,7 @@ It's now in active use by author (me), tested and is pretty mature.
 - Browser-based GUI
 - Also works as command line utility, [jamstack](https://jamstack.org)-friendly
 - Nunjucks templates with all its might
-- Automatic multipage lists
+- Automatic paginated lists
 - Tags, persistent and transient tag pages, tags in almost any language
 - Relative links: easy URL change, viewable from local machine without server
 - Site may have any directory structure
