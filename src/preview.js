@@ -214,12 +214,14 @@ export function preview() {
 
   this.showEmpty = function () {
     console.log("SHOW EMPTY")
+    console.log(this.views);
     //Let's find some variants
     let variants = [];
     var variants_text = "a";
     //Is there an index page?
 
     let inx = window.l4.producer.getView("/index.hml");
+    console.log("Index page found" , inx);
     if(inx){
        variants.push(`Go to the <a href="/src/index.html">main page</a>`)
     };

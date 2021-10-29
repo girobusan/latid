@@ -62,7 +62,7 @@ export function reclist(dir, filelist) {
         }
     });
     //if(dir.indexOf("template")!=-1 && false){
-     // console.log("RECLIST" , filelist)
+      //console.log("RECLIST" , filelist)
     //}
     return filelist;
 };
@@ -149,6 +149,7 @@ let fileops = {
             if(fs.existsSync(rp)){
             let mylist = reclist(fulldir).map(p => {let fst = fs.statSync(p); /*console.log(fst)*/ ; return { "path": p.substring(fulldir.length+1) , "mtime" : fst.mtime , "mtimeMs" : fst.mtimeMs }});
             //console.log("MULIST" , mylist)
+            mylist.forEach(e=>e.path=e.path.replace(/\\/g , "/"));
             res(mylist);
             }else{
                 rej("No such dir")
