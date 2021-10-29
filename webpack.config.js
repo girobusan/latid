@@ -107,20 +107,20 @@ module.exports = function (env, argv) {
           //       to: path.resolve(__dirname, 'dist/_config.example/settings.json')
           //  },
           patterns: [
-            {
-              from: path.resolve(__dirname, 'src/assets/settings.json'),
-              to: path.resolve(__dirname, 'dist/_config.example/settings.json')
-            },
+            //{
+             // from: path.resolve(__dirname, 'src/assets/settings.json'),
+              //to: path.resolve(__dirname, 'dist/_config.example/settings.json')
+            //},
             {
               from: path.resolve(__dirname, 'src/assets/startup.css'),
               to: path.resolve(__dirname, argv.mode=='production' ? 'dist/_system/styles/startup.css' : 'site/_system/styles/startup.css')
             },
-            {
+            /*{
               from: path.resolve(__dirname, 'src/assets/*.svg'),
               to: path.join(__dirname, 'dist/_system/scripts/'),
               toType: 'dir',
               flatten: true
-            }
+            }*/
           ]
           //{ from: 'other', to: 'public' },
       }),
