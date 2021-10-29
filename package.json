@@ -14,7 +14,8 @@
     "build_site_css": "lessc src/styles/site.less site/src/styles/main.css",
     "watch_cli": "npx webpack --config cli.wp.config.js",
     "build_cli": "npx webpack --config cli.wp.config.js --mode production",
-    "build_all": "rm -R dist/* ; npm run build ; npm run build_cli ; cp -R dropins/dist/* dist"
+    "linux_build_all": "rm -R dist/* ; npm run build ; npm run build_cli ; cp -R dropins/dist/* dist",
+    "build_all": "node scripts/build_dist.js"
   },
   "author": "GBT",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "css-loader": "^3.2.0",
     "emotion": "^10.0.27",
     "fs": "0.0.1-security",
+    "fs-extra": "^10.0.0",
     "gray-matter": "^4.0.2",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.10.3",
@@ -31,6 +33,7 @@
     "lessc": "^1.0.2",
     "marked": "^1.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "ncp": "^2.0.0",
     "node-pre-gyp": "^0.14.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
