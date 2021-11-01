@@ -7,12 +7,13 @@ title: Latid README
 
 ![Latid](docs/pix/readme_image.png)
 
-Latid is a static site generator, which is [pretty damn simple in use](docs/en/required_knowledge.md).
+Latid is a static site generator, oriented towards content authors, which 
+is [simple to use](docs/en/required_knowledge.md).
 It works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
 It works best for multipage sites (tested with >2000 pages) with primary static 
 (even completely javascript-free) content (blogs, documentation, portfolios).
 
-It's now in active use by author (me), tested and is pretty mature.
+It's now in active use by author, tested and is pretty mature.
 
 ([There are some docs](docs/en/index.md))
 
@@ -42,42 +43,12 @@ for oldest browsers, but you will need the descent one for using Latid GUI (Lati
 
 Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work. 
 
-## Releases
-
-### 1.9.4b
-
-- Increased generation speed
-- Handle server down situation with descriptive error message
-- Themes support 
-- More documentation
-- Lots of errors and bugs fixed
-
-### 1.9.3b
-
--  Improved documentation
--  Fixed some GUI flaws 
--  Custom default date for files without date
--  Custom sorting of lists
--  Improve example site contents (docs included)
--  List limits customization by page
--  Bugs fixed
-
-
-### 1.9.2b
-
-- Option to treat Markdown files without frontmatter as a source 
-- Filter: sort views by any user-defined meta 
-- Custom sorting of pages 
-- Better block editor design
-- New improved default site design
-- Bugs fixed
-
-
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
 
+- [x] MS Windows support (yeah)
 - [ ] Better WYSIWYG in block editor
-- [x] Show better error when no page (404)
+- [x] Show better error when no page 
 - [ ] Rework local server (cleaner API)
 - [x] Embed rendered page content to template
 - [x] Custom scripts 
