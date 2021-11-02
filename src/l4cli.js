@@ -73,7 +73,6 @@ var l4 = {
     "loader" : "cli",
     "name": "l4",
     "version": "VERSION",
-    
 };
 //read settings
 // <site dir> + _config/settings.json
@@ -174,7 +173,6 @@ function printProgress(what , e){
         console.info(what + ": done at " + ((new Date()).getTime() - work_time) , "ms"  );
         if(e.operation == 'generate_site'){
             console.log("---------");
-            console.log("All done.");
         }        
     }    
 }

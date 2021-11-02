@@ -29,8 +29,10 @@ top_level_page: true
 1. [ Util module ](util.md)
 1. [ GUI mode limitations ](gui_design_limitations.md)
 
-## Additional info
+## Advanced 
+1. [ Custom scripts ](custom_scripts.md)
 1. [ JavaScript workaround ](js_workaround.md)
+1. [Internal file operations](internal_file_operations.md)
 1. [ Server API ](server_api.md)
 
 

@@ -15,6 +15,7 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
         },
         "editor" : {
         "content_selector": "#content",
+        "local_server_port" : 1234,
         "default_meta"  :{
             "tags" : "",
             "lang" : "all"
@@ -27,6 +28,10 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
           "content_selector": "#content",
           "list_max": 10,
           "default_date"  : "01.01.1970 12:30"
+        },
+        "themes" :{
+          "enabled" : false,
+          "theme" : "theme_name"
         },
 
         "markdown":{
@@ -45,6 +50,9 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
         "publish":{
             "command" : "",
             "args" : ""
+        },
+        "custom":{
+          "name" : "value"
         }
     }
 
@@ -65,6 +73,7 @@ The title, motto and url of your site. The url is required. Do not accidentally 
 
         "editor" : {
         "content_selector": "#content",
+        "local_server_port" : 1234,
         "default_meta"  :{
             "tags" : "",
             "lang" : "all"
@@ -72,6 +81,9 @@ The title, motto and url of your site. The url is required. Do not accidentally 
 
 ### content_selector
 Required. CSS selector of the main content container. Used in GUI mode. Formerly was defined in *output* section.
+
+### local_server_port
+Optional. Port, on which local server will listen.
 
 ### default_meta
 Optional. Default metadata, which will be added to newly created files.
@@ -107,6 +119,19 @@ Required. Maximum number of items per page in multipage article lists.
 ### default_date
 Optional. Default date for files without date. If not defined, file modification date
 will be used instead.
+
+## themes
+     "themes" :{
+       "enabled" : false,
+       "theme" : "dummy"
+     },
+
+[Themes](themes.md) settings
+
+### enabled
+Required. Is themes enabled or not.
+### theme
+Optional. Name of the theme.
 
 ## markdown
 

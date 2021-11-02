@@ -48,7 +48,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 
 - [x] MS Windows support (yeah)
 - [ ] Better WYSIWYG in block editor
-- [x] Show better error when no page 
+- [x] Show better error notice when no page 
 - [ ] Rework local server (cleaner API)
 - [x] Embed rendered page content to template
 - [x] Custom scripts 

@@ -5,13 +5,32 @@ section: "03.02"
 There are bunch of variables, which can be accessed from your nunjucks templates.
 <!--cut-->
 
+content
+-------
+Page content
+
 editmode
 --------
 Boolean, true if page is being previewed.
 
+embed
+-----
+Function, returns any view (page) content by uri.
+
+    <h2>Docs menu</h2>
+    {{embed("/docs/menu.html")}}
+
 list
 ----
 List operations (listops module)
+
+log
+----
+Log function (obsolete)
+
+meta
+----
+Site metadata. For now, there is only tags list at meta.tags
 
 paths
 -----
@@ -21,26 +40,15 @@ settings
 --------
 Site settings from settings.json
 
-view
-----
-View of current page
-
-content
--------
-Page content
-
 util
 ----
 Utilities, see [util](util.md) module.
 
-log
+view
 ----
-Log function (obsolete)
+View of current page
 
 views
 -----
 List of all [views](views.md) (pages and files)
 
-meta
-----
-Site metadata. For now, there is only tags list at meta.tags

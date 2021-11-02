@@ -295,7 +295,7 @@ export function routines(fileops) {
                     //console.dir(filepromises);
                     PA.then(
                         function (r2) {
-                            console.info('All files processed.' , r2)
+                            //console.info('All files processed.' , r2)
                             my.callCustomScripts('all_loaded'  ,r2)
                             my.views = my.views.concat(r2);                            
                             my.generateVirtuals();
