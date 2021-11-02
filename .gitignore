@@ -17,6 +17,7 @@ site/
 tags
 src/yags
 /dist
+/latid-*
 trash/
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
