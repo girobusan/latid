@@ -42,7 +42,7 @@ You will need node.js, version 11 and up.
 
 The sites, produced with Latid may be completely static and adapted even 
 for oldest browsers, but you will need the descent one for using Latid GUI (Latid can 
-  work without GUI, GUI is just another way to edit site c GUI, GUI is just another way to edit site content,
+  work without GUI, GUI is just another way to edit site content,
   if you prefer to work without GUI, you'd have to use only `markdown` files as source). 
 
 Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work. 
@@ -60,6 +60,8 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 
 
 ## How to start 
+
+Install [node.js](https://nodejs.org) to your computer.
 
 You have better to download latest release and unzip it. You also can build latid from repo.
 It's strongly NOT recommended, but you can:
