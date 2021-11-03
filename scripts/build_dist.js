@@ -33,6 +33,8 @@ runCommand('npm run build_cli');
 //drop the dropins
 //list the dropins
 console.log("Filling distribution folder...")
+//copy docs
+fse.copySync('docs/en' , 'dropins/dist/src.example/docs')
 fse.copySync('dropins/dist/' , 'dist');
 fse.copySync('dist' , 'latid-' + pkg.version);
 console.log("All done.")

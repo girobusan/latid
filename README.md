@@ -7,12 +7,12 @@ title: Latid README
 
 ![Latid](docs/pix/readme_image.png)
 
-Latid is a portable static site generator, oriented towards content authors, which 
-is [pretty simple to use](docs/en/required_knowledge.md). All the required functionality
+Latid is a portable static site generator, oriented towards content authors, 
+therefore [pretty simple in use](docs/en/required_knowledge.md). All the required functionality
 included and enabled, (almost) no programming knowledge required to set up and operate.
 
 
-It works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
+It works as traditional command line utility and/or with browser based GUI (allowing to use block editor). 
 It works best for multipage sites (tested with >2000 pages) with primary static 
 (even completely javascript-free) content (blogs, documentation, portfolios).
 
@@ -42,17 +42,18 @@ You will need node.js, version 11 and up.
 
 The sites, produced with Latid may be completely static and adapted even 
 for oldest browsers, but you will need the descent one for using Latid GUI (Latid can 
-  work without GUI with some limitations). 
+  work without GUI, GUI is just another way to edit site c GUI, GUI is just another way to edit site content,
+  if you prefer to work without GUI, you'd have to use only `markdown` files as source). 
 
 Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work. 
 
-## Plans 
-<small>The marked ones are implemented, but will be included in future release</small>
+## Plans (will be implemented sooner or later)
+<small>The marked ones are implemented, but not included in current release</small>
 
 - [ ] Better WYSIWYG in block editor
 - [ ] Rework local server (cleaner API)
 
-### Maybe plans
+### Maybe plans (_may_ be imlemented)
 
 - [ ] Hosted version 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
@@ -60,7 +61,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 
 ## How to start 
 
-You have better to download latest release and unzip it, or build latid from repo.
+You have better to download latest release and unzip it. You also can build latid from repo.
 It's strongly NOT recommended, but you can:
 
     git clone git@github.com:girobusan/latid.git
