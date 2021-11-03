@@ -7,13 +7,16 @@ title: Latid README
 
 ![Latid](docs/pix/readme_image.png)
 
-Latid is a static site generator, oriented towards content authors, which 
-is [simple to use](docs/en/required_knowledge.md).
+Latid is a portable static site generator, oriented towards content authors, which 
+is [pretty simple to use](docs/en/required_knowledge.md). All the required functionality
+included and enabled, (almost) no programming knowledge required to set up and operate.
+
+
 It works as traditional command line utility and|or with browser based GUI (allowing to use block editor). 
 It works best for multipage sites (tested with >2000 pages) with primary static 
 (even completely javascript-free) content (blogs, documentation, portfolios).
 
-It's now in active use by author, tested and is pretty mature.
+It's in active use, tested and is pretty mature.
 
 ([There are some docs](docs/en/index.md))
 
