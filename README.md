@@ -69,7 +69,7 @@ It's strongly NOT recommended, but you can:
     npm install
     npm run build_all
 
-It may not work on Windows. The output files now in the `dist` directory.
+The output files now in the `dist` directory.
 
 
 ### Setup empty site
