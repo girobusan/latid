@@ -49,16 +49,11 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 ## Plans 
 <small>The marked ones are implemented, but will be included in future release</small>
 
-- [x] MS Windows support (yeah)
 - [ ] Better WYSIWYG in block editor
-- [x] Show better error notice when no page 
 - [ ] Rework local server (cleaner API)
-- [x] Embed rendered page content to template
-- [x] Custom scripts 
 
 ### Maybe plans
 
-- [x] Set local server port in site settings
 - [ ] Hosted version 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
 
