@@ -52,6 +52,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 
 - [ ] Better WYSIWYG in block editor
 - [ ] Rework local server (cleaner API)
+- [ ] Create markdown files from GUI
 
 ### Maybe plans (_may_ be imlemented)
 
