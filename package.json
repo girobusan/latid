@@ -15,7 +15,8 @@
     "watch_cli": "npx webpack --config cli.wp.config.js",
     "build_cli": "npx webpack --config cli.wp.config.js --mode production",
     "linux_build_all": "rm -R dist/* ; npm run build ; npm run build_cli ; cp -R dropins/dist/* dist",
-    "build_all": "node scripts/build_dist.js"
+    "build_all": "node scripts/build_dist.js",
+    "build_dist": "node scripts/build_dist.js --dist"
   },
   "author": "GBT",
   "license": "MIT",

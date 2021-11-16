@@ -4,6 +4,9 @@ const {execSync} = require('child_process');
 const ncp = require('ncp').ncp;
 const pkg = JSON.parse(fs.readFileSync('./package.json' , {encoding: "utf8"}))
 console.log("Building version" , pkg.version)
+//check if dist
+
+const createDistFolder = process.argv.findIndex(e=>e=='--dist')!=-1;
 
 //check dist dir
 if(fs.existsSync('dist')){
@@ -32,9 +35,12 @@ runCommand('npm run build_cli');
 
 //drop the dropins
 //list the dropins
-console.log("Filling distribution folder...")
+console.log("Filling Latid folder...")
 //copy docs
 fse.copySync('docs/en' , 'dropins/dist/src.example/docs')
 fse.copySync('dropins/dist/' , 'dist');
-fse.copySync('dist' , 'latid-' + pkg.version);
+if(createDistFolder){
+  console.log("Creating distribution folder");
+  fse.copySync('dist' , 'latid-' + pkg.version);
+}
 console.log("All done.")

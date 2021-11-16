@@ -23,16 +23,14 @@ It's in active use, tested and is pretty mature.
 ## Features
 
 - One dependency (node.js), no install, just drop in
-- Dead simple content management 
-- Native JSON source file format, which is pretty semantic and can be used with other frontends
-- Can use markdown source files as well
-- Browser-based GUI
-- Also works as command line utility, [jamstack](https://jamstack.org)-friendly
+- Dead simple content management via GUI (optional)
+- JSON source file format, semantic and reusable via other frontends
+- Markdown source files can be used as well
+- Custom scripts for customization of generation process
+- Command line utility, [jamstack](https://jamstack.org)-friendly
 - Nunjucks templates with all its might
 - Automatic paginated lists
 - Tags, persistent and transient tag pages, tags in almost any language
-- Relative links: easy URL change, viewable from local machine without server
-- Site may have any directory structure
 
 ![screenshot](docs/pix/readme_cover.png) 
 

@@ -28,12 +28,26 @@ exports.alert = (title, msg, options) => {
 };
 
 exports.prompt = (title, msg, value = '', options) => {
+
     const type = getType(options);
     const val = String(value)
         .replace(/"/g, '&quot;');
     
     const valueStr = `<input type="${ type }" value="${ val }" data-name="js-input">`;
     const buttons = getButtons(options) || BUTTON_OK_CANCEL;
+    
+    return showDialog(title, msg, valueStr, buttons, options);
+};
+
+exports.promptAndChoice = (title, msg, value = '', options) => {
+    const type = getType(options);
+    const val = String(value)
+        .replace(/"/g, '&quot;');
+    
+    var valueStr = `<input type="${ type }" value="${ val }" data-name="js-input">`;
+    const buttons = getButtons(options) || BUTTON_OK_CANCEL;
+    const choice = `<br><input type="checkbox" checked data-name="js-input">`;
+    valueStr+=choice;
     
     return showDialog(title, msg, valueStr, buttons, options);
 };
