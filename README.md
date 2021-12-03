@@ -13,7 +13,10 @@ included and enabled, (almost) no programming knowledge required to set up and o
 
 
 It works as traditional command line utility and/or with browser based GUI 
-(allowing to use block editor). There is also a [GUI app](https://github.com/girobusan/latid-browser) for hassle-free working with Latid sites.
+(allowing to use block editor). There is also a [GUI app](https://github.com/girobusan/latid-browser) 
+for hassle-free working with Latid sites.
+
+
 It works best for multipage sites (tested with >2000 pages) with primary static 
 (even completely javascript-free) content (blogs, documentation, portfolios).
 
