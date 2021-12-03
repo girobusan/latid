@@ -12,7 +12,8 @@ therefore [pretty simple in use](docs/en/required_knowledge.md). All the require
 included and enabled, (almost) no programming knowledge required to set up and operate.
 
 
-It works as traditional command line utility and/or with browser based GUI (allowing to use block editor). 
+It works as traditional command line utility and/or with browser based GUI 
+(allowing to use block editor). There is also a [GUI app](https://github.com/girobusan/latid-browser) for hassle-free working with Latid sites.
 It works best for multipage sites (tested with >2000 pages) with primary static 
 (even completely javascript-free) content (blogs, documentation, portfolios).
 
@@ -23,7 +24,7 @@ It's in active use, tested and is pretty mature.
 ## Features
 
 - One dependency (node.js), no install, just drop in
-- Dead simple content management via GUI (optional)
+- Dead simple content editing via GUI (optional)
 - JSON source file format, semantic and reusable via other frontends
 - Markdown source files can be used as well
 - Custom scripts for customization of generation process
