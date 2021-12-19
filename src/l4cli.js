@@ -96,13 +96,13 @@ console.log("---------")
 //new production routines
 /*
 {
-    0 get:       f(p),      //async ~
-    O write:     f(p,c)     //async ~
-    +writeSync: f(p , c),      //sync  *
-    +copy:      f(from,to) //async ~
-    +getSync:   f(p),      //sync  *
-    +list:      f(p),      //async ~ ?
-    +base:      string     //base href for views, specific for loader
+      0 |  get:         | f(p),        | async ~
+      O |  write:       | f(p,c)       | async ~
+      0 |  writeSync:   | f(p , c),    | sync  *
+      0 |  copy:        | f(from,to)   | async ~
+      0 |  getSync:     | f(p),        | sync  *
+      0 |  list:        | f(p),        | async ~ ?
+      0 |  base:        | string       | base href for views, specific for loader
 }
 */
 
