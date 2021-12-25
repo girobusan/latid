@@ -1,6 +1,7 @@
 ---
 title: Command Line Interface
 section: "01.06"
+ru: "../ru/cli.md"
 ---
 
 Latid can be invoked as command line utility. It's useful, when hosting on Jamstack. Just setup

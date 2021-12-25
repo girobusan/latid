@@ -1,38 +1,64 @@
 ---
-title: Editing, saving and generating site
+title: Использование GUI
 section: "01.05"
+en: "../en/editing.md"
 ---
-Editing files in GUI is pretty easy, and almost self-explanatory. 
+Редактирование файлов в GUI выполняется просто и почти не требует объяснений.
 <!--cut-->
 
-Editing existing page
+Редактирование существующей страницы
 ---------------------
-When you're in GUI, you can browse to page, than click *view/edit* button, and page will go to edit mode. For markdown source files you'll see simple text editor, for files, created in block editor the interface will be a bit fancier.
+Находясь в GUI, вы можете придти на страничку, кликнуть кнопку `view/edit` 
+и страница будет переведена в режим редактирования. Если исходный файл был в
+формате Markdown, его текст откроется в простом текстовом поле. Для файлов, 
+созданных в GUI, будет открыт более продвинутый блочный редактор.
 
-Saving pages
+Сохранение страницы
 ------------
-After editing, just click *save current* button. 
+После завершения редактирования нажмите кнопку `save current`.
 
-Creating new page or directory
+Создание новой страницы или раздела
 -------------------------------
-First, browse to directory, where new page will be created. For example, if site has a blog section, and you want to add a new blog article, you (usually) have to browse to the title page of the blog, or to any regular page inside that section.
+Сначала перейдите в раздел сайта, где должна быть добавлена новая страница или
+подраздел. Например, если на сайте есть раздел "блог", и вы хотите добавить 
+в него новую запись, обычно нужно перейти на главную страницу блога *или* на
+любую запись в блоге.
 
-Than click *+page* or *+dir* (former will add subsection to current section), and you'll be presented with new blank page. Now you can add|edit metadata for new page, and fill it with some content.
+Затем кликните на копку `+page` чтобы создать страницу, или `+dir` чтобы создать
+подраздел. В выпавшем текстовом блоке введите имя файла *без расширения*.
+Вы окажетесь на новой пустой странице, которую можете отредактировать
+обычным образом.
 
-Block editor basics
+### Различия между страницей и подразделом
+Предположим, вы вводите имя файла "cool-article". Если вы создавали страницу,
+то в текущем подразделе сайта появится файл "cool-article.html". Если раздел, 
+то будет создана поддиректория "cool-article" а в ней — файл "index.html".
+
+Основы блочного редактора
 -------------------
-Pages, created with GUI, are composed of content blocks. To add the first block to the empty page, go to edit mode and move cursor over *edit mode* badge on top of the page. The plus sign will appear on the left, click it and you'll see the blocks menu. Choose your first block there and click it's icon. Block will be added.
+Страницы, созданные в блочном редакторе, состоят из *блоков контента*. 
+Чтобы добавить первый блок на пустую страницу, перейдите в режим редактирования
+и поместите курсор над блоком с надписью "edit mode" в верху страницы. Слева
+появится знак "плюс", при наведении на который появится меню добавления блока. 
+Выберите тип блока и кликните по иконке. Блок будет добавлен.
 
-To add more blocks, hover your mouse over any existent block, and the plus button will appear on it's left. Than you can add new block after.
+Чтобы добавить дополнительные блоки, поместите мышь над любым существующим блоком,
+и слева появится знак "плюс". Новый блок будет добавлен под текущим. Если вы 
+вводите текст в блоке "абзац" (paragraph), то при нажатии клавиши `enter` новый
+блок будет добавлен автоматически.
 
-Refer to `blockeditor.md` for detailed instructions.
+Обратитесь к файлу [blockeditor.md](blockeditor.md), в нем (будут) содержаться 
+более подробные инструкции.
 
-Generating static files
+Генерация сайта в статику
 -----------------------
-After you finish your edits, you can generate final, static version of the site. From GUI this function engaged by clicking *generate site* button. 
+После завершения редактирования вы можете сгенерировать финальную, статичную 
+версию сайта. Из GUI это делается нажатием кнопки `generate site`.
 
-You can also use the [command line utility](cli.md). Open your terminal, change current directory to your site directory and run following command:
+Вы можете предпочесть [утилиту командной строки](cli.md). Откройте терминал,
+перейдите в директорию сайта и выполните команду:
 
     node l4cli.js
 
-The result of both actions will be the same. The latter is useful, when you deploying to Jamstack server.
+Результат обоих способов генерации один и тот же. Утилита командной строки
+может быть полезна при развертывании сайта у провайдера Jamstack.

@@ -1,14 +1,15 @@
 ---
-title: Command Line Interface
+title: Интерфейс командной строки
 section: "01.06"
+en: "../en/cli.md"
+filename: "docs/ru/cli.md"
 ---
 
-Latid can be invoked as command line utility. It's useful, when hosting on Jamstack. Just setup
-your build action, using `l4cli.js` utility.
+Latid может использоваться как приложение командной строки. Это полезно, если ваш сайт хостится у Jamstack-провайдера.
 <!--cut-->
 
-Execute this from the site directory:
+Выполните из директории сайта команду:
 
     node l4cli.js
 
-It will gather source files and generate output static htmls. Invoking with `-t` key initiates "time aware" generation (files with date in future won't be processed)
+Скрипт соберет исходные файлы и сгенерирует html. При выполнение с ключом -t включится режим генерации с учетом времени создания файла, файлы с датой, расположенной в будущем не будут обрабатываться.
