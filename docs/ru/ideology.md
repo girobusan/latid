@@ -1,59 +1,51 @@
 ---
-title: Ideology
+title: Идеология
 ---
 
-Design decisions behind Latid is driven not only by technical and
-aesthetic considerations, but also by some kind of ideology.
+Решения, примененные в Latid, продиктованы не только техническими
+и эстетическими соображениями.
 
-Guerrilla web
-------------
+Партизанский интернет
+---------------------
+Latid приспособлен для работы "под давлением". К сожалению, мы живем в 
+мире, где свобода высказывания постоянно подвергается ограничениям. Сайты 
+блокируются, государствами или иными агентами, создатели контента подвергаются
+преследованиям или *отмене.* Итак, что нужно веб-партизану от генератора 
+статичных сайтов?
 
-Latid is built for use under pressure. Unfortunately, we live
-in the world, where freedom of speech is oppressed on regular basis. Web sites are blocked,
-either by state authorities or by other parties, web creators prosecuted or _canceled_. So, what 
-do you, as guerrilla web author, need from your site generator?
+### Скрыть, как будто не было
 
-### Hide and deny
+Ваш сайт, и все, что нужно для его функционирования, хранится в одной директории.
+Вы можете спрятать ее и отрицать сам факт существования сайта. На вашем 
+компьютере не требуется установка каких-либо специфических библиотек или модулей,
+кроме node.js, присутствие которого можно легко оправдать.
 
-Your site with everything needed for its operation kept in one directory.
-It's easy to hide it somewhere and than deny the very fact of its existence.
-There are no specific libraries or external modules to keep, the node.js
-is legal and its presence may be easily justified.
+### Все, что нужно для работы сайта лежит в одной директории
 
+Вам может понадобиться сменить компьютер. Благодаря Latid, вам нужно добавить 
+только node.js.
 
-### Easy move your authoring work to other computer
+### Легко поменять хостинг
 
-You may need to change your working computer at any time. With Latid you only need to install 
-node.js to start working. 
+Это облегчается использованием в Latid относительных ссылок. Вы можете выложить 
+сайт на отдельный домен, потом переместить на домен второго уровня, и даже в
+поддиректорию на сайте соратника, и все будет работать без дополнительных 
+настроек.
 
-### Change hosting provider easily
+### Легко добавить другие каналы коммуникации
 
-That's where the relative linking comes in handy. You may put your site to dedicated domain, than
-move it to other, and other day -- to some subdirectory at your comrade server, and it will work.
+Относительные ссылки облегчают перенос сайта в Dark Web. В конце концов, его
+можно просто заархивировать и послать по электронной почте.
 
-### Use other communication channels
+### Для любых нелегальных нужд
 
-Relative linking makes transition to Dark web
-pretty easy. You can even pack your site to zip archive and send it by email.
+Вам, как партизану интернета, может понадобится открыть блог на какую-нибудь
+запретную тему. Или собрать коллекцию документов, или разместить вербовочный
+лендинг. Или нужно сочетать в одном сайте блог и документацию. Или... Я не 
+знаю, и это не мое дело. Чтобы все это было возможно, Latid не накладывает 
+никаких ограничений на структуру сайта.
 
-### For all your illegal goals
-
-You, as a guerrilla web creator,  may want to make 
-a blog on some forbidden subject, or documents collection,
-or landing page for your recruiting event. Or you would like to have blog and documentation 
-combined. Or... I do not know, and do not want to know. That's why there is absolutely no
-implications on your site structure in Latid.
-
-And if you plan to change structure in future -- use "plus links" in all your documents, and they
-will stay intact even if target document will be moved.
-
-
-Separated user experiences
---------------------------
-
-There are three user experiences involved in web site creation:
-
-- Web design
-- Environment setup
-- Content creation
+А если вы не определились, и ожидаете, что в будущем вам может понадобится 
+изменять структуру сайта, используйте "плюс-ссылки" и ссылочная структура сайта
+будет сохранена, даже если вы поменяете расположение страниц.
 
