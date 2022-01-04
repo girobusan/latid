@@ -56,8 +56,8 @@ console.log(title, pth , meta , isMarkdown);
         bs.file.meta = Object.assign(bs.file.meta , meta, )
        //return Object.assign(bs , {"file": {"meta" : meta}})
     }
-    console.log("isMarkdown", isMarkdown);
-    console.log("Created view" , bs);
+    // console.log("isMarkdown", isMarkdown);
+    // console.log("Created view" , bs);
     return bs;
 }
 

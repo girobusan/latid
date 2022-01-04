@@ -385,22 +385,27 @@ export function routines(fileops) {
         }
         //settings.output.date_aware_generation
         if(generation_settings.output.date_aware_generation){
-           //stach current views
-           var full_views = my.views;
-           //filter by date
-           let current_date = new Date();
-           my.views = my.views.filter( v=>{
-              if(!v.file || !v.file.meta || !v.file.meta.date){return true}
-              let vdate = Util.str2date(v.file.meta.date);
-             //if date is invalid, keep file in list 
-              let cstatus =  vdate ? current_date.getTime() > vdate.getTime() : true;
-              //console.log(v.path , current_date , vdate , cstatus);
-              if(!cstatus){
-                console.log("Future date at" , v.path);
-              }
-              return cstatus;
-           } )
-           my.updateList();
+          //stach current views
+          var full_views = my.views;
+          //filter by date
+          let current_date = new Date();
+          if(my.settings.output&&my.settings.output.time_diff){
+            var tdiff = my.settings.output.time_diff * 1000 * 60 * 60 ; 
+          }else{
+            tdiff = 0
+          }
+          my.views = my.views.filter( v=>{
+            if(!v.file || !v.file.meta || !v.file.meta.date){return true}
+            let vdate = Util.str2date(v.file.meta.date);
+            //if date is invalid, keep file in list 
+            let cstatus =  vdate ? current_date.getTime() > (vdate.getTime() + tdiff): true;
+            //console.log(v.path , current_date , vdate , cstatus);
+            if(!cstatus){
+              console.log("Future date at" , v.path);
+            }
+            return cstatus;
+          } )
+          my.updateList();
            
         }else{
            full_views = null;
@@ -454,7 +459,7 @@ export function routines(fileops) {
 
         });//
         //
-    }
+    }// /generateAll
     /*
     
               //////////////////\

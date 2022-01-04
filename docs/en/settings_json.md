@@ -122,9 +122,10 @@ Optional. Default date for files without date. If not defined, file modification
 will be used instead.
 
 ### date_aware_generation
-Optional. Boolean: is date aware generation on or off. Date awareness means?
-that files with date in future will be excluded from generation. You should
-not set this setting directly (for now, as of v1.10.1). 
+Boolean: is date aware generation on or off. You should not set this option in
+config file, it's used internally and can be read programmatically from 
+`settings` object.  Date awareness means that files with date in future will be
+excluded from generation.
 
 ## themes
      "themes" :{

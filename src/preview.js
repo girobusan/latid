@@ -273,7 +273,7 @@ export function preview() {
     if (!fn) {
       return;
     }
-    console.log("FN" , fn)
+    // console.log("FN" , fn)
     if (is_index) {
       var fpuri = Util.gluePath(path.dirname(my.current_view.uri), fn[0], "index.html");
     } else {
@@ -284,10 +284,11 @@ export function preview() {
     if (!isunique.ok) { //not ok means — OK!
       //create empty view - it made from PATH, not URI
       //
-      let nv = Files.makeEmptyView("Untitled",
+      let nv = Files.makeEmptyView(
+        "Untitled",
         fpuri.substring(1).replace(/\.html$/, fn[1] ? ".markdown" : ".json" ),
-      my.settings.editor !== undefined ? my.settings.editor.default_meta : {},
-      fn[1]
+        my.settings.editor !== undefined ? my.settings.editor.default_meta : {},
+        fn[1]
       );
       nv.modified = true;
       window.l4.producer.save(nv)
