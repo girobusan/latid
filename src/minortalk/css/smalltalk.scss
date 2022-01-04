@@ -193,6 +193,33 @@ button {
   outline: none;
 }
 
+.optional_input_row{
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9em;
+  margin-top: 16px;
+}
+
+.smalltalk input[type=checkbox]{
+  display: block;
+  box-sizing: border-box;
+  margin-top:0 !important;
+  margin-right: 8px;
+  padding: 2px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid silver;
+  min-height: 16px;
+  &:checked::before{
+    content: " ";
+    display: block;
+    background-color: #00A1AB;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+}
+
 .smalltalk button:enabled:focus, .smalltalk input:enabled:focus {
   transition: border-color 200ms;
   border-color: #00A1AB;

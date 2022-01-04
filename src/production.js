@@ -392,7 +392,7 @@ export function routines(fileops) {
            my.views = my.views.filter( v=>{
               if(!v.file || !v.file.meta || !v.file.meta.date){return true}
               let vdate = Util.str2date(v.file.meta.date);
-              
+             //if date is invalid, keep file in list 
               let cstatus =  vdate ? current_date.getTime() > vdate.getTime() : true;
               //console.log(v.path , current_date , vdate , cstatus);
               if(!cstatus){
@@ -417,40 +417,40 @@ export function routines(fileops) {
         let rp = new Rewriter.rewriter(my.views ,false, generation_settings);
         //my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
         my.views.forEach(function (v, i, a) {
-            my.callCustomScripts("one_saving" , v);
-            var myclb = null;
-            if (i % 10 == 0 && i < my.views.length && callback) {
-              //console.log("CALLBACK");
-                myclb = buildCallback(callback, i, my.views.length, "working", "generate_site");
-            } else if (i == my.views.length - 1 && callback) {
-                //all files ready
-                let myclb_0 = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
+          my.callCustomScripts("one_saving" , v);
+          var myclb = null;
+          if (i % 10 == 0 && i < my.views.length && callback) {
+            //console.log("CALLBACK");
+            myclb = buildCallback(callback, i, my.views.length, "working", "generate_site");
+          } else if (i == my.views.length - 1 && callback) {
+            //all files ready
+            let myclb_0 = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
 
-                myclb  = function(){
-                myclb_0();
-                if(full_views!=null){
-                   my.views = full_views;
-                   my.updateList;
-                }
-                }
-                my.callCustomScripts("all_saved" , my.views);
+            myclb  = function(){
+              myclb_0();
+              if(full_views!=null){
+                my.views = full_views;
+                my.updateList();
+              }
             }
+            my.callCustomScripts("all_saved" , my.views);
+          }
 
-            if (v.type == "copy") {
-                my.fileops.copy(Path.join("src", v.path), Path.join(generation_settings.output.dir, v.uri))
-                    .then(() => { if (myclb) { myclb() } })
-                    .catch(err => console.error(err));
-            } else {
-                //let c = my.template.render(v);
-                let c = my.renderOneFile(v , {editmode: false});
-                c = rp.rewriteAllLinks(c, v.uri);
-                my.fileops.write(Path.join(generation_settings.output.dir, v.uri), c)
-                    .then(() => {
-                      if (myclb) {  myclb() };
-                    })
-                    .catch(err => console.error("Can not write (in generateAll)", v.uri, err));
-            }
-            
+          if (v.type == "copy") {
+            my.fileops.copy(Path.join("src", v.path), Path.join(generation_settings.output.dir, v.uri))
+            .then(() => { if (myclb) { myclb() } })
+              .catch(err => console.error(err));
+          } else {
+            //let c = my.template.render(v);
+            let c = my.renderOneFile(v , {editmode: false});
+            c = rp.rewriteAllLinks(c, v.uri);
+            my.fileops.write(Path.join(generation_settings.output.dir, v.uri), c)
+            .then(() => {
+              if (myclb) {  myclb() };
+            })
+            .catch(err => console.error("Can not write (in generateAll)", v.uri, err));
+          }
+
 
         });//
         //

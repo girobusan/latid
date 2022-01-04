@@ -39,14 +39,17 @@ exports.prompt = (title, msg, value = '', options) => {
     return showDialog(title, msg, valueStr, buttons, options);
 };
 
-exports.promptAndChoice = (title, msg, value = '', options) => {
+exports.promptAndChoice = (title, msg, optional="Option" , value = '', options) => {
+   console.log("msg" , msg)
     const type = getType(options);
     const val = String(value)
         .replace(/"/g, '&quot;');
     
     var valueStr = `<input type="${ type }" value="${ val }" data-name="js-input">`;
+    const choice = `<br>
+   <div class="optional_input_row"><input type="checkbox" value="optional" data-name="js-input"> ${optional}
+    </div>    `;
     const buttons = getButtons(options) || BUTTON_OK_CANCEL;
-    const choice = `<br><input type="checkbox" checked data-name="js-input">`;
     valueStr+=choice;
     
     return showDialog(title, msg, valueStr, buttons, options);
@@ -115,6 +118,8 @@ function getType(options = {}) {
 }
 
 function getTemplate(title, msg, value, buttons) {
+    console.log("Msg in tpl" , msg)
+  
     const encodedMsg = msg.replace(/\n/g, '<br>');
     
     if(Object.keys(buttons).length !=0){
@@ -321,10 +326,21 @@ function closeDialog(el, dialog, ok, cancel) {
     }
     
     const value = find(dialog, ['input'])
-        .reduce((value, el) => el.value, null);
+        .map(e=>{ console.log(e.value);return e })
+        .reduce((value, el) => el.value, null)
+
+    const optional = dialog.querySelector("input[type=checkbox]");
+    console.log("Option", optional);
+    if(optional){ console.log("Option  selected" , optional.checked) }
     
-    ok(value);
-    remove(dialog);
+
+    console.log("values" , value) ;
+    if(!optional)
+      {   ok(value);
+      }else{
+        ok([value, optional.checked])
+      }
+      remove(dialog);
 }
 
 const query = currify((element, name) => element.querySelector(`[data-name="js-${ name }"]`));

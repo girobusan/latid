@@ -30,6 +30,8 @@ const Empty =
     }
 };
 
+const EmptyMD = ` Lorem Ipsum `
+
 export function makeEmptyView(title, pth , meta) {
     let bs = JSON.parse(JSON.stringify(Empty));
     bs.file.meta.title = title;

@@ -266,7 +266,8 @@ export function preview() {
     }
     //
 
-    let fn =  await smalltalk.prompt("Latid", question, "");
+    // let fn =  await smalltalk.prompt("Latid", question, "");
+    let fn =  await smalltalk.promptAndChoice("Latid", question,  "Markdown" , " ");
 
     //...until it's unique or empty
     if (!fn) {
@@ -274,9 +275,9 @@ export function preview() {
     }
     console.log("FN" , fn)
     if (is_index) {
-      var fpuri = Util.gluePath(path.dirname(my.current_view.uri), fn, "index.html");
+      var fpuri = Util.gluePath(path.dirname(my.current_view.uri), fn[0], "index.html");
     } else {
-      var fpuri = Util.gluePath(path.dirname(my.current_view.uri), fn + ".html");
+      var fpuri = Util.gluePath(path.dirname(my.current_view.uri), fn[0] + ".html");
     }
     let isunique = await window.l4.producer.getView(fpuri, "uri");
     //
