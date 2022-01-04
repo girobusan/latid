@@ -1,5 +1,6 @@
 ---
 title: Ideology
+ru: ../ru/ideology.md
 ---
 
 Design decisions behind Latid is driven not only by technical and

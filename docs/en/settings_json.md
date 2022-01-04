@@ -27,7 +27,8 @@ The settings file is  [your site dir/]_config/settings.json. That's how it looks
           "debug": true,
           "content_selector": "#content",
           "list_max": 10,
-          "default_date"  : "01.01.1970 12:30"
+          "default_date"  : "01.01.1970 12:30",
+          "date_aware_generation" : false
         },
         "themes" :{
           "enabled" : false,
@@ -119,6 +120,11 @@ Required. Maximum number of items per page in multipage article lists.
 ### default_date
 Optional. Default date for files without date. If not defined, file modification date
 will be used instead.
+
+### date_aware_generation
+Optional. Boolean: is date aware generation on or off. Date awareness means?
+that files with date in future will be excluded from generation. You should
+not set this setting directly (for now, as of v1.10.1). 
 
 ## themes
      "themes" :{

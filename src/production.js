@@ -243,7 +243,7 @@ export function routines(fileops) {
     //create virtual pages (tags and multipage)
     // ()=> void //DIRTY
     this.generateVirtuals = function () {
-
+        // if(!viewsList){viewsList = my.views};
         //remove previous: all virtual pages and all tag pages, virtual or not 
         my.views = my.views.filter(e => !e.virtual);
         //remove all possible virtual references
@@ -253,6 +253,7 @@ export function routines(fileops) {
         my.meta.tags = Tags.makeTagsNew(my.views, my.settings);
         //create multipage indices
         //l4.views.forEach(v => Views.makeMultipageIndex(l4, v, l4.views));
+        // console.log('My' , my.settings);
         my.views.forEach(v => Views.makeMultipageIndex(null, v, my.views, v => my.views.push(v), my.settings.output.list_max));
         //create multipage tags
         my.views.forEach(v => Views.makeMultipageTag(null, v, v.tagged, v => my.views.push(v), my.settings.output.list_max));
@@ -366,20 +367,54 @@ export function routines(fileops) {
 
     }
 
-    //generate site from current views set
-    //callback => void
-    this.generateAll = function (callback) {
+    //    //callback => void
+    /**
+     * this.generateAll. - 
+     * Generate site from current views set
+     *
+     * @param {Function} callback - Callback, called multuply with completion status
+     * @param {Object} opts - Generation options (to be merged with settings)
+     */
+    this.generateAll = function (callback , opts) {
         my.meta.preview = false;
+        if(opts){
+          var generation_settings = Object.assign({}, my.settings);
+          generation_settings.output.date_aware_generation = opts.output.date_aware_generation;
+        }else{
+          generation_settings = my.settings;
+        }
+        //settings.output.date_aware_generation
+        if(generation_settings.output.date_aware_generation){
+           //stach current views
+           var full_views = my.views;
+           //filter by date
+           let current_date = new Date();
+           my.views = my.views.filter( v=>{
+              if(!v.file || !v.file.meta || !v.file.meta.date){return true}
+              let vdate = Util.str2date(v.file.meta.date);
+              
+              let cstatus =  vdate ? current_date.getTime() > vdate.getTime() : true;
+              //console.log(v.path , current_date , vdate , cstatus);
+              if(!cstatus){
+                console.log("Future date at" , v.path);
+              }
+              return cstatus;
+           } )
+           my.updateList();
+           
+        }else{
+           full_views = null;
+        }
         this.generateVirtuals();
         //generate rss
-        let rssc = RSS.buildRSS(my.settings, my.views);
-        let rsspath = Path.join(my.settings.output.dir, my.settings.rss.uri);
+        let rssc = RSS.buildRSS(generation_settings, my.views);
+        let rsspath = Path.join(generation_settings.output.dir, generation_settings.rss.uri);
         my.fileops.write(rsspath, rssc)
             .catch(err => console.error("Can not write RSS", err));
         //this.updateList();
         console.info("Preparing to generate", my.views.length, "files")
         //console.log(my.views.map(e=>({"path" : e.path , "uri" : e.uri})))
-        let rp = new Rewriter.rewriter(my.views ,false, my.settings);
+        let rp = new Rewriter.rewriter(my.views ,false, generation_settings);
         //my.template = new Template.template(my.views, my.settings, my.meta, my.template_loader);
         my.views.forEach(function (v, i, a) {
             my.callCustomScripts("one_saving" , v);
@@ -388,25 +423,36 @@ export function routines(fileops) {
               //console.log("CALLBACK");
                 myclb = buildCallback(callback, i, my.views.length, "working", "generate_site");
             } else if (i == my.views.length - 1 && callback) {
-                myclb = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
+                //all files ready
+                let myclb_0 = buildCallback(callback, my.views.length, my.views.length, "ready", "generate_site");
+
+                myclb  = function(){
+                myclb_0();
+                if(full_views!=null){
+                   my.views = full_views;
+                   my.updateList;
+                }
+                }
                 my.callCustomScripts("all_saved" , my.views);
             }
 
             if (v.type == "copy") {
-                my.fileops.copy(Path.join("src", v.path), Path.join(my.settings.output.dir, v.uri))
+                my.fileops.copy(Path.join("src", v.path), Path.join(generation_settings.output.dir, v.uri))
                     .then(() => { if (myclb) { myclb() } })
                     .catch(err => console.error(err));
             } else {
                 //let c = my.template.render(v);
                 let c = my.renderOneFile(v , {editmode: false});
                 c = rp.rewriteAllLinks(c, v.uri);
-                my.fileops.write(Path.join(my.settings.output.dir, v.uri), c)
-                    .then(() => { if (myclb) {  myclb() } })
+                my.fileops.write(Path.join(generation_settings.output.dir, v.uri), c)
+                    .then(() => {
+                      if (myclb) {  myclb() };
+                    })
                     .catch(err => console.error("Can not write (in generateAll)", v.uri, err));
             }
             
 
-        });
+        });//
         //
     }
     /*

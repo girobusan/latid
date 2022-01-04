@@ -5,6 +5,11 @@ var Path = require("path");
 //const fs = require("fs");
 const fs = require('fs');//.promises;
 const fsp = require('fs').promises;
+var opts = {
+  output:{
+    date_aware_generation: false
+  }
+};
 
 import * as Production from "./production";
 
@@ -18,6 +23,7 @@ var sitedir = cliargs.s || process.cwd();//site directory
 var timeawareness = cliargs.t || false;
 if (timeawareness) {
     console.log("Time-aware generation: on")    
+    opts = Object.assign(opts,{output:{date_aware_generation:true}})
 
 } else {
     console.log("Time-aware generation: off")
@@ -179,10 +185,9 @@ function printProgress(what , e){
 
 prod.init(function () {
 
-    prod.loadAll(e=>printProgress( "Files loading" , e))
-        //.then(e=>console.info("\nFiles Loaded at" , (new Date()).getMilliseconds() - work_time  ))
-        .then(() => prod.generateAll(  e=>printProgress("Generation" , e)   ))
-        .catch(err=>console.error(err))
-        ;
+  prod.loadAll(e=>printProgress( "Files loading" , e))
+  .then(() => prod.generateAll(  e=>printProgress("Generation" , e) , opts ))
+.catch(err=>console.error(err))
+  ;
 });
 
