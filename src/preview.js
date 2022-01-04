@@ -285,8 +285,10 @@ export function preview() {
       //create empty view - it made from PATH, not URI
       //
       let nv = Files.makeEmptyView("Untitled",
-        fpuri.substring(1).replace(/\.html$/, ".json"),
-      my.settings.editor !== undefined ? my.settings.editor.default_meta : {});
+        fpuri.substring(1).replace(/\.html$/, fn[1] ? ".markdown" : ".json" ),
+      my.settings.editor !== undefined ? my.settings.editor.default_meta : {},
+      fn[1]
+      );
       nv.modified = true;
       window.l4.producer.save(nv)
       .then(my.goTo(fpuri));

@@ -30,20 +30,34 @@ const Empty =
     }
 };
 
-const EmptyMD = ` Lorem Ipsum `
 
-export function makeEmptyView(title, pth , meta) {
+/**
+ * makeEmptyView.
+ *
+ * @param {String} title
+ * @param {String} pth
+ * @param {Object} meta
+ * @param {Boolean} isMarkdown
+ */
+export function makeEmptyView(title, pth , meta , isMarkdown) {
+console.log(title, pth , meta , isMarkdown);
     let bs = JSON.parse(JSON.stringify(Empty));
+    if(isMarkdown){
+        bs.file.content_format = "markdown";
+        bs.file.content = "Lorem Ipsum"
+    }
     bs.file.meta.title = title;
     bs.path = pth;
     bs.file.meta.id = uuidv1();
     bs.file.meta.date = Util.date2str(new Date())
     //TMP
-    bs.uri = "/" + pth.replace(/\.json$/ , ".html");
+    bs.uri = "/" + pth.replace(/\.[a-zA-Z]+$/ , ".html");
     if(meta){
         bs.file.meta = Object.assign(bs.file.meta , meta, )
        //return Object.assign(bs , {"file": {"meta" : meta}})
     }
+    console.log("isMarkdown", isMarkdown);
+    console.log("Created view" , bs);
     return bs;
 }
 
