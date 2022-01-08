@@ -1,6 +1,7 @@
 ---
 title: Command Line Interface
 section: "01.06"
+ru: "../ru/cli.md"
 ---
 
 Latid can be invoked as command line utility. It's useful, when hosting on Jamstack. Just setup
@@ -11,4 +12,5 @@ Execute this from the site directory:
 
     node l4cli.js
 
-It will gather source files and generate output static htmls. Invoking with `-t` key initiates "time aware" generation (files with date in future won't be processed)
+It will gather source files and generate output static htmls. Invoking with `-t` key initiates "time aware" generation (files with date in future won't be processed, 
+this is *planned* feature)

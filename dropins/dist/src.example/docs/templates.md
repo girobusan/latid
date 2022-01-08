@@ -27,9 +27,9 @@ Returns copy of views list, sorted by specified meta value. Example:
     {% set sorted = array | msort(reverse, field_name , as_number) %}
 
 parameters are:
-- `reverse`: reverse order, boolean
-- `field_name`: name of the metadata field to sort by
-- `as_number`: if true, treat field value as number, if false (default) - string.
+1. `reverse`: reverse order, boolean
+1. `field_name`: name of the metadata field to sort by
+1. `as_number`: if true, treat field value as number, if false (default) - string.
 
 ### metasort
 Same, but with more sane parameters order:

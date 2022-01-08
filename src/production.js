@@ -21,7 +21,6 @@ import * as Rewriter from "./link_replacer";
 import * as Tags from "./tags.js";
 import * as Util from "./util";
 import * as RSS from "./rss";
-//const fs = require("fs")
 
 //import {TextDecoder} from "util";
 
@@ -372,13 +371,15 @@ export function routines(fileops) {
      * this.generateAll. - 
      * Generate site from current views set
      *
-     * @param {Function} callback - Callback, called multuply with completion status
+     * @param {Function} callback - Callback, called multiply with completion status
      * @param {Object} opts - Generation options (to be merged with settings)
      */
     this.generateAll = function (callback , opts) {
         my.meta.preview = false;
         if(opts){
           var generation_settings = Object.assign({}, my.settings);
+          //  TODO: deep join them
+          //  https://www.npmjs.com/package/lodash.merge ?
           generation_settings.output.date_aware_generation = opts.output.date_aware_generation;
         }else{
           generation_settings = my.settings;
@@ -395,13 +396,16 @@ export function routines(fileops) {
             tdiff = 0
           }
           my.views = my.views.filter( v=>{
-            if(!v.file || !v.file.meta || !v.file.meta.date){return true}
+            if(v.file===undefined 
+            || v.file.meta===undefined 
+            || v.file.meta.date===undefined)
+            {return true}
             let vdate = Util.str2date(v.file.meta.date);
             //if date is invalid, keep file in list 
             let cstatus =  vdate ? current_date.getTime() > (vdate.getTime() + tdiff): true;
             //console.log(v.path , current_date , vdate , cstatus);
             if(!cstatus){
-              console.log("Future date at" , v.path);
+              console.info("Future date at" , v.path);
             }
             return cstatus;
           } )
@@ -563,7 +567,7 @@ export function routines(fileops) {
             })
             .then(async function(settings){
                 //new template routines
-                //do there a basic calcs
+                //do a basic calcs
                 //new context on each run
                 //
                 //result: f(template name) => f(context) => html
