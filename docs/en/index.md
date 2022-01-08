@@ -9,9 +9,10 @@ Plese, refer to latest version of documentation at [Github page](https://github.
 1. [ Introduction ](intro.md)
 1. [Required knowledge](required_knowledge.md)
 1. [ Getting started ](gettingstarted.md)
-1. [ Site directory structure ](site_directory_structure.md)
-1. [ Settings file ](settings_json.md)
-1. [ Command line interface ](cli.md)
+3. [ Site directory structure ](site_directory_structure.md)
+4. [ Settings file ](settings_json.md)
+5. [ Command line interface ](cli.md)
+6. [Upgrade to new version](upgrade.md)
 
 ## Editing
 1. [ File metadata ](file_meta.md)
@@ -31,9 +32,10 @@ Plese, refer to latest version of documentation at [Github page](https://github.
 1. [ GUI mode limitations ](gui_design_limitations.md)
 
 ## Advanced 
-1. [ Custom scripts ](custom_scripts.md)
-1. [ JavaScript workaround ](js_workaround.md)
-1. [Internal file operations](internal_file_operations.md)
-1. [ Server API ](server_api.md)
+1. [Deployment](deploy.md)
+2. [ Custom scripts ](custom_scripts.md)
+3. [ JavaScript workaround ](js_workaround.md)
+4. [Internal file operations](internal_file_operations.md)
+5. [ Server API ](server_api.md)
 
 

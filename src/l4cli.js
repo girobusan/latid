@@ -1,5 +1,11 @@
-console.log("\nLatid", VERSION);
-console.log("=========");
+let baner = "Latid " + VERSION;
+let doubleUnderline = baner.replace(/./g , "=");
+let singleUnderline = baner.replace(/./g , "-");
+// console.log("\nLatid", VERSION);
+// console.log("=========");
+console.log(doubleUnderline);
+console.log(baner);
+console.log(doubleUnderline);
 console.log("Today:", (new Date()).toLocaleString());
 var Path = require("path");
 //const fs = require("fs");
@@ -91,7 +97,7 @@ let confdir = l4.settings.output.dir ? l4.settings.output.dir : "static";
 var outdir = cliargs.o || Path.join(sitedir, confdir);//Path.join(sitedir, "static");
 l4.settings.output_path = outdir;
 console.log("Output to", outdir);
-console.log("---------")
+console.log(singleUnderline);
 
 
 
@@ -178,7 +184,7 @@ function printProgress(what , e){
         progress_acc[what] += 100;
         console.info(what + ": done at " + ((new Date()).getTime() - work_time) , "ms"  );
         if(e.operation == 'generate_site'){
-            console.log("---------");
+            console.log(singleUnderline);
         }        
     }    
 }
