@@ -56,6 +56,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Rework local server (cleaner API)
 - [X] Create markdown files from GUI
 - [X] Time-aware generation 
+- [ ] Move to TOML configuration file format
 
 ### Maybe plans (_may_ be imlemented)
 

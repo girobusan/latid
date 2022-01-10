@@ -1,6 +1,5 @@
 ---
 title: Settings.json structure
-date: 24.10.2020
 section: "01.03"
 ---
 

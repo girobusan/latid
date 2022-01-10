@@ -1,23 +1,25 @@
+const TOML = require('@iarna/toml');
+const fs = require('fs');//.promises;
+const fsp = require('fs').promises;
+var Path = require("path");
+import * as Production from "./production";
+const util = require("./util.js");
+
 let baner = "Latid " + VERSION;
 let doubleUnderline = baner.replace(/./g , "=");
 let singleUnderline = baner.replace(/./g , "-");
-// console.log("\nLatid", VERSION);
-// console.log("=========");
 console.log(doubleUnderline);
 console.log(baner);
 console.log(doubleUnderline);
-console.log("Today:", (new Date()).toLocaleString());
-var Path = require("path");
-//const fs = require("fs");
-const fs = require('fs');//.promises;
-const fsp = require('fs').promises;
+
+let today = new Date();
+console.log("Today:", util.date2str(today));
 var opts = {
   output:{
     date_aware_generation: false
   }
 };
 
-import * as Production from "./production";
 
 var work_time = (new Date()).getTime();
 //read params
@@ -29,15 +31,16 @@ var sitedir = cliargs.s || process.cwd();//site directory
 var timeawareness = cliargs.t || false;
 if (timeawareness) {
     console.log("Time-aware generation: on")    
+    console.log("Current time zone offset:", today.getTimezoneOffset()/60 , "hrs");
     opts = Object.assign(opts,{output:{date_aware_generation:true}})
 
 } else {
     console.log("Time-aware generation: off")
     
 }
-var do_publish = cliargs.p || false ;
+// var do_publish = cliargs.p || false ;
 
-var indir = cliargs.i || Path.join(sitedir, "src");
+// var indir = cliargs.i || Path.join(sitedir, "src");
 //
 //def functions
 
@@ -63,6 +66,7 @@ function toArrayBuffer(buf) {
 export function reclist(dir, filelist) {
     //var path = path || require('path');
     // var fs = fs || require('fs'), //
+  
 
     let files = fs.readdirSync(dir);
     filelist = filelist || [];
@@ -88,9 +92,15 @@ var l4 = {
 };
 //read settings
 // <site dir> + _config/settings.json
-l4.settings = JSON.parse(fs.readFileSync(Path.join(sitedir, "_config", "settings.json"), {
+try{
+  l4.settings = TOML.parse(fs.readFileSync(Path.join(sitedir, "_config", "settings.toml"), {
     encoding: "utf8"
-}));
+  }));
+}catch{
+  l4.settings = JSON.parse(fs.readFileSync(Path.join(sitedir, "_config", "settings.json"), {
+    encoding: "utf8"
+  }));
+}
 //l4.settings.output_path = l4.settings.output_path || "static" ;
 let confdir = l4.settings.output.dir ? l4.settings.output.dir : "static";
 
@@ -121,13 +131,14 @@ console.log(singleUnderline);
 let fileops = {
     "base": sitedir,
     "get": function (p) {
-        //console.log("my get")
+        // console.log("my get")
         return new Promise(function (res, rej) {
             fsp.readFile(Path.join(sitedir, p))
             .then(r => res(toArrayBuffer(r)))
-            .catch(e=>rej(e))
+            .catch(e=>{console.log("rejection") ; rej(e) })
+            })
             ;
-        })
+        
     },
 
     "getSync": function (p) {

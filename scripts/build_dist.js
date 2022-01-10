@@ -30,7 +30,7 @@ function runCommand(c){
   })
 }
 
-runCommand('npm run build');
+runCommand('npx webpack --mode=production');
 runCommand('npm run build_cli');
 
 //drop the dropins

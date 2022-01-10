@@ -8,7 +8,7 @@
     "url": "github:girobusan/latid"
   },
   "scripts": {
-    "build": "npx webpack --mode production",
+    "build": "node scripts/build_dist.js",
     "serve": "cd site && node latidserv.js ",
     "watch": "npx webpack",
     "build_site_css": "lessc src/styles/site.less site/src/styles/main.css",
@@ -45,6 +45,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@iarna/toml": "^2.2.5",
     "browser-or-node": "^1.2.1",
     "copy-dir": "^1.2.0",
     "d3": "^5.12.0",
@@ -55,6 +56,7 @@
     "markdown-it-multimd-table": "^4.0.3",
     "minimist": "^1.2.5",
     "nunjucks": "^3.2.1",
+    "promise.any": "^2.0.3",
     "recursive-readdir": "^2.2.2",
     "smalltalk": "^4.0.6",
     "unidecode": "^0.1.8",

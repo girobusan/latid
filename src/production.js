@@ -7,6 +7,9 @@
  (requires save/load routines on init)
  
 */
+const TOML = require('@iarna/toml');
+var any = require('promise.any');
+// const obj = TOML.parse(`[abc]...
 
 import * as Views from "./views";
 import * as Formats from "./formats";
@@ -405,7 +408,7 @@ export function routines(fileops) {
             let cstatus =  vdate ? current_date.getTime() > (vdate.getTime() + tdiff): true;
             //console.log(v.path , current_date , vdate , cstatus);
             if(!cstatus){
-              console.info("Future date at" , v.path);
+              console.info("~ Future date:", v.file.meta.date , "at" , v.path);
             }
             return cstatus;
           } )
@@ -554,14 +557,19 @@ export function routines(fileops) {
         //console.log(Path.join( my.fileops.base , "_config/settings.json"));
 
         //settings file
+        let config_toml = fileops.get("_config/settings.toml")
+        .then(r=>TOML.parse(my.decoder.decode(r))) ;
+        // let config_fake = fileops.get("_config/settings.fake") ;
+        let config = fileops.get("_config/settings.json")
+        .then(r=>JSON.parse(my.decoder.decode(r)));
 
-        let config = fileops.get("_config/settings.json");
-        //load custom scripts
+        let composed = any([config_toml,config]) ;
 
-        config
+        composed
             .then(function (r) {
                 //parse settings
-                my.settings = JSON.parse(my.decoder.decode(r));
+                my.settings = r; //JSON.parse(my.decoder.decode(r));
+                // console.log(my.settings);
                 return my.settings;
 
             })

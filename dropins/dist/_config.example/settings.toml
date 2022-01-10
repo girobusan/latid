@@ -1,0 +1,52 @@
+#
+# This is an example Latid config file
+# tweak it to your needs
+#
+[site]
+title = "Example Latid Site"
+motto = "Proud To Be Default"
+url = "https://example.com"
+
+[editor]
+content_selector = "#content"
+local_server_port = 9999
+default_meta.tags = "" 
+
+[output]
+
+# Directory, relative to site dir
+# where the generated files will be
+# placed
+dir = "static"
+
+# Time difference in hours between time in source files and local time
+# of generating host
+time_diff = 0
+debug = false
+
+#Max number of entries in lists (index pages, tag pages)
+list_max = 10
+
+# Default date, if no date specified
+default_date = "1999.08.20 16:00"
+
+[markdown]
+fix_links = true 
+force_source = false
+
+[tags]
+dir = "/tags/"
+
+[rss]
+uri = "/rss.xml"
+count = 20
+
+[publish]
+command = ""
+args = ""
+
+[themes]
+enabled = false
+theme = "default"
+
+
