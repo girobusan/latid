@@ -31,22 +31,44 @@ list_max = 10
 default_date = "1999.08.20 16:00"
 
 [markdown]
+
+# Change extentions of links to .md adn .markdown files
+# to .html
 fix_links = true 
+
+# Use markdown files without frontmatter 
+# as source files
 force_source = false
 
 [tags]
+
+# Directory for tag pages
 dir = "/tags/"
 
 [rss]
+
+# URI for RSS feed
 uri = "/rss.xml"
+
+# Count of RSS feed items
 count = 20
 
 [publish]
+
+# Publish command. Can be called from 
+# Latid-browser app.
 command = ""
+
+# Arguments for that command.
 args = ""
 
 [themes]
+
+# Enable themes
 enabled = false
+
+# Name of current theme
+# (no effect if themes are disabled)
 theme = "default"
 
 

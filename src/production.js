@@ -567,7 +567,7 @@ export function routines(fileops) {
 
         composed
             .then(function (r) {
-                console.log("We've got settings" , r);
+                // console.log("We've got settings" , r);
                 //parse settings
                 my.settings = r; //JSON.parse(my.decoder.decode(r));
                 // console.log(my.settings);

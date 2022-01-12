@@ -10,9 +10,10 @@ Plese, refer to latest version of documentation at [Github page](https://github.
 1. [Required knowledge](required_knowledge.md)
 1. [ Getting started ](gettingstarted.md)
 3. [ Site directory structure ](site_directory_structure.md)
-4. [ Settings file ](settings_json.md)
-5. [ Command line interface ](cli.md)
-6. [Upgrade to new version](upgrade.md)
+4. [Settings file](settings_toml.md)
+5. [ Settings.json file (old format) ](settings_json.md)
+6. [ Command line interface ](cli.md)
+7. [Upgrade to new version](upgrade.md)
 
 ## Editing
 1. [ File metadata ](file_meta.md)
