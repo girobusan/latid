@@ -71,12 +71,10 @@ Install [node.js](https://nodejs.org) to your computer.
 You have better to download latest release and unzip it. You also can build latid from repo.
 It's strongly NOT recommended, but you can:
 
-    ```bash
     git clone git@github.com:girobusan/latid.git
     cd latid 
     npm install
     npm run build_all
-    ```
 
 The output files now in the `dist` directory.
 
@@ -92,14 +90,14 @@ Open distribution folder. Rename the directories:
 
 Assuming you have node.js installed, execute from the same folder:
 
-  node latidserv.js
+    node latidserv.js
 
 Then point your browser to `http://localhost:9999/` 
 
 ### Documentation
 
 1. [Getting started](docs/en/gettingstarted.md)
-2. [Config file](docs/en/settings_json.md)
+2. [Config file](docs/en/settings_toml.md)
 2. [Site directory structure](docs/en/site_directory_structure.md)
 
 [More...](docs/en/index.md) 
@@ -126,7 +124,8 @@ I'm not a real programmer, so the code is, probably, awful. There are some known
 ## Origin of name
 **La·tid**  *noun* (zoology) — any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
 
-## Image source
+---
+#### Image source
 
 https://commons.wikimedia.org/wiki/File:Psammoperca_vaigiensis.jpg
 

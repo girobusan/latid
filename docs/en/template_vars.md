@@ -38,7 +38,7 @@ Path operations utilities
 
 settings
 --------
-Site settings from settings.json
+Site settings from [ settings.toml ](settings_toml.md)
 
 util
 ----

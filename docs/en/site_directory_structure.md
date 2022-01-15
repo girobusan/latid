@@ -10,7 +10,7 @@ The site files organized as follows:
         |
         📁 _config
         |     |
-        |     setttings.json - main config file
+        |     setttings.toml - main config file
         |     |
         |     📁 templates
         |           |
