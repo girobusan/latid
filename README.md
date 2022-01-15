@@ -56,7 +56,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Rework local server (cleaner API)
 - [X] Create markdown files from GUI
 - [X] Time-aware generation 
-- [ ] Move to TOML configuration file format
+- [X] TOML configuration file format
 
 ### Maybe plans (_may_ be imlemented)
 
@@ -90,7 +90,7 @@ Open distribution folder. Rename the directories:
 
 Assuming you have node.js installed, execute from the same folder:
 
-    node latidserv.js
+  node latidserv.js
 
 Then point your browser to `http://localhost:9999/` 
 
