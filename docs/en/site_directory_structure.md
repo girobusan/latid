@@ -8,27 +8,27 @@ The site files organized as follows:
 
     📁 site
         |
-        📁 _config
-        |     |
-        |     setttings.toml - main config file
-        |     |
-        |     📁 templates
-        |           |
-        |           index.njk - root template
-        |           ...
-        |           📁 blocks
-        |                |
-        📁 _system      [custom block templates]
-        |    |
-        |   [...system stuff...]
-        |
-        📁 src
-        |    |
-        |   [site source files]
+        |________________📁 _config__
+        |                            |
+        |                            setttings.toml - main config file
+        |                            |
+        |                            📁 scripts - custom scripts 
+        |                            |
+        |                            📁 themes - theme files
+        📁 _system                   |
+        |    |                       📁 templates
+        |  system                          |
+        |  stuff                           index.njk - root template
+        |                                   ...
+        |                                  📁 blocks
+        📁 src                             |
+        |   |                         custom block templates
+        | site so       
+        | files     
         |
         📁 static
         |    |
-        |   [output]
+        | output
         |
         index.html
         latidserv.js - local server script
