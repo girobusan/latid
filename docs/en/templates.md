@@ -1,6 +1,5 @@
 ---
 title: Templates
-section: "03.01"
 ---
 A lots of Latid site functionality is based upon it's templating mechanics. 
 Latid uses [nunjucks templates](https://mozilla.github.io/nunjucks/). There is mandatory file, `index.njk`, from where you may set up all the routing and other logic using nunjucks abilities to conditionally extend, include and so on. 

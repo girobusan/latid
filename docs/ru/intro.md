@@ -1,6 +1,5 @@
 ---
 title: Что такое Latid
-section: "01.01"
 ---
 
 

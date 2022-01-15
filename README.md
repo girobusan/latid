@@ -58,7 +58,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [X] Time-aware generation 
 - [X] Change configuration file format to TOML
 
-### Maybe plans (_may_ be imlemented)
+### Maybe plans (_may_ be implemented)
 
 - [ ] Hosted version 
 - [ ] Ability to create page, if it's linked, but do not exist on the fly
@@ -107,7 +107,7 @@ Then point your browser to `http://localhost:9999/`
 There are goals, which must be achieved before removing "beta" status:
 
 1. Finalization of block editor interface design
-2. Stabilisation of latid server API (which is not stable now)
+2. Stabilization of latid server API (which is not stable now)
 3. Clean up console output
 4. Remove obsolete code
 

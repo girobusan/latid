@@ -1,6 +1,5 @@
 ---
 title: Latid server API
-section: "04.02"
 ---
 Latid GUI works in browser, and requires tiny local server for communication with file system. 
 The server have to support simple API, which is described here. Server, written for node.js environment

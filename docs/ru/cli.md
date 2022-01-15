@@ -1,6 +1,5 @@
 ---
 title: Интерфейс командной строки
-section: "01.06"
 en: "../en/cli.md"
 filename: "docs/ru/cli.md"
 ---

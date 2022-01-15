@@ -1,6 +1,5 @@
 ---
 title: Settings.json structure
-section: "01.03"
 ---
 
 From the version 1.10.1, the settings are kept in [settings.toml](settings_toml.md) file (TOML 

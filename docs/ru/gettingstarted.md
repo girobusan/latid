@@ -1,7 +1,6 @@
 ---
 title: Первые шаги
 name: gettingstarted
-section: "01.02"
 lang: ru
 ---
 Первые шаги по работе с Latid

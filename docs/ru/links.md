@@ -1,6 +1,5 @@
 ---
 title: Links
-section: "01.11"
 ---
 Latid tries to generate site, viewable as from internet, so from local storage. Therefore, 
 it rewrites links to relative ones, when possible. There is two options to set links

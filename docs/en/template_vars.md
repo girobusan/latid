@@ -1,6 +1,5 @@
 ---
 title: Template variables
-section: "03.02"
 ---
 There are bunch of variables, which can be accessed from your nunjucks templates.
 <!--cut-->

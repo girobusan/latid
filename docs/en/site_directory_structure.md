@@ -1,6 +1,5 @@
 ---
 title: Site directory structure
-section: "01.04"
 ---
 
 The site files organized as follows:
@@ -23,7 +22,7 @@ The site files organized as follows:
         |                                  📁 blocks
         📁 src                             |
         |   |                         custom block templates
-        | site so       
+        | site source       
         | files     
         |
         📁 static

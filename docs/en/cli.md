@@ -1,6 +1,5 @@
 ---
 title: Command Line Interface
-section: "01.06"
 ru: "../ru/cli.md"
 ---
 
