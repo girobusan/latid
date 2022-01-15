@@ -9,9 +9,9 @@ because:
 - It's possible to use comments.
 
 If you have old config in JSON and don't want to change it's format immediately,
-you may keep it — it's still used as fallback (but consider updating). But please, do not have both
-`settings.toml` and `settings.json` in same `_config` directory. It will lead to
-unpredictable malfunctions.
+you may keep it — it's still used as fallback (but consider updating). But 
+please, do not have both `settings.toml` and `settings.json` in same `_config` 
+directory. It will lead to unpredictable malfunctions.
 
 This is a commented Latid config file (`_config/settings.toml`). 
 

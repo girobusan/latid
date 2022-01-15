@@ -56,7 +56,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 - [ ] Rework local server (cleaner API)
 - [X] Create markdown files from GUI
 - [X] Time-aware generation 
-- [X] TOML configuration file format
+- [X] Change configuration file format to TOML
 
 ### Maybe plans (_may_ be imlemented)
 
@@ -71,10 +71,12 @@ Install [node.js](https://nodejs.org) to your computer.
 You have better to download latest release and unzip it. You also can build latid from repo.
 It's strongly NOT recommended, but you can:
 
+    ```bash
     git clone git@github.com:girobusan/latid.git
     cd latid 
     npm install
     npm run build_all
+    ```
 
 The output files now in the `dist` directory.
 
