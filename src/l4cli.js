@@ -65,6 +65,24 @@ function toArrayBuffer(buf) {
     return ab;
 }
 
+function executeCommand(cmd, args , cwd , callback){
+  console.info("External command:" , cmd , args.join(" ") );
+  //run publish command   
+  let pcommand = cmd;
+  let pargs = Array.isArray(args) ? args.join(" ") : args;
+  child_process.exec(pcommand + " " + pargs, { cwd: cwd } ,
+    (error, stdout , stderr)=>{
+      if(error){
+        console.error("Error:" , error);
+        console.log(stdout , stderr)
+        return
+      }
+      console.log("Command output:");
+      console.info(stdout);
+      if(callback){callback()};
+    });
+}
+
 // List all files in a directory in Node.js recursively in a synchronous fashion
 export function reclist(dir, filelist) {
     //var path = path || require('path');
@@ -100,9 +118,14 @@ try{
     encoding: "utf8"
   }));
 }catch{
-  l4.settings = JSON.parse(fs.readFileSync(Path.join(sitedir, "_config", "settings.json"), {
-    encoding: "utf8"
-  }));
+  try{
+    l4.settings = JSON.parse(fs.readFileSync(Path.join(sitedir, "_config", "settings.json"), {
+      encoding: "utf8"
+    }));
+  }catch{
+    console.error("Can not load settings file, exiting");
+    process.exit(1);
+  }
 }
 //l4.settings.output_path = l4.settings.output_path || "static" ;
 let confdir = l4.settings.output.dir ? l4.settings.output.dir : "static";
@@ -112,12 +135,18 @@ l4.settings.output_path = outdir;
 console.log("Output to", outdir);
 console.log(singleUnderline);
 
+//if we need just run publish command
+if(skip_generation && l4.settings.publish.command){
+    console.info("Skipping generation.")
+  if(l4.settings.publish.command){
+    executeCommand(l4.settings.publish.command, l4.settings.publish.args, sitedir , ()=>process.exit(0));
+  }else{
+    console.info("No publish command defined, exiting.");
+    process.exit(1);
+  }
+}
 
 
-
-//read all files
-//l4.files = l4.server.list(indir);
-////console.log("Input files", l4.files.length);
 //new production routines
 /*
 {
@@ -166,10 +195,7 @@ let fileops = {
     },
     "list": function (rp) {
         let fulldir = Path.join(sitedir, rp);
-        //console.log("Full DIr" , fulldir);
 
-        //let mylist = reclist(fulldir).map(p => ({ "path": p.substring(fulldir.length+1) }));
-        //console.log(mylist)
         return new Promise(function (res, rej) {
             if(fs.existsSync(rp)){
             let mylist = reclist(fulldir).map(p => {let fst = fs.statSync(p); /*console.log(fst)*/ ; return { "path": p.substring(fulldir.length+1) , "mtime" : fst.mtime , "mtimeMs" : fst.mtimeMs }});
@@ -203,33 +229,23 @@ function printProgress(what , e){
     }    
 }
 
-prod.init(function () {
+if(!skip_generation){
+  prod.init(function () {
 
-  prod.loadAll(e=>printProgress( "Files loading" , e))
-  .then(() => prod.generateAll(  e=>printProgress("Generation" , e) , opts ))
-  .then(()=>{
-    if(do_publish){
-      //run publish command   
-      let pcommand = l4.settings.publish.command;
-      let pargs = Array.isArray(l4.settings.publish.args) ? l4.settings.publish.args.join(" ") : l4.settings.publish.args;
-      if(pcommand){
-        console.info("Publish command set, executing:" , pcommand , pargs);
-        console.info("Working dir is" , sitedir)
-        child_process.exec(pcommand + " " + pargs, { cwd: sitedir } ,
-          (error, stdout , stderr)=>{
-            if(error){
-              console.error("Error:" , error);
-              console.log(stdout , stderr)
-              return
-            }
-            console.info(stdout);
-          });
-
+    prod.loadAll(e=>printProgress( "Files loading" , e))
+    .then(() => prod.generateAll(  e=>printProgress("Generation" , e) , opts ))
+    .then(()=>{
+      //run publish command?
+      if(do_publish){
+        let pcommand = l4.settings.publish.command;
+        if(pcommand){
+          console.info("Publish command set, executing...");
+          executeCommand(pcommand, l4.settings.publish.args, sitedir)
+        }
       }
-      
-    }
-  })
-.catch(err=>console.error(err))
-  ;
-});
+    })
+    .catch(err=>console.error(err))
+      ;
+  });
+}
 
