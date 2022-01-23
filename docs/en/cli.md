@@ -13,7 +13,7 @@ Execute this from the site directory:
 
 It will gather source files and generate output static htmls. 
 
-## Paremeters
+## Parameters
 
 | parameter | meaning |
 |-----------|---------|

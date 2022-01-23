@@ -213,17 +213,17 @@ prod.init(function () {
       let pcommand = l4.settings.publish.command;
       let pargs = Array.isArray(l4.settings.publish.args) ? l4.settings.publish.args.join(" ") : l4.settings.publish.args;
       if(pcommand){
-         console.info("Publish command set, executing:" , pcommand , pargs);
-         console.info("Working dir is" , sitedir)
-      let pp = child_process.exec(pcommand + " " + pargs, { cwd: sitedir } ,
-        (error, stdout , stderr)=>{
-          if(error){
-          console.error("Error:" , error);
-          console.log(stdout , stderr)
-          return
-          }
-          console.info(stdout);
-        });
+        console.info("Publish command set, executing:" , pcommand , pargs);
+        console.info("Working dir is" , sitedir)
+        child_process.exec(pcommand + " " + pargs, { cwd: sitedir } ,
+          (error, stdout , stderr)=>{
+            if(error){
+              console.error("Error:" , error);
+              console.log(stdout , stderr)
+              return
+            }
+            console.info(stdout);
+          });
 
       }
       
