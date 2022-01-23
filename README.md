@@ -8,12 +8,14 @@ title: Latid README
 ![Latid](docs/pix/readme_image.png)
 
 Latid is a portable static site generator, oriented towards content authors, 
-therefore [pretty simple in use](docs/en/required_knowledge.md). All the required functionality
-included and enabled, (almost) no programming knowledge required to set up and operate.
+therefore [pretty simple in use](docs/en/required_knowledge.md). All the 
+required functionality included and enabled, (almost) no programming knowledge 
+required to set up and operate.
 
 
 It works as traditional command line utility and/or with browser based GUI 
-(allowing to use block editor). There is also a [GUI app](https://github.com/girobusan/latid-browser) 
+(allowing to use block editor). There is also a
+[GUI app](https://github.com/girobusan/latid-browser) 
 for hassle-free working with Latid sites.
 
 
@@ -43,14 +45,15 @@ It's in active use, tested and is pretty mature.
 You will need node.js, version 11 and up.
 
 The sites, produced with Latid may be completely static and adapted even 
-for oldest browsers, but you will need the descent one for using Latid GUI (Latid can 
-  work without GUI, GUI is just another way to edit site content,
-  if you prefer to work without GUI, you'd have to use only `markdown` files as source). 
+for oldest browsers, but you will need the descent one for using Latid GUI
+(Latid can work without GUI, GUI is just another way to edit site content,
+ if you prefer to work without GUI, you'd have to use only `markdown` files
+ as source). 
 
 Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work. 
 
 ## Plans (will be implemented sooner or later)
-<small>The marked ones are implemented, but not included in current release</small>
+The marked ones are implemented, but not included in current release
 
 - [ ] Better WYSIWYG in block editor
 - [ ] Rework local server (cleaner API)
@@ -68,8 +71,8 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 
 Install [node.js](https://nodejs.org) to your computer.
 
-You have better to download latest release and unzip it. You also can build latid from repo.
-It's strongly NOT recommended, but you can:
+You have better to download latest release and unzip it. You also can build
+latid from repo. It's strongly NOT recommended, but you can:
 
     git clone git@github.com:girobusan/latid.git
     cd latid 
@@ -115,14 +118,16 @@ Other functionality is pretty usable.
 
 ## Disclaimer
 
-I'm not a real programmer, so the code is, probably, awful. There are some known problems, including, but not limited to:
+I'm not a real programmer, so the code is, probably, awful. There are some
+known problems, including, but not limited to:
 
 - Too basic default site design (users have to develop they own)
 - Incomplete documentation (in process)
 - Custom JS may work quirky in GUI (affects only GUI preview, there are workarounds)
 
 ## Origin of name
-**La·tid**  *noun* (zoology) — any member of the [Latidae family](https://en.wikipedia.org/wiki/Latidae).
+**La·tid**  *noun* (zoology) — any member of the 
+[Latidae family](https://en.wikipedia.org/wiki/Latidae).
 
 ---
 #### Image source

@@ -2,6 +2,7 @@ const TOML = require('@iarna/toml');
 const fs = require('fs');//.promises;
 const fsp = require('fs').promises;
 var Path = require("path");
+const child_process = require('child_process');
 import * as Production from "./production";
 const util = require("./util.js");
 
@@ -26,6 +27,8 @@ var work_time = (new Date()).getTime();
 var parseargs = require('minimist');
 var cliargs = parseargs(process.argv.slice(2));
 var sitedir = cliargs.s || process.cwd();//site directory
+var do_publish = cliargs.c || false ;
+var skip_generation = cliargs.p || false;
 
 //time-aware generation
 var timeawareness = cliargs.t || false;
@@ -204,6 +207,23 @@ prod.init(function () {
 
   prod.loadAll(e=>printProgress( "Files loading" , e))
   .then(() => prod.generateAll(  e=>printProgress("Generation" , e) , opts ))
+  .then(()=>{
+    if(do_publish){
+      //run publish command   
+      let pcommand = l4.settings.publish.command;
+      let pargs = l4.settings.publish.args;
+      if(pcommand){
+         console.info("Publish command set, executing:" , pcommand , pargs.join(" "));
+         console.info("Working dir is" , sitedir)
+      let pp = child_process.spawn(pcommand, pargs, { cwd: sitedir });
+      pp.on("exit", ()=>console.log("Command exited."));
+      pp.on("close", ()=>console.log("Process closed."));
+      pp.on("error", (e) => console.error("error", e))
+
+      }
+      
+    }
+  })
 .catch(err=>console.error(err))
   ;
 });

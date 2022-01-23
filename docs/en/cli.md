@@ -11,5 +11,12 @@ Execute this from the site directory:
 
     node l4cli.js
 
-It will gather source files and generate output static htmls. Invoking with `-t` key initiates "time aware" generation (files with date in future won't be processed, 
-this is *planned* feature)
+It will gather source files and generate output static htmls. 
+
+## Paremeters
+
+| parameter | meaning |
+|-----------|---------|
+| -t        | Skip files with dates in future. |
+| -c        | Execute publish command from [settings.toml](settings_toml.md) after generation. |
+
