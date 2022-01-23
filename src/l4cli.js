@@ -211,14 +211,19 @@ prod.init(function () {
     if(do_publish){
       //run publish command   
       let pcommand = l4.settings.publish.command;
-      let pargs = l4.settings.publish.args;
+      let pargs = Array.isArray(l4.settings.publish.args) ? l4.settings.publish.args.join(" ") : l4.settings.publish.args;
       if(pcommand){
-         console.info("Publish command set, executing:" , pcommand , pargs.join(" "));
+         console.info("Publish command set, executing:" , pcommand , pargs);
          console.info("Working dir is" , sitedir)
-      let pp = child_process.spawn(pcommand, pargs, { cwd: sitedir });
-      pp.on("exit", ()=>console.log("Command exited."));
-      pp.on("close", ()=>console.log("Process closed."));
-      pp.on("error", (e) => console.error("error", e))
+      let pp = child_process.exec(pcommand + " " + pargs, { cwd: sitedir } ,
+        (error, stdout , stderr)=>{
+          if(error){
+          console.error("Error:" , error);
+          console.log(stdout , stderr)
+          return
+          }
+          console.info(stdout);
+        });
 
       }
       
