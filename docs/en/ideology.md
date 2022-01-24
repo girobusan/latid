@@ -10,7 +10,7 @@ Latid is built for content authors. There is no need to dig into javascript in o
 
 ## Guerrilla web
 
-Latid is well-suited for use under pressure. Unfortunately, we live in a world where freedom of speech is frequently threatened. State authorities or others can block web sites, prosecute web creators, or cancel them. Therefore, what do you, as a guerrilla web author, need from your site generator?
+Latid is well-suited for use under pressure. Unfortunately, we live in a world where freedom of speech is frequently threatened. State authorities or *others* can block web sites, prosecute web creators, or *cancel* them. Therefore, what do you, as a guerrilla web author, need from your site generatoя?
 
 ### Hide and deny
 

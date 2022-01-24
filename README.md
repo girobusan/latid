@@ -8,9 +8,9 @@ title: Latid README
 ![Latid](docs/pix/readme_image.png)
 
 Latid is a portable static site generator, aimed at content authors, 
-therefore [very easy to use](docs/en/required_knowledge.md).  It provides all the functionality required with (almost) no programming knowledge required to set it up and operate.
+therefore [very easy to use](docs/en/required_knowledge.md).  It provides all the functionality needed with (almost) no programming knowledge required to set it up and operate.
 
-There is a traditional command line utility and a browser based GUI (allowing to use a block editor). There is also a [convinience app](https://github.com/girobusan/latid-browser) makes working with Latid sites easy.
+There is a traditional command line utility and a browser based GUI (allowing to use a block editor). There is also a [convinience app](https://github.com/girobusan/latid-browser), which makes working with Latid sites even easier.
 
 It works well on multi-page sites (tested with >2000 pages) with primary static (even completely javascript-free) content (blogs, documentation, portfolios). It is actively used, tested, and pretty mature.
 
@@ -111,11 +111,13 @@ known problems, including, but not limited to:
 - Incomplete documentation (in process)
 - Custom JS may work quirky in GUI (affects only GUI preview, there are workarounds)
 
-## Origin of name
+---
+
+#### Origin of name
+
 **La·tid**  *noun* (zoology) — any member of the 
 [Latidae family](https://en.wikipedia.org/wiki/Latidae).
 
----
 #### Image source
 
 https://commons.wikimedia.org/wiki/File:Psammoperca_vaigiensis.jpg
