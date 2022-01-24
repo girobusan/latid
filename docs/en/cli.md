@@ -11,7 +11,7 @@ Execute this from the site directory:
 
     node l4cli.js
 
-It will gather source files and generate output static htmls. 
+It will gather source files and generate static html. 
 
 ### Command line parameters
 

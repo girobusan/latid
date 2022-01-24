@@ -7,22 +7,12 @@ title: Latid README
 
 ![Latid](docs/pix/readme_image.png)
 
-Latid is a portable static site generator, oriented towards content authors, 
-therefore [pretty simple in use](docs/en/required_knowledge.md). All the 
-required functionality included and enabled, (almost) no programming knowledge 
-required to set up and operate.
+Latid is a portable static site generator, aimed at content authors, 
+therefore [very easy to use](docs/en/required_knowledge.md).  It provides all the functionality required with (almost) no programming knowledge required to set it up and operate.
 
+There is a traditional command line utility and a browser based GUI (allowing to use a block editor). There is also a [convinience app](https://github.com/girobusan/latid-browser) makes working with Latid sites easy.
 
-It works as traditional command line utility and/or with browser based GUI 
-(allowing to use block editor). There is also a
-[GUI app](https://github.com/girobusan/latid-browser) 
-for hassle-free working with Latid sites.
-
-
-It works best for multipage sites (tested with >2000 pages) with primary static 
-(even completely javascript-free) content (blogs, documentation, portfolios).
-
-It's in active use, tested and is pretty mature.
+It works well on multi-page sites (tested with >2000 pages) with primary static (even completely javascript-free) content (blogs, documentation, portfolios). It is actively used, tested, and pretty mature.
 
 ([There are some docs](docs/en/index.md))
 
@@ -44,11 +34,7 @@ It's in active use, tested and is pretty mature.
 
 You will need node.js, version 11 and up.
 
-The sites, produced with Latid may be completely static and adapted even 
-for oldest browsers, but you will need the descent one for using Latid GUI
-(Latid can work without GUI, GUI is just another way to edit site content,
- if you prefer to work without GUI, you'd have to use only `markdown` files
- as source). 
+Latid allows for creating completely static and cross-browser compatible websites, even for the oldest browsers. But for Latid GUI, you'll need to use the latest browser (Latid can work without GUI as GUI is just another way to edit site content. In order to work without GUI, you must use only `markdown` files for source). 
 
 Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work. 
 
