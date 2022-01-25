@@ -4,11 +4,30 @@ ru: ../ru/ideology.md
 ---
 Latid's design choices are influenced not only by technical and aesthetic considerations, but also by some sort of ideology.
 
-## Focus on the author.
+## Focus on the author
 
 Latid is built for content authors. There is no need to dig into javascript in order to setup a Latid site. There is one directory to keep, one file operation to update software, one skill to run the generator. And freedom to choose any kind of site structure. But note, that by design, static site generators are not the easiest option. Latid still has some learning curve to travel.
 
-## Guerrilla web
+### Content author must work with content
+
+When everything is set up and running, you can write texts, add images, publish
+your site without looking under the hood. A very little additional knowledge is
+required.
+
+### Work must give feedback
+
+Even if you are the "i need to see how my text looks on the site" kind of person.
+Latid GUI gives you the ability to edit pages right in place and immediately see,
+how they look in final product.
+
+### There are traditions
+
+You may have a lot of content already written in markdown format. And you may 
+want to keep using this format with Latid as well. Use your favorite markdown
+editor, put your files in the `src` directory and off you go. And you will be able 
+to edit them in GUI later. 
+
+## Other priority: guerrilla web
 
 Latid is well-suited for use under pressure. Unfortunately, we live in a world where freedom of speech is frequently threatened. State authorities or *others* can block web sites, prosecute web creators, or *cancel* them. Therefore, what do you, as a guerrilla web author, need from your site generatoя?
 

@@ -3,7 +3,8 @@ title: Latid documentation
 lang: en
 top_level_page: true
 ---
-Plese, refer to latest version of documentation at [Github page](https://github.com/girobusan/latid)
+This documentation usually synced with latest version, and may be
+a bit ahead of current release.
 
 ## Basics
 1. [ Introduction ](intro.md)
