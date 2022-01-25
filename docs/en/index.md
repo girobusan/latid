@@ -3,11 +3,12 @@ title: Latid documentation
 lang: en
 top_level_page: true
 ---
-This documentation usually synced with latest version, and may be
+This documentation usually synced with the latest version, and may be
 a bit ahead of current release.
 
 ## Basics
 1. [ Introduction ](intro.md)
+2. [Ideology](ideology.md)
 1. [Required knowledge](required_knowledge.md)
 1. [ Getting started ](gettingstarted.md)
 3. [ Site directory structure ](site_directory_structure.md)
