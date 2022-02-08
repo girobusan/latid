@@ -78,7 +78,7 @@ Variables, available in handler function
 ---------------------------------------
 - `util`  — [util](util.md) module
 - `fileops` — [internal file operation](internal_file_operations.md) routines
-- `settinds` — site [settings](settings_json.md), as an object
+- `settinds` — site [settings](settings_toml.md), as an object
 
 How to check, if script running in web GUI or command line
 ----------------------------------------------------------

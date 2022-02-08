@@ -1,9 +1,11 @@
 ---
 title: Settings.json structure
-section: "01.03"
 ---
 
-The settings file is  [your site dir/]_config/settings.json. That's how it looks like, explanation follows.
+From the version 1.10.1, the settings are kept in [settings.toml](settings_toml.md) file (TOML 
+format). The `settings.json` file will be used as fallback for some time. 
+This document left here for historical purposes.
+
 <!--cut-->
 
     {

@@ -1,6 +1,5 @@
 ---
 title: File metadata
-section: "01.09"
 ---
 
 You can add any metadata to your pages, for any use. Custom meta may work well for maintaining non-standard site structure and|or navigation. Some metadata used by engine, including those:

@@ -1,6 +1,5 @@
 ---
 title: Template variables
-section: "03.02"
 ---
 There are bunch of variables, which can be accessed from your nunjucks templates.
 <!--cut-->
@@ -38,7 +37,7 @@ Path operations utilities
 
 settings
 --------
-Site settings from settings.json
+Site settings from [ settings.toml ](settings_toml.md)
 
 util
 ----

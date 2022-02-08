@@ -43,9 +43,6 @@ The marked ones are implemented, but not included in current release
 
 - [ ] Better WYSIWYG in block editor
 - [ ] Rework local server (cleaner API)
-- [X] Create markdown files from GUI
-- [X] Time-aware generation 
-- [X] Change configuration file format to TOML
 
 ### Maybe plans (_may_ be implemented)
 

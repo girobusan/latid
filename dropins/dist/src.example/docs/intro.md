@@ -1,6 +1,5 @@
 ---
 title: What is Latid
-section: "01.01"
 ---
 
 Latid is a static site generator, which works as traditional 

@@ -12,7 +12,7 @@ Each theme would be distributed as archive (directory), which contains two subdi
 
 Setting up theme:
 ----------------
-To set the theme, set  keys in the `settings.json`: 
+To set the theme, set  keys in the `settings.toml`: 
 `themes.enabled` to  `true` and  `themes.theme` property to theme name. That's it.
 
     "themes" :{
