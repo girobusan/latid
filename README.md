@@ -41,6 +41,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 ## Plans (will be implemented sooner or later)
 The marked ones are implemented, but not included in current release
 
+- [ ] Add nice themes to bundle
 - [ ] Better WYSIWYG in block editor
 - [ ] Rework local server (cleaner API)
 
