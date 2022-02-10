@@ -42,6 +42,7 @@ Tested browsers: Firefox, version>68, Chrome, >77. Safari >12 _may_ also work.
 The marked ones are implemented, but not included in current release
 
 - [ ] Add nice themes to bundle
+- [ ] Add function to generate pagination widget
 - [ ] Better WYSIWYG in block editor
 - [ ] Rework local server (cleaner API)
 
