@@ -215,3 +215,61 @@ export function guessImage(view) {
         return match ? match[1] : null;
     }
 } 
+
+export function paginationWidget(list , currentIndex , first_last , prev_next){
+
+  if(first_last===undefined){first_last=true}
+  if(prev_next===undefined){prev_next=false}
+  let left = [];
+  let right = [];
+  let middle = [];
+
+  function Item(lnk,type, n){
+    return {"link": lnk , "type": type  , "number": n || ""}
+    }
+
+  if(first_last){
+     left.push( Item(list[0] , "first" , 0) );
+     right.push( Item(list[list.length-1] , "last" , list.length-1 ))
+  }
+
+  if(prev_next){
+      //first if it's not second
+      if(currentIndex>0){
+          left.push(Item(list[currentIndex-1]) , "previous" , currentIndex-1)
+      }
+      if(currentIndex<( list.length-1 )){
+          right.push(Item(list[currentIndex+1]) , "next" , currentIndex+1)
+      }
+      
+  }
+  //do we need ellipsis at left? 1..3 <4> 5
+  //current-q >1
+  if(currentIndex>1){
+      left.push(Item("", "ellipsis"))
+  }
+  //...at right?
+  // 345...7
+  if(currentIndex+2<list.length){
+      right.push(Item("" , "ellipsis"))
+  }
+  //BUILD MIDDLE
+  //previous?
+  if(currentIndex>0){
+     middle.push(Item(list[currentIndex-1] , "number" , currentIndex-1))
+  }
+  //current!
+  middle.push(Item(list[currentIndex] , "number" , currentIndex))
+  //next?
+  if(currentIndex+1<list.length){ //not last
+     middle.push(Item(list[currentIndex+1] , "number" , currentIndex+1))
+  }
+
+  right.reverse();
+  let r = left.concat(middle);
+  r = r.concat(right);
+  return r;
+
+
+
+}
