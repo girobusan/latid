@@ -13,7 +13,7 @@ function prepFields(frjson , additional_file_info , default_date ){
   //console.log("PF" ,  additional_file_info );
   //fix date field
   if(!("date" in frjson.meta)){
-    frjson.meta.date = default_date || util.date2str( new Date(parseFloat(additional_file_info.mtimeMs)));
+    frjson.meta.date = default_date ? default_date :  "1970.1.2 10:10"; //:FIX!
     //console.info("Fix date at" , additional_file_info , "to" , frjson.date );
   }
   //fix excerpt in markdown
@@ -114,7 +114,7 @@ export async function decodeFileFromPath(path, text_getter , additional_file_inf
       var parsed_file;
       if (path.match(/\.json$/gi)) {
         //console.log("THis is JSON" , path)
-        parsed_file = decodeJSON(txt, settings.output.default_date||null);
+        parsed_file = decodeJSON(txt);
       } else {
         //markdown
         //console.log("This is MARKDOWN" , txt)
@@ -128,7 +128,7 @@ export async function decodeFileFromPath(path, text_getter , additional_file_inf
           Views.makeSrcView(
             path,
             "/" + path.replace(/\.[a-zA-Z]+$/ , ".html"),
-            prepFields(parsed_file , additional_file_info )
+            prepFields(parsed_file , additional_file_info , settings.output.default_date )
             ));
       } else {
         //console.log("resolving COPY")
