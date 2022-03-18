@@ -167,7 +167,7 @@ let fileops = {
         return new Promise(function (res, rej) {
             fsp.readFile(Path.join(sitedir, p))
             .then(r => res(toArrayBuffer(r)))
-            .catch(e=>{console.log("rejection") ; rej(e) })
+            .catch(e=>{ rej(e) })
             })
             ;
         
