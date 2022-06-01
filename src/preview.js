@@ -273,6 +273,7 @@ export function preview() {
     if (!fn) {
       return;
     }
+    fn=fn.trim();
     // console.log("FN" , fn)
     if (is_index) {
       var fpuri = Util.gluePath(path.dirname(my.current_view.uri), fn[0], "index.html");
