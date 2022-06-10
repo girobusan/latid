@@ -1,4 +1,5 @@
 const feedster = require('feed-generator');
+const moment = require("moment");
 import * as Util from "./util";
 import * as Pathops from "./pathops";
 import * as LinkRepl from "./link_replacer";
@@ -42,7 +43,7 @@ export function buildRSS(settings, views) {
       link: Util.gluePath(settings.site.url, e.uri),
       guid: Util.gluePath(settings.site.url, e.uri),
       description: LR.rewriteAllLinks(dsc, null, settings.site.url),
-      pubDate: Util.str2date(e.file.meta.date).toISOString(),
+      pubDate: moment(Util.str2date(e.file.meta.date) , false , "en").format('ddd, D MMM YYYY HH:mm:ss ZZ'), //.replace("GMT" , "+0000"),)
       enclosure: {url:enc}
     })
   });
