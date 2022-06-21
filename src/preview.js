@@ -273,8 +273,8 @@ export function preview() {
     if (!fn) {
       return;
     }
-    fn=fn.trim();
-    // console.log("FN" , fn)
+    console.log("FN" , fn)
+    fn[0]=fn[0].trim();
     if (is_index) {
       var fpuri = Util.gluePath(path.dirname(my.current_view.uri), fn[0], "index.html");
     } else {
