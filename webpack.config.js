@@ -42,7 +42,7 @@ module.exports = function (env, argv) {
       "scripts/startup": "./src/startupscreen.js",
       "scripts/production": "./src/production_worker.js",
     }, //array!!!
-    devtool: argv.mode != "production" ? 'inline-source-map' : "",
+    //devtool: argv.mode != "production" ? 'inline-source-map' : "",
 
     output: {
       filename: '[name].js',
@@ -130,7 +130,7 @@ module.exports = function (env, argv) {
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
-        inject: false
+        //insert: false
       }),
 
       new HtmlWebpackPlugin({
