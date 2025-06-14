@@ -8,7 +8,7 @@ title: Latid README
 
 ---
 
-**This project is no longer actively maintained. I've stating a new SSG project, whcih will have convertor from Latid source.**
+**This project is no longer actively maintained. I'm stating a new SSG project, whcih will have convertor from Latid source.**
 
 ---
 
